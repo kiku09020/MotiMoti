@@ -83,9 +83,17 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    // 指定のシーンを読み込む
-    public void LoadScene(string sceneName) { SceneManager.LoadScene(sceneName); }
-    public void LoadScene(int sceneIndex)   { SceneManager.LoadScene(sceneIndex); }
+    // シーン名指定して読み込む
+    public void LoadScene(string sceneName) 
+    { 
+        SceneManager.LoadScene(sceneName); 
+    }
+
+    // シーン番号指定して読み込む
+    public void LoadScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex); 
+    }
 
     //-------------------------------------------------------------------
     // エラー時の処理
@@ -95,7 +103,7 @@ public class SceneController : MonoBehaviour
 
 		switch (errorNum) {
             case Error.IndexOver:
-                errorMessage = "指定したシーン番号が、大きいすぎます";
+                errorMessage = "指定したシーン番号が、大きすぎます";
                 break;
 
             case Error.IndexLess:
@@ -103,11 +111,11 @@ public class SceneController : MonoBehaviour
                 break;
 		}
 
-        print(errorMessage);
+        // エラーメッセージ
+        Debug.LogError(errorMessage);
 
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPaused = true;
-#endif
+        // エディタ上で停止させる
+        Debug.Break();
     }
 }
 
