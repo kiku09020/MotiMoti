@@ -7,45 +7,65 @@ public class CanvasManager : MonoBehaviour
     /* 値 */
 
     [Header("Objects")]
-    [SerializeField] GameObject mainCanvasPrfb;     // メインのキャンバス
-    [SerializeField] GameObject eventSystemObj;     // EventSystem
+    [SerializeField] GameObject mainCnvsPrfb;     // メインのキャンバス
 
-    GameObject mainCanvasInst;      // インスタンス
+    GameObject mainCnvsInst;      // インスタンス
 
-    GameObject ctrlCanvas;
-    GameObject uiCnavas;
-    GameObject pauseCanvas;
+    GameObject ctrlCnvs;
+    GameObject gameUICnvs;
+    GameObject pauseCnvs;
+    GameObject cautCnvs;
+
+    public GameObject CtrlCnvs { get => ctrlCnvs; }
+    public GameObject GameCnvs { get => gameUICnvs; }
+    public GameObject PauseCnvs { get => pauseCnvs; }
+    public GameObject CautCnvs { get => cautCnvs; }
 
     //-------------------------------------------------------------------
-    void Start()
+    void Awake()
     {
-        mainCanvasInst = Instantiate(mainCanvasPrfb);       // キャンバスのプレハブをインスタンス化
-        Instantiate(eventSystemObj);                        // EventSystemインスタンス化
+        mainCnvsInst = Instantiate(mainCnvsPrfb);       // キャンバスのプレハブをインスタンス化
 
         /* オブジェクト取得 */
-        ctrlCanvas  = mainCanvasInst.transform.Find("ControllerCanvas").gameObject;
-        uiCnavas    = mainCanvasInst.transform.Find("GameUICanvas").gameObject;
-        pauseCanvas = mainCanvasInst.transform.Find("PauseCanvas").gameObject;
+        ctrlCnvs  = mainCnvsInst.transform.Find("ControllerCanvas").gameObject;
+        gameUICnvs= mainCnvsInst.transform.Find("GameUICanvas").gameObject;
+        pauseCnvs = mainCnvsInst.transform.Find("PauseCanvas").gameObject;
+        cautCnvs  = pauseCnvs.transform.Find("CautionCanvas").gameObject;
 
         /* 初期化 */
-        pauseCanvas.SetActive(false);
+        pauseCnvs.SetActive(false);
     }
 
     //-------------------------------------------------------------------
+    // ポーズ
     public void Pause(bool pause)
     {
         // ポーズ時
         if (pause) {
-            ctrlCanvas.SetActive(false);
-            uiCnavas.SetActive(false);
-            pauseCanvas.SetActive(true);
+            ctrlCnvs.SetActive(false);
+            gameUICnvs.SetActive(false);
+            pauseCnvs.SetActive(true);
         }
 
         // ポーズ終了時
         else {
-            ctrlCanvas.SetActive(true);
-            uiCnavas.SetActive(true);
-            pauseCanvas.SetActive(false);
+            ctrlCnvs.SetActive(true);
+            gameUICnvs.SetActive(true);
+            pauseCnvs.SetActive(false);
+        }
+    }
+
+    // 警告表示
+    public void Caution(bool caution)
+    {
+        // 警告時
+        if (caution) {
+            cautCnvs.SetActive(true);
+        }
+
+        // 警告解除時
+        else {
+            cautCnvs.SetActive(false);
         }
     }
 }

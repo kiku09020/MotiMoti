@@ -7,11 +7,10 @@ public class SceneController : MonoBehaviour
 {
     /* 値 */
     NowScene nowScene;      // 現在のシーン
-
     int sceneCnt;           // シーンの数
 
     // ロードパターン
-    public enum Load {
+    enum Load {
         Now,        // 現在のシーン
         Next,       // 次
         Prev,       // 前
@@ -28,71 +27,86 @@ public class SceneController : MonoBehaviour
     {
         nowScene = new NowScene();
 
-        nowScene.Scene = SceneManager.GetActiveScene();
         nowScene.SetInfo();
     }
 
 //-------------------------------------------------------------------
-    // 次のシーンを読み込む
-    void LoadNextScene() 
+    /// <summary>
+    /// 現在のシーンを読み込む
+    /// </summary>
+    public void LoadNowScene()
+    {
+        StartCoroutine(WaitLoading(Load.Now));
+    }
+
+    /// <summary>
+    /// 次のシーンを読み込む
+    /// </summary>
+    public void LoadNextScene() 
     {
         var index = nowScene.Index;
-
-        // シーン番号が合計のシーン数より小さいとき、読み込み
-        if (index < sceneCnt) {
-            SceneManager.LoadScene(index + 1);
+        
+        if (index < sceneCnt) {     // シーン番号が合計のシーン数より小さいとき、読み込み
+            StartCoroutine(WaitLoading(Load.Next));
         }
-
-        // 範囲外のシーン番号が指定された場合、エラー処理
-		else {
+		else {                      // 範囲外エラー処理
             LoadErrorProc(Error.IndexOver);
         }
     }
 
-    // 前のシーンを読み込む
-    void LoadPrevScene() {
+    /// <summary>
+    /// 前のシーンを読み込む
+    /// </summary>
+    public void LoadPrevScene() {
         var index = nowScene.Index;
 
-        // シーン番号が0より大きいとき、読み込む
-		if (index > 0) {
-            SceneManager.LoadScene(index - 1);
-		}
-
-        // 範囲外のシーン番号が指定された場合、エラー処理
-        else {
+		if (index > 0) {            // シーン番号が0より大きいとき、読み込む
+            StartCoroutine(WaitLoading(Load.Prev));
+        }
+        else {                      // 範囲外エラー処理
             LoadErrorProc(Error.IndexLess);
 		}
     }
 
     //-------------------------------------------------------------------
-    // ロード番号に応じたシーンのロード
-    public void LoadScene(Load loadNum)
-    {
-        switch (loadNum) {
-            case Load.Now:
-                SceneManager.LoadScene(nowScene.Index);
-                break;
+    /// <summary>
+    /// シーン名を指定して読み込む
+    /// </summary>
+    /// <param name="sceneName">シーン名</param>
+    public void LoadScene(string sceneName) 
+    { StartCoroutine(WaitLoading(sceneName)); }
 
-            case Load.Next:
-                LoadNextScene();
-                break;
+    /// <summary>
+    /// シーン番号を指定して読み込む
+    /// </summary>
+    /// <param name="sceneIndex">シーン番号</param>
+    public void LoadScene(int sceneIndex)
+    { StartCoroutine(WaitLoading(sceneIndex)); }
 
-            case Load.Prev:
-                LoadPrevScene();
-                break;
+    //-------------------------------------------------------------------
+    /* 待機 */
+    IEnumerator WaitLoading(Load loadType)
+	{
+        var index = nowScene.Index;
+        yield return new WaitForSecondsRealtime(0.2f);
+
+		switch (loadType) {
+            case Load.Now:  SceneManager.LoadScene(index);      break;
+            case Load.Next: SceneManager.LoadScene(index + 1);  break;
+            case Load.Prev: SceneManager.LoadScene(index - 1);  break;
         }
     }
 
-    // シーン名指定して読み込む
-    public void LoadScene(string sceneName) 
-    { 
-        SceneManager.LoadScene(sceneName); 
+    IEnumerator WaitLoading(string sceneName)
+	{
+        yield return new WaitForSecondsRealtime(0.2f);
+        SceneManager.LoadScene(sceneName);
     }
 
-    // シーン番号指定して読み込む
-    public void LoadScene(int sceneIndex)
-    {
-        SceneManager.LoadScene(sceneIndex); 
+    IEnumerator WaitLoading(int sceneIndex)
+	{
+        yield return new WaitForSecondsRealtime(0.2f);
+        SceneManager.LoadScene(sceneIndex);
     }
 
     //-------------------------------------------------------------------
@@ -131,17 +145,14 @@ public class NowScene
     // 現在のシーン情報をセット
     public void SetInfo()
 	{
+        nowScene      = SceneManager.GetActiveScene();
         nowSceneIndex = nowScene.buildIndex;
-        nowSceneName = nowScene.name;
+        nowSceneName  = nowScene.name;
 	}
 
     /* プロパティ */
-    public Scene Scene
-    {
-        get { return nowScene; }
-        set { nowScene = value; }
-    }
+    public Scene Scene { get => nowScene; }
 
-    public int    Index { get { return nowSceneIndex; } }
-    public string Name  { get { return nowSceneName; } }
+    public int    Index { get => nowSceneIndex; }
+    public string Name  { get => nowSceneName; }
 }
