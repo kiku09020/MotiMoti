@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class DebugManager : MonoBehaviour
 {
@@ -9,18 +10,15 @@ public class DebugManager : MonoBehaviour
 
     /* コンポーネント取得用 */
     SceneController scene;
-    ParticleManager part;
 
 //-------------------------------------------------------------------
     void Start()
     {
         /* オブジェクト取得 */
         GameObject gmObj = transform.parent.gameObject;
-        GameObject partObj = gmObj.transform.Find("ParticleManager").gameObject;
 
         /* コンポーネント取得 */
         scene = gmObj.GetComponent<SceneController>();
-        part = partObj.GetComponent<ParticleManager>();
 
         /* 初期化 */
         
@@ -30,7 +28,6 @@ public class DebugManager : MonoBehaviour
     void Update()
     {
         Key();
-        Log();
     }
 
     //-------------------------------------------------------------------
@@ -42,14 +39,9 @@ public class DebugManager : MonoBehaviour
             scene.LoadNowScene();
         }
 
-        if (Input.GetKeyDown(KeyCode.P)) {
-            part.PlayPart(ParticleManager.PartNames.circle, Vector2.zero);
-        }
-    }
-
-    // ログ出力
-    void Log()
-    {
-
+        else if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+            EditorApplication.isPlaying = false;
+		}
     }
 }

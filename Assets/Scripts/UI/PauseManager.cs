@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseManager : ButtonManager
+public class PauseManager : MonoBehaviour
 {
     /* 値 */
+    bool isPause;
     public bool isRetry;
     public bool isExit;
+
+    public bool IsPause { get => isPause; set => isPause = value; }
 
     /* 文字列 */
     string cautTxt;
     [SerializeField] string cautTxtConfirm;         // 警告テキストの確認箇所の文字列
 
     /* コンポーネント取得用 */
-    CanvasManager _canvas;
+    CanvasManager canvas;
 
 //-------------------------------------------------------------------
     void Start()
@@ -23,16 +26,10 @@ public class PauseManager : ButtonManager
         GameObject uiObj = transform.Find("UIManager").gameObject;
 
         /* コンポーネント取得 */
-        _canvas = uiObj.GetComponent<CanvasManager>();
+        canvas = uiObj.GetComponent<CanvasManager>();
 
         /* 初期化 */
-        cautTxt = _canvas.CautCnvs.transform.Find("Back/Text").GetComponent<Text>().text;
-    }
-
-    //-------------------------------------------------------------------
-    void FixedUpdate()
-    {
-        
+        cautTxt = canvas.CautCnvs.transform.Find("Back/Text").GetComponent<Text>().text;
     }
 
 //-------------------------------------------------------------------
@@ -50,6 +47,6 @@ public class PauseManager : ButtonManager
         }
 
         cautTxt = reasonTxt + "\n" + cautTxtConfirm;
-        _canvas.CautCnvs.transform.Find("Back/Text").GetComponent<Text>().text = cautTxt;
+        canvas.CautCnvs.transform.Find("Back/Text").GetComponent<Text>().text = cautTxt;
     }
 }

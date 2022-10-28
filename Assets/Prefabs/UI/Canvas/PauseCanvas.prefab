@@ -242,25 +242,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3932845652272612564}
     m_Modifications:
-    - target: {fileID: 123497161773319157, guid: ce57d8b4cfc492143aa0feb01dce2c4c, type: 3}
-      propertyPath: m_Text
-      value: Exit
-      objectReference: {fileID: 0}
     - target: {fileID: 941520178403847875, guid: ce57d8b4cfc492143aa0feb01dce2c4c, type: 3}
       propertyPath: m_Name
       value: Exit
-      objectReference: {fileID: 0}
-    - target: {fileID: 3703666836762756282, guid: ce57d8b4cfc492143aa0feb01dce2c4c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Exit
-      objectReference: {fileID: 0}
-    - target: {fileID: 3703666836762756282, guid: ce57d8b4cfc492143aa0feb01dce2c4c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3703666836762756282, guid: ce57d8b4cfc492143aa0feb01dce2c4c, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6916210360693186896, guid: ce57d8b4cfc492143aa0feb01dce2c4c, type: 3}
       propertyPath: m_Pivot.x
@@ -360,22 +344,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3932845652272612564}
     m_Modifications:
-    - target: {fileID: 96975102430166117, guid: 304675790eaa7244b98946e0ccb20c46, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Retry
-      objectReference: {fileID: 0}
-    - target: {fileID: 96975102430166117, guid: 304675790eaa7244b98946e0ccb20c46, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 96975102430166117, guid: 304675790eaa7244b98946e0ccb20c46, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3713313590368746282, guid: 304675790eaa7244b98946e0ccb20c46, type: 3}
-      propertyPath: m_Text
-      value: Retry
-      objectReference: {fileID: 0}
     - target: {fileID: 4552686876667155996, guid: 304675790eaa7244b98946e0ccb20c46, type: 3}
       propertyPath: m_Name
       value: Retry

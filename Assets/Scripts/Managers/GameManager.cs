@@ -5,31 +5,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     /* 値 */
-    bool gameOver;
-    bool gameClear;
-    bool isPause;
+
 
     /* コンポーネント取得用 */
 
 
     /* プロパティ */
-    public bool GameOver 
-    { 
-        get => gameOver;
-        set { if (gameOver != value) gameOver = value;  }
-        }
-
-    public bool GameClear 
-    { 
-        get => gameClear;
-        set { if (gameClear != value) gameClear = value; }
-        }
-
-    public bool IsPause
-    {
-        get => isPause;
-        set { if (isPause != value) isPause = value; }
-    }
+    public bool GameOver    { get; set; }
+    public bool GameClear   { get; set; }
 
 
 //-------------------------------------------------------------------

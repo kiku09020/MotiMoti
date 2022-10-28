@@ -11,15 +11,4 @@ public class TitleManager : MonoBehaviour
 
 
     /* プロパティ */
-
-
-    void Start()
-    {
-        
-    }
-
-    void FixedUpdate()
-    {
-        
-    }
 }

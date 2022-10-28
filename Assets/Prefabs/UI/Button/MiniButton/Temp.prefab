@@ -91,9 +91,8 @@ GameObject:
   - component: {fileID: 5588078178058431862}
   - component: {fileID: 2223766637729830160}
   - component: {fileID: 9223220781145171244}
-  - component: {fileID: 893328759345509529}
   m_Layer: 5
-  m_Name: Yes
+  m_Name: Temp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,14 +110,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2792864725409488141}
+  - {fileID: 4123122289627515625}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -200, y: 200}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 150}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5588078178058431862
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -201,9 +201,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 893328759345509529}
-        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: CautionButton_Yes
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Button.Yes, Assembly-CSharp
+        m_MethodName: Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -213,15 +213,65 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &893328759345509529
-MonoBehaviour:
+--- !u!1001 &4195051926163609867
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 231237900284228271}
+    m_Modifications:
+    - target: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8876796825921368426, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+      propertyPath: m_Name
+      value: ButtonSEList
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+--- !u!4 &4123122289627515625 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 220558049754125282, guid: 1dccfd625a47dcf4591a86e16ce0af86, type: 3}
+  m_PrefabInstance: {fileID: 4195051926163609867}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4962310330819880520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14f66822109914d40a2cbade662269e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

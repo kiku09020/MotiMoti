@@ -16,16 +16,6 @@ public class ParticleManager : MonoBehaviour
     /* コンポーネント取得用 */
 
 //-------------------------------------------------------------------
-    // パーティクル生成(シンプル)
-    public void PlayPart(PartNames name,Vector2 position)
-    {
-        GameObject prfb     = partPrfbs[(int)name];                                     // プレハブ
-        GameObject inst     = Instantiate(prfb, position, Quaternion.identity);         // インスタンス
-        ParticleSystem part = inst.GetComponent<ParticleSystem>();                      // パーティクル
-
-        part.Play();    // 再生
-    }
-
     // パーティクル生成(親オブジェクト指定)
     public void PlayPart(PartNames name, Vector2 position,Transform parent)
     {

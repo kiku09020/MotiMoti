@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1842706128826458059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641243766111158604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825a6ee3cea787a4792ed655d372e883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6701270555898532164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9,15 +21,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1540949863284128369, guid: 06e43bd30e2861646bd3ab8bcd61af3d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1540949863284128369, guid: 06e43bd30e2861646bd3ab8bcd61af3d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1842706128826458059}
+    - target: {fileID: 1540949863284128369, guid: 06e43bd30e2861646bd3ab8bcd61af3d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Pause
+      value: Clicked
       objectReference: {fileID: 0}
     - target: {fileID: 1540949863284128369, guid: 06e43bd30e2861646bd3ab8bcd61af3d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ButtonManager, Assembly-CSharp
+      value: Button.Continue, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1540949863284128369, guid: 06e43bd30e2861646bd3ab8bcd61af3d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -117,3 +133,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06e43bd30e2861646bd3ab8bcd61af3d, type: 3}
+--- !u!1 &8641243766111158604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3104228625231155208, guid: 06e43bd30e2861646bd3ab8bcd61af3d, type: 3}
+  m_PrefabInstance: {fileID: 6701270555898532164}
+  m_PrefabAsset: {fileID: 0}

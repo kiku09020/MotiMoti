@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     /* 値 */
+    const float sceneLoadWaitTime = 0.15f;
+
     NowScene nowScene;      // 現在のシーン
     int sceneCnt;           // シーンの数
 
@@ -16,18 +18,12 @@ public class SceneController : MonoBehaviour
         Prev,       // 前
 	}
 
-    // エラーパターン
-    enum Error {
-        IndexOver,      // シーン番号が大きい
-        IndexLess,      // シーン番号が小さい
-	}
-
 //-------------------------------------------------------------------
     void Awake()
     {
         nowScene = new NowScene();
 
-        nowScene.SetInfo();
+        sceneCnt = SceneManager.sceneCount;
     }
 
 //-------------------------------------------------------------------
@@ -49,9 +45,6 @@ public class SceneController : MonoBehaviour
         if (index < sceneCnt) {     // シーン番号が合計のシーン数より小さいとき、読み込み
             StartCoroutine(WaitLoading(Load.Next));
         }
-		else {                      // 範囲外エラー処理
-            LoadErrorProc(Error.IndexOver);
-        }
     }
 
     /// <summary>
@@ -63,9 +56,6 @@ public class SceneController : MonoBehaviour
 		if (index > 0) {            // シーン番号が0より大きいとき、読み込む
             StartCoroutine(WaitLoading(Load.Prev));
         }
-        else {                      // 範囲外エラー処理
-            LoadErrorProc(Error.IndexLess);
-		}
     }
 
     //-------------------------------------------------------------------
@@ -88,7 +78,7 @@ public class SceneController : MonoBehaviour
     IEnumerator WaitLoading(Load loadType)
 	{
         var index = nowScene.Index;
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(sceneLoadWaitTime);
 
 		switch (loadType) {
             case Load.Now:  SceneManager.LoadScene(index);      break;
@@ -99,38 +89,17 @@ public class SceneController : MonoBehaviour
 
     IEnumerator WaitLoading(string sceneName)
 	{
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(sceneLoadWaitTime);
         SceneManager.LoadScene(sceneName);
     }
 
     IEnumerator WaitLoading(int sceneIndex)
 	{
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(sceneLoadWaitTime);
         SceneManager.LoadScene(sceneIndex);
     }
 
     //-------------------------------------------------------------------
-    // エラー時の処理
-    void LoadErrorProc(Error errorNum)
-	{
-        string errorMessage = null;
-
-		switch (errorNum) {
-            case Error.IndexOver:
-                errorMessage = "指定したシーン番号が、大きすぎます";
-                break;
-
-            case Error.IndexLess:
-                errorMessage = "指定したシーン番号が、小さすぎます";
-                break;
-		}
-
-        // エラーメッセージ
-        Debug.LogError(errorMessage);
-
-        // エディタ上で停止させる
-        Debug.Break();
-    }
 }
 
 // 現在のシーン
@@ -143,7 +112,7 @@ public class NowScene
 
     /* 関数 */
     // 現在のシーン情報をセット
-    public void SetInfo()
+    public NowScene()
 	{
         nowScene      = SceneManager.GetActiveScene();
         nowSceneIndex = nowScene.buildIndex;

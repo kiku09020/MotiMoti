@@ -38,34 +38,30 @@ public class CanvasManager : MonoBehaviour
 
     //-------------------------------------------------------------------
     // ポーズ
-    public void Pause(bool pause)
+    public void Pause()
     {
-        // ポーズ時
-        if (pause) {
-            ctrlCnvs.SetActive(false);
-            gameUICnvs.SetActive(false);
-            pauseCnvs.SetActive(true);
-        }
+        ctrlCnvs.SetActive(false);
+        gameUICnvs.SetActive(false);
+        pauseCnvs.SetActive(true);
+    }
 
-        // ポーズ終了時
-        else {
-            ctrlCnvs.SetActive(true);
-            gameUICnvs.SetActive(true);
-            pauseCnvs.SetActive(false);
-        }
+    // ポーズ解除
+    public void Unpause()
+    {
+        ctrlCnvs.SetActive(true);
+        gameUICnvs.SetActive(true);
+        pauseCnvs.SetActive(false);
     }
 
     // 警告表示
-    public void Caution(bool caution)
+    public void Caution()
     {
-        // 警告時
-        if (caution) {
-            cautCnvs.SetActive(true);
-        }
+        cautCnvs.SetActive(true);
+    }
 
-        // 警告解除時
-        else {
-            cautCnvs.SetActive(false);
-        }
+    // 警告解除
+    public void Uncaution()
+    {
+        cautCnvs.SetActive(false);
     }
 }

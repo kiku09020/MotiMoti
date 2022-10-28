@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &2785770895124734726
+--- !u!114 &21138226811411491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8180496517266150664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb6da03965b781543827e595d8e2585b, type: 3}
+  m_Script: {fileID: 11500000, guid: 445a63ecdcba17945804b1b1f3eb6e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6526447315966264576
@@ -22,14 +22,14 @@ PrefabInstance:
     - target: {fileID: 1540949863284128369, guid: 06e43bd30e2861646bd3ab8bcd61af3d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2785770895124734726}
+      objectReference: {fileID: 21138226811411491}
     - target: {fileID: 1540949863284128369, guid: 06e43bd30e2861646bd3ab8bcd61af3d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameStart
+      value: Clicked
       objectReference: {fileID: 0}
     - target: {fileID: 1540949863284128369, guid: 06e43bd30e2861646bd3ab8bcd61af3d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TitleManager, Assembly-CSharp
+      value: Button.StartBtn, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1540949863284128369, guid: 06e43bd30e2861646bd3ab8bcd61af3d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
