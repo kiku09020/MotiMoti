@@ -21,7 +21,7 @@ namespace Button {
             se.Play((int)SystemSound.AudioName.click);
             pause.isExit = true;
             pause.SetCaution();
-            canvas.Caution();
+            canvas.ActivateCautionUI();
         }
     }
 }

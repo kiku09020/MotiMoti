@@ -303,7 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360adb72d31905b4ba747266606d0306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneLoadWaitTime: 0.15
 --- !u!114 &514319481
 MonoBehaviour:
   m_ObjectHideFlags: 0

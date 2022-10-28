@@ -14,7 +14,6 @@ public class AudioController : MonoBehaviour
 
 
     /* コンポーネント取得用 */
-    BGM bgm;
 
 //-------------------------------------------------------------------
     void Start()
@@ -22,10 +21,6 @@ public class AudioController : MonoBehaviour
         /* オブジェクト取得 */
 
         /* コンポーネント取得 */
-        bgm = GetComponent<BGM>();
-
-        /* 初期化 */
-        bgm.Play((int)BGM.AudioName.bgm2);
     }
 
     void FixedUpdate()

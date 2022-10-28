@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
 
     /* コンポーネント取得用 */
-
+    BGM bgm;
 
     /* プロパティ */
     public bool GameOver    { get; set; }
@@ -18,14 +18,14 @@ public class GameManager : MonoBehaviour
 //-------------------------------------------------------------------
     void Start()
     {
-	    /* オブジェクト取得 */ 
+        /* オブジェクト取得 */
+        GameObject audObj = transform.Find("AudioManager").gameObject;
 
-
-	    /* コンポーネント取得 */     
-
+        /* コンポーネント取得 */
+        bgm = audObj.GetComponent<BGM>();
 
         /* 初期化 */
-        
+        bgm.Play((int)BGM.AudioName.bgm2);
     }
 
 //-------------------------------------------------------------------

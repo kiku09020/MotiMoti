@@ -3,10 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Stage
-  - Item
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -15,10 +12,10 @@ TagManager:
   - Water
   - UI
   - 
-  - Player
-  - Enemy
-  - Item
-  - Stage
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -44,15 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 1715069429
-    locked: 0
-  - name: Enemy
-    uniqueID: 1424137281
-    locked: 0
-  - name: Item
-    uniqueID: 3105060685
-    locked: 0
-  - name: Stage
-    uniqueID: 832929925
+  - name: BG
+    uniqueID: 378934893
     locked: 0

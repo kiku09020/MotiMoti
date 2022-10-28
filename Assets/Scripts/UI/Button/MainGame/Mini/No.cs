@@ -27,7 +27,7 @@ namespace Button {
         {
             yield return new WaitForSecondsRealtime(0.15f);
 
-            canvas.Uncaution();         // キャンバス非表示
+            canvas.ActivateUncautionUI();         // キャンバス非表示
             pause.isRetry = false;
             pause.isExit = false;
         }

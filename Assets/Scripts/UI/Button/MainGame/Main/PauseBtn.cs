@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Button {
-    public class Continue :ButtonAbstract,IPause
-    {
-        /* 繧ｳ繝ｳ繝昴�ｼ繝阪Φ繝亥叙蠕礼畑 */
+    public class PauseBtn : ButtonAbstract,IPause {
+        /* コンポーネント取得用 */
         CanvasManager canvas;
         PauseManager pause;
         BGM bgm;
@@ -14,8 +13,8 @@ namespace Button {
         void Start()
         {
             GameObject gmObj = GameObject.Find("GameManager").gameObject;
-            GameObject uiObj = gmObj.transform.Find("UIManager").gameObject;
             GameObject audObj = gmObj.transform.Find("AudioManager").gameObject;
+            GameObject uiObj = gmObj.transform.Find("UIManager").gameObject;
 
             pause = gmObj.GetComponent<PauseManager>();
             canvas = uiObj.GetComponent<CanvasManager>();
@@ -25,19 +24,24 @@ namespace Button {
 //-------------------------------------------------------------------
         public override void Clicked()
         {
-            pause.IsPause = false;
+            pause.IsPause = true;    // 切り替え
 
-            se.Play((int)SystemSound.AudioName.cancel);         // 繧ｭ繝｣繝ｳ繧ｻ繝ｫ髻ｳ
+            // ポーズ時
+            if (pause.IsPause) {
+                se.Play((int)SystemSound.AudioName.decision);       // 決定音
 
-            Time.timeScale = 1;                                 // 蜀埼幕
-            StartCoroutine(WaitCanvasActivate());               // 蠕�讖溘＠縺ｦ縺九ｉ髱櫁｡ｨ遉ｺ
-            bgm.Unpause();                                      // BGM蜀埼幕
+                Time.timeScale = 0;         // 停止
+
+                StartCoroutine(WaitCanvasActivate());
+                bgm.Pause();                // BGM停止
+            }
         }
 
+        // キャンバスのSetActiveを効果音鳴るまで待機
         public IEnumerator WaitCanvasActivate()
         {
             yield return new WaitForSecondsRealtime(0.15f);
-            canvas.ActivateUnpauseUI();             // 繧ｭ繝｣繝ｳ繝舌せ陦ｨ遉ｺ
+            canvas.ActivatePauseUI();             // キャンバス表示
         }
     }
 }

@@ -29,7 +29,7 @@ public class PauseManager : MonoBehaviour
         canvas = uiObj.GetComponent<CanvasManager>();
 
         /* 初期化 */
-        cautTxt = canvas.CautCnvs.transform.Find("Back/Text").GetComponent<Text>().text;
+        cautTxt = canvas.CautionUI.transform.Find("Back/Text").GetComponent<Text>().text;
     }
 
 //-------------------------------------------------------------------
@@ -47,6 +47,6 @@ public class PauseManager : MonoBehaviour
         }
 
         cautTxt = reasonTxt + "\n" + cautTxtConfirm;
-        canvas.CautCnvs.transform.Find("Back/Text").GetComponent<Text>().text = cautTxt;
+        canvas.CautionUI.transform.Find("Back/Text").GetComponent<Text>().text = cautTxt;
     }
 }

@@ -31,7 +31,7 @@ public class TextGenerater : MonoBehaviour
         canvas = GetComponent<CanvasManager>();
 
         /* 初期化 */
-        prnt_game = canvas.GameCnvs.transform;
+        prnt_game = canvas.Texts.transform;
     }
 
 //-------------------------------------------------------------------
