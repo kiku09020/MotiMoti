@@ -3,26 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Button {
-    public class Continue :ButtonAbstract,IPause
-    {
+    public class Continue :PauseButtons {
+
         /* コンポーネント取得用 */
-        CanvasManager canvas;
-        PauseManager pause;
         BGM bgm;
 
-//-------------------------------------------------------------------
         void Start()
         {
-            GameObject gmObj = GameObject.Find("GameManager").gameObject;
-            GameObject uiObj = gmObj.transform.Find("UIManager").gameObject;
             GameObject audObj = gmObj.transform.Find("AudioManager").gameObject;
 
-            pause = gmObj.GetComponent<PauseManager>();
-            canvas = uiObj.GetComponent<CanvasManager>();
             bgm = audObj.GetComponent<BGM>();
         }
 
-//-------------------------------------------------------------------
         public override void Clicked()
         {
             pause.IsPause = false;
@@ -34,7 +26,7 @@ namespace Button {
             bgm.Unpause();                                      // BGM再開
         }
 
-        public IEnumerator WaitCanvasActivate()
+        protected IEnumerator WaitCanvasActivate()
         {
             yield return new WaitForSecondsRealtime(0.15f);
             canvas.ActivateUnpauseUI();             // キャンバス表示

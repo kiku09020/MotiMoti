@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5740467876320381475}
   - component: {fileID: 4319823088478944856}
   - component: {fileID: 6447400871983797358}
-  - component: {fileID: 1546054336910180114}
+  - component: {fileID: 6092484548639064515}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Button
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1546054336910180114}
+      - m_Target: {fileID: 6092484548639064515}
         m_TargetAssemblyTypeName: Button.Pause, Assembly-CSharp
         m_MethodName: Clicked
         m_Mode: 1
@@ -134,7 +134,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &1546054336910180114
+--- !u!114 &6092484548639064515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

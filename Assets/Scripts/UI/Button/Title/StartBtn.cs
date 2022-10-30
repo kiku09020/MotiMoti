@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Button {
-    public class StartBtn : TitleButton {
+    public class StartBtn : TitleButtons {
+
         SceneController scene;
 
 		private void Start()

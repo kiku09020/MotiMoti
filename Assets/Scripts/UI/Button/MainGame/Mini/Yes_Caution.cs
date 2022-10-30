@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Button {
-    public class Yes : ButtonAbstract {
+    public class Yes_Caution : PauseButtons {
+
         SceneController scene;
-        PauseManager pause;
 
         void Start()
         {
-            GameObject gmObj = GameObject.Find("GameManager");
-
             scene = gmObj.GetComponent<SceneController>();
-            pause = gmObj.GetComponent<PauseManager>();
         }
 
         public override void Clicked()
