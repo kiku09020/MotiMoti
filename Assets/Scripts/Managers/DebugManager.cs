@@ -41,7 +41,10 @@ public class DebugManager : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
+
+#if UNITY_EDITOR
             EditorApplication.isPlaying = false;
-		}
+#endif
+        }
     }
 }

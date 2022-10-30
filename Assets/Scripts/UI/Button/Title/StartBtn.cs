@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Button {
-    public class StartBtn : ButtonAbstract {
+    public class StartBtn : TitleButton {
         SceneController scene;
 
-        private void Start()
-        {
-            GameObject titleObj = GameObject.Find("TitleManager");
+		private void Start()
+		{
             scene = titleObj.GetComponent<SceneController>();
         }
 
-        public override void Clicked()
+		public override void Clicked()
         {
             se.Play((int)SystemSound.AudioName.decision);
             scene.LoadNextScene();

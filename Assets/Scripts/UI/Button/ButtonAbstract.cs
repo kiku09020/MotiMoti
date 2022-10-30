@@ -14,11 +14,12 @@ namespace Button {
         public abstract void Clicked();
 
         /* èàóù */
-        void Awake()
+        protected virtual void Awake()
         {
-            GameObject seListObj = transform.Find("ButtonSEList").gameObject;
+            GameObject gmObj = GameObject.Find("GameManager");
+            GameObject audObj = gmObj.transform.Find("AudioManager").gameObject;
 
-            se = seListObj.GetComponent<SystemSound>();
+            se = audObj.GetComponent<SystemSound>();
         }
     }
 }

@@ -5,13 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioBasic : MonoBehaviour 
 {
-    protected AudioSource source;
+    [SerializeField] protected AudioSource source;
     [SerializeField] protected List<AudioClip> clips;
-
-    void Awake()
-    {
-        source = GetComponent<AudioSource>();
-    }
 
     public void Play(int audio)
     {
