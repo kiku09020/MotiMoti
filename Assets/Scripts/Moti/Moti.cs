@@ -5,24 +5,21 @@ using UnityEngine;
 public class Moti : MonoBehaviour
 {
     /* 値 */
+    [Header("スクリプト")]
+    [SerializeField] HitChecker hit;
 
+    [Header("値")]
+    [SerializeField] float jumpForce;
 
     /* フラグ */
 
-
-    /* プロパティ */
-
-
     /* コンポーネント取得用 */
-    Rigidbody2D rb;
 
+    Rigidbody2D rb;
 
 //-------------------------------------------------------------------
     void Start()
     {
-        /* オブジェクト取得 */
-
-
         /* コンポーネント取得 */
         rb = GetComponent<Rigidbody2D>();
 
@@ -32,11 +29,12 @@ public class Moti : MonoBehaviour
 
     void Update()
     {
-		if (Input.anyKeyDown) {
-            rb.AddForce(Vector2.up * 800);
+        if (Input.GetMouseButtonDown(0) && hit.IsGround) {
+            rb.AddForce(Vector2.up * jumpForce);
 		}
+
+        rb.AddForce(Vector2.right * Input.GetAxis("Horizontal") * 0.5f);
     }
 
-//-------------------------------------------------------------------
-
+    //-------------------------------------------------------------------
 }
