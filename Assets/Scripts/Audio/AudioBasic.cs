@@ -8,7 +8,7 @@ public class AudioBasic : MonoBehaviour
     [SerializeField] protected AudioSource source;
     [SerializeField] protected List<AudioClip> clips;
 
-    public void Play(int audio)
+    public virtual void Play(int audio)
     {
         AudioClip clip = clips[audio];
         source.PlayOneShot(clip);

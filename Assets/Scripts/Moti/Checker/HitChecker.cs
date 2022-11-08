@@ -12,33 +12,20 @@ public class HitChecker : MonoBehaviour
     public bool IsGround => isGround;
 
     /* コンポーネント取得用 */
-
-
-
-//-------------------------------------------------------------------
-    void Awake()
-    {
-        /* オブジェクト取得 */ 
-
-
-        /* コンポーネント取得 */     
-
-
-        /* 初期化 */
-        
-    }
-
-    void FixedUpdate()
-    {
-        
-    }
+    Moti moti;
 
     //-------------------------------------------------------------------
+    private void Awake()
+    {
+        moti = transform.parent.GetComponent<Moti>();
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         // 着地時
         if (col.gameObject.tag == "Stage") {
             isGround = true;
+            moti.Particle.Play(MotiParticleController.ParticleNames.ground,transform.position);
         }
     }
 

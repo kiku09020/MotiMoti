@@ -20,7 +20,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player
+  m_Name: Moti
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: f7576d135010e7f478602c8131729a66
   m_Children: []

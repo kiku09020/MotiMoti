@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6297539762846397617}
   - component: {fileID: 6297539762846397518}
   - component: {fileID: 4559044526292697716}
+  - component: {fileID: 3820866599241988630}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -52,9 +53,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.099999994
     width: 1
-    height: 1
+    height: 0.8
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -88,3 +89,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targAspect: {x: 1080, y: 1920}
+--- !u!114 &3820866599241988630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6297539762846397517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 128
+  m_MaxRayIntersections: 0

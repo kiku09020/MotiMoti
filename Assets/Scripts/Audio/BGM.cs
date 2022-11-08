@@ -8,4 +8,13 @@ public class BGM : AudioBasic
 		bgm1,
 		bgm2,
 	}
+
+	public override void Play(int audio)
+	{
+		AudioClip clip = clips[audio];
+
+		source.loop = true;		// ループ
+		source.clip = clip;		// クリップ指定
+		source.Play();			// 再生
+	}
 }
