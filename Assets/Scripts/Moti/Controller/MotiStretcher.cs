@@ -6,27 +6,21 @@ using UnityEngine;
 public class MotiStretcher : MonoBehaviour
 {
     /* 値 */
-    bool stretching;          // 分裂
-
-    Transform motiParent;       // クローンのparent指定用
+    bool stretching;            // 分裂
 
     /* プロパティ */
     public bool Stretching => stretching;
-
-    public Moti Clone => motiClone;
 
     /* コンポーネント取得用 */
     Rigidbody2D rb;
 
     Moti moti;
-    Moti motiClone;             // 分裂でできるクローン
-
+    Moti child;
 
 //-------------------------------------------------------------------
     void Awake()
     {
         /* オブジェクト取得 */
-        motiParent = GameObject.Find("Motis").transform;
 
         /* コンポーネント取得 */
         rb = GetComponent<Rigidbody2D>();
@@ -46,7 +40,7 @@ public class MotiStretcher : MonoBehaviour
 
         // タップ終了時
         else {
-            stretching = false;
+            stretching = false;             // Strething終了
         }
 
         DivisionDrag();
@@ -58,10 +52,10 @@ public class MotiStretcher : MonoBehaviour
 	{
 		if (moti.Input.IsDraging) {
             if (!stretching) {
-                Division();
+                Division();         // 分裂した瞬間
             }
 
-            MoveClone();
+            MoveChild();            // 分裂した子の移動
         }
 	}
 
@@ -70,21 +64,19 @@ public class MotiStretcher : MonoBehaviour
     {
         moti.transform.position = moti.Ground.HitPoint;
         moti.transform.localScale /= 2;                                                         // 大きさを半分にする
-        motiClone = Instantiate(moti, transform.position, Quaternion.identity, motiParent);     // クローン作成
 
-        motiClone.InitClonedMoti();                                                             //クローン初期化
-        motiClone.Stretcher.stretching = true;
-        print(motiClone);
+        child = moti.Family.AddChild(moti);                                                         // 子作成
 
-        stretching = true;
+        child.Stretcher.stretching = true;                                                      // 子もStretching状態に指定
+        stretching = true;                                                                      // Stretching状態
     }
 
-    // クローンの移動(ドラッグ中)
-    void MoveClone()
+    // 子の移動(ドラッグ中)
+    void MoveChild()
 	{
-        if (motiClone != null) {
-            motiClone.transform.position = moti.Input.MousePosWorld;                            // クローンの移動
-            motiClone.RB.velocity = Vector2.zero;                                               // rb無効化
+        if (child != null) {
+            child.transform.position = moti.Input.MousePosWorld;                            // 子の移動
+            child.RB.velocity = Vector2.zero;                                               // rb無効化
         }
     }
 }

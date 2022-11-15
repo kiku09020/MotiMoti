@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 /* もちをくっつかせる処理 */
 public class MotiSticker : MonoBehaviour
@@ -9,6 +10,8 @@ public class MotiSticker : MonoBehaviour
     bool isStickedOnce;     // 最初に触れたとき
 
     [SerializeField] float jumpForce;       // 反対方向に飛ぶジャンプ力
+    [SerializeField] float returnTime;      // 親元に戻るまでの時間
+    [SerializeField] DG.Tweening.Ease ease; // イージングの種類
 
     /* コンポーネント取得用 */
     Rigidbody2D rb;
@@ -57,10 +60,7 @@ public class MotiSticker : MonoBehaviour
 
             // タップされたとき
             if (moti.Input.IsInTapped) {
-                rb.gravityScale = 1;                                            // 重力元に戻す
-                rb.AddForce(moti.Ground.HitVector * jumpForce * -1);            // 触れたオブジェクトの反対方向にジャンプ
-
-                moti.Input.IsInTapped = false;                                  // タップフラグ元に戻す
+                Tapped();
             }
         }
 
@@ -76,4 +76,32 @@ public class MotiSticker : MonoBehaviour
 	{
         part.Play(MotiParticleController.ParticleNames.ground, moti.Ground.HitPoint);
 	}
+
+    // タップされた瞬間の処理
+    void Tapped()
+    {
+        rb.gravityScale = 1;                                            // 重力元に戻す
+        rb.AddForce(moti.Ground.HitVector * jumpForce * -1);            // 触れたオブジェクトの反対方向にジャンプ
+
+        // クローンがいるとき
+        
+        foreach(var child in moti.Family.Children)
+        if (child) {
+        transform.DOMove(child.transform.position, returnTime).SetEase(ease);   // 相手のところに移動
+
+        }
+
+        // 親元がいるとき
+        if (moti.Family.Parent) {
+            transform.DOMove(moti.Family.Parent.transform.position, returnTime).SetEase(ease);   // 相手のところに移動
+
+        }
+
+        // なんもいないとき
+        else {
+
+        }
+
+        moti.Input.IsInTapped = false;                                  // タップフラグ元に戻す
+    }
 }

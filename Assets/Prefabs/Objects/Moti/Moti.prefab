@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6de615093c493429d2e1a8f9df24da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  midPosCnt: 1
+  middlePointCount: 0
 --- !u!1 &8129661351492857310
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +804,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 300
+  returnTime: 0.5
+  ease: 11
 --- !u!114 &8129661352410282751
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,10 +6,12 @@ using UnityEngine;
 public class Moti : MonoBehaviour
 {
     /* 値 */
+    Transform motiFolder;
 
     /* フラグ */
 
     /* コンポーネント取得用 */
+    #region Components
     Rigidbody2D rb;
 
     // checker
@@ -18,6 +20,7 @@ public class Moti : MonoBehaviour
     InputChecker input;
 
     // controller
+    MotiFamilyController family;
     MotiStateController stateCtrl;
     MotiStretcher stretcher;
     MotiUniter uniter;
@@ -26,34 +29,43 @@ public class Moti : MonoBehaviour
     // performer
     MotiParticleController part;
     MotiAudioController aud;
+    #endregion
 
     /* プロパティ */
-    // 
+    #region Properties
+    // values
+    public Transform Folder => motiFolder;
+
+    // controllers
     public Rigidbody2D RB => rb;
 
+    public MotiFamilyController Family => family;
     public MotiStretcher Stretcher=>stretcher;
     public MotiUniter Uniter => uniter;
     public MotiLineController Line => line;
 
-    // check
+    // checks
     public HitChecker MotiHit => motiHit;
     public GroundChecker Ground => ground;
     public InputChecker Input => input;
 
-    // state
+    // states
     public MotiStateController StateCtrl => stateCtrl;
 
-    // performer
+    // performers
     public MotiParticleController Particle => part;
     public MotiAudioController Audio => aud;
+    #endregion
 
-//-------------------------------------------------------------------
+    //-------------------------------------------------------------------
     void Awake()
     {
         Transform checkerObj = transform.Find("HitChecker");
         Transform partObj = transform.Find("ParticleController");
         Transform audObj = transform.Find("AudioController");
         Transform lineObj = transform.Find("StretchedMotiLine");
+
+        motiFolder = GameObject.Find("Motis").transform;
 
         /* コンポーネント取得 */
         rb = GetComponent<Rigidbody2D>();
@@ -65,6 +77,7 @@ public class Moti : MonoBehaviour
         part = partObj.GetComponent<MotiParticleController>();
         aud = audObj.GetComponent<MotiAudioController>();
 
+        family = new MotiFamilyController(this);
         stateCtrl = new MotiStateController(this);
         stretcher = GetComponent<MotiStretcher>();
         uniter = GetComponent<MotiUniter>();
@@ -80,11 +93,13 @@ public class Moti : MonoBehaviour
         Awake();
 
         Input.TapDown();        // クローンもちも入力している状態にする
+
         StateCtrl.TransitionState(StateCtrl.StretchingState);
     }
 
     void FixedUpdate()
     {
         stateCtrl.NowStateUpdate();
+        family.CheckExistFamily();
     }
 }
