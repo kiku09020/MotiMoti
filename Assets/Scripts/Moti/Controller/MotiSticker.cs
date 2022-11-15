@@ -6,20 +6,29 @@ using UnityEngine;
 public class MotiSticker : MonoBehaviour
 {
     /* 値 */
+    bool isStickedOnce;     // 最初に触れたとき
 
+    [SerializeField] float jumpForce;       // 反対方向に飛ぶジャンプ力
 
     /* コンポーネント取得用 */
+    Rigidbody2D rb;
 
+    Moti moti;
 
+    MotiParticleController part;
 
 //-------------------------------------------------------------------
     void Awake()
     {
-        /* オブジェクト取得 */ 
+        /* オブジェクト取得 */
+        Transform partObj = transform.Find("ParticleController");
 
+        /* コンポーネント取得 */
+        rb = GetComponent<Rigidbody2D>();
 
-        /* コンポーネント取得 */     
+        moti = GetComponent<Moti>();
 
+        part = partObj.GetComponent<MotiParticleController>();
 
         /* 初期化 */
         
@@ -27,9 +36,44 @@ public class MotiSticker : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        Stick();
     }
 
 //-------------------------------------------------------------------
+    // くっつく
+    void Stick()
+	{
+        // 触れているとき
+        if (moti.Ground.IsGround) {
+            // 一度
+            if (!isStickedOnce) {
+                StickEnter();
 
+                isStickedOnce = true;
+            }
+
+            rb.velocity = Vector2.zero;                 // vel=0
+            rb.gravityScale = 0;                        // 重力無効化
+
+            // タップされたとき
+            if (moti.Input.IsInTapped) {
+                rb.gravityScale = 1;                                            // 重力元に戻す
+                rb.AddForce(moti.Ground.HitVector * jumpForce * -1);            // 触れたオブジェクトの反対方向にジャンプ
+
+                moti.Input.IsInTapped = false;                                  // タップフラグ元に戻す
+            }
+        }
+
+        // 触れていないとき
+        else {
+            rb.gravityScale = 1;                        // 重力戻す
+            isStickedOnce = false;
+        }
+    }
+
+    // くっついた瞬間の処理
+    void StickEnter()
+	{
+        part.Play(MotiParticleController.ParticleNames.ground, moti.Ground.HitPoint);
+	}
 }

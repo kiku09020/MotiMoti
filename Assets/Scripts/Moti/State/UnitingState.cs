@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitedState : IState
+public class UnitingState : IState
 {
     /* 値 */
     public Moti Moti { get; set; }
@@ -10,7 +10,7 @@ public class UnitedState : IState
     /* コンポーネント取得用 */
 
     /* コンストラクタ */
-    public UnitedState(Moti moti)
+    public UnitingState(Moti moti)
     {
         Moti = moti;
     }
@@ -18,17 +18,21 @@ public class UnitedState : IState
     //-------------------------------------------------------------------
     public void StateEnter()
     {
-
+        
     }
 
     public void StateUpdate()
     {
+        Moti.Uniter.CheckUnitable();
 
+		if (Moti.Uniter.IsUnitable) {
+            Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);     // 通常状態へ
+        }
     }
 
     public void StateExit()
     {
-
+        Moti.Uniter.Unite();                                            // 合体
     }
 
     //-------------------------------------------------------------------

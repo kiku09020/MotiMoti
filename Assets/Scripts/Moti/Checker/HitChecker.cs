@@ -6,10 +6,15 @@ using UnityEngine;
 public class HitChecker : MonoBehaviour
 {
     /* 値 */
-    bool isGround;      // 着地しているか
+    bool isMotiTrigger;         // 範囲内に他のもちがいるか
+
+    Moti otherMoti;
 
     /* プロパティ */
-    public bool IsGround => isGround;
+
+    public bool IsMotiTrigger => isMotiTrigger;
+
+    public Moti OtherMoti => otherMoti;
 
     /* コンポーネント取得用 */
     Moti moti;
@@ -22,18 +27,18 @@ public class HitChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        // 着地時
-        if (col.gameObject.tag == "Stage") {
-            isGround = true;
-            moti.Particle.Play(MotiParticleController.ParticleNames.ground,transform.position);
-        }
+        // 他のもち
+		if (col.gameObject.tag == "Moti") {
+            isMotiTrigger = true;
+            otherMoti = col.gameObject.GetComponent<Moti>();
+		}
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        // 離れるとき
-        if (col.gameObject.tag == "Stage") {
-            isGround = false;
+        // 他のもち
+        if (col.gameObject.tag == "Moti") {
+            isMotiTrigger = false;
         }
     }
 }

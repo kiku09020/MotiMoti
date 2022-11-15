@@ -18,17 +18,21 @@ public class StretchingState : IState
     //-------------------------------------------------------------------
     public void StateEnter()
     {
-
+        
     }
 
     public void StateUpdate()
     {
+        MotiStateController state = Moti.StateCtrl;
 
+		if (!Moti.Stretcher.Stretching) {
+            state.TransitionState(state.NormalState);
+		}
     }
 
     public void StateExit()
     {
-
+        
     }
 
     //-------------------------------------------------------------------

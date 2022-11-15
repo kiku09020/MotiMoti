@@ -10,21 +10,21 @@ public class MotiStateController
     /* コンポーネント取得用 */
     NormalState normal;
     StretchingState stretching;
-    UnitedState united;
+    UnitingState united;
 
     /* プロパティ */
     public IState NowState { get; private set; }
 
     public NormalState NormalState => normal;
     public StretchingState StretchingState => stretching;
-    public UnitedState UnitedState => united;
+    public UnitingState UnitedState => united;
 
     // コンストラクタ
     public MotiStateController(Moti moti)
     {
         normal = new NormalState(moti);
         stretching = new StretchingState(moti);
-        united = new UnitedState(moti);
+        united = new UnitingState(moti);
 	}
 
 //-------------------------------------------------------------------
@@ -47,5 +47,7 @@ public class MotiStateController
     public void NowStateUpdate()
     {
         NowState.StateUpdate();
+
+        Debug.Log("<color=yellow>"+NowState+"</color>");
     }
 }
