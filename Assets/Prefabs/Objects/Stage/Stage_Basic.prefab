@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5628937797168432952}
   - component: {fileID: 5628937796724235389}
   - component: {fileID: 5628937796724235386}
-  m_Layer: 0
-  m_Name: Edge_Basic
+  m_Layer: 8
+  m_Name: Stage_Basic
   m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 1018322261068237504}
   - component: {fileID: 5528205885956448671}
   - component: {fileID: 6785936105652225793}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: EdgeMoti
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -22,6 +22,7 @@ public class Moti : MonoBehaviour
     // controller
     MotiFamilyController family;
     MotiStateController stateCtrl;
+    MotiSticker sticker;
     MotiStretcher stretcher;
     MotiUniter uniter;
     MotiLineController line;
@@ -41,6 +42,7 @@ public class Moti : MonoBehaviour
 
     public MotiFamilyController Family => family;
     public MotiStretcher Stretcher=>stretcher;
+    public MotiSticker Sticker => sticker;
     public MotiUniter Uniter => uniter;
     public MotiLineController Line => line;
 
@@ -79,6 +81,7 @@ public class Moti : MonoBehaviour
 
         family = new MotiFamilyController(this);
         stateCtrl = new MotiStateController(this);
+        sticker = GetComponent<MotiSticker>();
         stretcher = GetComponent<MotiStretcher>();
         uniter = GetComponent<MotiUniter>();
         line = lineObj.GetComponent<MotiLineController>();
@@ -87,19 +90,19 @@ public class Moti : MonoBehaviour
         stateCtrl.InitState(stateCtrl.NormalState);     // 初期状態の指定
     }
 
-    // クローンされたもちの初期化
-    public void InitClonedMoti()
+    // 子の初期化
+    public void InitChild()
 	{
-        Awake();
-
-        Input.TapDown();        // クローンもちも入力している状態にする
-
-        StateCtrl.TransitionState(StateCtrl.StretchingState);
+        stateCtrl.TransitionState(StateCtrl.StretchingState);
     }
 
     void FixedUpdate()
     {
         stateCtrl.NowStateUpdate();
         family.CheckExistFamily();
+
+        sticker.Stick();
+        stretcher.StretchingUpdate();
+        line.LineUpdate();
     }
 }

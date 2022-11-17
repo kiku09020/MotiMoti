@@ -47,11 +47,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Stage
-    uniqueID: 1924282303
-    locked: 0
   - name: Moti
     uniqueID: 1428335933
+    locked: 0
+  - name: Stage
+    uniqueID: 1924282303
     locked: 0
   - name: UI
     uniqueID: 1798791457

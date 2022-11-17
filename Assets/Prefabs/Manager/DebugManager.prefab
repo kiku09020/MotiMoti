@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0708e5dc3c7aff4181d54b6dc1ae267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motiMaxCount: 10

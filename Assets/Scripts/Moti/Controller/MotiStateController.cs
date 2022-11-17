@@ -11,6 +11,7 @@ public class MotiStateController
     NormalState normal;
     StretchingState stretching;
     UnitingState united;
+    ReturingState returing;
 
     /* プロパティ */
     public IState NowState { get; private set; }
@@ -18,6 +19,7 @@ public class MotiStateController
     public NormalState NormalState => normal;
     public StretchingState StretchingState => stretching;
     public UnitingState UnitedState => united;
+    public ReturingState ReturingState=>returing;
 
     // コンストラクタ
     public MotiStateController(Moti moti)
@@ -25,6 +27,7 @@ public class MotiStateController
         normal = new NormalState(moti);
         stretching = new StretchingState(moti);
         united = new UnitingState(moti);
+        returing = new ReturingState(moti);
 	}
 
 //-------------------------------------------------------------------

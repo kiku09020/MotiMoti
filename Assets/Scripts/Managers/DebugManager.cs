@@ -6,7 +6,9 @@ using UnityEditor;
 public class DebugManager : MonoBehaviour
 {
     /* 値 */
+    [SerializeField] int motiMaxCount;      // もちの最大数
 
+    GameObject[] motis;                     // もちの配列
 
     /* コンポーネント取得用 */
     SceneController scene;
@@ -28,6 +30,7 @@ public class DebugManager : MonoBehaviour
     void Update()
     {
         Key();
+        ErrorCheck();
     }
 
     //-------------------------------------------------------------------
@@ -37,14 +40,33 @@ public class DebugManager : MonoBehaviour
         // シーン再読み込み
         if (Input.GetKeyDown(KeyCode.R)) {
             scene.LoadNowScene();
+            Debug.ClearDeveloperConsole();
         }
 
         else if (Input.GetKeyDown(KeyCode.Escape)) {
-            Application.Quit();
+            QuitGame();
+        }
+    }
+
+    // エラーチェック
+    void ErrorCheck()
+    {
+        motis = GameObject.FindGameObjectsWithTag("Moti");
+
+        // 多くなりすぎたら、プレイ中止
+        if (motis.Length > motiMaxCount) {
+            QuitGame();
+            Debug.LogError("もちの数が多すぎます");
+        }
+    }
+
+    // ゲーム終了
+    void QuitGame()
+    {
+        Application.Quit();
 
 #if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
+        EditorApplication.isPlaying = false;
 #endif
-        }
     }
 }

@@ -25,14 +25,14 @@ public class StretchingState : IState
     {
         MotiStateController state = Moti.StateCtrl;
 
-		if (!Moti.Stretcher.Stretching) {
+		if (!Moti.Stretcher.IsStretching) {
             state.TransitionState(state.NormalState);
 		}
     }
 
     public void StateExit()
     {
-        
+
     }
 
     //-------------------------------------------------------------------

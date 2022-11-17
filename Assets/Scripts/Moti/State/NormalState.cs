@@ -27,7 +27,7 @@ public class NormalState : IState
         MotiStateController state = Moti.StateCtrl;
 
         // 伸び状態に遷移
-        if (Moti.Stretcher.Stretching) {
+        if (Moti.Stretcher.IsStretching) {
             state.TransitionState(state.StretchingState);
         }
 
@@ -35,6 +35,11 @@ public class NormalState : IState
         else if (Moti.MotiHit.IsMotiTrigger && !Moti.Input.IsTapping) {
             state.TransitionState(state.UnitedState);
 		}
+
+        // 戻り状態に遷移
+        else if (Moti.Input.IsInTapped) {
+            state.TransitionState(state.ReturingState);
+        }
     }
 
     public void StateExit()

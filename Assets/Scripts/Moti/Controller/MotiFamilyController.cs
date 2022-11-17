@@ -35,6 +35,7 @@ public class MotiFamilyController : MonoBehaviour
         existParent = motiParent? true : false;                     // 親
     }
 
+    //-------------------------------------------
     // 親を指定する
     void SetParent(Moti child)
     {
@@ -44,7 +45,7 @@ public class MotiFamilyController : MonoBehaviour
     // 子を追加する
     public Moti AddChild(Moti parent)
     {
-        var child = Instantiate(parent, parent.transform.position, Quaternion.identity, moti.Folder);    // 子のインスタンス化
+        var child = Instantiate(parent, moti.Input.MousePosWorld, Quaternion.identity, moti.Folder);    // 子のインスタンス化
         motiChildren.Add(child);                                                                 // 子をリストに追加
         SetParent(child);                                                                        // 親を指定
 

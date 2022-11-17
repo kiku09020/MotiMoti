@@ -8,7 +8,7 @@ public class MotiLineController : MonoBehaviour
 	[SerializeField] int middlePointCount;					// 間の点の数
 
 	List<Vector3> positions = new List<Vector3>();          // 全ての座標
-	List<Vector2> pos2D = new List<Vector2>();              // 座標(2D)
+	List<Vector2> colPoints = new List<Vector2>();          // 当たり判定用の座標
 
 	Vector3 ownPos;                                         // 自分(子)の座標
 	Vector3 parentPos;                                      // 親の座標
@@ -17,16 +17,11 @@ public class MotiLineController : MonoBehaviour
 	LineRenderer line;
 	EdgeCollider2D col;
 
-	Ray2D ray;
-
 	Moti moti;
 
 	//-------------------------------------------------------------------
 	void Start()
 	{
-		/* オブジェクト取得 */
-
-
 		/* コンポーネント取得 */
 		line = GetComponent<LineRenderer>();
 		col = GetComponent<EdgeCollider2D>();
@@ -36,11 +31,6 @@ public class MotiLineController : MonoBehaviour
 		LineSetUp();
 	}
 
-	private void FixedUpdate()
-	{
-		LineUpdate();
-	}
-
 	//-------------------------------------------------------------------
 	// はじめにする処理
 	public void LineSetUp()
@@ -48,7 +38,10 @@ public class MotiLineController : MonoBehaviour
 		SetPos();
 
 		positions.Add(ownPos);                                      // 自分の位置を追加
-		positions.Add(ownPos);									// 親の位置を追加
+		positions.Add(parentPos);                                   // 親の位置を追加
+
+		colPoints.Add(Vector2.zero);
+		colPoints.Add(Vector2.zero);
 
 		line.positionCount = middlePointCount + 2;					// 点の数指定
 		line.SetPositions(positions.ToArray());                     // LineRendererにセット
@@ -71,36 +64,30 @@ public class MotiLineController : MonoBehaviour
 		LineCollision();                                    // 当たり判定
 	}
 
-	// 終了時の処理
-	public void LineExit()
-	{
-		line.positionCount = 0;
-	}
-
 	// 座標の指定
 	void SetPos()
 	{
-		ownPos = transform.position;                                // 子(自分)
+		ownPos = transform.position;					// 子(自分)
 
 		var parent = moti.Family.Parent;
 
         if (parent) {
-			parentPos = parent.transform.position;			// 親
+			parentPos = parent.transform.position;		// 親
         }
 
         else {
-			parentPos = ownPos;
+			parentPos = ownPos;							// 親がいない場合、自分の座標
         }
 	}
 
 	// 当たり判定
 	void LineCollision()
 	{
-		ray = new Ray2D(ownPos, parentPos - ownPos);
+		if (positions?.Count > 0) {
+			colPoints[1] = transform.InverseTransformPoint(parentPos);		// 親の座標をローカル座標に変換
 
-		Debug.DrawRay(ownPos, ray.direction, Color.red);
-		Debug.DrawRay(ownPos, parentPos, Color.yellow);
-
-		col.SetPoints(pos2D);
+			col.SetPoints(colPoints);                                       // 点の座標を指定する
+			col.edgeRadius = 0.32f;
+		}
 	}
 }
