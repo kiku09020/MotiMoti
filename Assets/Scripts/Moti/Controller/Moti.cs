@@ -98,11 +98,11 @@ public class Moti : MonoBehaviour
 
     void FixedUpdate()
     {
-        stateCtrl.NowStateUpdate();
-        family.CheckExistFamily();
-
-        sticker.Stick();
-        stretcher.StretchingUpdate();
-        line.LineUpdate();
+        stateCtrl.NowStateUpdate();                 // 状態
+        family.CheckExistFamily();                  // 親子関係
+                                                    
+        sticker.Stick();                            // くっつき
+        stretcher.StretchingUpdate();               // 伸び
+        line.LineUpdate();                          // ライン
     }
 }

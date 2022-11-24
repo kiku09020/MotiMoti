@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// パーティクル名
+public enum ParticleNames_Moti {
+    ground,
+    united,
+}
+
 public class MotiParticleController : MonoBehaviour
 {
     [Header("Values")]
@@ -11,11 +17,6 @@ public class MotiParticleController : MonoBehaviour
     [SerializeField] List<GameObject> particleObjs;     // パーティクルオブジェクト
 
     Transform particleParent;
-
-    // パーティクル名
-    public enum ParticleNames {
-        ground,
-    }
 
 //-------------------------------------------------------------------
     void Awake()
@@ -31,7 +32,7 @@ public class MotiParticleController : MonoBehaviour
 
 //-------------------------------------------------------------------
     // パーティクルの再生
-    public void Play(ParticleNames particleName,Vector2 pos)
+    public void Play(ParticleNames_Moti particleName,Vector2 pos)
     {
         ParticleSystem part = particleObjs[(int)particleName].GetComponent<ParticleSystem>();
 

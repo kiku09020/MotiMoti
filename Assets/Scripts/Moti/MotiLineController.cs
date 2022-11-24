@@ -8,10 +8,16 @@ public class MotiLineController : MonoBehaviour
 	[SerializeField] int middlePointCount;					// 間の点の数
 
 	List<Vector3> positions = new List<Vector3>();          // 全ての座標
-	List<Vector2> colPoints = new List<Vector2>();          // 当たり判定用の座標
 
 	Vector3 ownPos;                                         // 自分(子)の座標
 	Vector3 parentPos;                                      // 親の座標
+
+	/* 当たり判定用のRay */
+	bool isRayHit;											// Rayに当たってるか
+
+	Vector3 radVec;											// 半径分のベクトル
+	Ray2D targetRay;										// もち→マウスのRay
+	int layerMask;											// ステージのみに衝突させるためのやつ
 
 	/* コンポーネント取得用 */
 	LineRenderer line;
@@ -29,6 +35,9 @@ public class MotiLineController : MonoBehaviour
 		moti = transform.parent.GetComponent<Moti>();
 
 		LineSetUp();
+
+		layerMask = LayerMask.GetMask("StageLayer");
+
 	}
 
 	//-------------------------------------------------------------------
@@ -39,9 +48,6 @@ public class MotiLineController : MonoBehaviour
 
 		positions.Add(ownPos);                                      // 自分の位置を追加
 		positions.Add(parentPos);                                   // 親の位置を追加
-
-		colPoints.Add(Vector2.zero);
-		colPoints.Add(Vector2.zero);
 
 		line.positionCount = middlePointCount + 2;					// 点の数指定
 		line.SetPositions(positions.ToArray());                     // LineRendererにセット
@@ -61,13 +67,13 @@ public class MotiLineController : MonoBehaviour
 
 		line.SetPositions(positions.ToArray());             // LineRendererにセット
 
-		LineCollision();                                    // 当たり判定
+		LineRay();
 	}
 
 	// 座標の指定
 	void SetPos()
 	{
-		ownPos = transform.position;					// 子(自分)
+		ownPos = transform.parent.position;					// 子(自分)
 
 		var parent = moti.Family.Parent;
 
@@ -80,14 +86,20 @@ public class MotiLineController : MonoBehaviour
         }
 	}
 
-	// 当たり判定
-	void LineCollision()
-	{
-		if (positions?.Count > 0) {
-			colPoints[1] = transform.InverseTransformPoint(parentPos);		// 親の座標をローカル座標に変換
+	void LineRay()
+    {
+		if (moti.Family.ExistParent) {
+			var vec = parentPos - ownPos;									// ベクトル(親 - 自分)
+			var rad = transform.parent.localScale.x / 2 * vec.normalized;   // 半径
+			var radVec = (parentPos - rad) - (ownPos + rad);
 
-			col.SetPoints(colPoints);                                       // 点の座標を指定する
-			col.edgeRadius = 0.32f;
+			// Ray
+			var origin = ownPos + rad;
+			targetRay = new Ray2D(origin, radVec);
+			Debug.DrawRay(targetRay.origin, radVec,Color.black);
+
+			// Raycast
+			
 		}
 	}
 }

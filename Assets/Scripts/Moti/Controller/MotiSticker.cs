@@ -57,7 +57,7 @@ public class MotiSticker : MonoBehaviour
     // くっついた瞬間の処理
     void StickEnter()
 	{
-        part.Play(MotiParticleController.ParticleNames.ground, moti.Ground.HitPoint);
+        part.Play(ParticleNames_Moti.ground, moti.Ground.HitPoint);
 
         moti.RB.constraints = RigidbodyConstraints2D.FreezeAll;
 
@@ -80,7 +80,9 @@ public class MotiSticker : MonoBehaviour
         moti.RB.gravityScale = 1;                                            // 重力元に戻す
         moti.RB.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        moti.RB.AddForce(moti.Ground.HitVector * jumpForce * -1);            // 触れたオブジェクトの反対方向にジャンプ
+        if (moti.Ground.IsGround) {
+            moti.RB.AddForce(moti.Ground.HitVector * jumpForce * -1);            // 触れたオブジェクトの反対方向にジャンプ
+        }
 
         // 子がいるとき
         foreach (var child in moti.Family.Children) {

@@ -20,7 +20,9 @@ public class ReturingState : IState
 
     public void StateUpdate()
     {
-        
+        if (!Moti.Input.IsInTapped) {
+            Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);
+        }
     }
 
     public void StateExit()

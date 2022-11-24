@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partPrfbs:
-  - {fileID: 5089954598309825299, guid: 2fb013020a331da4a8f8198971cf8df8, type: 3}
+  - {fileID: 5089954598309825299, guid: 43694d5728740544fbd5ab1497f07a7c, type: 3}
+  - {fileID: 5089954598309825299, guid: 51051235e2fff5647bd54059abf59106, type: 3}
 --- !u!1 &7852971461467109072
 GameObject:
   m_ObjectHideFlags: 0

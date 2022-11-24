@@ -40,7 +40,7 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6404376888367541994}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -228,6 +228,7 @@ MonoBehaviour:
   maxPlayTime: 10
   particleObjs:
   - {fileID: 5089954598309825299, guid: 43694d5728740544fbd5ab1497f07a7c, type: 3}
+  - {fileID: 5089954598309825299, guid: 51051235e2fff5647bd54059abf59106, type: 3}
 --- !u!1 &8129661351823863562
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,7 +681,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc60d17baaeeff48b840bb91e521467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips: []
+  clips:
+  - {fileID: 8300000, guid: d1040e6af3a435043944d8132066052c, type: 3}
 --- !u!1 &8129661352410282749
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +853,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSize: 0.25
-  marginValue: 0.75
+  fixingTime: 0.1
+  fixingEase: 2
+  stretchableLength: 0
 --- !u!114 &8129661352410282750
 MonoBehaviour:
   m_ObjectHideFlags: 0

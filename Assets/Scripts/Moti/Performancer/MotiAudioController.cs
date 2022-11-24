@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MotiAudioNames
+{
+    united,
+    hitGround,
+}
+
 [RequireComponent(typeof(AudioSource))]
 public class MotiAudioController : MonoBehaviour
 {
@@ -11,9 +17,7 @@ public class MotiAudioController : MonoBehaviour
     [SerializeField] List<AudioClip> clips;
 
     /* 列挙 */
-    public enum AudioName {
 
-    }
 
     //-------------------------------------------------------------------
     void Awake()
@@ -27,7 +31,7 @@ public class MotiAudioController : MonoBehaviour
         /* 初期化 */
     }
 
-    public void Play(AudioName audioName)
+    public void Play(MotiAudioNames audioName)
     {
         AudioClip clip = clips[(int)audioName];
         source.PlayOneShot(clip);

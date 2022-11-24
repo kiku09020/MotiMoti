@@ -34,6 +34,11 @@ public class MotiUniter : MonoBehaviour
         HitChecker hit = moti.MotiHit;
 
         transform.localScale += hit.OtherMoti.transform.localScale;
+        moti.Particle.Play(ParticleNames_Moti.united, transform.position);
+        moti.Audio.Play(MotiAudioNames.united);
+
+
+
         Destroy(hit.OtherMoti.gameObject);
     }
 
