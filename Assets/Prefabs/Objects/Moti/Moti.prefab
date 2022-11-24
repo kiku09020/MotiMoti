@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   middlePointCount: 0
+  angleLimit: 10
 --- !u!1 &8129661351492857310
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,11 @@ using UnityEngine;
 public class MotiLineController : MonoBehaviour
 {
 	/* 値 */
-	[SerializeField] int middlePointCount;					// 間の点の数
+	[Header("Line")]
+	[SerializeField] int middlePointCount;                  // 間の点の数
+
+	[Header("Collision")]
+	[SerializeField] float angleLimit;						// 限界の角度
 
 	List<Vector3> positions = new List<Vector3>();          // 全ての座標
 
@@ -13,31 +17,40 @@ public class MotiLineController : MonoBehaviour
 	Vector3 parentPos;                                      // 親の座標
 
 	/* 当たり判定用のRay */
-	bool isRayHit;											// Rayに当たってるか
+	bool isRayHit;                                          // Rayに当たってるか
+	bool hitOnce;                                           // 当たった瞬間
+	bool isAngleOver;										// angleがlimitを過ぎたか
 
-	Vector3 radVec;											// 半径分のベクトル
-	Ray2D targetRay;										// もち→マウスのRay
-	int layerMask;											// ステージのみに衝突させるためのやつ
+	Vector2 firstHitPos;									// 
+	Vector2 parentVec;                                      // 自分->親
+	Vector2 hitVec;											// 自分->当たったオブジェクト
+	float hitAngle;											// parentVecとfirstHitPosの角度
+
+	int layerMask;                                          // ステージのみに衝突させるためのやつ
 
 	/* コンポーネント取得用 */
 	LineRenderer line;
-	EdgeCollider2D col;
 
 	Moti moti;
+
+	/* プロパティ */
+	public bool IsRayHit => isRayHit;
+	public bool IsAngleOver => isAngleOver;
+
+	public Vector2 ParentVec => parentVec;
+	public float HitAngle => hitAngle;
 
 	//-------------------------------------------------------------------
 	void Start()
 	{
 		/* コンポーネント取得 */
 		line = GetComponent<LineRenderer>();
-		col = GetComponent<EdgeCollider2D>();
 
 		moti = transform.parent.GetComponent<Moti>();
 
 		LineSetUp();
 
 		layerMask = LayerMask.GetMask("StageLayer");
-
 	}
 
 	//-------------------------------------------------------------------
@@ -65,15 +78,17 @@ public class MotiLineController : MonoBehaviour
 		positions[0] = ownPos;
 		positions[middlePointCount + 1] = parentPos;
 
-		line.SetPositions(positions.ToArray());             // LineRendererにセット
+		line.SetPositions(positions.ToArray());         // LineRendererにセット
 
 		LineRay();
+		CheckAngle();
 	}
 
+	//-------------------------------------------------------------------
 	// 座標の指定
 	void SetPos()
 	{
-		ownPos = transform.parent.position;					// 子(自分)
+		ownPos = transform.parent.position;				// 子(自分)
 
 		var parent = moti.Family.Parent;
 
@@ -86,20 +101,73 @@ public class MotiLineController : MonoBehaviour
         }
 	}
 
+	//-------------------------------------------------------------------
+	// 子から親へのRayの処理
 	void LineRay()
     {
 		if (moti.Family.ExistParent) {
 			var vec = parentPos - ownPos;									// ベクトル(親 - 自分)
 			var rad = transform.parent.localScale.x / 2 * vec.normalized;   // 半径
-			var radVec = (parentPos - rad) - (ownPos + rad);
+			parentVec = (parentPos - rad) - (ownPos + rad);
 
 			// Ray
 			var origin = ownPos + rad;
-			targetRay = new Ray2D(origin, radVec);
-			Debug.DrawRay(targetRay.origin, radVec,Color.black);
+			var parentRay = new Ray2D(origin, parentVec);
+			Debug.DrawRay(origin, parentVec,Color.black);
 
 			// Raycast
-			
+			var hit = Physics2D.Raycast(origin, parentRay.direction, parentVec.magnitude, layerMask);
+
+			// Collision
+			if (hit ) {
+				LineRayCollision(hit);
+
+				isRayHit = true;
+            }
+
+            else {
+				isRayHit = false;
+				hitOnce = false;
+				isAngleOver = false;
+
+				firstHitPos = ownPos;       // hitPos戻す
+				hitAngle = 0;			// 角度戻す
+            }
+
+			print(hitAngle);
 		}
 	}
+
+	// Raycastに触れたときの処理
+	void LineRayCollision(RaycastHit2D hit)
+    {
+		var col = hit.collider;
+
+		// 触れた瞬間
+        if (!hitOnce) {
+			hitOnce = true;
+			firstHitPos = hit.point;
+        }
+
+		if (col.tag == "Stage") {
+			print(col);
+		}
+
+		hitVec = moti.CheckVector(firstHitPos);                 // 自分→hitPos
+		hitAngle = Vector2.Angle(parentVec, hitVec);         // 角度求める
+		
+	}
+
+	//-------------------------------------------------------------------
+	// 角度のチェック
+	void CheckAngle()
+    {
+        if (hitAngle > angleLimit) {
+			isAngleOver = true;
+        }
+
+        else {
+			isAngleOver = false;
+        }
+    }
 }

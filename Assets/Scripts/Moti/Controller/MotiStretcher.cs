@@ -96,6 +96,12 @@ public class MotiStretcher : MonoBehaviour
             if (!child.Ground.IsGround) {
                 length = Vector2.Distance(transform.position, child.transform.position);        // 子との距離求める
                 child.transform.position = moti.Input.MousePosWorld;
+
+                if (child.Line.IsAngleOver) {
+                    isStretching = false;
+
+                    child.Stretcher.isStretching = false;
+                }
             }
 
             child.RB.velocity = Vector2.zero;                           // rb無効化

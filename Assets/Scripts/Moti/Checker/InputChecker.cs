@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class InputChecker : MonoBehaviour
 {
-    /* 値 */
-    bool isTapping;		// タップ中
-	bool isDraging;     // ドラッグ中(動いているとき)
-	bool isInTapped;    // 範囲内で離されたとき
-	bool isOnMoti;		// マウスがもちの上にいるか
+	/* フラグ */
+    bool isTapping;				// タップ中
+	bool isDraging;				// ドラッグ中(タップ中にマウスが動いているとき)
+	bool isInTapped;			// 範囲内で離されたとき
+	bool isOnMoti;				// マウスがもちの上にいるか
 
-	float dragDistance;		// ドラッグ距離
+    /* 値 */
+	float dragDistance;			// ドラッグ距離
 
 	Vector2 clickedPos;			// クリックした座標
 	Vector2 mousePos;			// マウス位置(スクリーン座標)
@@ -27,15 +28,16 @@ public class InputChecker : MonoBehaviour
 	public Vector2 MousePos => mousePos;
 	public Vector2 MousePosWorld => mousePosWorld;
 
-	/* コンポーネント取得用 */
-
-
 	//-------------------------------------------------------------------
-	private void Update()
+	void Update()
 	{
+		// マウス座標更新
 		mousePos = Input.mousePosition;
 		mousePosWorld = Camera.main.ScreenToWorldPoint(mousePos);
 	}
+
+	//-------------------------------------------------------------------
+	/* EventTrigger用の関数 */
 
 	// ポインターが範囲内に入った時
 	public void PointerEnter()
@@ -73,7 +75,7 @@ public class InputChecker : MonoBehaviour
 	public void Drag()
 	{
 		isDraging = true;
-		dragDistance = Vector2.Distance(clickedPos, MousePosWorld);      // ドラッグ距離
+		dragDistance = Vector2.Distance(clickedPos, mousePosWorld);      // ドラッグ距離
 	}
 
 	// ドラッグ止めた時
@@ -82,4 +84,14 @@ public class InputChecker : MonoBehaviour
 		isDraging = false;
 		dragDistance = 0;
 	}
+
+	//-------------------------------------------------------------------
+	// 目標のオブジェクトの座標とマウスのベクトルを調べる
+	public Vector2 CheckMousePosDistance(Vector2 targetPos)
+    {
+		var vector = targetPos - mousePosWorld;
+		Debug.DrawRay(mousePosWorld, vector, Color.blue);
+
+		return vector;
+    }
 }

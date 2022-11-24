@@ -105,4 +105,14 @@ public class Moti : MonoBehaviour
         stretcher.StretchingUpdate();               // 伸び
         line.LineUpdate();                          // ライン
     }
+
+    // オブジェクトとの距離を調べる
+    public Vector2 CheckVector(Vector2 targetPos)
+    {
+        var vec = targetPos - (Vector2)transform.position;
+
+        Debug.DrawRay(transform.position, vec, Color.blue);
+
+        return vec;
+    }
 }
