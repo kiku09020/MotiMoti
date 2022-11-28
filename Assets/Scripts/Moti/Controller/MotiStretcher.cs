@@ -41,6 +41,9 @@ public class MotiStretcher : MonoBehaviour
     Moti moti;
     Moti child;
 
+    Tween moveTween;
+    Tween lowMove;
+
 //-------------------------------------------------------------------
     void Awake()
     {
@@ -82,6 +85,8 @@ public class MotiStretcher : MonoBehaviour
         }
 
         else {
+            lowMove.Kill();
+
             limitTimer = 0;
             isLimit = false;
         }
@@ -106,49 +111,49 @@ public class MotiStretcher : MonoBehaviour
     // 子の移動(ドラッグ中)
     void MoveChild()
 	{
-        Tweener moveTween = null;
-
         if (child && !child.Ground.IsGround) {
             length = Vector2.Distance(transform.position, child.transform.position);        // 子との距離求める
 
             // 通常移動
             if (length < stretchableLength) {
-                moveTween = child.transform.DOMove(moti.Input.MousePosWorld, moveTime);
+                moveTween = child.transform.DOMove(moti.Input.MousePosWorld, moveTime);     // 移動
 
-                child.RB.velocity = Vector2.zero;                           // rb無効化
-                child.RB.gravityScale = 0;
+                child.RB.velocity = Vector2.zero;                                           // rb無効化
+                child.RB.gravityScale = 0;                                                  // 重力無効化
 
                 isLimit = false;
             }
 
             // 限界点到達時
             else {
+
                 // 到達した瞬間
                 if (!isLimit) {
-                    moveTween.Kill();
-                    limitPos = child.transform.position;                // 位置を保存
+                    moveTween.Kill();                                                       // 通常移動停止
+                    lowMove = child.transform.DOMove(moti.Input.MousePosWorld, 3);          // 低速移動
 
                     isLimit = true;
                 }
 
-                child.transform.position = limitPos;                    // 位置固定
-
-                limitTimer += Time.deltaTime;                           // タイマー追加
+                limitTimer += Time.deltaTime;                                               // タイマー増加
 
                 // 時間経過時
                 if (limitTimer > leaveTime) {
                     moti.Audio.Play(MotiAudioNames.united);
 
+                    // 親子関係の破棄
                     moti.Family.RemoveChild(child);
                     child.Family.RemoveParent();
+                    child = null;
 
+                    lowMove.Kill();                                                         // 移動停止
                     isLimit = false;
                     length = 0;
                     limitTimer = 0;
                 }
             }
 
-
+            print(length);
         }
     }
 }

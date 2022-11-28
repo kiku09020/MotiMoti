@@ -66,7 +66,6 @@ public class MotiLineController : MonoBehaviour
 		line.SetPositions(positions.ToArray());                     // LineRendererにセット
 
 		line.numCapVertices = 10;                                   // 角丸
-		line.widthMultiplier = transform.parent.localScale.x / 2;   // 線の太さの指定
 	}
 
 	// 更新
@@ -79,6 +78,8 @@ public class MotiLineController : MonoBehaviour
 		positions[middlePointCount + 1] = parentPos;
 
 		line.SetPositions(positions.ToArray());         // LineRendererにセット
+
+		line.widthMultiplier = transform.parent.localScale.x / 4;   // 線の太さの指定
 
 		LineRay();
 		CheckAngle();
@@ -133,8 +134,6 @@ public class MotiLineController : MonoBehaviour
 				firstHitPos = ownPos;       // hitPos戻す
 				hitAngle = 0;			// 角度戻す
             }
-
-			print(hitAngle);
 		}
 	}
 

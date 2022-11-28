@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 /* もちを合体させる処理 */
 public class MotiUniter : MonoBehaviour

@@ -856,10 +856,10 @@ MonoBehaviour:
   minSize: 0.25
   fixingTime: 0.1
   fixingEase: 2
-  stretchableLength: 5
+  stretchableLength: 7.5
   moveTime: 0.25
   limitMoveTime: 5
-  leaveTime: 1
+  leaveTime: 0.5
 --- !u!114 &8129661352410282750
 MonoBehaviour:
   m_ObjectHideFlags: 0
