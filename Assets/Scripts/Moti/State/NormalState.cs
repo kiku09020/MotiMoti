@@ -32,7 +32,7 @@ public class NormalState : IState
         }
 
         // 合体状態に遷移
-        else if (Moti.MotiHit.IsMotiTrigger && !Moti.Input.IsTapping) {
+        else if (Moti.MotiHit.IsMotiTrigger && !Moti.Input.IsOnMoti) {
             state.TransitionState(state.UnitedState);
 		}
 

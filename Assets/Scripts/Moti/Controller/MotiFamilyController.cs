@@ -7,17 +7,17 @@ public class MotiFamilyController : MonoBehaviour
     /* 値 */
     bool existParent;                               // 親がいるか
     bool existChild;                                // 子がいるか
-    bool isOnly;                                    // どちらもいない
+    bool isSingle;                                    // どちらもいない
 
     /* もち */
     Moti moti;                                      // 自分
-    Moti parent;                                // 親
-    List<Moti> children = new List<Moti>();     // 子のリスト
+    Moti parent;                                    // 親
+    List<Moti> children = new List<Moti>();         // 子のリスト
 
     /* プロパティ */
     public bool ExistChild => existChild;
     public bool ExistParent => existParent;
-    public bool IsOnly => isOnly;
+    public bool IsSingle => isSingle;
 
     public Moti Parent => parent;
     public List<Moti> Children => children;
@@ -36,7 +36,7 @@ public class MotiFamilyController : MonoBehaviour
         existChild = children.Count > 0 ? true : false;             // 子
         existParent = parent ? true : false;                        // 親
 
-        isOnly = (!existChild && !existParent) ? true : false;      // どちらでもない
+        isSingle = (!existChild && !existParent) ? true : false;      // どちらでもない
     }
 
     //-------------------------------------------
@@ -67,6 +67,23 @@ public class MotiFamilyController : MonoBehaviour
     // 子を減らす
     public void RemoveChild(Moti child)
     {
-        children.Remove(child);
+        if (existChild) {
+            children.Remove(child);
+        }
+    }
+
+    // 子を全て減らす
+    public void RemoveChildren()
+    {
+        if (existChild) {
+            children.Clear();
+        }
+    }
+
+    // 親子をなくす
+    public void RemoveFamily()
+    {
+        RemoveParent();
+        RemoveChildren();
     }
 }

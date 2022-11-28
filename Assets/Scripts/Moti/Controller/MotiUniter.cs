@@ -33,13 +33,14 @@ public class MotiUniter : MonoBehaviour
     {
         HitChecker hit = moti.MotiHit;
 
-        transform.localScale += hit.OtherMoti.transform.localScale;
+        transform.localScale += hit.OtherMoti.transform.localScale;                         // 大きさ変更
+        moti.Stretcher.StretchableLenth += hit.OtherMoti.Stretcher.StretchableLenth;        // 伸ばせる距離を足す
+
+        // 演出
         moti.Particle.Play(ParticleNames_Moti.united, transform.position);
         moti.Audio.Play(MotiAudioNames.united);
 
-
-
-        Destroy(hit.OtherMoti.gameObject);
+        Destroy(hit.OtherMoti.gameObject);                                                  // 削除
     }
 
     // 合体可能かを調べる

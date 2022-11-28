@@ -8,6 +8,7 @@ public class MotiSticker : MonoBehaviour
 {
     /* 値 */
     bool isStickedOnce;     // 最初に触れたとき
+    bool isStickExitOnce;   // 最初に離れた時
 
     [SerializeField] float jumpForce;       // 反対方向に飛ぶジャンプ力
     [SerializeField] float returnTime;      // 親元に戻るまでの時間
@@ -16,18 +17,11 @@ public class MotiSticker : MonoBehaviour
     /* コンポーネント取得用 */
     Moti moti;
 
-    MotiParticleController part;
-
 //-------------------------------------------------------------------
     void Awake()
     {
-        /* オブジェクト取得 */
-        Transform partObj = transform.Find("ParticleController");
-
         /* コンポーネント取得 */
         moti = GetComponent<Moti>();
-
-        part = partObj.GetComponent<MotiParticleController>();
 
         /* 初期化 */
         
@@ -50,50 +44,53 @@ public class MotiSticker : MonoBehaviour
 
         // 触れていないとき
         else {
-            NotSticking();
+            if(!isStickExitOnce) {
+                StickExit();
+            }
         }
     }
 
     // くっついた瞬間の処理
     void StickEnter()
 	{
-        part.Play(ParticleNames_Moti.ground, moti.Ground.HitPoint);
+        moti.Particle.Play(ParticleNames_Moti.ground, moti.Ground.HitPoint);
 
         moti.RB.constraints = RigidbodyConstraints2D.FreezeAll;
 
         isStickedOnce = true;
+        isStickExitOnce = false;
     }
 
     // 離れる瞬間
-    void NotSticking()
+    void StickExit()
     {
-        moti.RB.gravityScale = 1;                        // 重力戻す
+        moti.RB.gravityScale = 1;                                       // 重力戻す
+        moti.RB.constraints = RigidbodyConstraints2D.FreezeRotation;    // 回転のみ無効
 
-        moti.RB.constraints = RigidbodyConstraints2D.FreezeRotation;
-
+        isStickExitOnce = true;
         isStickedOnce = false;
     }
 
     // タップされた瞬間の処理
     public void Tapped()
     {
-        moti.RB.gravityScale = 1;                                            // 重力元に戻す
+        moti.RB.gravityScale = 1;                                                                   // 重力元に戻す
         moti.RB.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         if (moti.Ground.IsGround) {
-            moti.RB.AddForce(moti.Ground.HitVector * jumpForce * -1);            // 触れたオブジェクトの反対方向にジャンプ
+            moti.RB.AddForce(moti.Ground.HitVector * jumpForce * -1);                               // 触れたオブジェクトの反対方向にジャンプ
         }
 
         // 子がいるとき
         foreach (var child in moti.Family.Children) {
             if (child) {
-                transform.DOMove(child.transform.position, returnTime).SetEase(ease);   // 子のところに移動
+                transform.DOMove(child.transform.position, returnTime).SetEase(ease);               // 子のところに移動
             }
         }
 
         // 親がいるとき
         if (moti.Family.ExistParent) {
-            transform.DOMove(moti.Family.Parent.transform.position, returnTime).SetEase(ease);   // 親のところに移動
+            transform.DOMove(moti.Family.Parent.transform.position, returnTime).SetEase(ease);      // 親のところに移動
         }
 
         moti.Input.IsInTapped = false;

@@ -25,6 +25,7 @@ public class StretchingState : IState
     {
         MotiStateController state = Moti.StateCtrl;
 
+        // 通常状態に繊維
 		if (!Moti.Stretcher.IsStretching) {
             state.TransitionState(state.NormalState);
 		}
@@ -32,7 +33,7 @@ public class StretchingState : IState
 
     public void StateExit()
     {
-
+        Moti.RB.gravityScale = 1;               // 終了時に重力有効化
     }
 
     //-------------------------------------------------------------------

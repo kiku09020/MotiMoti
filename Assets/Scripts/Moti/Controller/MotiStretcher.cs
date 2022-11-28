@@ -18,16 +18,24 @@ public class MotiStretcher : MonoBehaviour
     [SerializeField] float stretchableLength;       // 伸ばせる長さ
     float length;                                   // 現在の長さ
 
-    Vector2 targetPos;                              // 目標座標
+    [Header("移動")]
+    [SerializeField] float moveTime;                // 通常移動時の移動時間
+    [SerializeField] float limitMoveTime;           // 限界移動時の移動時間
+    [SerializeField] float leaveTime;               // 離れるまでの時間
+    float limitTimer;                               // 限界移動時になってからの時間
+
+    Vector2 limitPos;                               // 限界点
     Vector2 fixedPos;                               // 固定位置
 
     /* フラグ */
     bool isStretching;                              // 伸びてるか
+    bool isLimit;                                   // 限界点
 
     /* プロパティ */
     public bool IsStretching => isStretching;
 
     public float Length => length;
+    public float StretchableLenth       { get => stretchableLength; set => stretchableLength = value; }
 
     /* コンポーネント取得用 */
     Moti moti;
@@ -64,7 +72,7 @@ public class MotiStretcher : MonoBehaviour
 
     // 分裂のドラッグ操作
     void DivisionDrag()
-	{
+    {
         if (!moti.Input.IsOnMoti && moti.Input.IsDraging) {
             if (!isStretching) {
                 Division();         // 分裂した瞬間
@@ -72,7 +80,12 @@ public class MotiStretcher : MonoBehaviour
 
             MoveChild();            // 分裂した子の移動
         }
-	}
+
+        else {
+            limitTimer = 0;
+            isLimit = false;
+        }
+    }
 
     // 分裂(ドラッグ開始時)
     void Division()
@@ -82,6 +95,7 @@ public class MotiStretcher : MonoBehaviour
             transform.position = fixedPos;                                                          // 固定
 
             moti.transform.localScale /= 2;                                                         // 大きさを半分にする
+            stretchableLength /= 2;                                                                 // 伸ばせる長さも半分にする
 
             child = moti.Family.AddChild(moti);                                                     // 子作成
 
@@ -92,19 +106,49 @@ public class MotiStretcher : MonoBehaviour
     // 子の移動(ドラッグ中)
     void MoveChild()
 	{
-        if (child) {
-            if (!child.Ground.IsGround) {
-                length = Vector2.Distance(transform.position, child.transform.position);        // 子との距離求める
-                child.transform.position = moti.Input.MousePosWorld;
+        Tweener moveTween = null;
 
-                if (child.Line.IsAngleOver) {
-                    isStretching = false;
+        if (child && !child.Ground.IsGround) {
+            length = Vector2.Distance(transform.position, child.transform.position);        // 子との距離求める
 
-                    child.Stretcher.isStretching = false;
+            // 通常移動
+            if (length < stretchableLength) {
+                moveTween = child.transform.DOMove(moti.Input.MousePosWorld, moveTime);
+
+                child.RB.velocity = Vector2.zero;                           // rb無効化
+                child.RB.gravityScale = 0;
+
+                isLimit = false;
+            }
+
+            // 限界点到達時
+            else {
+                // 到達した瞬間
+                if (!isLimit) {
+                    moveTween.Kill();
+                    limitPos = child.transform.position;                // 位置を保存
+
+                    isLimit = true;
+                }
+
+                child.transform.position = limitPos;                    // 位置固定
+
+                limitTimer += Time.deltaTime;                           // タイマー追加
+
+                // 時間経過時
+                if (limitTimer > leaveTime) {
+                    moti.Audio.Play(MotiAudioNames.united);
+
+                    moti.Family.RemoveChild(child);
+                    child.Family.RemoveParent();
+
+                    isLimit = false;
+                    length = 0;
+                    limitTimer = 0;
                 }
             }
 
-            child.RB.velocity = Vector2.zero;                           // rb無効化
+
         }
     }
 }
