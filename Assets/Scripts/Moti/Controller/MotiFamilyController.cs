@@ -50,7 +50,8 @@ public class MotiFamilyController : MonoBehaviour
     public void RemoveParent()
     {
         if (existParent) {
-            parent = null;
+            parent.Family.RemoveChild(moti);            // 子(自分)を親から消す
+            parent = null;                              // 親消す
         }
     }
 
@@ -78,12 +79,5 @@ public class MotiFamilyController : MonoBehaviour
         if (existChild) {
             children.Clear();
         }
-    }
-
-    // 親子をなくす
-    public void RemoveFamily()
-    {
-        RemoveParent();
-        RemoveChildren();
     }
 }

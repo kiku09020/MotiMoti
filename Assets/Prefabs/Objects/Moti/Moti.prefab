@@ -183,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   middlePointCount: 0
   angleLimit: 10
+  stretchableLength: 5
 --- !u!1 &8129661351492857310
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: d1040e6af3a435043944d8132066052c, type: 3}
+  - {fileID: 8300000, guid: 381b0f44b6f0e3a4388e49ac5c74a97a, type: 3}
 --- !u!1 &8129661352410282749
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +858,6 @@ MonoBehaviour:
   minSize: 0.25
   fixingTime: 0.1
   fixingEase: 2
-  stretchableLength: 7.5
   moveTime: 0.25
   limitMoveTime: 5
   leaveTime: 0.5

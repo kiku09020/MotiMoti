@@ -35,7 +35,7 @@ public class MotiUniter : MonoBehaviour
         HitChecker hit = moti.MotiHit;
 
         transform.localScale += hit.OtherMoti.transform.localScale;                         // 大きさ変更
-        moti.Stretcher.StretchableLenth += hit.OtherMoti.Stretcher.StretchableLenth;        // 伸ばせる距離を足す
+        moti.Line.StretchableLenth += hit.OtherMoti.Line.StretchableLenth;
 
         // 演出
         moti.Particle.Play(ParticleNames_Moti.united, transform.position);

@@ -9,8 +9,17 @@ public class MotiLineController : MonoBehaviour
 	[SerializeField] int middlePointCount;                  // 間の点の数
 
 	[Header("Collision")]
-	[SerializeField] float angleLimit;						// 限界の角度
+	[SerializeField] float angleLimit;                      // 限界の角度
 
+	[Header("長さ")]
+	[SerializeField] float stretchableLength;				// 伸ばせる長さ
+	float length;                                           // 現在の長さ
+
+	// 限界点
+	bool isLimit;                                           // 長さ限界か
+	bool isLimitOnce;										// 限界点に到達した瞬間
+
+	/* 座標 */
 	List<Vector3> positions = new List<Vector3>();          // 全ての座標
 
 	Vector3 ownPos;                                         // 自分(子)の座標
@@ -34,11 +43,19 @@ public class MotiLineController : MonoBehaviour
 	Moti moti;
 
 	/* プロパティ */
+	// Ray
 	public bool IsRayHit => isRayHit;
 	public bool IsAngleOver => isAngleOver;
 
 	public Vector2 ParentVec => parentVec;
 	public float HitAngle => hitAngle;
+
+	// 長さ
+	public float Length => length;
+	public float StretchableLenth { get => stretchableLength; set => stretchableLength = value; }
+
+	// 限界点
+	public bool IsLimit => isLimit;
 
 	//-------------------------------------------------------------------
 	void Start()
@@ -83,6 +100,7 @@ public class MotiLineController : MonoBehaviour
 
 		LineRay();
 		CheckAngle();
+		CheckLength();
 	}
 
 	//-------------------------------------------------------------------
@@ -132,7 +150,7 @@ public class MotiLineController : MonoBehaviour
 				isAngleOver = false;
 
 				firstHitPos = ownPos;       // hitPos戻す
-				hitAngle = 0;			// 角度戻す
+				hitAngle = 0;				// 角度戻す
             }
 		}
 	}
@@ -152,21 +170,50 @@ public class MotiLineController : MonoBehaviour
 			print(col);
 		}
 
-		hitVec = moti.CheckVector(firstHitPos);                 // 自分→hitPos
-		hitAngle = Vector2.Angle(parentVec, hitVec);         // 角度求める
-		
+		hitVec = moti.CheckVector(firstHitPos);             // 自分→hitPos
+		hitAngle = Vector2.Angle(parentVec, hitVec);        // 角度求める
 	}
 
 	//-------------------------------------------------------------------
 	// 角度のチェック
 	void CheckAngle()
     {
-        if (hitAngle > angleLimit) {
-			isAngleOver = true;
-        }
-
-        else {
-			isAngleOver = false;
-        }
+		isAngleOver = (hitAngle > angleLimit) ? true : false;
     }
+
+	// 長さのチェック
+	void CheckLength()
+	{
+		// 長さ
+		length = Vector2.Distance(ownPos, parentPos);
+		print(Length);
+
+		// フラグ
+		isLimit = (length > stretchableLength) ? true : false;
+	}
+
+	// 通常状態の切断処理
+	public void CutNormalState()
+	{
+		if (isLimit) {
+			if (!isLimitOnce) {
+				if (!moti.Ground.IsGround) {
+					Cut();
+				}
+
+				isLimitOnce = true;
+			}
+		}
+
+		else {
+			isLimitOnce = false;
+		}
+	}
+
+	// 切断の共通処理
+	public void Cut()
+	{
+		moti.Audio.Play(MotiAudioNames.cutted);
+		moti.Family.RemoveParent();     // 切る
+	}
 }
