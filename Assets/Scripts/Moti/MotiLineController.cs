@@ -17,7 +17,7 @@ public class MotiLineController : MonoBehaviour
 
 	// 限界点
 	bool isLimit;                                           // 長さ限界か
-	bool isLimitOnce;										// 限界点に到達した瞬間
+	bool isLimitOnce;                                       // 限界点に到達した瞬間
 
 	/* 座標 */
 	List<Vector3> positions = new List<Vector3>();          // 全ての座標
@@ -39,6 +39,7 @@ public class MotiLineController : MonoBehaviour
 
 	/* コンポーネント取得用 */
 	LineRenderer line;
+	SpringJoint2D spring;
 
 	Moti moti;
 
@@ -62,6 +63,7 @@ public class MotiLineController : MonoBehaviour
 	{
 		/* コンポーネント取得 */
 		line = GetComponent<LineRenderer>();
+		spring = transform.parent.GetComponent<SpringJoint2D>();
 
 		moti = transform.parent.GetComponent<Moti>();
 
@@ -69,6 +71,25 @@ public class MotiLineController : MonoBehaviour
 
 		layerMask = LayerMask.GetMask("StageLayer");
 	}
+
+	// 初期化
+	public void Init()
+    {
+		length = 0;
+		hitAngle = 0;
+
+		ownPos = Vector2.zero;
+		parentPos = Vector2.zero;
+		firstHitPos = Vector2.zero;
+		hitVec = Vector2.zero;
+		parentVec = Vector2.zero;
+
+		isLimit = false;
+		isLimitOnce = false;
+		isAngleOver = false;
+		isRayHit = false;
+
+    }
 
 	//-------------------------------------------------------------------
 	// はじめにする処理
@@ -101,6 +122,8 @@ public class MotiLineController : MonoBehaviour
 		LineRay();
 		CheckAngle();
 		CheckLength();
+
+		Spring();
 	}
 
 	//-------------------------------------------------------------------
@@ -190,30 +213,31 @@ public class MotiLineController : MonoBehaviour
 
 		// フラグ
 		isLimit = (length > stretchableLength) ? true : false;
-	}
 
-	// 通常状態の切断処理
-	public void CutNormalState()
-	{
-		if (isLimit) {
-			if (!isLimitOnce) {
-				if (!moti.Ground.IsGround) {
-					Cut();
-				}
-
+        if (isLimit) {
+            if (!isLimitOnce) {
 				isLimitOnce = true;
-			}
-		}
+            }
+        }
 
-		else {
+        else {
 			isLimitOnce = false;
-		}
+        }
 	}
 
-	// 切断の共通処理
-	public void Cut()
-	{
-		moti.Audio.Play(MotiAudioNames.cutted);
-		moti.Family.RemoveParent();     // 切る
-	}
+	void Spring()
+    {
+        if (isLimit) {
+			if (isLimitOnce) {
+				spring.enabled = true;
+				spring.connectedBody = moti.Family.Parent.RB;
+			}
+        }
+		/*
+        else {
+			spring.enabled = false;
+			spring.connectedBody = null;
+        }
+		*/
+    }
 }

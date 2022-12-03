@@ -30,6 +30,12 @@ public class MotiFamilyController : MonoBehaviour
         this.moti = moti;
     }
 
+    // 子供の初期化
+    void InitChild(Moti child)
+    {
+        child.Line.Init();
+    }
+
     // くっついてるもちのチェック
     public void CheckExistFamily()
     {
@@ -58,9 +64,12 @@ public class MotiFamilyController : MonoBehaviour
     // 子を追加する(子をReturnする)
     public Moti AddChild(Moti parent)
     {
-        var child = Instantiate(parent, moti.Input.MousePosWorld, Quaternion.identity, moti.Folder);    // 子のインスタンス化
-        children.Add(child);                                                                            // 子をリストに追加
-        SetParent(child);                                                                               // 親を指定
+        var child = Instantiate(parent, InputChecker.MousePosWorld, 
+                                Quaternion.identity, moti.Folder);      // 子のインスタンス化
+
+        children.Add(child);                                            // 子をリストに追加
+        InitChild(child);                                               // 初期化
+        SetParent(child);                                               // 親を指定
 
         return child;
     }

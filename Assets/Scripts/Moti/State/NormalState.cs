@@ -24,8 +24,6 @@ public class NormalState : IState
 
     public void StateUpdate()
     {
-        Moti.Line.CutNormalState();        // 線の切断
-
         MotiStateController state = Moti.StateCtrl;
 
         // 伸び状態に遷移

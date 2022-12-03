@@ -13,9 +13,9 @@ public class InputChecker : MonoBehaviour
     /* 値 */
 	float dragDistance;			// ドラッグ距離
 
-	Vector2 clickedPos;			// クリックした座標
-	Vector2 mousePos;			// マウス位置(スクリーン座標)
-	Vector2 mousePosWorld;      // マウス位置(ワールド座標)
+	static Vector2 clickedPos;			// クリックした座標
+	static Vector2 mousePos;			// マウス位置(スクリーン座標)
+	static Vector2 mousePosWorld;		// マウス位置(ワールド座標)
 
 	/* プロパティ */
 	public bool IsTapping => isTapping;
@@ -25,8 +25,8 @@ public class InputChecker : MonoBehaviour
 
 	public float DragDistance => dragDistance;
 
-	public Vector2 MousePos => mousePos;
-	public Vector2 MousePosWorld => mousePosWorld;
+	public static Vector2 MousePos => mousePos;
+	public static Vector2 MousePosWorld => mousePosWorld;
 
 	//-------------------------------------------------------------------
 	void Update()
@@ -34,6 +34,8 @@ public class InputChecker : MonoBehaviour
 		// マウス座標更新
 		mousePos = Input.mousePosition;
 		mousePosWorld = Camera.main.ScreenToWorldPoint(mousePos);
+
+		CheckMousePosDistance();
 	}
 
 	//-------------------------------------------------------------------
@@ -86,10 +88,10 @@ public class InputChecker : MonoBehaviour
 	}
 
 	//-------------------------------------------------------------------
-	// 目標のオブジェクトの座標とマウスのベクトルを調べる
-	public Vector2 CheckMousePosDistance(Vector2 targetPos)
+	// もちの座標とマウスのもちベクトルを調べる
+	public Vector2 CheckMousePosDistance()
     {
-		var vector = targetPos - mousePosWorld;
+		var vector = (Vector2)transform.position - mousePosWorld;
 		Debug.DrawRay(mousePosWorld, vector, Color.blue);
 
 		return vector;

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 /* もちを伸ばす処理 */
 public class MotiStretcher : MonoBehaviour
@@ -12,13 +11,10 @@ public class MotiStretcher : MonoBehaviour
 
     [Header("固定")]
     [SerializeField] float fixingTime;              // 固定までの時間
-    [SerializeField] Ease fixingEase;               // 固定のイージングの種類
 
     [Header("移動")]
-    [SerializeField] float moveTime;                // 通常移動時の移動時間
-    [SerializeField] float limitMoveTime;           // 限界移動時の移動時間
     [SerializeField] float leaveTime;               // 離れるまでの時間
-    float limitTimer;                               // 限界移動時になってからの時間
+    [SerializeField] float audioTimeSpan;           
 
     Vector2 fixedPos;                               // 固定位置
 
@@ -37,7 +33,6 @@ public class MotiStretcher : MonoBehaviour
     {
         /* コンポーネント取得 */
         moti = GetComponent<Moti>();
-
     }
 
     //-------------------------------------------------------------------
@@ -96,23 +91,10 @@ public class MotiStretcher : MonoBehaviour
 
             // 通常移動
             if (!activeChild.Line.IsLimit) {
-                activeChild.RB.DOMove(moti.Input.MousePosWorld, moveTime);      // 移動
+                activeChild.transform.position = InputChecker.MousePosWorld;
 
                 activeChild.RB.velocity = Vector2.zero;                         // rb無効化
                 activeChild.RB.gravityScale = 0;                                // 重力無効化
-            }
-
-            // 限界点到達時
-            else {
-                limitTimer += Time.deltaTime;                                   // タイマー増加
-
-                // 時間経過時
-                if (limitTimer > leaveTime) {
-                    activeChild.Line.Cut();
-                    activeChild = null;
-                                        
-                    limitTimer = 0;
-                }
             }
         }
     }
