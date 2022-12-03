@@ -32,8 +32,6 @@ public class MotiStretcher : MonoBehaviour
     Moti moti;
     Moti activeChild;                               // 操作される子
 
-    Tween lowMove;
-
 //-------------------------------------------------------------------
     void Awake()
     {
@@ -112,8 +110,7 @@ public class MotiStretcher : MonoBehaviour
                 if (limitTimer > leaveTime) {
                     activeChild.Line.Cut();
                     activeChild = null;
-
-                    lowMove.Kill();                                             // 移動停止
+                                        
                     limitTimer = 0;
                 }
             }
