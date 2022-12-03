@@ -208,7 +208,7 @@ public class MotiLineController : MonoBehaviour
 	void CheckLength()
 	{
 		// 長さ
-		length = Vector2.Distance(ownPos, parentPos);
+		length = Vector2.Distance(InputChecker.MousePosWorld, parentPos);
 		print(Length);
 
 		// フラグ
@@ -233,11 +233,11 @@ public class MotiLineController : MonoBehaviour
 				spring.connectedBody = moti.Family.Parent.RB;
 			}
         }
-		/*
+		
         else {
 			spring.enabled = false;
 			spring.connectedBody = null;
         }
-		*/
+		
     }
 }
