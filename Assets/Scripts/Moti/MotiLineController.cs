@@ -126,6 +126,7 @@ public class MotiLineController : MonoBehaviour
 		CheckLength();
 
 		Spring();
+		Cutting();
 	}
 
 	//-------------------------------------------------------------------
@@ -215,33 +216,42 @@ public class MotiLineController : MonoBehaviour
 
 		// フラグ
 		isLimit = (length > stretchableLength) ? true : false;
-
-        if (isLimit) {
-            if (!isLimitOnce) {
-				isLimitOnce = true;
-            }
-        }
-
-        else {
-			isLimitOnce = false;
-        }
+		isLimitOnce = (isLimit && !isLimitOnce) ? true : false;
 	}
 
+	// ばね
 	void Spring()
     {
-        if (isLimit) {
+        if (isLimit) {				// 限界点到達時に有効化
 			if (isLimitOnce) {
-				isSpring = true;
-
-				spring.enabled = true;
-				spring.connectedBody = moti.Family.Parent.RB;
+				isSpring = true;									// spring有効フラグ
+				spring.enabled = true;								// Spring有効化
+				spring.connectedBody = moti.Family.Parent.RB;		// Springの接続先を指定
 			}
         }
 		
+		// Spring無効化
         else {
 			spring.enabled = false;
 			spring.connectedBody = null;
         }
-		
+    }
+
+	// 切断
+	void Cutting()
+    {
+		// 遮蔽物との角度が閾値以上のときに切断
+        if (isAngleOver) {
+			var parent = moti.Family.Parent;
+
+            if (parent) {
+				parent.Stretcher.RemoveActiveChild();
+            }
+
+			moti.Audio.Play(MotiAudioNames.cutted);
+
+			isAngleOver = false;
+			hitAngle = 0;
+        }
     }
 }

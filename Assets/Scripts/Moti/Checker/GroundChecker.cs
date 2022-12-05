@@ -18,6 +18,7 @@ public class GroundChecker : MonoBehaviour
 
     /* コンポーネント取得用 */
     [SerializeField] Collider2D col;
+    [SerializeField] MotiAudioController aud;
 
     // もちが触れたオブジェクトの方向を調べる
     void CheckHitDirection(GameObject otherObject)
@@ -40,6 +41,7 @@ public class GroundChecker : MonoBehaviour
 
             isGround = true;                        // 着地状態にする
             CheckHitDirection(col.gameObject);      // 方向取得
+            aud.Play(MotiAudioNames.hitGround);   // 着地音再生
         }
     }
 

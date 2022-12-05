@@ -35,6 +35,16 @@ public class MotiStretcher : MonoBehaviour
         moti = GetComponent<Moti>();
     }
 
+    public void RemoveActiveChild()
+    {
+        if (activeChild) {
+            activeChild.Family.RemoveParent();
+            activeChild = null;
+
+            print("aaaa");
+        }
+    }
+
     //-------------------------------------------------------------------
     public void StretchingUpdate()
     {
@@ -64,7 +74,9 @@ public class MotiStretcher : MonoBehaviour
                 Division();         // 分裂した瞬間
             }
 
-            MoveChild();            // 分裂した子の移動
+            if (activeChild) {
+                MoveChild();            // 分裂した子の移動
+            }
         }
     }
 
@@ -90,7 +102,7 @@ public class MotiStretcher : MonoBehaviour
         if (activeChild && !activeChild.Ground.IsGround) {
 
             // 通常移動
-            if (!activeChild.Line.IsLimit&&!activeChild.Line.IsSpring) {
+            if (!activeChild.Line.IsLimit && !activeChild.Line.IsSpring) {
                 activeChild.transform.position = InputChecker.MousePosWorld;
 
                 activeChild.RB.velocity = Vector2.zero;                         // rb無効化

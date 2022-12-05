@@ -92,7 +92,7 @@ public class InputChecker : MonoBehaviour
 	public Vector2 CheckMousePosDistance()
     {
 		var vector = (Vector2)transform.position - mousePosWorld;
-		Debug.DrawRay(mousePosWorld, vector, Color.blue);
+		Debug.DrawRay(mousePosWorld, vector, Color.yellow);
 
 		return vector;
     }
