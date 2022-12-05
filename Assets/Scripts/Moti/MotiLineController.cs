@@ -18,6 +18,7 @@ public class MotiLineController : MonoBehaviour
 	// 限界点
 	bool isLimit;                                           // 長さ限界か
 	bool isLimitOnce;                                       // 限界点に到達した瞬間
+	bool isSpring;											// ばねで伸びてるか
 
 	/* 座標 */
 	List<Vector3> positions = new List<Vector3>();          // 全ての座標
@@ -57,6 +58,7 @@ public class MotiLineController : MonoBehaviour
 
 	// 限界点
 	public bool IsLimit => isLimit;
+	public bool IsSpring => isSpring;
 
 	//-------------------------------------------------------------------
 	void Start()
@@ -86,9 +88,9 @@ public class MotiLineController : MonoBehaviour
 
 		isLimit = false;
 		isLimitOnce = false;
+		isSpring = false;
 		isAngleOver = false;
 		isRayHit = false;
-
     }
 
 	//-------------------------------------------------------------------
@@ -208,7 +210,7 @@ public class MotiLineController : MonoBehaviour
 	void CheckLength()
 	{
 		// 長さ
-		length = Vector2.Distance(InputChecker.MousePosWorld, parentPos);
+		length = Vector2.Distance(ownPos, parentPos);
 		print(Length);
 
 		// フラグ
@@ -229,6 +231,8 @@ public class MotiLineController : MonoBehaviour
     {
         if (isLimit) {
 			if (isLimitOnce) {
+				isSpring = true;
+
 				spring.enabled = true;
 				spring.connectedBody = moti.Family.Parent.RB;
 			}

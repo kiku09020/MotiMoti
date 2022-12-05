@@ -90,7 +90,7 @@ public class MotiStretcher : MonoBehaviour
         if (activeChild && !activeChild.Ground.IsGround) {
 
             // 通常移動
-            if (!activeChild.Line.IsLimit) {
+            if (!activeChild.Line.IsLimit&&!activeChild.Line.IsSpring) {
                 activeChild.transform.position = InputChecker.MousePosWorld;
 
                 activeChild.RB.velocity = Vector2.zero;                         // rb無効化
