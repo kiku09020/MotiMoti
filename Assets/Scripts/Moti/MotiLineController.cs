@@ -212,7 +212,6 @@ public class MotiLineController : MonoBehaviour
 	{
 		// 長さ
 		length = Vector2.Distance(ownPos, parentPos);
-		print(Length);
 
 		// フラグ
 		isLimit = (length > stretchableLength) ? true : false;

@@ -89,4 +89,18 @@ public class MotiFamilyController : MonoBehaviour
             children.Clear();
         }
     }
+
+    //-------------------------------------------
+    // 自分の子かを調べる
+    public bool CheckIfChild(Moti moti)
+    {
+        foreach(var child in children) {
+            if (moti == child) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

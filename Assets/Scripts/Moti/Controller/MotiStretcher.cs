@@ -40,8 +40,6 @@ public class MotiStretcher : MonoBehaviour
         if (activeChild) {
             activeChild.Family.RemoveParent();
             activeChild = null;
-
-            print("aaaa");
         }
     }
 

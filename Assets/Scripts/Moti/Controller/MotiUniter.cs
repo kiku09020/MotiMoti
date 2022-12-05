@@ -32,16 +32,18 @@ public class MotiUniter : MonoBehaviour
     //-------------------------------------------------------------------
     public void Unite()
     {
-        HitChecker hit = moti.MotiHit;
+        var other = moti.MotiHit.OtherMoti;
 
-        transform.localScale += hit.OtherMoti.transform.localScale;                         // 大きさ変更
-        moti.Line.StretchableLenth += hit.OtherMoti.Line.StretchableLenth;
+        var flag = moti.Family.CheckIfChild(other);
+
+        transform.localScale += other.transform.localScale;                         // 大きさ変更
+        moti.Line.StretchableLenth += other.Line.StretchableLenth;
 
         // 演出
         moti.Particle.Play(ParticleNames_Moti.united, transform.position);
         moti.Audio.Play(MotiAudioNames.united);
 
-        Destroy(hit.OtherMoti.gameObject);                                                  // 削除
+        Destroy(other.gameObject);                                                  // 削除
     }
 
     // 合体可能かを調べる
