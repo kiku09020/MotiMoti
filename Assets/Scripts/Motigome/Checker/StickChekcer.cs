@@ -2,32 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Motigome {
-    public class GroundChecker : MonoBehaviour
+namespace Motigome
+{
+    [RequireComponent(typeof(CircleCollider2D))]
+    public class StickChekcer : MonoBehaviour
     {
         /* 値 */
-        bool isGround;
+        bool isSticked;
 
         /* プロパティ */
-        public bool IsGround => isGround;
-
-        /* コンポーネント取得用 */
-
-
+        public bool IsSticked => isSticked;
 
         //-------------------------------------------------------------------
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.tag == "Stage") {
-                isGround = true;
+            if (col.tag=="Moti") {
+                isSticked = true;
             }
         }
 
         private void OnTriggerExit2D(Collider2D col)
         {
-            if (col.tag == "Stage") {
-                isGround = false;
-            }
+            
         }
     }
 }

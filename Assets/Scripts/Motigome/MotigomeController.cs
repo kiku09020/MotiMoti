@@ -12,8 +12,9 @@ namespace Motigome {
 
         /* プロパティ */
 
-
+        public StateController StateCtrl => stateCtrl;
         public GroundChecker Ground => ground;
+        public StickChekcer Stick => stick;
 
         /* コンポーネント取得用 */
         [Header("Components")]
@@ -21,32 +22,36 @@ namespace Motigome {
         [SerializeField] Collider2D col;
 
         [SerializeField] GroundChecker ground;
+        [SerializeField] StickChekcer stick;
+        StateController stateCtrl;
 
         //-------------------------------------------------------------------
         void Awake()
         {
-            /* オブジェクト取得 */
-
-
-            /* コンポーネント取得 */
-
-
             /* 初期化 */
+            stateCtrl = new StateController(this);
 
+            stateCtrl.InitState(stateCtrl.Normal);
         }
 
         void FixedUpdate()
         {
-            Jump();
+            stateCtrl.StateUpdate();
         }
 
         //-------------------------------------------------------------------
         // ジャンプ
-        void Jump()
+        public void Jump()
         {
             if (ground.IsGround) {
                 rb.AddForce(Vector2.up * jumpForce);
             }
+        }
+
+        // くっついたときの処理
+        public void Sticked()
+        {
+
         }
     }
 }
