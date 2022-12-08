@@ -4,34 +4,38 @@ using UnityEngine;
 
 namespace Motigome
 {
-    public class NormalState : MonoBehaviour
+    public class NormalState : IState
     {
-        /* 値 */
+        /* プロパティ */
+        public MotigomeController Ctrl { get; set; }
 
-
-        /* コンポーネント取得用 */
-
-
-
-        //-------------------------------------------------------------------
-        void Awake()
+        /* コンストラクタ */
+        public NormalState(MotigomeController ctrl)
         {
-            /* オブジェクト取得 */
-
-
-            /* コンポーネント取得 */
-
-
-            /* 初期化 */
-
+            Ctrl = ctrl;
         }
 
-        void FixedUpdate()
+        /* メソッド */
+        public void StateEnter()
         {
 
         }
 
-        //-------------------------------------------------------------------
+        public void StateUpdate()
+        {
+            Ctrl.Jump();        // ジャンプ
 
+            var state = Ctrl.StateCtrl;
+
+            // くっつき状態へ遷移
+            if (Ctrl.Stick.IsSticked) {
+                state.TransitionState(state.Sticked);
+            }
+        }
+
+        public void StateExit()
+        {
+
+        }
     }
 }

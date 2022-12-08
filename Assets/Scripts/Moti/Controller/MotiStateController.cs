@@ -6,9 +6,6 @@ namespace Moti
 {
     public class MotiStateController
     {
-        /* 値 */
-
-
         /* コンポーネント取得用 */
         NormalState normal;
         StretchingState stretching;

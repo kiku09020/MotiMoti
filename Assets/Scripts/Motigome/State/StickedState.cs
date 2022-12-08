@@ -4,34 +4,31 @@ using UnityEngine;
 
 namespace Motigome
 {
-    public class StickedState : MonoBehaviour
+    public class StickedState : IState
     {
-        /* 値 */
+        /* プロパティ */
+        public MotigomeController Ctrl { get; set; }
 
-
-        /* コンポーネント取得用 */
-
-
-
-        //-------------------------------------------------------------------
-        void Awake()
+        /* コンストラクタ */
+        public StickedState(MotigomeController ctrl)
         {
-            /* オブジェクト取得 */
-
-
-            /* コンポーネント取得 */
-
-
-            /* 初期化 */
-
+            Ctrl = ctrl;
         }
 
-        void FixedUpdate()
+        /* メソッド */
+        public void StateEnter()
         {
 
         }
 
-        //-------------------------------------------------------------------
+        public void StateUpdate()
+        {
+            Ctrl.Sticked();
+        }
 
+        public void StateExit()
+        {
+
+        }
     }
 }
