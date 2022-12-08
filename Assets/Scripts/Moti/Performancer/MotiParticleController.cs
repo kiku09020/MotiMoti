@@ -2,46 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// パーティクル名
-public enum ParticleNames_Moti {
-    ground,
-    united,
-}
-
-public class MotiParticleController : MonoBehaviour
+namespace Moti
 {
-    [Header("Values")]
-    [SerializeField] float maxPlayTime = 10;            // 最大再生時間。これを過ぎると自動で削除する
-
-    [Header("Particles")]
-    [SerializeField] List<GameObject> particleObjs;     // パーティクルオブジェクト
-
-    Transform particleParent;
-
-//-------------------------------------------------------------------
-    void Awake()
+    // パーティクル名
+    public enum ParticleNames_Moti
     {
-        GameObject partObj = GameObject.Find("ParticleManager");
-        particleParent = partObj.transform.Find("Particles");
-
-        // particlesにpartileObjsのパーティクルを格納(仮)
-        for(int i = 0; i < particleObjs.Count; i++) {
-            particleObjs[i].GetComponent<ParticleSystem>();
-        }
+        ground,
+        united,
     }
 
-//-------------------------------------------------------------------
-    // パーティクルの再生
-    public void Play(ParticleNames_Moti particleName,Vector2 pos)
+    public class MotiParticleController : MonoBehaviour
     {
-        ParticleSystem part = particleObjs[(int)particleName].GetComponent<ParticleSystem>();
+        [Header("Values")]
+        [SerializeField] float maxPlayTime = 10;            // 最大再生時間。これを過ぎると自動で削除する
 
-        // 削除までの時間
-        float duration = part.main.duration;
-        float lifeTime = part.main.startLifetimeMultiplier;
-        float delTime = duration + lifeTime;
+        [Header("Particles")]
+        [SerializeField] List<GameObject> particleObjs;     // パーティクルオブジェクト
 
-        GameObject inst = Instantiate(particleObjs[(int)particleName], pos, Quaternion.identity, particleParent);       // パーティクルプレハブのインスタンス化
-        Destroy(inst, delTime);                                                                                         // 再生してからパーティクルオブジェクト削除
+        Transform particleParent;
+
+        //-------------------------------------------------------------------
+        void Awake()
+        {
+            GameObject partObj = GameObject.Find("ParticleManager");
+            particleParent = partObj.transform.Find("Particles");
+
+            // particlesにpartileObjsのパーティクルを格納(仮)
+            for (int i = 0; i < particleObjs.Count; i++) {
+                particleObjs[i].GetComponent<ParticleSystem>();
+            }
+        }
+
+        //-------------------------------------------------------------------
+        // パーティクルの再生
+        public void Play(ParticleNames_Moti particleName, Vector2 pos)
+        {
+            ParticleSystem part = particleObjs[(int)particleName].GetComponent<ParticleSystem>();
+
+            // 削除までの時間
+            float duration = part.main.duration;
+            float lifeTime = part.main.startLifetimeMultiplier;
+            float delTime = duration + lifeTime;
+
+            GameObject inst = Instantiate(particleObjs[(int)particleName], pos, Quaternion.identity, particleParent);       // パーティクルプレハブのインスタンス化
+            Destroy(inst, delTime);                                                                                         // 再生してからパーティクルオブジェクト削除
+        }
     }
 }

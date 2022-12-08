@@ -2,48 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalState : IState
+namespace Moti
 {
-    /* 値 */
-    public Moti Moti { get; set; }
-
-    /* コンポーネント取得用 */
-
-
-    /* コンストラクタ */
-    public NormalState(Moti moti)
+    public class NormalState : IState
     {
-        Moti = moti;
-	}
+        /* 値 */
+        public MotiController Moti { get; set; }
 
-//-------------------------------------------------------------------
-    public void StateEnter()
-    {
+        /* コンポーネント取得用 */
 
-    }
 
-    public void StateUpdate()
-    {
-        MotiStateController state = Moti.StateCtrl;
-
-        // 伸び状態に遷移
-        if (Moti.Stretcher.IsStretching) {
-            state.TransitionState(state.StretchingState);
+        /* コンストラクタ */
+        public NormalState(MotiController moti)
+        {
+            Moti = moti;
         }
 
-        // 合体状態に遷移
-        else if (Moti.MotiHit.IsMotiTrigger && !Moti.Input.IsOnMoti) {
-            state.TransitionState(state.UnitedState);
-		}
+        //-------------------------------------------------------------------
+        public void StateEnter()
+        {
 
-        // 戻り状態に遷移
-        else if (Moti.Input.IsInTapped) {
-            state.TransitionState(state.ReturingState);
         }
-    }
 
-    public void StateExit()
-    {
+        public void StateUpdate()
+        {
+            MotiStateController state = Moti.StateCtrl;
 
+            // 伸び状態に遷移
+            if (Moti.Stretcher.IsStretching) {
+                state.TransitionState(state.StretchingState);
+            }
+
+            // 合体状態に遷移
+            else if (Moti.MotiHit.IsMotiTrigger && !Moti.Input.IsOnMoti) {
+                state.TransitionState(state.UnitedState);
+            }
+
+            // 戻り状態に遷移
+            else if (Moti.Input.IsInTapped) {
+                state.TransitionState(state.ReturingState);
+            }
+        }
+
+        public void StateExit()
+        {
+
+        }
     }
 }

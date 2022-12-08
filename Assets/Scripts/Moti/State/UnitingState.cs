@@ -2,39 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitingState : IState
+namespace Moti
 {
-    /* 値 */
-    public Moti Moti { get; set; }
-
-    /* コンポーネント取得用 */
-
-    /* コンストラクタ */
-    public UnitingState(Moti moti)
+    public class UnitingState : IState
     {
-        Moti = moti;
-    }
+        /* 値 */
+        public MotiController Moti { get; set; }
 
-    //-------------------------------------------------------------------
-    public void StateEnter()
-    {
-        
-    }
+        /* コンポーネント取得用 */
 
-    public void StateUpdate()
-    {
-        Moti.Uniter.CheckUnitable();
-
-		if (Moti.Uniter.IsUnitable) {
-            Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);     // 通常状態へ
+        /* コンストラクタ */
+        public UnitingState(MotiController moti)
+        {
+            Moti = moti;
         }
+
+        //-------------------------------------------------------------------
+        public void StateEnter()
+        {
+
+        }
+
+        public void StateUpdate()
+        {
+            Moti.Uniter.CheckUnitable();
+
+            if (Moti.Uniter.IsUnitable) {
+                Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);     // 通常状態へ
+            }
+        }
+
+        public void StateExit()
+        {
+            Moti.Uniter.Unite();                                            // 合体
+        }
+
+        //-------------------------------------------------------------------
+
     }
-
-    public void StateExit()
-    {
-        Moti.Uniter.Unite();                                            // 合体
-    }
-
-    //-------------------------------------------------------------------
-
 }

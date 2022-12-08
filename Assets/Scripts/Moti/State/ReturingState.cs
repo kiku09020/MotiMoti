@@ -2,31 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReturingState : IState
+namespace Moti
 {
-    public Moti Moti { get; set; }
-
-    /* コンストラクタ */
-    public ReturingState(Moti moti)
+    public class ReturingState : IState
     {
-        Moti = moti;
-    }
+        public MotiController Moti { get; set; }
 
-    public void StateEnter()
-    {
-        // タップ処理
-        Moti.Sticker.Tapped();
-    }
-
-    public void StateUpdate()
-    {
-        if (!Moti.Input.IsInTapped) {
-            Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);
+        /* コンストラクタ */
+        public ReturingState(MotiController moti)
+        {
+            Moti = moti;
         }
-    }
 
-    public void StateExit()
-    {
+        public void StateEnter()
+        {
+            // タップ処理
+            Moti.Sticker.Tapped();
+        }
 
+        public void StateUpdate()
+        {
+            if (!Moti.Input.IsInTapped) {
+                Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);
+            }
+        }
+
+        public void StateExit()
+        {
+
+        }
     }
 }
