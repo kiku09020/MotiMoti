@@ -7,9 +7,11 @@ namespace Moti
     public class MotiFamilyController : MonoBehaviour
     {
         /* 値 */
-        bool existParent;                               // 親がいるか
-        bool existChild;                                // 子がいるか
-        bool isSingle;                                    // どちらもいない
+        bool existParent;           // 親がいるか
+        bool existChild;            // 子がいるか
+        bool isSingle;              // どちらもいない
+
+        float familyScaleValue;          // 親子関係のもちの合計の大きさ
 
         /* もち */
         MotiController moti;                                      // 自分
@@ -20,6 +22,8 @@ namespace Moti
         public bool ExistChild => existChild;
         public bool ExistParent => existParent;
         public bool IsSingle => isSingle;
+
+        public float FamilyScaleValue => familyScaleValue;
 
         public MotiController Parent => parent;
         public List<MotiController> Children => children;
@@ -38,13 +42,10 @@ namespace Moti
             child.Line.Init();
         }
 
-        // くっついてるもちのチェック
-        public void CheckExistFamily()
+        public void FamilyUpdate()
         {
-            existChild = children.Count > 0 ? true : false;             // 子
-            existParent = parent ? true : false;                        // 親
-
-            isSingle = (!existChild && !existParent) ? true : false;      // どちらでもない
+            CheckExistFamily();
+            GetFamilyScale();   
         }
 
         //-------------------------------------------
@@ -79,7 +80,7 @@ namespace Moti
         // 子を減らす
         public void RemoveChild(MotiController child)
         {
-            if (existChild) {
+            if (CheckIfChild(child)) {
                 children.Remove(child);
             }
         }
@@ -93,6 +94,36 @@ namespace Moti
         }
 
         //-------------------------------------------
+        // もちの親子関係のチェック
+        void CheckExistFamily()
+        {
+            existChild = children.Count > 0 ? true : false;             // 子
+            existParent = parent ? true : false;                        // 親
+
+            isSingle = (!existChild && !existParent) ? true : false;      // どちらでもない
+        }
+
+        // 親子関係のもちの合計の大きさ
+        void GetFamilyScale()
+        {
+            familyScaleValue = 0;
+            familyScaleValue += moti.ScaleValue;
+
+            if (!isSingle) {
+                if (existParent) {
+                    familyScaleValue += parent.ScaleValue;
+                }
+
+                if (existChild) {
+                    foreach(var child in children) {
+                        familyScaleValue += child.ScaleValue;
+                    }
+                }
+            }
+
+            Debug.Log(familyScaleValue, moti.gameObject);
+        }
+
         // 自分の子かを調べる
         public bool CheckIfChild(MotiController moti)
         {
