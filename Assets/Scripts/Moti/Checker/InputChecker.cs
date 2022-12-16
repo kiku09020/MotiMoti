@@ -34,8 +34,6 @@ namespace Moti
 			// マウス座標更新
 			mousePos = Input.mousePosition;
 			mousePosWorld = Camera.main.ScreenToWorldPoint(mousePos);
-
-			CheckMousePosDistance();
 		}
 
 		//-------------------------------------------------------------------
@@ -82,13 +80,11 @@ namespace Moti
 		}
 
 		//-------------------------------------------------------------------
-		// もちの座標とマウスのもちベクトルを調べる
-		public Vector2 CheckMousePosDistance()
-		{
-			var vector = (Vector2)transform.position - mousePosWorld;
-			Debug.DrawRay(mousePosWorld, vector, Color.yellow);
+		public float MouseDist()
+        {
+			var dist = Vector2.Distance(mousePosWorld, transform.position);
 
-			return vector;
-		}
+			return dist;
+        }
 	}
 }

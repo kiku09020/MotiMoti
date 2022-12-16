@@ -181,8 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6de615093c493429d2e1a8f9df24da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  middlePointCount: 0
-  angleLimit: 10
   stretchableLength: 2.5
 --- !u!1 &8129661351492857310
 GameObject:

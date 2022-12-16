@@ -118,8 +118,8 @@ namespace Moti
             family.FamilyUpdate();                      // 親子関係
 
             sticker.Stick();                            // くっつき
-            stretcher.StretchingUpdate();               // 伸び
             line.LineUpdate();                          // ライン
+            stretcher.StretchingUpdate();               // 伸び
         }
 
         //-------------------------------------------------------------------

@@ -83,10 +83,14 @@ namespace Moti
             var child = moti.Family.Child;
 
             if (child && !child.Ground.IsGround) {
+                child.transform.position = InputChecker.MousePosWorld;          // 通常移動
 
-                // 通常移動
-                if (!child.Line.IsLimit) {
-                    child.transform.position = InputChecker.MousePosWorld;
+                // 指定の長さを超えたら、円形の移動制限をかける
+                if (moti.Input.MouseDist() > moti.Line.StretchableLenth) {
+                    var offset = child.transform.position - moti.transform.position;
+                    var clamoedPos = Vector2.ClampMagnitude(offset, moti.Line.StretchableLenth);
+
+                    child.transform.position = clamoedPos + (Vector2)moti.transform.position;       // 制限移動
                 }
             }
         }
