@@ -20,6 +20,7 @@ namespace Moti
         //-------------------------------------------------------------------
         public void StateEnter()
         {
+            Moti.Ground.SetEnable(true);
             Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);     // 通常状態へ
         }
 

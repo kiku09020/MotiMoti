@@ -22,6 +22,12 @@ namespace Moti
         [SerializeField] Collider2D col;
         [SerializeField] MotiAudioController aud;
 
+        // 有効化・無効化
+        public void SetEnable(bool enable)
+        {
+            col.enabled = enable;
+        }
+
         // もちが触れたオブジェクトの方向を調べる
         void CheckHitDirection(GameObject otherObject)
         {

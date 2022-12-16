@@ -4,27 +4,32 @@ using UnityEngine;
 
 namespace Moti
 {
-    public class ReturingState : IState
+    public class GoingState : IState
     {
         public MotiController Moti { get; set; }
 
         /* コンストラクタ */
-        public ReturingState(MotiController moti)
+        public GoingState(MotiController moti)
         {
             Moti = moti;
         }
 
         public void StateEnter()
         {
-            // タップ処理
-            Moti.Sticker.Tapped();
+            Moti.Ground.SetEnable(false);
+
+            if (Moti.Family.Child) {
+                Moti.Stretcher.GoingMove(Moti.Family.Child);
+            }
+
+            else if (Moti.Family.Parent) {
+                Moti.Stretcher.GoingMove(Moti.Family.Parent);
+            }
         }
 
         public void StateUpdate()
         {
-            if (!Moti.Input.IsInTapped) {
-                Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);
-            }
+
         }
 
         public void StateExit()

@@ -39,9 +39,6 @@ namespace Moti
                 if (!isStickedOnce) {
                     StickEnter();
                 }
-
-                moti.RB.velocity = Vector2.zero;                 // vel=0
-                moti.RB.gravityScale = 0;                        // 重力無効化
             }
 
             // 触れていないとき
@@ -66,36 +63,10 @@ namespace Moti
         // 離れる瞬間
         void StickExit()
         {
-            moti.RB.gravityScale = 1;                                       // 重力戻す
-            moti.RB.constraints = RigidbodyConstraints2D.FreezeRotation;    // 回転のみ無効
+            moti.RB.constraints = RigidbodyConstraints2D.FreezeRotation;
 
             isStickExitOnce = true;
             isStickedOnce = false;
-        }
-
-        // タップされた瞬間の処理
-        public void Tapped()
-        {
-            moti.RB.gravityScale = 1;                                                                   // 重力元に戻す
-            moti.RB.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-            if (moti.Ground.IsGround) {
-                moti.RB.AddForce(moti.Ground.HitVector * jumpForce * -1);                               // 触れたオブジェクトの反対方向にジャンプ
-            }
-
-            // 子がいるとき
-            foreach (var child in moti.Family.Children) {
-                if (child) {
-                    transform.DOMove(child.transform.position, returnTime).SetEase(ease);               // 子のところに移動
-                }
-            }
-
-            // 親がいるとき
-            if (moti.Family.ExistParent) {
-                transform.DOMove(moti.Family.Parent.transform.position, returnTime).SetEase(ease);      // 親のところに移動
-            }
-
-            moti.Input.IsInTapped = false;
         }
     }
 }

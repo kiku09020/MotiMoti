@@ -34,7 +34,7 @@ namespace Moti {
 
         public void StateExit()
         {
-            Moti.RB.gravityScale = 1;               // 終了時に重力有効化
+            
         }
 
         //-------------------------------------------------------------------
