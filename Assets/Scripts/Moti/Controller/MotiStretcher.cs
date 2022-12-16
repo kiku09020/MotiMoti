@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Moti
 {
@@ -15,10 +16,9 @@ namespace Moti
         [SerializeField] float fixingTime;              // 固定までの時間
 
         [Header("移動")]
-        [SerializeField] float leaveTime;               // 離れるまでの時間
-        [SerializeField] float audioTimeSpan;
+        [SerializeField] float goingTime;               // 移動時間
+        [SerializeField] Ease goingEaseType;            // 移動イージング
 
-        Vector2 fixedPos;                               // 固定位置
 
         /* フラグ */
         bool isStretching;                              // 伸びてるか
@@ -28,7 +28,6 @@ namespace Moti
 
         /* コンポーネント取得用 */
         MotiController moti;
-        MotiController activeChild;                               // 操作される子
 
         //-------------------------------------------------------------------
         void Awake()
@@ -37,77 +36,65 @@ namespace Moti
             moti = GetComponent<MotiController>();
         }
 
-        public void RemoveActiveChild()
-        {
-            if (activeChild) {
-                activeChild.Family.RemoveParent();
-                activeChild = null;
-            }
-        }
-
         //-------------------------------------------------------------------
         public void StretchingUpdate()
         {
-            // タップ中
-            if (moti.Input.IsTapping) {
+            if(!moti.Input.IsTapping) {
 
-            }
+                if (moti.Family.Parent) {
+                    isStretching = moti.Family.Parent.Stretcher.isStretching;
+                }
 
-            // 子 = 親が終了したとき
-            else if (moti.Family.ExistParent) {
-                isStretching = moti.Family.Parent.Stretcher.IsStretching;
-            }
-
-            // 親、独身
-            else {
-                isStretching = false;               // Strething終了
+                else {
+                    isStretching = false;               // Strething終了
+                }
             }
 
             DivisionDrag();                         // ドラッグ
         }
 
+        //-------------------------------------------------------------------
         // 分裂のドラッグ操作
         void DivisionDrag()
         {
             if (!moti.Input.IsOnMoti && moti.Input.IsDraging && moti.Ground.IsGround) {
-                if (!isStretching) {
+                if (!isStretching && moti.Family.IsSingle) {
                     Division();         // 分裂した瞬間
                 }
 
-                if (activeChild) {
-                    MoveChild();            // 分裂した子の移動
-                }
+                MoveChild();            // 分裂した子の移動
             }
         }
 
         // 分裂(ドラッグ開始時)
         void Division()
         {
-            if (moti.transform.localScale.x >= minSize * 2) {       // 大きさ制限
-                fixedPos = (transform.position + (Vector3)moti.Ground.HitPoint) / 2;                    // 固定位置の指定
-                transform.position = fixedPos;                                                          // 固定
+            transform.position = (transform.position + (Vector3)moti.Ground.HitPoint) / 2;    // 固定位置の指定
+            moti.transform.localScale /= 2;                                         // 大きさを半分にする
 
-                moti.transform.localScale /= 2;                                                         // 大きさを半分にする
-                moti.Line.StretchableLenth /= 2;
-
-                activeChild = moti.Family.AddChild(moti);                                               // 子作成
-
-                isStretching = true;                                                                    // Stretching状態
-            }
+            moti.Family.AddChild();                                                 // 子作成
+            isStretching = true;                                                    // Stretching状態
         }
 
+        //-------------------------------------------------------------------
         // 子の移動(ドラッグ中)
         void MoveChild()
         {
-            if (activeChild && !activeChild.Ground.IsGround) {
+            var child = moti.Family.Child;
+
+            if (child && !child.Ground.IsGround) {
 
                 // 通常移動
-                if (!activeChild.Line.IsLimit && !activeChild.Line.IsSpring) {
-                    activeChild.transform.position = InputChecker.MousePosWorld;
-
-                    activeChild.RB.velocity = Vector2.zero;                         // rb無効化
-                    activeChild.RB.gravityScale = 0;                                // 重力無効化
+                if (!child.Line.IsLimit) {
+                    child.transform.position = InputChecker.MousePosWorld;
                 }
+            }
+        }
+
+        public void GoingMove(MotiController targetMoti)
+        {
+            if (targetMoti) {
+                transform.DOMove(targetMoti.Pos, goingTime).SetEase(goingEaseType);
             }
         }
     }

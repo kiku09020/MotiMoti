@@ -21,12 +21,13 @@ namespace Moti
         //-------------------------------------------------------------------
         public void StateEnter()
         {
-
+            
         }
 
         public void StateUpdate()
         {
-            MotiStateController state = Moti.StateCtrl;
+            var state = Moti.StateCtrl;
+            var child = Moti.Family.Child;
 
             // 伸び状態に遷移
             if (Moti.Stretcher.IsStretching) {
@@ -34,13 +35,20 @@ namespace Moti
             }
 
             // 合体状態に遷移
-            else if (Moti.MotiHit.IsMotiTrigger && !Moti.Input.IsOnMoti) {
+            else if (Moti.MotiHit.IsMotiTrigger ) {
                 state.TransitionState(state.UnitedState);
             }
 
-            // 戻り状態に遷移
-            else if (Moti.Input.IsInTapped) {
-                state.TransitionState(state.ReturingState);
+            else if (child) {
+                if (child.Ground.IsGround) {
+                    state.TransitionState(state.GoingState);
+                }
+            }
+
+            else if (Moti.Family.Parent) {
+                if (!Moti.Ground.IsGround && !Moti.Family.Parent.Input.IsTapping) {
+                    Moti.StateCtrl.TransitionState(state.GoingState);
+                }
             }
         }
 

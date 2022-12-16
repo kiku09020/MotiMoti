@@ -6,11 +6,14 @@ namespace Moti
 {
     public class MotiStateController
     {
+        /* 値 */
+        MotiController moti;
+
         /* コンポーネント取得用 */
         NormalState normal;
         StretchingState stretching;
         UnitingState united;
-        ReturingState returing;
+        GoingState going;
 
         /* プロパティ */
         public IState NowState { get; private set; }
@@ -18,15 +21,17 @@ namespace Moti
         public NormalState NormalState => normal;
         public StretchingState StretchingState => stretching;
         public UnitingState UnitedState => united;
-        public ReturingState ReturingState => returing;
+        public GoingState GoingState => going;
 
         // コンストラクタ
         public MotiStateController(MotiController moti)
         {
+            this.moti = moti;
+
             normal = new NormalState(moti);
             stretching = new StretchingState(moti);
             united = new UnitingState(moti);
-            returing = new ReturingState(moti);
+            going = new GoingState(moti);
         }
 
         //-------------------------------------------------------------------
@@ -50,7 +55,7 @@ namespace Moti
         {
             NowState.StateUpdate();
 
-            Debug.Log("<color=yellow>" + NowState + "</color>");
+            Debug.Log("<color=yellow>" + NowState + "</color>",moti.gameObject);
         }
     }
 }

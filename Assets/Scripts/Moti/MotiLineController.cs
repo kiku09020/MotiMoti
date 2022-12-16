@@ -19,7 +19,6 @@ namespace Moti {
 		// 限界点
 		bool isLimit;                                           // 長さ限界か
 		bool isLimitOnce;                                       // 限界点に到達した瞬間
-		bool isSpring;                                          // ばねで伸びてるか
 
 		/* 座標 */
 		List<Vector3> positions = new List<Vector3>();          // 全ての座標
@@ -41,7 +40,6 @@ namespace Moti {
 
 		/* コンポーネント取得用 */
 		LineRenderer line;
-		SpringJoint2D spring;
 
 		MotiController moti;
 
@@ -59,14 +57,12 @@ namespace Moti {
 
 		// 限界点
 		public bool IsLimit => isLimit;
-		public bool IsSpring => isSpring;
 
 		//-------------------------------------------------------------------
 		void Start()
 		{
 			/* コンポーネント取得 */
 			line = GetComponent<LineRenderer>();
-			spring = transform.parent.GetComponent<SpringJoint2D>();
 
             moti = transform.parent.GetComponent<MotiController>();
 
@@ -89,7 +85,6 @@ namespace Moti {
 
 			isLimit = false;
 			isLimitOnce = false;
-			isSpring = false;
 			isAngleOver = false;
 			isRayHit = false;
 		}
@@ -125,9 +120,6 @@ namespace Moti {
 			LineRay();
 			CheckAngle();
 			CheckLength();
-
-			Spring();
-			Cutting();
 		}
 
 		//-------------------------------------------------------------------
@@ -151,7 +143,7 @@ namespace Moti {
 		// 子から親へのRayの処理
 		void LineRay()
 		{
-			if (moti.Family.ExistParent) {
+			if (moti.Family.Parent) {
 				var vec = parentPos - ownPos;                                   // ベクトル(親 - 自分)
 				var rad = transform.parent.localScale.x / 2 * vec.normalized;   // 半径
 				parentVec = (parentPos - rad) - (ownPos + rad);
@@ -217,42 +209,6 @@ namespace Moti {
 			// フラグ
 			isLimit = (length > stretchableLength) ? true : false;
 			isLimitOnce = (isLimit && !isLimitOnce) ? true : false;
-		}
-
-		// ばね
-		void Spring()
-		{
-			if (isLimit) {              // 限界点到達時に有効化
-				if (isLimitOnce) {
-					isSpring = true;                                    // spring有効フラグ
-					spring.enabled = true;                              // Spring有効化
-					spring.connectedBody = moti.Family.Parent.RB;       // Springの接続先を指定
-				}
-			}
-
-			// Spring無効化
-			else {
-				spring.enabled = false;
-				spring.connectedBody = null;
-			}
-		}
-
-		// 切断
-		void Cutting()
-		{
-			// 遮蔽物との角度が閾値以上のときに切断
-			if (isAngleOver) {
-				var parent = moti.Family.Parent;
-
-				if (parent) {
-					parent.Stretcher.RemoveActiveChild();
-				}
-
-				moti.Audio.Play(MotiAudioNames.cutted);
-
-				isAngleOver = false;
-				hitAngle = 0;
-			}
 		}
 	}
 }

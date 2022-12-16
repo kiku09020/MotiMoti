@@ -7,23 +7,19 @@ namespace Moti
     public class MotiFamilyController : MonoBehaviour
     {
         /* 値 */
-        bool existParent;                               // 親がいるか
-        bool existChild;                                // 子がいるか
-        bool isSingle;                                    // どちらもいない
+        bool isSingle;              // どちらもいない
 
         /* もち */
-        MotiController moti;                                      // 自分
-        MotiController parent;                                    // 親
-        List<MotiController> children = new List<MotiController>();         // 子のリスト
+        MotiController moti;        // 自分
+
+        MotiController parent;      // 親
+        MotiController child;       // 子
 
         /* プロパティ */
-        public bool ExistChild => existChild;
-        public bool ExistParent => existParent;
         public bool IsSingle => isSingle;
 
         public MotiController Parent => parent;
-        public List<MotiController> Children => children;
-
+        public MotiController Child => child;
 
         //-------------------------------------------------------------------
         // コンストラクタ
@@ -33,23 +29,21 @@ namespace Moti
         }
 
         // 子供の初期化
-        void InitChild(MotiController child)
+        void InitChild()
         {
             child.Line.Init();
         }
 
-        // くっついてるもちのチェック
-        public void CheckExistFamily()
+        public void FamilyUpdate()
         {
-            existChild = children.Count > 0 ? true : false;             // 子
-            existParent = parent ? true : false;                        // 親
-
-            isSingle = (!existChild && !existParent) ? true : false;      // どちらでもない
+            CheckExistFamily();
         }
 
         //-------------------------------------------
+        /* 親 */
+
         // 親を指定する
-        void SetParent(MotiController child)
+        void SetParent()
         {
             child.Family.parent = moti;
         }
@@ -57,53 +51,39 @@ namespace Moti
         // 親をnull
         public void RemoveParent()
         {
-            if (existParent) {
-                parent.Family.RemoveChild(moti);            // 子(自分)を親から消す
+            if (parent) {
                 parent = null;                              // 親消す
-            }
-        }
-
-        // 子を追加する(子をReturnする)
-        public MotiController AddChild(MotiController parent)
-        {
-            var child = Instantiate(parent, InputChecker.MousePosWorld,
-                                    Quaternion.identity, moti.Folder);      // 子のインスタンス化
-
-            children.Add(child);                                            // 子をリストに追加
-            InitChild(child);                                               // 初期化
-            SetParent(child);                                               // 親を指定
-
-            return child;
-        }
-
-        // 子を減らす
-        public void RemoveChild(MotiController child)
-        {
-            if (existChild) {
-                children.Remove(child);
-            }
-        }
-
-        // 子を全て減らす
-        public void RemoveChildren()
-        {
-            if (existChild) {
-                children.Clear();
+                RemoveChild();
             }
         }
 
         //-------------------------------------------
-        // 自分の子かを調べる
-        public bool CheckIfChild(MotiController moti)
-        {
-            foreach (var child in children) {
-                if (moti == child) {
-                    return true;
-                }
-            }
+        /* 子 */
 
-            return false;
+        // 子を追加する(子をReturnする)
+        public void AddChild()
+        {
+            child = Instantiate(moti, InputChecker.MousePosWorld,
+                                Quaternion.identity, moti.Folder);      // 子のインスタンス化
+
+            InitChild();            // 初期化
+            SetParent();            // 親を指定
         }
 
+        // 子を減らす
+        public void RemoveChild()
+        {
+            if (child) {
+                child = null;
+                RemoveParent();
+            }
+        }
+
+        //-------------------------------------------
+        // もちの親子関係のチェック
+        void CheckExistFamily()
+        {
+            isSingle = (!child && !parent) ? true : false;      // どちらでもない
+        }
     }
 }

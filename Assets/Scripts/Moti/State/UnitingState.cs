@@ -20,16 +20,13 @@ namespace Moti
         //-------------------------------------------------------------------
         public void StateEnter()
         {
-
+            Moti.Ground.SetEnable(true);
+            Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);     // 通常状態へ
         }
 
         public void StateUpdate()
         {
-            Moti.Uniter.CheckUnitable();
-
-            if (Moti.Uniter.IsUnitable) {
-                Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);     // 通常状態へ
-            }
+            
         }
 
         public void StateExit()

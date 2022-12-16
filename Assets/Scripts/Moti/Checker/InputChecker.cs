@@ -9,7 +9,6 @@ namespace Moti
 		/* フラグ */
 		bool isTapping;             // タップ中
 		bool isDraging;             // ドラッグ中(タップ中にマウスが動いているとき)
-		bool isInTapped;            // 範囲内で離されたとき
 		bool isOnMoti;              // マウスがもちの上にいるか
 
 		/* 値 */
@@ -22,7 +21,6 @@ namespace Moti
 		/* プロパティ */
 		public bool IsTapping => isTapping;
 		public bool IsDraging => isDraging;
-		public bool IsInTapped { get => isInTapped; set => isInTapped = value; }
 		public bool IsOnMoti => isOnMoti;
 
 		public float DragDistance => dragDistance;
@@ -67,12 +65,6 @@ namespace Moti
 		{
 			isTapping = false;
 			isDraging = false;
-		}
-
-		// タップしてもち内で離した瞬間
-		public void Clicked()
-		{
-			isInTapped = true;
 		}
 
 		// ドラッグしている間

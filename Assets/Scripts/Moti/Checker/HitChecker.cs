@@ -18,21 +18,14 @@ namespace Moti
 
         public MotiController OtherMoti => otherMoti;
 
-        /* コンポーネント取得用 */
-        MotiController moti;
-
         //-------------------------------------------------------------------
-        private void Awake()
-        {
-            moti = transform.parent.GetComponent<MotiController>();
-        }
-
         private void OnTriggerEnter2D(Collider2D col)
         {
             // 他のもち
             if (col.gameObject.tag == "Moti") {
-                isMotiTrigger = true;
                 otherMoti = col.gameObject.GetComponent<MotiController>();
+
+                isMotiTrigger = true;
             }
         }
 
@@ -41,6 +34,7 @@ namespace Moti
             // 他のもち
             if (col.gameObject.tag == "Moti") {
                 isMotiTrigger = false;
+                otherMoti = null;
             }
         }
     }
