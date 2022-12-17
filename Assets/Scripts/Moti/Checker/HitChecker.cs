@@ -37,5 +37,12 @@ namespace Moti
                 otherMoti = null;
             }
         }
+
+        // リセット
+        public void InitValues()
+        {
+            isMotiTrigger = false;
+            otherMoti = null;
+        }
     }
 }

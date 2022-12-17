@@ -98,7 +98,7 @@ namespace Moti
         public void GoingMove(MotiController targetMoti)
         {
             if (targetMoti) {
-                transform.DOMove(targetMoti.Pos, goingTime).SetEase(goingEaseType);
+                transform.DOMove(targetMoti.transform.position, goingTime).SetEase(goingEaseType);
             }
         }
     }

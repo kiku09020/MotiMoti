@@ -29,7 +29,9 @@ namespace Moti
 
         public void StateUpdate()
         {
-
+            if (Moti.MotiHit.OtherMoti) {
+                Moti.StateCtrl.TransitionState(Moti.StateCtrl.UnitedState);
+            }
         }
 
         public void StateExit()

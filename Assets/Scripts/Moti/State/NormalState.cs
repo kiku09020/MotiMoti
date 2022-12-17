@@ -39,12 +39,14 @@ namespace Moti
                 state.TransitionState(state.UnitedState);
             }
 
+            // 移動状態(親→子　地上)
             else if (child) {
                 if (child.Ground.IsGround) {
                     state.TransitionState(state.GoingState);
                 }
             }
 
+            // 移動状態(子→親　空中)
             else if (Moti.Family.Parent) {
                 if (!Moti.Ground.IsGround && !Moti.Family.Parent.Input.IsTapping) {
                     Moti.StateCtrl.TransitionState(state.GoingState);

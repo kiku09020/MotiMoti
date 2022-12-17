@@ -53,7 +53,6 @@ namespace Moti
         {
             if (parent) {
                 parent = null;                              // 親消す
-                RemoveChild();
             }
         }
 
@@ -75,7 +74,6 @@ namespace Moti
         {
             if (child) {
                 child = null;
-                RemoveParent();
             }
         }
 
