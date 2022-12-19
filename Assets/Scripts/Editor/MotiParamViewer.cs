@@ -40,7 +40,9 @@ public class MotiParamViewer : EditorWindow
     [MenuItem("Debug/MotiParamViewer")]
     static void Create()
     {
-        GetWindow<MotiParamViewer>("MotiParamViewer");
+        var window = GetWindow<MotiParamViewer>("MotiParamViewer");
+
+        window.minSize = new Vector2(650, 850);
     }
 
     // 毎フレーム更新(重くなりそう)
@@ -132,7 +134,7 @@ public class MotiParamViewer : EditorWindow
             EditorGUILayout.LabelField(itemName);
 
             var str = "";
-            str = value ? "●" : "○";
+            str = value ? "☑" : "□";
             EditorGUILayout.LabelField(str);
 
             Space(SpaceType.flex);

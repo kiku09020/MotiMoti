@@ -77,9 +77,6 @@ namespace Moti {
 			// 各位置を更新
 			SetPos();
 
-			positions[0] = ownPos;
-			positions[1] = childPos;
-
 			line.SetPositions(positions);         // LineRendererにセット
 
 			line.widthMultiplier = transform.parent.localScale.x / 4;   // 線の太さの指定
@@ -101,6 +98,9 @@ namespace Moti {
 			else {
 				childPos = ownPos;                         // 親がいない場合、自分の座標
 			}
+
+			positions[0] = ownPos;
+			positions[1] = childPos;
 		}
 
 		//-------------------------------------------------------------------

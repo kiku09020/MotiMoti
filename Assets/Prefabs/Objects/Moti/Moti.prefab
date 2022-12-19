@@ -225,7 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9065c9009a8a464683898bd0b0ee4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayTime: 10
   particleObjs:
   - {fileID: 5089954598309825299, guid: 43694d5728740544fbd5ab1497f07a7c, type: 3}
   - {fileID: 5089954598309825299, guid: 51051235e2fff5647bd54059abf59106, type: 3}
@@ -362,7 +361,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.75
 --- !u!58 &8129661351966936448
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -378,7 +377,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.2
+  m_Radius: 2
 --- !u!114 &8129661351966936451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,7 +857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSize: 0.25
   fixingTime: 0.1
-  goingTime: 0.3
+  moveSpeed: 7.5
   goingEaseType: 26
 --- !u!114 &8129661352410282750
 MonoBehaviour:
@@ -872,4 +871,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474442f8c817edd4bb7085f06467d871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScaleValue: 1

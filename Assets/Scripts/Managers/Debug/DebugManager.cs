@@ -10,6 +10,8 @@ public class DebugManager : MonoBehaviour
 
     GameObject[] motis;                     // もちの配列
 
+    bool isPausing;
+
     /* コンポーネント取得用 */
     SceneController scene;
 
@@ -29,8 +31,10 @@ public class DebugManager : MonoBehaviour
 //-------------------------------------------------------------------
     void Update()
     {
+    #if UNITY_EDITOR
         Key();
         ErrorCheck();
+    #endif
     }
 
     //-------------------------------------------------------------------
@@ -43,6 +47,21 @@ public class DebugManager : MonoBehaviour
             Debug.ClearDeveloperConsole();
         }
 
+        // 一時停止
+        else if(Input.GetKeyDown(KeyCode.P)){
+            if(isPausing){
+                Time.timeScale = 1;
+                isPausing = false;
+			}
+            else{
+                Time.timeScale = 0;
+                isPausing = true;
+			}
+
+            print("pause:" + isPausing);
+		}
+
+        // 終了
         else if (Input.GetKeyDown(KeyCode.Escape)) {
             QuitGame();
         }

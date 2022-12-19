@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 namespace Moti
 {
@@ -34,7 +33,6 @@ namespace Moti
         public void Unite()
         {
             var other = moti.MotiHit.OtherMoti;
-
             transform.localScale += other.transform.localScale;                         // 大きさ変更
 
             // 演出

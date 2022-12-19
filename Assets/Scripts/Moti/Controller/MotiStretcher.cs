@@ -16,7 +16,7 @@ namespace Moti
         [SerializeField] float fixingTime;              // 固定までの時間
 
         [Header("移動")]
-        [SerializeField] float goingTime;               // 移動時間
+        [SerializeField] float moveSpeed;
         [SerializeField] Ease goingEaseType;            // 移動イージング
 
 
@@ -95,10 +95,23 @@ namespace Moti
             }
         }
 
+        // 移動
         public void GoingMove(MotiController targetMoti)
         {
+            var time = 0f;
+            if(moti.Family.HasParent){
+                time = targetMoti.Line.Length / moveSpeed;
+			}
+
+            else if(moti.Family.HasChild){
+                time = moti.Line.Length / moveSpeed;
+			}
+
+
+            print("time" + time);
+
             if (targetMoti) {
-                transform.DOMove(targetMoti.transform.position, goingTime).SetEase(goingEaseType);
+                transform.DOMove(targetMoti.transform.position, time).SetEase(goingEaseType);
             }
         }
     }
