@@ -17,10 +17,10 @@ namespace Moti {
 		/* 座標 */
 		Vector3[] positions = new Vector3[2];					// 全ての座標
 
-		Vector3 ownPos;                                         // 子(自分)の座標
-		Vector3 parentPos;                                      // 親の座標
+		Vector3 ownPos;                                         // 親(自分)の座標
+		Vector3 childPos;										// 子の座標
 
-		Vector2 parentVec;                                      // 子->親
+		Vector2 familyVec;										// 親->子
 
 		/* コンポーネント取得用 */
 		LineRenderer line;
@@ -28,7 +28,7 @@ namespace Moti {
 		MotiController moti;
 
 		/* プロパティ */
-		public Vector2 ParentVec => parentVec;
+		public Vector2 FamilyVec => familyVec;
 
 		// 長さ
 		public float Length => length;
@@ -54,8 +54,8 @@ namespace Moti {
 			length = 0;
 
 			ownPos = Vector2.zero;
-			parentPos = Vector2.zero;
-			parentVec = Vector2.zero;
+			childPos = Vector2.zero;
+			familyVec = Vector2.zero;
 
 			isLimit = false;
 			isLimitOnce = false;
@@ -78,7 +78,7 @@ namespace Moti {
 			SetPos();
 
 			positions[0] = ownPos;
-			positions[1] = parentPos;
+			positions[1] = childPos;
 
 			line.SetPositions(positions);         // LineRendererにセット
 
@@ -93,14 +93,13 @@ namespace Moti {
 		{
 			ownPos = transform.parent.position;             // 子(自分)
 
-			var parent = moti.Family.Parent;
-
-			if (parent) {
-				parentPos = parent.transform.position;      // 親
+			if (moti.Family.HasChild) {
+				var child = moti.Family.OtherMoti;
+				childPos = child.transform.position;      // 親
 			}
 
 			else {
-				parentPos = ownPos;                         // 親がいない場合、自分の座標
+				childPos = ownPos;                         // 親がいない場合、自分の座標
 			}
 		}
 
@@ -109,10 +108,10 @@ namespace Moti {
 		void CheckLength()
 		{
 			// 長さ
-			length = Vector2.Distance(ownPos, parentPos);
+			length = Vector2.Distance(ownPos, childPos);
 
 			// フラグ
-			isLimit = (length > stretchableLength) ? true : false;
+			isLimit = (length >= stretchableLength-0.1f) ? true : false;
 			isLimitOnce = (isLimit && !isLimitOnce) ? true : false;
 		}
 	}

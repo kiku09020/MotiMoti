@@ -12,7 +12,7 @@ namespace Moti
 		bool isOnMoti;              // マウスがもちの上にいるか
 
 		/* 値 */
-		float dragDistance;         // ドラッグ距離
+		float mouseDistance;
 
 		static Vector2 clickedPos;          // クリックした座標
 		static Vector2 mousePos;            // マウス位置(スクリーン座標)
@@ -23,10 +23,9 @@ namespace Moti
 		public bool IsDraging => isDraging;
 		public bool IsOnMoti => isOnMoti;
 
-		public float DragDistance => dragDistance;
-
 		public static Vector2 MousePos => mousePos;
 		public static Vector2 MousePosWorld => mousePosWorld;
+		public float MouseDistance => mouseDistance;
 
 		//-------------------------------------------------------------------
 		void Update()
@@ -34,6 +33,8 @@ namespace Moti
 			// マウス座標更新
 			mousePos = Input.mousePosition;
 			mousePosWorld = Camera.main.ScreenToWorldPoint(mousePos);
+
+			mouseDistance = Vector2.Distance(mousePosWorld, transform.position);
 		}
 
 		//-------------------------------------------------------------------
@@ -69,22 +70,14 @@ namespace Moti
 		public void Drag()
 		{
 			isDraging = true;
-			dragDistance = Vector2.Distance(clickedPos, mousePosWorld);      // ドラッグ距離
 		}
 
 		// ドラッグ止めた時
 		public void DragEnd()
 		{
 			isDraging = false;
-			dragDistance = 0;
 		}
 
 		//-------------------------------------------------------------------
-		public float MouseDist()
-        {
-			var dist = Vector2.Distance(mousePosWorld, transform.position);
-
-			return dist;
-        }
 	}
 }

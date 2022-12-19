@@ -41,8 +41,8 @@ namespace Moti
             moti.Particle.Play(ParticleNames_Moti.united, transform.position);
             moti.Audio.Play(MotiAudioNames.united);
 
-            moti.Family.RemoveChild();
             Destroy(other.gameObject);                                                  // 削除
+            moti.Family.RemoveChild();
         }
     }
 }

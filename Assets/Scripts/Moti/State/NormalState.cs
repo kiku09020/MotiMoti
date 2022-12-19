@@ -27,7 +27,7 @@ namespace Moti
         public void StateUpdate()
         {
             var state = Moti.StateCtrl;
-            var child = Moti.Family.Child;
+            var child = Moti.Family.OtherMoti;
 
             // 伸び状態に遷移
             if (Moti.Stretcher.IsStretching) {
@@ -35,20 +35,20 @@ namespace Moti
             }
 
             // 合体状態に遷移
-            else if (Moti.MotiHit.IsMotiTrigger ) {
+            else if (Moti.MotiHit.IsMotiTrigger && Moti.Family.HasChild ) {
                 state.TransitionState(state.UnitedState);
             }
 
             // 移動状態(親→子　地上)
-            else if (child) {
+            else if (Moti.Family.HasChild) {
                 if (child.Ground.IsGround) {
                     state.TransitionState(state.GoingState);
                 }
             }
 
             // 移動状態(子→親　空中)
-            else if (Moti.Family.Parent) {
-                if (!Moti.Ground.IsGround && !Moti.Family.Parent.Input.IsTapping) {
+            else if (Moti.Family.HasParent) {
+                if (!Moti.Ground.IsGround && !Moti.Family.OtherMoti.Input.IsTapping) {
                     Moti.StateCtrl.TransitionState(state.GoingState);
                 }
             }

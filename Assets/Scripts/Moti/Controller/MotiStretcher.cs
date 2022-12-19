@@ -41,8 +41,8 @@ namespace Moti
         {
             if(!moti.Input.IsTapping) {
 
-                if (moti.Family.Parent) {
-                    isStretching = moti.Family.Parent.Stretcher.isStretching;
+                if (moti.Family.HasParent) {
+                    isStretching = moti.Family.OtherMoti.Stretcher.isStretching;
                 }
 
                 else {
@@ -72,7 +72,7 @@ namespace Moti
             transform.position = (transform.position + (Vector3)moti.Ground.HitPoint) / 2;    // 固定位置の指定
             moti.transform.localScale /= 2;                                         // 大きさを半分にする
 
-            moti.Family.AddChild();                                                 // 子作成
+            moti.Family.SetChild();                                                 // 子作成
             isStretching = true;                                                    // Stretching状態
         }
 
@@ -80,13 +80,13 @@ namespace Moti
         // 子の移動(ドラッグ中)
         void MoveChild()
         {
-            var child = moti.Family.Child;
+            var child = moti.Family.OtherMoti;
 
             if (child && !child.Ground.IsGround) {
                 child.transform.position = InputChecker.MousePosWorld;          // 通常移動
 
                 // 指定の長さを超えたら、円形の移動制限をかける
-                if (moti.Input.MouseDist() > moti.Line.StretchableLenth) {
+                if (moti.Input.MouseDistance > moti.Line.StretchableLenth) {
                     var offset = child.transform.position - moti.transform.position;
                     var clamoedPos = Vector2.ClampMagnitude(offset, moti.Line.StretchableLenth);
 

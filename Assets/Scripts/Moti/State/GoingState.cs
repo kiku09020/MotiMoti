@@ -18,12 +18,12 @@ namespace Moti
         {
             Moti.Ground.SetEnable(false);
 
-            if (Moti.Family.Child) {
-                Moti.Stretcher.GoingMove(Moti.Family.Child);
+            if (Moti.Family.HasChild) {
+                Moti.Stretcher.GoingMove(Moti.Family.OtherMoti);
             }
 
-            else if (Moti.Family.Parent) {
-                Moti.Stretcher.GoingMove(Moti.Family.Parent);
+            else if (Moti.Family.HasParent) {
+                Moti.Stretcher.GoingMove(Moti.Family.OtherMoti);
             }
         }
 

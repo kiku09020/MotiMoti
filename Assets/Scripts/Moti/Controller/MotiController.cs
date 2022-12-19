@@ -96,8 +96,8 @@ namespace Moti
 
         void FixedUpdate()
         {
-            stateCtrl.NowStateUpdate();                 // 状態
             family.FamilyUpdate();                      // 親子関係
+            stateCtrl.NowStateUpdate();                 // 状態
 
             sticker.Stick();                            // くっつき
             line.LineUpdate();                          // ライン
