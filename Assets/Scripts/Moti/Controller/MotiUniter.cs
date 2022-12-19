@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 namespace Moti
 {
@@ -34,15 +33,14 @@ namespace Moti
         public void Unite()
         {
             var other = moti.MotiHit.OtherMoti;
-
             transform.localScale += other.transform.localScale;                         // 大きさ変更
 
             // 演出
             moti.Particle.Play(ParticleNames_Moti.united, transform.position);
             moti.Audio.Play(MotiAudioNames.united);
 
-            moti.Family.RemoveChild();
             Destroy(other.gameObject);                                                  // 削除
+            moti.Family.RemoveChild();
         }
     }
 }

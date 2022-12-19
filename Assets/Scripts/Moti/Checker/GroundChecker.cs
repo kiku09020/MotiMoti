@@ -18,6 +18,8 @@ namespace Moti
         public Vector2 HitPoint => hitPoint;
         public Vector2 HitVector => hitVector;
 
+        public bool ColEnabled => col.enabled;      // colliderのenabled
+
         /* コンポーネント取得用 */
         [SerializeField] Collider2D col;
         [SerializeField] MotiAudioController aud;

@@ -13,9 +13,6 @@ namespace Moti
 
     public class MotiParticleController : MonoBehaviour
     {
-        [Header("Values")]
-        [SerializeField] float maxPlayTime = 10;            // 最大再生時間。これを過ぎると自動で削除する
-
         [Header("Particles")]
         [SerializeField] List<GameObject> particleObjs;     // パーティクルオブジェクト
 

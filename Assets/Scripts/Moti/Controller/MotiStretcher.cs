@@ -16,7 +16,7 @@ namespace Moti
         [SerializeField] float fixingTime;              // 固定までの時間
 
         [Header("移動")]
-        [SerializeField] float goingTime;               // 移動時間
+        [SerializeField] float moveSpeed;
         [SerializeField] Ease goingEaseType;            // 移動イージング
 
 
@@ -41,8 +41,8 @@ namespace Moti
         {
             if(!moti.Input.IsTapping) {
 
-                if (moti.Family.Parent) {
-                    isStretching = moti.Family.Parent.Stretcher.isStretching;
+                if (moti.Family.HasParent) {
+                    isStretching = moti.Family.OtherMoti.Stretcher.isStretching;
                 }
 
                 else {
@@ -72,7 +72,7 @@ namespace Moti
             transform.position = (transform.position + (Vector3)moti.Ground.HitPoint) / 2;    // 固定位置の指定
             moti.transform.localScale /= 2;                                         // 大きさを半分にする
 
-            moti.Family.AddChild();                                                 // 子作成
+            moti.Family.SetChild();                                                 // 子作成
             isStretching = true;                                                    // Stretching状態
         }
 
@@ -80,21 +80,38 @@ namespace Moti
         // 子の移動(ドラッグ中)
         void MoveChild()
         {
-            var child = moti.Family.Child;
+            var child = moti.Family.OtherMoti;
 
             if (child && !child.Ground.IsGround) {
+                child.transform.position = InputChecker.MousePosWorld;          // 通常移動
 
-                // 通常移動
-                if (!child.Line.IsLimit) {
-                    child.transform.position = InputChecker.MousePosWorld;
+                // 指定の長さを超えたら、円形の移動制限をかける
+                if (moti.Input.MouseDistance > moti.Line.StretchableLenth) {
+                    var offset = child.transform.position - moti.transform.position;
+                    var clamoedPos = Vector2.ClampMagnitude(offset, moti.Line.StretchableLenth);
+
+                    child.transform.position = clamoedPos + (Vector2)moti.transform.position;       // 制限移動
                 }
             }
         }
 
+        // 移動
         public void GoingMove(MotiController targetMoti)
         {
+            var time = 0f;
+            if(moti.Family.HasParent){
+                time = targetMoti.Line.Length / moveSpeed;
+			}
+
+            else if(moti.Family.HasChild){
+                time = moti.Line.Length / moveSpeed;
+			}
+
+
+            print("time" + time);
+
             if (targetMoti) {
-                transform.DOMove(targetMoti.Pos, goingTime).SetEase(goingEaseType);
+                transform.DOMove(targetMoti.transform.position, time).SetEase(goingEaseType);
             }
         }
     }

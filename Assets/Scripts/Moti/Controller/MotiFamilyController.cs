@@ -8,18 +8,20 @@ namespace Moti
     {
         /* 値 */
         bool isSingle;              // どちらもいない
+        bool hasChild;
+        bool hasParent;
 
         /* もち */
         MotiController moti;        // 自分
-
-        MotiController parent;      // 親
-        MotiController child;       // 子
+        MotiController otherMoti;   // 片方
 
         /* プロパティ */
         public bool IsSingle => isSingle;
+        public bool HasChild => hasChild;
+        public bool HasParent => hasParent;
 
-        public MotiController Parent => parent;
-        public MotiController Child => child;
+        public MotiController OtherMoti => otherMoti;
+
 
         //-------------------------------------------------------------------
         // コンストラクタ
@@ -31,7 +33,7 @@ namespace Moti
         // 子供の初期化
         void InitChild()
         {
-            child.Line.Init();
+            otherMoti.Line.Init();
         }
 
         public void FamilyUpdate()
@@ -45,26 +47,29 @@ namespace Moti
         // 親を指定する
         void SetParent()
         {
-            child.Family.parent = moti;
+            otherMoti.Family.otherMoti= moti;
+            otherMoti.Family.hasParent = true;
         }
 
         // 親をnull
         public void RemoveParent()
         {
-            if (parent) {
-                parent = null;                              // 親消す
-                RemoveChild();
+            if (hasParent) {
+                otherMoti = null;                              // 親消す
+                hasParent = false;
             }
         }
 
         //-------------------------------------------
         /* 子 */
 
-        // 子を追加する(子をReturnする)
-        public void AddChild()
+        // 子を追加する
+        public void SetChild()
         {
-            child = Instantiate(moti, InputChecker.MousePosWorld,
-                                Quaternion.identity, moti.Folder);      // 子のインスタンス化
+            otherMoti = Instantiate(moti, InputChecker.MousePosWorld,
+                                    Quaternion.identity, moti.Folder);      // 子のインスタンス化
+
+            hasChild = true;
 
             InitChild();            // 初期化
             SetParent();            // 親を指定
@@ -73,9 +78,10 @@ namespace Moti
         // 子を減らす
         public void RemoveChild()
         {
-            if (child) {
-                child = null;
-                RemoveParent();
+            if (hasChild) {
+                otherMoti.Family.RemoveParent();
+                otherMoti = null;
+                hasChild = false;
             }
         }
 
@@ -83,7 +89,7 @@ namespace Moti
         // もちの親子関係のチェック
         void CheckExistFamily()
         {
-            isSingle = (!child && !parent) ? true : false;      // どちらでもない
+            isSingle = (!hasChild && !hasParent) ? true : false;      // どちらでもない
         }
     }
 }

@@ -7,17 +7,7 @@ namespace Moti
     [RequireComponent(typeof(MotiUniter), typeof(MotiSticker), typeof(MotiStretcher))]
     public class MotiController : MonoBehaviour
     {
-        /* 値 */
-        Vector2 pos;
-        Vector2 scale;
-        float scaleValue;
-
         Transform motiFolder;
-
-        [Header("transform")]
-        [SerializeField] float maxScaleValue;        // 大きさの最大値
-
-        /* フラグ */
 
         /* コンポーネント取得用 */
         #region Components
@@ -43,12 +33,6 @@ namespace Moti
 
         /* プロパティ */
         #region Properties
-        // values
-        public Vector2 Pos => pos;
-        public Vector2 Scale => scale;
-        public float ScaleValue => scaleValue;
-        public float MaxScaleValue => maxScaleValue;
-
         public Transform Folder => motiFolder;
 
         // controllers
@@ -101,7 +85,6 @@ namespace Moti
             line = lineObj.GetComponent<MotiLineController>();
 
             /* 初期化 */
-            SetValues();
             stateCtrl.InitState(stateCtrl.NormalState);     // 初期状態の指定
         }
 
@@ -113,40 +96,14 @@ namespace Moti
 
         void FixedUpdate()
         {
-            SetValues();
-            stateCtrl.NowStateUpdate();                 // 状態
             family.FamilyUpdate();                      // 親子関係
+            stateCtrl.NowStateUpdate();                 // 状態
 
             sticker.Stick();                            // くっつき
-            stretcher.StretchingUpdate();               // 伸び
             line.LineUpdate();                          // ライン
+            stretcher.StretchingUpdate();               // 伸び
         }
 
         //-------------------------------------------------------------------
-        // 値の取得
-        void SetValues()
-        {
-            pos = transform.position;
-            scale = transform.localScale;
-            scaleValue = scale.x;
-        }
-
-        // 大きさを変更する
-        public void SetScale(float targetScaleValue)
-        {
-            if (targetScaleValue < maxScaleValue) {
-                transform.localScale = new Vector2(targetScaleValue, targetScaleValue);
-            }
-        }
-
-        // オブジェクトとの距離を調べる
-        public Vector2 CheckVector(Vector2 targetPos)
-        {
-            var vec = targetPos - (Vector2)transform.position;
-
-            Debug.DrawRay(transform.position, vec, Color.blue);
-
-            return vec;
-        }
     }
 }
