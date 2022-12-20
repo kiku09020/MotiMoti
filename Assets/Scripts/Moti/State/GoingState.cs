@@ -16,7 +16,7 @@ namespace Moti
 
         public void StateEnter()
         {
-            Moti.Ground.SetEnable(false);
+            Moti.Ground.SetCollisionEnable(false);
 
             if (Moti.Family.HasChild) {
                 Moti.Stretcher.GoingMove(Moti.Family.OtherMoti);
@@ -36,7 +36,7 @@ namespace Moti
 
         public void StateExit()
         {
-
+            Moti.Ground.SetCollisionEnable(true);
         }
     }
 }

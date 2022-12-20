@@ -19,7 +19,6 @@ namespace Moti
         [SerializeField] float moveSpeed;
         [SerializeField] Ease goingEaseType;            // 移動イージング
 
-
         /* フラグ */
         bool isStretching;                              // 伸びてるか
 
@@ -106,9 +105,6 @@ namespace Moti
             else if(moti.Family.HasChild){
                 time = moti.Line.Length / moveSpeed;
 			}
-
-
-            print("time" + time);
 
             if (targetMoti) {
                 transform.DOMove(targetMoti.transform.position, time).SetEase(goingEaseType);

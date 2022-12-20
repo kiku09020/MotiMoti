@@ -22,10 +22,11 @@ namespace Moti
 
         /* コンポーネント取得用 */
         [SerializeField] Collider2D col;
-        [SerializeField] MotiAudioController aud;
+        [SerializeField] MotiController moti;
 
+        //-------------------------------------------------------------------
         // 有効化・無効化
-        public void SetEnable(bool enable)
+        public void SetCollisionEnable(bool enable)
         {
             col.enabled = enable;
         }
@@ -39,11 +40,11 @@ namespace Moti
             hitVector = otherPos - ownPos;
         }
 
+        //-------------------------------------------------------------------
         void OnCollisionEnter2D(Collision2D col)
         {
             // 着地時
             if (col.gameObject.tag == "Stage") {
-
                 // 触れた点を取得
                 foreach (ContactPoint2D contact in col.contacts) {
                     hitPoint = contact.point;
@@ -51,7 +52,10 @@ namespace Moti
 
                 isGround = true;                        // 着地状態にする
                 CheckHitDirection(col.gameObject);      // 方向取得
-                aud.Play(MotiAudioNames.hitGround);   // 着地音再生
+
+                /* 演出 */
+                moti.Particle.Play(ParticleNames_Moti.ground, moti.Ground.HitPoint);
+                moti.Audio.Play(MotiAudioNames.hitGround);   // 着地音再生
             }
         }
 

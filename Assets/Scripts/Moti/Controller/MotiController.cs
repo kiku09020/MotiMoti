@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Moti
 {
-    [RequireComponent(typeof(MotiUniter), typeof(MotiSticker), typeof(MotiStretcher))]
+    [RequireComponent(typeof(MotiUniter), typeof(MotiStretcher))]
     public class MotiController : MonoBehaviour
     {
         Transform motiFolder;
@@ -21,7 +21,6 @@ namespace Moti
         // controller
         MotiFamilyController family;
         MotiStateController stateCtrl;
-        MotiSticker sticker;
         MotiStretcher stretcher;
         MotiUniter uniter;
         MotiLineController line;
@@ -40,7 +39,6 @@ namespace Moti
 
         public MotiFamilyController Family => family;
         public MotiStretcher Stretcher => stretcher;
-        public MotiSticker Sticker => sticker;
         public MotiUniter Uniter => uniter;
         public MotiLineController Line => line;
 
@@ -79,7 +77,6 @@ namespace Moti
 
             family = new MotiFamilyController(this);
             stateCtrl = new MotiStateController(this);
-            sticker = GetComponent<MotiSticker>();
             stretcher = GetComponent<MotiStretcher>();
             uniter = GetComponent<MotiUniter>();
             line = lineObj.GetComponent<MotiLineController>();
@@ -99,7 +96,6 @@ namespace Moti
             family.FamilyUpdate();                      // 親子関係
             stateCtrl.NowStateUpdate();                 // 状態
 
-            sticker.Stick();                            // くっつき
             line.LineUpdate();                          // ライン
             stretcher.StretchingUpdate();               // 伸び
         }

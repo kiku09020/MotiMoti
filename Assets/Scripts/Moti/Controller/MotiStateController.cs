@@ -54,8 +54,6 @@ namespace Moti
         public void NowStateUpdate()
         {
             NowState.StateUpdate();
-
-            Debug.Log("<color=yellow>" + NowState + "</color>",moti.gameObject);
         }
     }
 }
