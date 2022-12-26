@@ -34,6 +34,7 @@ namespace Moti
         void InitChild()
         {
             otherMoti.Line.Init();
+            otherMoti.Ground.Init();
         }
 
         public void FamilyUpdate()
@@ -71,8 +72,8 @@ namespace Moti
 
             hasChild = true;
 
-            InitChild();            // 初期化
             SetParent();            // 親を指定
+            InitChild();            // 初期化
         }
 
         // 子を減らす

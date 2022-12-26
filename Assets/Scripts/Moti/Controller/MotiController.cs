@@ -98,6 +98,10 @@ namespace Moti
 
             line.LineUpdate();                          // ライン
             stretcher.StretchingUpdate();               // 伸び
+
+            Debug.DrawLine(transform.position, transform.position+(Vector3)ground.HitVector,Color.blue);
+
+            Debug.DrawLine(transform.position, transform.position + transform.right * 2,Color.red);
         }
 
         //-------------------------------------------------------------------

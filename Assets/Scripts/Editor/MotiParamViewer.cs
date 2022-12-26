@@ -269,7 +269,7 @@ public class MotiParamViewer : EditorWindow
     {
         if (moti.Family.HasChild) {
             LabelTemplate("Length", moti.Line.Length.ToString());
-            BoolTemplate("IsLimit", moti.Line.IsLimit);
+            BoolTemplate("IsLimit", moti.Line.IsLengthLimit);
         }
 
         else {

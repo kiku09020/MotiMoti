@@ -81,7 +81,7 @@ namespace Moti
         {
             var child = moti.Family.OtherMoti;
 
-            if (child && !child.Ground.IsGround) {
+            if (child && !child.Ground.IsGround && !moti.Line.IsAngleLimit) {
                 child.transform.position = InputChecker.MousePosWorld;          // 通常移動
 
                 // 指定の長さを超えたら、円形の移動制限をかける

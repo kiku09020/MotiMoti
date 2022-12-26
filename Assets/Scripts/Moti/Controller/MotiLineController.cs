@@ -11,8 +11,10 @@ namespace Moti {
 		float length;                                           // 現在の長さ
 
 		// 限界点
-		bool isLimit;                                           // 長さ限界か
+		bool isLengthLimit;                                     // 長さ限界か
 		bool isLimitOnce;                                       // 限界点に到達した瞬間
+
+		bool isAngleLimit;
 
 		/* 座標 */
 		Vector3[] positions = new Vector3[2];					// 全ての座標
@@ -35,7 +37,8 @@ namespace Moti {
 		public float StretchableLenth { get => stretchableLength; set => stretchableLength = value; }
 
 		// 限界点
-		public bool IsLimit => isLimit;
+		public bool IsLengthLimit => isLengthLimit;
+		public bool IsAngleLimit => isAngleLimit;
 
 		//-------------------------------------------------------------------
 		void Start()
@@ -57,7 +60,7 @@ namespace Moti {
 			childPos = Vector2.zero;
 			familyVec = Vector2.zero;
 
-			isLimit = false;
+			isLengthLimit = false;
 			isLimitOnce = false;
 		}
 
@@ -81,7 +84,10 @@ namespace Moti {
 
 			line.widthMultiplier = transform.parent.localScale.x / 4;   // 線の太さの指定
 
-			CheckLength();
+			if (moti.Family.HasChild) {
+				CheckLength();
+				CheckAngle();
+			}
 		}
 
 		//-------------------------------------------------------------------
@@ -111,8 +117,23 @@ namespace Moti {
 			length = Vector2.Distance(ownPos, childPos);
 
 			// フラグ
-			isLimit = (length >= stretchableLength-0.1f) ? true : false;
-			isLimitOnce = (isLimit && !isLimitOnce) ? true : false;
+			isLengthLimit = (length >= stretchableLength-0.1f) ? true : false;
+			isLimitOnce = (isLengthLimit && !isLimitOnce) ? true : false;
+
+			Debug.DrawLine(ownPos, childPos,Color.black);
 		}
+
+		// 角度のチェック
+		void CheckAngle()
+        {
+			var anchorVec = Quaternion.Euler(0, 0, 90 * (int)moti.Ground.HitDir) * transform.right;		// 基準ベクトル
+
+			var cross = anchorVec.x * familyVec.y - anchorVec.y * familyVec.x;									// 外積
+
+			isAngleLimit = (cross == -1) ? true : false;                                                         // 判定
+
+			print(isAngleLimit);
+			print(cross);
+        }
 	}
 }
