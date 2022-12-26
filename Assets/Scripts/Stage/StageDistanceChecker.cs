@@ -1,0 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+// ステージ同士の最短距離を計測する
+public class StageDistanceChecker : MonoBehaviour
+{
+    Stage stage;
+    Rigidbody2D rb;
+    LineRenderer line;
+
+    float distance;
+    [SerializeField] float stageMaxDist = 2.5f;
+
+    /* プロパティ */
+    public float Distance => distance;
+
+//-------------------------------------------------------------------
+    void Awake()
+    {
+        stage=GetComponent<Stage>();
+        rb = GetComponent<Rigidbody2D>();
+        line = GetComponent<LineRenderer>();
+
+        line.positionCount = 2;
+    }
+
+    void FixedUpdate()
+    {
+        CheckDistance();
+    }
+
+//-------------------------------------------------------------------
+    void CheckDistance()
+	{
+        if (stage.PrevStage) {
+            var dist = rb.Distance(stage.PrevStage?.Col);       // 最短距離
+            distance = dist.distance;
+
+            // 線描画
+            line.SetPosition(0, dist.pointA);
+            line.SetPosition(1, dist.pointB);
+
+            print(distance);
+
+            SetStagePosition();
+        }
+    }
+
+    // 位置の調整
+    void SetStagePosition()
+    {
+        if (distance > stageMaxDist) {
+            transform.position = new Vector2(0, transform.position.y);
+        }
+    }
+}

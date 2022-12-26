@@ -11,7 +11,6 @@ public class Stage : MonoBehaviour
     /* コンポーネント */
     Collider2D col;
 
-
     /* プロパティ */
     public Stage PrevStage  { get => prevStage;   set => prevStage ??= value; }
     public Collider2D Col => col;

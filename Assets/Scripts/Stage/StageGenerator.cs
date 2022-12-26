@@ -40,12 +40,13 @@ public class StageGenerator : MonoBehaviour
     }
 
 //-------------------------------------------------------------------
-    // もちの位置に合わせる
+    // もちの位置に合わせて生成する
     void CheckMotiPos()
 	{
         var motiDist = Vector2.Distance(moti.transform.position, genPos);       // 生成位置ともちとの距離
 
-		if (motiDist > motiMaxDist&&stageObjs.Count<10) {
+        // もちとの距離が一定未満のとき
+        if (motiDist < motiMaxDist) {
             SetGeneratePos();
             Generate();
 		}
@@ -71,13 +72,5 @@ public class StageGenerator : MonoBehaviour
 		}
 
         stageObjs.Add(obj);
-
-        SetStagePosition(obj);
-	}
-
-    // 位置の調整
-    void SetStagePosition(Stage obj)
-	{
-        
 	}
 }
