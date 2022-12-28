@@ -127,12 +127,10 @@ namespace Moti {
 		void CheckAngle()
         {
 			var anchorVec = Quaternion.Euler(0, 0, 90 * (int)moti.Ground.HitDir) * transform.right;		// 基準ベクトル
+			var cross = anchorVec.x * familyVec.y - anchorVec.y * familyVec.x;							// 外積
+			isAngleLimit = (cross == -1) ? true : false;                                                // 判定
 
-			var cross = anchorVec.x * familyVec.y - anchorVec.y * familyVec.x;									// 外積
-
-			isAngleLimit = (cross == -1) ? true : false;                                                         // 判定
-
-			print(isAngleLimit);
+			print($"{isAngleLimit.ToString()} = {isAngleLimit}");
 			print(cross);
         }
 	}

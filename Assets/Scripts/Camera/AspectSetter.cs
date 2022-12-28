@@ -20,7 +20,7 @@ public class AspectSetter : MonoBehaviour
 
 
 //-------------------------------------------------------------------
-    void Start()
+    void Update()
     {
         /* オブジェクト取得 */
 

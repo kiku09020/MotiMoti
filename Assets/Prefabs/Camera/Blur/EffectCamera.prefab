@@ -53,9 +53,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.23905575
     y: 0
-    width: 1
+    width: 0.5218885
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd144e915e519b44bdeec927e3c1415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targAspect: {x: 1080, y: 2400}
+  targAspect: {x: 1080, y: 1920}
 --- !u!1001 &8898056852359835735
 PrefabInstance:
   m_ObjectHideFlags: 0
