@@ -41,8 +41,6 @@ public class MotiParamViewer : EditorWindow
     static void Create()
     {
         var window = GetWindow<MotiParamViewer>("MotiParamViewer");
-
-        window.minSize = new Vector2(650, 850);
     }
 
     // 毎フレーム更新(重くなりそう)

@@ -15,23 +15,14 @@ public class TextGenerater : MonoBehaviour
     [SerializeField] GameObject textObj;
 
     /* 親 */
-    Transform prnt_game;
-
-    /* コンポーネント取得用 */
-    CanvasManager canvas;
+    Transform parent_game;
 
 
 //-------------------------------------------------------------------
     void Start()
     {
-        /* オブジェクト取得 */
-
-
-        /* コンポーネント取得 */
-        canvas = GetComponent<CanvasManager>();
-
         /* 初期化 */
-        prnt_game = canvas.Texts.transform;
+        parent_game = CanvasManager.Texts.transform;
     }
 
 //-------------------------------------------------------------------
@@ -40,7 +31,7 @@ public class TextGenerater : MonoBehaviour
 	{
         Vector2 pos = Camera.main.WorldToScreenPoint(Vector2.zero);
 
-        GameObject inst = Instantiate(textObj, pos, Quaternion.identity, prnt_game);
+        GameObject inst = Instantiate(textObj, pos, Quaternion.identity, parent_game);
         Destroy(inst, destTime);
 	}
 }

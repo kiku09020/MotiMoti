@@ -29,7 +29,7 @@ namespace Button {
         protected IEnumerator WaitCanvasActivate()
         {
             yield return new WaitForSecondsRealtime(0.15f);
-            canvas.ActivateUnpauseUI();             // キャンバス表示
+            CanvasManager.ActivatePauseUI(false);             // キャンバス表示
         }
     }
 }

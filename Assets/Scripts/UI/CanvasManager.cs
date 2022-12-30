@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour {
     /* 値 */
-    GameObject mainCanvas;
-    GameObject ctrlUI;
-    GameObject texts;
-    GameObject pauseUI;
-    GameObject cautionUI;
+    static GameObject mainCanvas;
+    static GameObject ctrlUI;
+    static GameObject texts;
+    static GameObject pauseUI;
+    static GameObject cautionUI;
 
-    public GameObject Texts { get => texts; }
-    public GameObject CtrlUI { get => ctrlUI; }
-    public GameObject PauseUI { get => pauseUI; }
-    public GameObject CautionUI { get => cautionUI; }
+    static public GameObject Texts { get => texts; }
+    static public GameObject CtrlUI { get => ctrlUI; }
+    static public GameObject PauseUI { get => pauseUI; }
+    static public GameObject CautionUI { get => cautionUI; }
 
     //-------------------------------------------------------------------
     void Awake()
@@ -32,30 +32,25 @@ public class CanvasManager : MonoBehaviour {
 
     //-------------------------------------------------------------------
     // ポーズ
-    public void ActivatePauseUI()
+    static public void ActivatePauseUI(bool activate)
     {
-        ctrlUI.SetActive(false);
-        texts.SetActive(false);
-        pauseUI.SetActive(true);
-    }
+        if (activate) {
+            ctrlUI.SetActive(false);
+            texts.SetActive(false);
+            pauseUI.SetActive(true);
+        }
 
-    // ポーズ解除
-    public void ActivateUnpauseUI()
-    {
-        ctrlUI.SetActive(true);
-        texts.SetActive(true);
-        pauseUI.SetActive(false);
+        // ポーズ解除
+		else {
+            ctrlUI.SetActive(true);
+            texts.SetActive(true);
+            pauseUI.SetActive(false);
+        }
     }
 
     // 警告表示
-    public void ActivateCautionUI()
+    static public void ActivateCautionUI(bool activate)
     {
-        cautionUI.SetActive(true);
-    }
-
-    // 警告解除
-    public void ActivateUncautionUI()
-    {
-        cautionUI.SetActive(false);
+        cautionUI.SetActive(activate);
     }
 }

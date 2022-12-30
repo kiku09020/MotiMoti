@@ -12,20 +12,10 @@ public class DebugManager : MonoBehaviour
 
     bool isPausing;
 
-    /* コンポーネント取得用 */
-    SceneController scene;
-
 //-------------------------------------------------------------------
     void Start()
     {
-        /* オブジェクト取得 */
-        GameObject gmObj = transform.parent.gameObject;
 
-        /* コンポーネント取得 */
-        scene = gmObj.GetComponent<SceneController>();
-
-        /* 初期化 */
-        
     }
 
 //-------------------------------------------------------------------
@@ -33,7 +23,7 @@ public class DebugManager : MonoBehaviour
     {
     #if UNITY_EDITOR
         Key();
-        ErrorCheck();
+        // ErrorCheck();
     #endif
     }
 
@@ -43,7 +33,7 @@ public class DebugManager : MonoBehaviour
     {
         // シーン再読み込み
         if (Input.GetKeyDown(KeyCode.R)) {
-            scene.LoadNowScene();
+            SceneController.Instance.LoadNowScene();
             Debug.ClearDeveloperConsole();
         }
 
@@ -61,12 +51,18 @@ public class DebugManager : MonoBehaviour
             print("pause:" + isPausing);
 		}
 
+        // ゲームオーバー
+        else if (Input.GetKeyDown(KeyCode.F1)) {
+            GameManager.GameOver = true;
+		}
+
         // 終了
         else if (Input.GetKeyDown(KeyCode.Escape)) {
             QuitGame();
         }
     }
 
+    /*
     // エラーチェック
     void ErrorCheck()
     {
@@ -78,6 +74,7 @@ public class DebugManager : MonoBehaviour
             Debug.LogError("もちの数が多すぎます");
         }
     }
+    */
 
     // ゲーム終了
     void QuitGame()

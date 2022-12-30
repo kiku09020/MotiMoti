@@ -5,11 +5,6 @@ using UnityEngine;
 namespace Button {
     public class No_Caution : PauseButtons {
 
-        void Start()
-        {
-            GameObject uiObj = gmObj.transform.Find("UIManager").gameObject;
-        }
-
         public override void Clicked()
         {
             se.Play((int)SystemSound.AudioName.cancel);
@@ -21,7 +16,7 @@ namespace Button {
         {
             yield return new WaitForSecondsRealtime(0.15f);
 
-            canvas.ActivateUncautionUI();         // キャンバス非表示
+            CanvasManager.ActivateCautionUI(false);         // キャンバス非表示
             pause.isRetry = false;
             pause.isExit = false;
         }

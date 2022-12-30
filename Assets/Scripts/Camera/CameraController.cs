@@ -5,37 +5,26 @@ using DG.Tweening;
 
 public class CameraController : MonoBehaviour
 {
-    /* 値 */
-    [Header("Object")]
-    [SerializeField] GameObject moti;
+    static public CameraController instance;		// 簡易的なシングルトンパターン用のインスタンス
 
     [Header("Camera")]
     [SerializeField] float moveTime;        // カメラの移動時間
     [SerializeField] Ease easeType;         // イージングのタイプ
 
-    /* コンポーネント取得用 */
+	//-------------------------------------------------------------------
+	private void Awake()
+	{
+		if (instance) {
+			Destroy(gameObject);
+		}
+		else {
+			instance = this;
+		}
+	}
 
-
-
-//-------------------------------------------------------------------
-    void Start()
-    {
-	/* オブジェクト取得 */ 
-
-
-	/* コンポーネント取得 */     
-
-
-        /* 初期化 */
-        
+	public void MoveCamera(GameObject obj)
+	{
+        transform.DOMoveY(obj.transform.position.y, moveTime).SetEase(easeType);
     }
-
-//-------------------------------------------------------------------
-    void FixedUpdate()
-    {
-        transform.DOMoveY(moti.transform.position.y,moveTime).SetEase(easeType);
-    }
-
-//-------------------------------------------------------------------
 
 }

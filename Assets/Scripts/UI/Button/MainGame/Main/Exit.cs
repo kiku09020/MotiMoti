@@ -4,12 +4,21 @@ using UnityEngine;
 
 namespace Button {
     public class Exit : PauseButtons {
+        [SerializeField] bool cautionFlag;
+
         public override void Clicked()
         {
             se.Play((int)SystemSound.AudioName.click);
-            pause.isExit = true;
-            pause.SetCaution();
-            canvas.ActivateCautionUI();
+
+            if (cautionFlag) {
+                pause.isExit = true;
+                pause.SetCaution();
+                CanvasManager.ActivateCautionUI(true);
+            }
+
+			else {
+                scene.LoadPrevScene();
+			}
         }
     }
 }

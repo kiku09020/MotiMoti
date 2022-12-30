@@ -5,13 +5,6 @@ using UnityEngine;
 namespace Button {
     public class Yes_Caution : PauseButtons {
 
-        SceneController scene;
-
-        void Start()
-        {
-            scene = gmObj.GetComponent<SceneController>();
-        }
-
         public override void Clicked()
         {
             Time.timeScale = 1;
@@ -19,11 +12,13 @@ namespace Button {
 
             // リトライ
             if (pause.isRetry) {
+                pause.ResetFlags();
                 scene.LoadNowScene();           // 再読み込み
             }
 
             // ゲーム終了
             else if (pause.isExit) {
+                pause.ResetFlags();
                 scene.LoadScene("Title");       // タイトルへ
             }
         }

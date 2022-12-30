@@ -218,6 +218,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 785589401717591259, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1990490214756881387, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -306,14 +310,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 193645212}
-    - target: {fileID: 1990490214756881388, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-      propertyPath: m_RenderMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1990490214756881389, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1990490214756881391, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
       propertyPath: m_Name
       value: MainCanvas

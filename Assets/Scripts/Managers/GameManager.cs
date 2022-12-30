@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     BGM bgm;
 
     /* プロパティ */
-    public bool GameOver    { get; set; }
-    public bool GameClear   { get; set; }
+    static public bool GameOver    { get; set; }
+    
 
 
 //-------------------------------------------------------------------
