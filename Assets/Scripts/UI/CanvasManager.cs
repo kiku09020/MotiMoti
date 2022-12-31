@@ -9,11 +9,13 @@ public class CanvasManager : MonoBehaviour {
     static GameObject texts;
     static GameObject pauseUI;
     static GameObject cautionUI;
+    static GameObject resultUI;
 
     static public GameObject Texts { get => texts; }
     static public GameObject CtrlUI { get => ctrlUI; }
     static public GameObject PauseUI { get => pauseUI; }
     static public GameObject CautionUI { get => cautionUI; }
+    static public GameObject ResultUI { get => resultUI; }
 
     //-------------------------------------------------------------------
     void Awake()
@@ -25,9 +27,11 @@ public class CanvasManager : MonoBehaviour {
         ctrlUI = mainCanvas.transform.Find("ControllerUI").gameObject;
         pauseUI = mainCanvas.transform.Find("PauseUI").gameObject;
         cautionUI = pauseUI.transform.Find("CautionUI").gameObject;
+        resultUI = mainCanvas.transform.Find("ResultUI").gameObject;
 
         /* 初期化 */
         pauseUI.SetActive(false);
+        resultUI.SetActive(false);
     }
 
     //-------------------------------------------------------------------
@@ -53,4 +57,12 @@ public class CanvasManager : MonoBehaviour {
     {
         cautionUI.SetActive(activate);
     }
+
+    // リザルト画面
+    static public void ActivateResultUI(bool activate)
+	{
+        resultUI.SetActive(activate);
+        texts.SetActive(!activate);
+        ctrlUI.SetActive(!activate);
+	}
 }

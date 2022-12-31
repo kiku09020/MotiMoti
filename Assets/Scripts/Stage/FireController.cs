@@ -8,8 +8,10 @@ public class FireController : MonoBehaviour
     [SerializeField] float speedUpValue;
 
     bool isHit;
+    GameObject hitObject;
 
     public bool IsHit => isHit;
+    public GameObject HitObject => hitObject;
 
 //-------------------------------------------------------------------
     void Awake()
@@ -40,6 +42,8 @@ public class FireController : MonoBehaviour
 	{
 		if (col.tag == "Moti") {
             isHit = true;
+            GameManager.isResult = true;
+            hitObject = col.gameObject;
 		}
 	}
 }

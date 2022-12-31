@@ -3,28 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class CameraController : MonoBehaviour
+public class CameraController : Singleton<CameraController>
 {
-    static public CameraController instance;		// 簡易的なシングルトンパターン用のインスタンス
+    [Header("Chase")]
+    [SerializeField] float chaseTime;        // カメラの移動時間
+    [SerializeField] Ease chaseEaseType;         // イージングのタイプ
 
-    [Header("Camera")]
-    [SerializeField] float moveTime;        // カメラの移動時間
-    [SerializeField] Ease easeType;         // イージングのタイプ
+	[Header("Zoom")]
+	[SerializeField] Camera targetCamera;	// ズームするカメラ
+	[SerializeField] float zoomTime;		// ズーム時間
+	[SerializeField] Ease zoomEaseType;     // イージング
+	[SerializeField] float zoomSize;
 
 	//-------------------------------------------------------------------
 	private void Awake()
 	{
-		if (instance) {
-			Destroy(gameObject);
-		}
-		else {
-			instance = this;
-		}
+
 	}
 
-	public void MoveCamera(GameObject obj)
+	// 追尾
+	public void ChaseObject(GameObject obj)
 	{
-        transform.DOMoveY(obj.transform.position.y, moveTime).SetEase(easeType);
+        transform.DOMoveY(obj.transform.position.y, chaseTime).SetEase(chaseEaseType);
     }
+
+	// ズーム
+	public void ZoomObject(GameObject obj)
+	{
+		transform.DOMove(obj.transform.position, zoomTime).SetEase(zoomEaseType);       // オブジェクトの位置に移動
+		targetCamera.DOOrthoSize(zoomSize, zoomTime);
+	}
 
 }

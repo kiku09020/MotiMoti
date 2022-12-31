@@ -180,6 +180,17 @@ MonoBehaviour:
   genObjsMaxCnt: 10
   moti: {fileID: 1435501331}
   motiMaxDist: 8
+--- !u!114 &411995186 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 227355108146418352, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
+  m_PrefabInstance: {fileID: 1331766647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1008428758
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,6 +617,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6372698635206549189, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: moti
+      value: 
+      objectReference: {fileID: 1435501331}
+    - target: {fileID: 6372698635206549189, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: distanceText
+      value: 
+      objectReference: {fileID: 411995186}
     - target: {fileID: 7301723815640993457, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
       propertyPath: bgm
       value: 
@@ -667,6 +686,10 @@ PrefabInstance:
       propertyPath: moti
       value: 
       objectReference: {fileID: 1435501330}
+    - target: {fileID: 4223802872581123666, guid: 3fb191e690954874298190bff4f1e535, type: 3}
+      propertyPath: zoomTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4726328964862550600, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_Name
       value: Cameras

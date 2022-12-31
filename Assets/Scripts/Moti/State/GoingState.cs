@@ -17,7 +17,7 @@ namespace Moti
         public void StateEnter()
         {
             Moti.Ground.SetCollisionEnable(false);
-            CameraController.instance.MoveCamera(Moti.Family.OtherMoti.gameObject);
+            CameraController.Instance.ChaseObject(Moti.Family.OtherMoti.gameObject);
 
             if (Moti.Family.HasChild) {
                 Moti.Stretcher.GoingMove(Moti.Family.OtherMoti);

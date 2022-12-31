@@ -53,7 +53,7 @@ public class DebugManager : MonoBehaviour
 
         // ゲームオーバー
         else if (Input.GetKeyDown(KeyCode.F1)) {
-            GameManager.GameOver = true;
+            GameManager.isResult = true;
 		}
 
         // 終了

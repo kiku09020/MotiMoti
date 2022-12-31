@@ -2,29 +2,39 @@ using System.IO;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour {
-    [HideInInspector] public SaveData data;     // json変換するデータのクラス
-    string filepath;                            // jsonファイルのパス
-    string fileName = "Data.json";              // jsonファイル名
+    static public SaveData data;                    // json変換するデータのクラス
+    static string filepath;                         // jsonファイルのパス
+    static string fileName = "Data.json";           // jsonファイル名
 
     //-------------------------------------------------------------------
     // 開始時にファイルチェック、読み込み
     void Awake()
     {
         // パス名取得
-        filepath = Application.dataPath + "/" + fileName;
+        GetFilePath();
 
         // ファイルがないとき、ファイル作成
         if (!File.Exists(filepath)) {
-            Save(data);
+            Save();
         }
 
         // ファイルを読み込んでdataに格納
         data = Load(filepath);
     }
 
+    // ファイルパス取得
+    static void GetFilePath()
+	{
+#if UNITY_ANDROID && !UNITY_EDITOR
+        filepath = Application.persistentDataPath + "/" + fileName;     // Android
+#else
+        filepath = Application.dataPath + "/" + fileName;
+#endif
+    }
+
     //-------------------------------------------------------------------
     // jsonとしてデータを保存
-    void Save(SaveData data)
+    static public void Save()
     {
         string json = JsonUtility.ToJson(data);                 // jsonとして変換
         StreamWriter wr = new StreamWriter(filepath, false);    // ファイル書き込み指定
@@ -34,7 +44,7 @@ public class DataManager : MonoBehaviour {
     }
 
     // jsonファイル読み込み
-    SaveData Load(string path)
+    static SaveData Load(string path)
     {
         StreamReader rd = new StreamReader(path);               // ファイル読み込み指定
         string json = rd.ReadToEnd();                           // ファイル内容全て読み込む
@@ -43,10 +53,8 @@ public class DataManager : MonoBehaviour {
         return JsonUtility.FromJson<SaveData>(json);            // jsonファイルを型に戻して返す
     }
 
-    //-------------------------------------------------------------------
-    // ゲーム終了時に保存
-    void OnDestroy()
-    {
-        Save(data);
-    }
+	private void OnDestroy()
+	{
+        Save();
+	}
 }

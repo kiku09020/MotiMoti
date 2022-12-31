@@ -38,18 +38,19 @@ namespace Moti
         //-------------------------------------------------------------------
         public void StretchingUpdate()
         {
-            if(!moti.Input.IsTapping) {
+            if (!GameManager.isResult) {
+                if (!moti.Input.IsTapping) {
+                    if (moti.Family.HasParent) {
+                        isStretching = moti.Family.OtherMoti.Stretcher.isStretching;
+                    }
 
-                if (moti.Family.HasParent) {
-                    isStretching = moti.Family.OtherMoti.Stretcher.isStretching;
+                    else {
+                        isStretching = false;               // Strething終了
+                    }
                 }
 
-                else {
-                    isStretching = false;               // Strething終了
-                }
+                DivisionDrag();                         // ドラッグ
             }
-
-            DivisionDrag();                         // ドラッグ
         }
 
         //-------------------------------------------------------------------
