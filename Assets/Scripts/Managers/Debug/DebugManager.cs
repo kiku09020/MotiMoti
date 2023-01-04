@@ -11,7 +11,6 @@ public class DebugManager : MonoBehaviour
 //-------------------------------------------------------------------
     void Start()
     {
-
     }
 
 	private void Update()
@@ -40,7 +39,7 @@ public class DebugManager : MonoBehaviour
                 isPausing = true;
 			}
 
-            Print(isPausing, true);
+            Print(nameof(isPausing),isPausing);
 		}
 
         // ゲームオーバー
@@ -74,16 +73,9 @@ public class DebugManager : MonoBehaviour
 #endif
     }
 
-    static public void Print(object message,bool isBold)
+    static public void Print(string  objectName, object message)
 	{
-        var text = "";
-		if (isBold) {
-            text = $"<b>{message.ToString()}</b>";
-		}
-		else {
-            text = message.ToString();
-		}
-
+        var text = $"<b>{objectName} = {message.ToString()}</b>";
         print(text);
 	}
 
@@ -92,5 +84,15 @@ public class DebugManager : MonoBehaviour
         var code = ColorUtility.ToHtmlStringRGBA(color);
         var str = $"<b><color=#{code}>{text}</color></b>";
         print(str);
+	}
+
+    static public void Print(params object[] messages)
+	{
+        var text = "";
+        foreach(var msg in messages) {
+            text += msg;
+		}
+
+        print($"<b>{text}</b>");
 	}
 }
