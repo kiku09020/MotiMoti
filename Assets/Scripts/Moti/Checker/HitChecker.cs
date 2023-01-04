@@ -9,24 +9,30 @@ namespace Moti
     {
         /* 値 */
         bool isMotiTrigger;         // 範囲内に他のもちがいるか
-
         MotiController otherMoti;
 
+        [SerializeField] MotiController moti;
+
         /* プロパティ */
-
         public bool IsMotiTrigger => isMotiTrigger;
-
         public MotiController OtherMoti => otherMoti;
 
         //-------------------------------------------------------------------
         private void OnTriggerEnter2D(Collider2D col)
         {
-            // 他のもち
-            if (col.gameObject.tag == "Moti") {
-                otherMoti = col.gameObject.GetComponent<MotiController>();
+			switch (col.gameObject.tag) {
+                case "Moti":
+                    otherMoti = col.gameObject.GetComponent<MotiController>();
+                    isMotiTrigger = true;
+                    break;
 
-                isMotiTrigger = true;
-            }
+                case "Fire":
+					if (moti.StateCtrl.NowState != moti.StateCtrl.GoingState) {
+
+					}
+                    GameManager.isResult = true;
+                    break;
+			}
         }
 
         private void OnTriggerExit2D(Collider2D col)

@@ -4,34 +4,23 @@ using UnityEngine;
 
 namespace Moti
 {
-    public class MotiStateController
+    public class StateController
     {
-        /* 値 */
-        MotiController moti;
-
-        /* コンポーネント取得用 */
-        NormalState normal;
-        StretchingState stretching;
-        UnitingState united;
-        GoingState going;
-
         /* プロパティ */
         public IState NowState { get; private set; }
 
-        public NormalState NormalState => normal;
-        public StretchingState StretchingState => stretching;
-        public UnitingState UnitedState => united;
-        public GoingState GoingState => going;
+        public NormalState NormalState { get; }
+        public StretchingState StretchingState { get; }
+        public UnitingState UnitedState { get; }
+        public GoingState GoingState { get; }
 
         // コンストラクタ
-        public MotiStateController(MotiController moti)
+        public StateController(MotiController moti)
         {
-            this.moti = moti;
-
-            normal = new NormalState(moti);
-            stretching = new StretchingState(moti);
-            united = new UnitingState(moti);
-            going = new GoingState(moti);
+            NormalState = new NormalState(moti);
+            StretchingState = new StretchingState(moti);
+            UnitedState = new UnitingState(moti);
+            GoingState = new GoingState(moti);
         }
 
         //-------------------------------------------------------------------

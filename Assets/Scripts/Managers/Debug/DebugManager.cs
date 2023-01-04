@@ -6,10 +6,6 @@ using UnityEditor;
 public class DebugManager : MonoBehaviour
 {
     /* 値 */
-    [SerializeField] int motiMaxCount;      // もちの最大数
-
-    GameObject[] motis;                     // もちの配列
-
     bool isPausing;
 
 //-------------------------------------------------------------------
@@ -18,18 +14,14 @@ public class DebugManager : MonoBehaviour
 
     }
 
-//-------------------------------------------------------------------
-    void Update()
-    {
-    #if UNITY_EDITOR
+	private void Update()
+	{
         Key();
-        // ErrorCheck();
-    #endif
-    }
+	}
 
-    //-------------------------------------------------------------------
-    // キー操作
-    void Key()
+	//-------------------------------------------------------------------
+	// キー操作
+	void Key()
     {
         // シーン再読み込み
         if (Input.GetKeyDown(KeyCode.R)) {
@@ -48,12 +40,19 @@ public class DebugManager : MonoBehaviour
                 isPausing = true;
 			}
 
-            print("pause:" + isPausing);
+            Print(isPausing, true);
 		}
 
         // ゲームオーバー
         else if (Input.GetKeyDown(KeyCode.F1)) {
             GameManager.isResult = true;
+            Print("Transition to Result.", Color.red);
+		}
+
+        // 下の火の有効化
+        else if (Input.GetKeyDown(KeyCode.F2)) {
+            MainFireController.enable = !MainFireController.enable;
+            Print($"MainFire's enable = {MainFireController.enable}", Color.red);
 		}
 
         // 終了
@@ -62,27 +61,36 @@ public class DebugManager : MonoBehaviour
         }
     }
 
-    /*
-    // エラーチェック
-    void ErrorCheck()
-    {
-        motis = GameObject.FindGameObjectsWithTag("Moti");
-
-        // 多くなりすぎたら、プレイ中止
-        if (motis.Length > motiMaxCount) {
-            QuitGame();
-            Debug.LogError("もちの数が多すぎます");
-        }
-    }
-    */
-
     // ゲーム終了
     void QuitGame()
     {
-        Application.Quit();
-
 #if UNITY_EDITOR
+        Application.Quit();
         EditorApplication.isPlaying = false;
+
+#elif UNITY_ANDROID
+        CanvasManager.ActivateCautionUI(true);
+
 #endif
     }
+
+    static public void Print(object message,bool isBold)
+	{
+        var text = "";
+		if (isBold) {
+            text = $"<b>{message.ToString()}</b>";
+		}
+		else {
+            text = message.ToString();
+		}
+
+        print(text);
+	}
+
+    static public void Print(string text,Color color)
+	{
+        var code = ColorUtility.ToHtmlStringRGBA(color);
+        var str = $"<b><color=#{code}>{text}</color></b>";
+        print(str);
+	}
 }

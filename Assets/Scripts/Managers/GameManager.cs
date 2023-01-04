@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 	{
         if (isResult) {
             if (!isResultOnce) {
+                MainFireController.enable = false;          // 火止める
                 MotiDistanceManager.CheckHighScore();       // ハイスコア確認
                 CanvasManager.ActivateResultUI(true);       // UI表示
                 ResultTexts.Instance.SetText();             // テキストセット

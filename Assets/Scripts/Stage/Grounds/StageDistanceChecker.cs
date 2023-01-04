@@ -50,6 +50,7 @@ public class StageDistanceChecker : MonoBehaviour
     // ˆÊ’u‚Ì’²®
     void SetStagePosition()
     {
+        // ‰“‚©‚Á‚½‚çA’†‰›‚ÉˆÚ“®
         if (distance > stageMaxDist) {
             transform.position = new Vector2(0, transform.position.y);
         }

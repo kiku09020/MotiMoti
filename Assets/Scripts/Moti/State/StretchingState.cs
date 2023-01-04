@@ -24,7 +24,7 @@ namespace Moti {
 
         public void StateUpdate()
         {
-            MotiStateController state = Moti.StateCtrl;
+            StateController state = Moti.StateCtrl;
 
             // 通常状態に繊維
             if (!Moti.Stretcher.IsStretching) {

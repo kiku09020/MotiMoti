@@ -20,7 +20,7 @@ namespace Moti
 
         // controller
         MotiFamilyController family;
-        MotiStateController stateCtrl;
+        StateController stateCtrl;
         MotiStretcher stretcher;
         MotiUniter uniter;
         MotiLineController line;
@@ -48,7 +48,7 @@ namespace Moti
         public InputChecker Input => input;
 
         // states
-        public MotiStateController StateCtrl => stateCtrl;
+        public StateController StateCtrl => stateCtrl;
 
         // performers
         public MotiParticleController Particle => part;
@@ -76,7 +76,7 @@ namespace Moti
             aud = audObj.GetComponent<MotiAudioController>();
 
             family = new MotiFamilyController(this);
-            stateCtrl = new MotiStateController(this);
+            stateCtrl = new StateController(this);
             stretcher = GetComponent<MotiStretcher>();
             uniter = GetComponent<MotiUniter>();
             line = lineObj.GetComponent<MotiLineController>();
