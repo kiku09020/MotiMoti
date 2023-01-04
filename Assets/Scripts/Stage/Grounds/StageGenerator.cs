@@ -12,7 +12,7 @@ public class StageGenerator : MonoBehaviour
     [SerializeField] Vector2 startGenPos;       // 一番最初の生成位置
     [SerializeField] float genPosXRange;        // Xの範囲
     [SerializeField] float genPosYDist;         // Yの距離
-    [SerializeField] int genObjsMaxCnt;         // 最大数
+    [SerializeField] int onjMaxCnt;             // オブジェクトの最大数
 
     Vector2 genPos;         // 生成位置
 
@@ -20,7 +20,7 @@ public class StageGenerator : MonoBehaviour
     [SerializeField] Moti.MotiController moti;
     [SerializeField] float motiMaxDist;         // もちとの最大距離
 
-    List<Stage> stageObjs = new List<Stage>();        // オブジェクトのlist
+    List<Stage> stageObjs = new List<Stage>();  // オブジェクトのlist
 
 
 //-------------------------------------------------------------------
@@ -28,7 +28,7 @@ public class StageGenerator : MonoBehaviour
     {
         genPos = startGenPos;
 
-		while (stageObjs.Count < 5) {
+		while (stageObjs.Count < onjMaxCnt) {
             SetGeneratePos();
             Generate();
 		}
@@ -45,7 +45,7 @@ public class StageGenerator : MonoBehaviour
 	{
         var motiDist = Vector2.Distance(moti.transform.position, genPos);       // 生成位置ともちとの距離
 
-        // もちとの距離が一定未満のとき
+        // もちとの距離が一定未満のときに生成
         if (motiDist < motiMaxDist) {
             SetGeneratePos();
             Generate();

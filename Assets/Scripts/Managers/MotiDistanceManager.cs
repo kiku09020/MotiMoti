@@ -44,11 +44,11 @@ public class MotiDistanceManager : MonoBehaviour
     // ハイスコア変更
     static public void CheckHighScore()
 	{
-        var highScore = DataManager.data.highScore;
+        var highScore = DataManager.Instance.data.highScore;
         var intDist = (int)distance;
 
 		if (highScore < intDist) {
-            DataManager.data.highScore = intDist;
+            DataManager.Instance.data.highScore = intDist;
 		}
 	}
 }

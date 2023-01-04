@@ -41,7 +41,7 @@ namespace Moti
 
             // 移動状態(親→子　地上)
             else if (Moti.Family.HasChild) {
-                if (child.Ground.IsGround) {
+                if (Moti.Ground.IsGround && child.Ground.IsGround) {
                     state.TransitionState(state.GoingState);
                 }
             }

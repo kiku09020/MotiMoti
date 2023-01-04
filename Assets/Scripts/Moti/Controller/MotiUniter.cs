@@ -33,7 +33,7 @@ namespace Moti
         public void Unite()
         {
             var other = moti.MotiHit.OtherMoti;
-            transform.localScale += other.transform.localScale;                         // 大きさ変更
+            transform.localScale *= 2;
 
             // 演出
             moti.Particle.Play(ParticleNames_Moti.united, transform.position);

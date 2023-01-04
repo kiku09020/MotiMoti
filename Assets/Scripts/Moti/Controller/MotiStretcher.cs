@@ -40,6 +40,7 @@ namespace Moti
         {
             if (!GameManager.isResult) {
                 if (!moti.Input.IsTapping) {
+                    // 子は親に合わせる
                     if (moti.Family.HasParent) {
                         isStretching = moti.Family.OtherMoti.Stretcher.isStretching;
                     }

@@ -7,8 +7,7 @@ TagManager:
   - Button
   - Stage
   - Moti
-  - Kome
-  - NotStickStage
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -54,6 +53,9 @@ TagManager:
     locked: 0
   - name: Stage
     uniqueID: 1924282303
+    locked: 0
+  - name: Fire
+    uniqueID: 3478973285
     locked: 0
   - name: UI
     uniqueID: 1798791457

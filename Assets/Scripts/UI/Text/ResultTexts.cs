@@ -14,6 +14,6 @@ public class ResultTexts : Singleton<ResultTexts>
         var intDist = (int)MotiDistanceManager.Distance;
         distanceText.text = intDist.ToString("N0") + "m";
 
-        highScoreText.text = DataManager.data.highScore.ToString("N0") + "m";
+        highScoreText.text = DataManager.Instance.data.highScore.ToString("N0") + "m";
     }
 }
