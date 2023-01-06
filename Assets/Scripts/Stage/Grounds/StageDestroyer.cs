@@ -17,18 +17,21 @@ public class StageDestroyer : MonoBehaviour
 
     void FixedUpdate()
     {
-        DestroyStage();
+        CheckDestroy();
     }
 
 //-------------------------------------------------------------------
     // 削除
-    void DestroyStage()
+    void CheckDestroy()
 	{
         var motiPos = moti.transform.position;
 
         // ステージの位置が指定より小さかったら削除
-		if (transform.position.y < (motiPos.y - destroyDist)) {
-            Destroy(this.gameObject);
-		}
+        DistanceCaluculator.CheckOverDistance(transform.position.y, (motiPos.y - destroyDist), DestroyObject);
+	}
+
+	private void DestroyObject()
+	{
+        Destroy(gameObject);
 	}
 }

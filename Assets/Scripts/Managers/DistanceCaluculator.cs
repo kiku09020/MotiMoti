@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum Axis
 {
@@ -11,7 +12,7 @@ public class DistanceCaluculator : MonoBehaviour
 {
     /* 距離を調べる */
     // GameObjectから求める
-    static public float CheckObjectDistance(GameObject fromObject, GameObject toObject)
+    static public float CheckDistance(GameObject fromObject, GameObject toObject)
 	{
         var fromPoint = fromObject.transform.position;
         var toPoint = toObject.transform.position;
@@ -21,7 +22,7 @@ public class DistanceCaluculator : MonoBehaviour
 	}
 
     // ベクトルから求める
-    static public float CheckPointDistance(Vector2 fromPoint, Vector2 toPoint)
+    static public float CheckDistance(Vector2 fromPoint, Vector2 toPoint)
 	{
         Debug.DrawLine(fromPoint, toPoint);
         return Vector2.Distance(fromPoint, toPoint);
@@ -62,4 +63,11 @@ public class DistanceCaluculator : MonoBehaviour
 
     /* 角度を調べる */
 
+    // 距離を超えた時の処理
+    static public void CheckOverDistance(float point, float targetPoint, Action act)
+	{
+		if (point < targetPoint) {
+            act();          // 処理実行
+		}
+	}
 }

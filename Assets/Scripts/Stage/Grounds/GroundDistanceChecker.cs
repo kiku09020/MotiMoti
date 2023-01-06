@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // ƒXƒe[ƒW“¯Žm‚ÌÅ’Z‹——£‚ðŒv‘ª‚·‚é
-public class StageDistanceChecker : MonoBehaviour
+public class GroundDistanceChecker : MonoBehaviour
 {
-    Stage stage;
+    Ground ground;
     Rigidbody2D rb;
     LineRenderer line;
 
     float distance;
-    [SerializeField] float stageMaxDist = 2.5f;
+    [SerializeField] float maxDist = 2.5f;
 
     /* ƒvƒƒpƒeƒB */
     public float Distance => distance;
@@ -18,7 +18,7 @@ public class StageDistanceChecker : MonoBehaviour
 //-------------------------------------------------------------------
     void Awake()
     {
-        stage=GetComponent<Stage>();
+        ground=GetComponent<Ground>();
         rb = GetComponent<Rigidbody2D>();
         line = GetComponent<LineRenderer>();
 
@@ -33,8 +33,8 @@ public class StageDistanceChecker : MonoBehaviour
 //-------------------------------------------------------------------
     void CheckDistance()
 	{
-        if (stage.PrevStage) {
-            var dist = rb.Distance(stage.PrevStage?.Col);       // Å’Z‹——£
+        if (ground.PrevStage) {
+            var dist = rb.Distance(ground.PrevStage?.Col);       // Å’Z‹——£
             distance = dist.distance;
 
             // ü•`‰æ
@@ -51,7 +51,7 @@ public class StageDistanceChecker : MonoBehaviour
     void SetStagePosition()
     {
         // ‰“‚©‚Á‚½‚çA’†‰›‚ÉˆÚ“®
-        if (distance > stageMaxDist) {
+        if (distance > maxDist) {
             transform.position = new Vector2(0, transform.position.y);
         }
     }
