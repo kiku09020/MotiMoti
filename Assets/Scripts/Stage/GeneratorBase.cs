@@ -25,9 +25,15 @@ public class GeneratorBase : MonoBehaviour
     // list
     protected List<GameObject> genObjs = new List<GameObject>();
 
+    /* プロパティ */
+    public List<GameObject> GenObjects => genObjs;
+    public static GameObject TargetObj => targetObj;
+    public int MaxCnt => maxCnt;
+
 	//-------------------------------------------------------------------
     protected virtual void Awake()
     {
+        targetObj = GameObject.Find("Moti");
         genPos = startGenPos;
 
 		while (genObjs.Count < maxCnt) {

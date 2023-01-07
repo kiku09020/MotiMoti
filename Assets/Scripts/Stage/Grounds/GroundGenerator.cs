@@ -4,23 +4,13 @@ using UnityEngine;
 
 public class GroundGenerator : GeneratorBase
 {
-	[Header("DerivedClass")]	/* 派生クラスのパラメータ */
+	[Header("Range")]	
     [SerializeField] float genPosXRange;        // Xの範囲
-
-	[Header("TargetObject")]	/* プレイヤーオブジェクト格納用 */
-    [SerializeField] GameObject _targetObj;
 
 	/* プロパティ */
 	public float GenObjDist => genObjDist;		// オブジェクト同士の距離
 
 	//-------------------------------------------------------------------
-	protected override void Awake()
-	{
-		targetObj = _targetObj;
-
-		base.Awake();
-	}
-
 	// 生成本体
 	protected override void Generate()
 	{

@@ -64,10 +64,12 @@ public class DistanceCaluculator : MonoBehaviour
     /* Šp“x‚ğ’²‚×‚é */
 
     // ‹——£‚ğ’´‚¦‚½‚Ìˆ—
-    static public void CheckOverDistance(float point, float targetPoint, Action act)
+    static public bool CheckOverLength(float from, float to)
 	{
-		if (point < targetPoint) {
-            act();          // ˆ—Às
+		if (from < to) {
+            return true;
 		}
+
+        return false;
 	}
 }
