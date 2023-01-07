@@ -25,7 +25,7 @@ namespace Moti
 
         public void StateUpdate()
         {
-            
+            CheckHitFire();
         }
 
         public void StateExit()
@@ -34,6 +34,11 @@ namespace Moti
         }
 
         //-------------------------------------------------------------------
-
+        public void CheckHitFire()
+        {
+            if (Moti.FireHit.IsHitFire) {
+                GameManager.isResult = true;
+            }
+        }
     }
 }

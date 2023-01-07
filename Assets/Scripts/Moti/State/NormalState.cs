@@ -52,11 +52,20 @@ namespace Moti
                     Moti.StateCtrl.TransitionState(state.GoingState);
                 }
             }
+
+            CheckHitFire();
         }
 
         public void StateExit()
         {
 
+        }
+
+        public void CheckHitFire()
+        {
+            if (Moti.FireHit.IsHitFire) {
+                GameManager.isResult = true;
+            }
         }
     }
 }

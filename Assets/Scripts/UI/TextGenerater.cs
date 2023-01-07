@@ -22,7 +22,7 @@ public class TextGenerater : MonoBehaviour
     void Start()
     {
         /* 初期化 */
-        parent_game = CanvasManager.Texts.transform;
+        parent_game = CanvasManager.GameUI.transform;
     }
 
 //-------------------------------------------------------------------

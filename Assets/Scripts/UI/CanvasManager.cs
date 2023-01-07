@@ -6,12 +6,12 @@ public class CanvasManager : MonoBehaviour {
     /* 値 */
     static GameObject mainCanvas;
     static GameObject ctrlUI;
-    static GameObject texts;
+    static GameObject gameUI;
     static GameObject pauseUI;
     static GameObject cautionUI;
     static GameObject resultUI;
 
-    static public GameObject Texts { get => texts; }
+    static public GameObject GameUI { get => gameUI; }
     static public GameObject CtrlUI { get => ctrlUI; }
     static public GameObject PauseUI { get => pauseUI; }
     static public GameObject CautionUI { get => cautionUI; }
@@ -23,7 +23,7 @@ public class CanvasManager : MonoBehaviour {
         /* オブジェクト取得 */
         mainCanvas = GameObject.Find("MainCanvas");
 
-        texts = mainCanvas.transform.Find("Texts").gameObject;
+        gameUI = mainCanvas.transform.Find("GameUI").gameObject;
         ctrlUI = mainCanvas.transform.Find("ControllerUI").gameObject;
         pauseUI = mainCanvas.transform.Find("PauseUI").gameObject;
         cautionUI = pauseUI.transform.Find("CautionUI").gameObject;
@@ -40,14 +40,14 @@ public class CanvasManager : MonoBehaviour {
     {
         if (activate) {
             ctrlUI.SetActive(false);
-            texts.SetActive(false);
+            gameUI.SetActive(false);
             pauseUI.SetActive(true);
         }
 
         // ポーズ解除
 		else {
             ctrlUI.SetActive(true);
-            texts.SetActive(true);
+            gameUI.SetActive(true);
             pauseUI.SetActive(false);
         }
     }
@@ -62,7 +62,7 @@ public class CanvasManager : MonoBehaviour {
     static public void ActivateResultUI(bool activate)
 	{
         resultUI.SetActive(activate);
-        texts.SetActive(!activate);
+        gameUI.SetActive(!activate);
         ctrlUI.SetActive(!activate);
 	}
 }

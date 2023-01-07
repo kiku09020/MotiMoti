@@ -16,7 +16,7 @@ namespace Moti
 
         public void StateEnter()
         {
-            Moti.Ground.SetCollisionEnable(false);
+            Moti.Ground.ColEnabled = false;
             CameraController.Instance.ChaseObject(Moti.Family.OtherMoti.gameObject);
 
             if (Moti.Family.HasChild) {
@@ -33,11 +33,18 @@ namespace Moti
             if (Moti.MotiHit.OtherMoti) {
                 Moti.StateCtrl.TransitionState(Moti.StateCtrl.UnitedState);
             }
+
+            CheckHitFire();
         }
 
         public void StateExit()
         {
-            Moti.Ground.SetCollisionEnable(true);
+            Moti.Ground.ColEnabled = true;
+        }
+
+        public void CheckHitFire()
+        {
+            Moti.FireHit.GoingFire();
         }
     }
 }

@@ -5,8 +5,7 @@ using UnityEngine;
 namespace Moti
 {
     [RequireComponent(typeof(MotiUniter), typeof(MotiStretcher))]
-    public class MotiController : MonoBehaviour
-    {
+    public class MotiController : MonoBehaviour {
         Transform motiFolder;
 
         /* コンポーネント取得用 */
@@ -14,8 +13,9 @@ namespace Moti
         Rigidbody2D rb;
 
         // checker
-        GroundChecker ground;
-        HitChecker motiHit;
+        GroundHitChecker ground;
+        MotiHitChecker motiHit;
+        FireHitChecker fireHit;
         InputChecker input;
 
         // controller
@@ -32,7 +32,7 @@ namespace Moti
 
         /* プロパティ */
         #region Properties
-        public Transform Folder => motiFolder;
+        public Transform Folder { get; private set; }
 
         // controllers
         public Rigidbody2D RB => rb;
@@ -43,8 +43,9 @@ namespace Moti
         public MotiLineController Line => line;
 
         // checks
-        public HitChecker MotiHit => motiHit;
-        public GroundChecker Ground => ground;
+        public GroundHitChecker Ground => ground;
+        public MotiHitChecker MotiHit => motiHit;
+        public FireHitChecker FireHit => fireHit;
         public InputChecker Input => input;
 
         // states
@@ -68,8 +69,9 @@ namespace Moti
             /* コンポーネント取得 */
             rb = GetComponent<Rigidbody2D>();
 
-            motiHit = checkerObj.GetComponent<HitChecker>();
-            ground = checkerObj.GetComponent<GroundChecker>();
+            motiHit = checkerObj.GetComponent<MotiHitChecker>();
+            ground = checkerObj.GetComponent<GroundHitChecker>();
+            fireHit = checkerObj.GetComponent<FireHitChecker>();
             input = checkerObj.GetComponent<InputChecker>();
 
             part = partObj.GetComponent<MotiParticleController>();

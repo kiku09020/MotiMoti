@@ -8,7 +8,10 @@ public class GroundGenerator : GeneratorBase
     [SerializeField] float genPosXRange;        // Xの範囲
 
 	[Header("TargetObject")]	/* プレイヤーオブジェクト格納用 */
-    [SerializeField] GameObject _targetObj;		
+    [SerializeField] GameObject _targetObj;
+
+	/* プロパティ */
+	public float GenObjDist => genObjDist;		// オブジェクト同士の距離
 
 	//-------------------------------------------------------------------
 	protected override void Awake()

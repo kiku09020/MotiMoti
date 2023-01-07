@@ -5,8 +5,7 @@ using UnityEngine;
 namespace Moti
 {
     [RequireComponent(typeof(Collider2D))]
-    public class GroundChecker : MonoBehaviour
-    {
+    public class GroundHitChecker : HitCheckerBase {
         /* 値 */
         bool isGround;              // 着地しているか
 
@@ -31,14 +30,13 @@ namespace Moti
 
         public HitDirection HitDir => hitDir;
 
-        public bool ColEnabled => col.enabled;      // colliderのenabled
+        public bool ColEnabled { get => col.enabled; set => col.enabled = value; }      // colliderのenabled
 
         /* コンポーネント取得用 */
         [SerializeField] Collider2D col;
-        [SerializeField] MotiController moti;
 
         //-------------------------------------------------------------------
-        public void Init()
+        public override void Init()
         {
             hitPoint = moti.Family.OtherMoti.transform.position;
             hitVector = Vector2.zero;
@@ -100,10 +98,10 @@ namespace Moti
         }
 
         //-------------------------------------------------------------------
-        void OnCollisionEnter2D(Collision2D col)
+         void OnCollisionEnter2D(Collision2D col)
         {
             // 着地時
-            if (col.gameObject.tag == "Stage") {
+            if (col.gameObject.tag == targetTagName) {
                 // 触れた点を取得
                 foreach (ContactPoint2D contact in col.contacts) {
                     hitPoint = contact.point;
@@ -113,7 +111,7 @@ namespace Moti
                 GetHitDirection();          // 方向取得
                 SetGroundDirection();       // 4方向
 
-                moti.RB.constraints = RigidbodyConstraints2D.FreezeAll;
+                moti.RB.constraints = RigidbodyConstraints2D.FreezeAll;     // 位置固定
 
                 /* 演出 */
                 moti.Particle.Play(ParticleNames_Moti.ground, moti.Ground.HitPoint);
@@ -124,7 +122,7 @@ namespace Moti
         void OnCollisionExit2D(Collision2D col)
         {
             // 離れるとき
-            if (col.gameObject.tag == "Stage") {
+            if (col.gameObject.tag == targetTagName) {
                 isGround = false;
 
                 moti.RB.constraints = RigidbodyConstraints2D.FreezeRotation;

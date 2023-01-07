@@ -19,8 +19,8 @@ public class GeneratorBase : MonoBehaviour
 
     // target
     [Space(10)]
-    protected static GameObject targetObj;                      // プレイヤー(Groundから代入)
     [SerializeField] protected float targetObjMaxDist;          // プレイヤーから生成位置の最大距離
+    protected static GameObject targetObj;                      // プレイヤー(Groundから代入)
 
     // list
     protected List<GameObject> genObjs = new List<GameObject>();
@@ -38,10 +38,12 @@ public class GeneratorBase : MonoBehaviour
 
     void FixedUpdate()
     {
-        var dist = DistanceCaluculator.CheckDistance(targetObj.transform.position, genPos);
-		if (dist < targetObjMaxDist) {
-            Generate();
-		}
+        if (!GameManager.isResult) {
+            var dist = DistanceCaluculator.CheckDistance(targetObj.transform.position, genPos);
+            if (dist < targetObjMaxDist) {
+                Generate();
+            }
+        }
     }
 
 //-------------------------------------------------------------------

@@ -17,7 +17,9 @@ public class StageDestroyer : MonoBehaviour
 
     void FixedUpdate()
     {
-        CheckDestroy();
+        if (!GameManager.isResult) {
+            CheckDestroy();
+        }
     }
 
 //-------------------------------------------------------------------

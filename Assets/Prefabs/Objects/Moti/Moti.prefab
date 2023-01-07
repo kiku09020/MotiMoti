@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 8129661351966936448}
   - component: {fileID: 8129661351966936451}
   - component: {fileID: 8010141872590077241}
+  - component: {fileID: 7302141194310884256}
   - component: {fileID: 8129661351966936449}
   - component: {fileID: 8129661351966936450}
   m_Layer: 7
@@ -390,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf0423c9f23e43499a69be1d22179d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moti: {fileID: 0}
+  targetTagName: Moti
 --- !u!114 &8010141872590077241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,8 +404,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaed8e44e0cb449478cdbc963ec378e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTagName: Stage
   col: {fileID: 2885916789449422288}
-  moti: {fileID: 8129661352410282750}
+--- !u!114 &7302141194310884256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129661351966936462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81a57ad2dc4474e47b3b3a13ab96314b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTagName: Fire
 --- !u!114 &8129661351966936449
 MonoBehaviour:
   m_ObjectHideFlags: 0
