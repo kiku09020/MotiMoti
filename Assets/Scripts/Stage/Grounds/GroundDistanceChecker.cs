@@ -41,8 +41,6 @@ public class GroundDistanceChecker : MonoBehaviour
             line.SetPosition(0, dist.pointA);
             line.SetPosition(1, dist.pointB);
 
-            print(distance);
-
             SetStagePosition();
         }
     }

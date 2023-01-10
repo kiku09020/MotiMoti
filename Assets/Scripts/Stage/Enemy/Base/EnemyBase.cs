@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : Item
+public class EnemyBase : MonoBehaviour
 {
-    static int getCount;
+    protected string name;
+    protected int motigomeCnt;
 
 //-------------------------------------------------------------------
     void Awake()
@@ -18,13 +19,12 @@ public class Coin : Item
     }
 
 //-------------------------------------------------------------------
-    protected override void Getted()
+    // データから値をセット
+    void SetDataParams(string name)
 	{
-        print("a");
-	}
+        var data = EnemyData_SO.ReadData(name);
 
-    protected override void OnTriggerEnter2D(Collider2D col)
-	{
-        base.OnTriggerEnter2D(col);
+        name = data.Name;
+        motigomeCnt = data.MotigomeCnt;
 	}
 }

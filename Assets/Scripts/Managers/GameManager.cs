@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
     /* 値 */
-    GameObject moti;
+    [Header("ResultZooming")]
+    [SerializeField] float zoomDuration = 0.5f;
+    [SerializeField] float zoomSize = 3;
+    [SerializeField] Ease easeType;
 
     bool isResultOnce;
 
@@ -22,7 +26,6 @@ public class GameManager : MonoBehaviour
     {
         /* オブジェクト取得 */
         GameObject audObj = transform.Find("AudioManager").gameObject;
-        moti = GameObject.Find("Moti");
 
         /* コンポーネント取得 */
         bgm = audObj.GetComponent<BGM>();
@@ -46,12 +49,14 @@ public class GameManager : MonoBehaviour
 	{
         if (isResult) {
             if (!isResultOnce) {
+                var moti = GameObject.Find("Moti");
+
                 MainFireController.enable = false;          // 火止める
                 MotiDistanceManager.CheckHighScore();       // ハイスコア確認
                 CanvasManager.ActivateResultUI(true);       // UI表示
                 ResultTexts.Instance.SetText();             // テキストセット
 
-                CameraController.Instance.ZoomObject(moti); // カメラズーム
+                CameraController.Instance.Zoom(moti, zoomDuration, zoomSize, easeType); // カメラズーム
 
                 isResultOnce = true;
             }

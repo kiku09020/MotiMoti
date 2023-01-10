@@ -35,8 +35,6 @@ public class DistanceCaluculator : MonoBehaviour
     static public float CheckAxisLength(float from, float to)
 	{
         var dist = Mathf.Abs(to - from);
-
-        print($"dist = {dist}");
         return dist;
 	}
 

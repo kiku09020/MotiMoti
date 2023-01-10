@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4837259326454078011}
   - component: {fileID: 7090995772923111713}
   - component: {fileID: 6372698635206549189}
+  - component: {fileID: 6862303518021444473}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -51,6 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 102d0f5482fc8df429f231a501d3f366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomDuration: 0.5
+  zoomSize: 2.5
+  easeType: 28
 --- !u!114 &8630321999919817103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4044f237baef934a813bfcf578ead3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    highScore: 0
 --- !u!114 &7090995772923111713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +110,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moti: {fileID: 0}
   distanceText: {fileID: 0}
+--- !u!114 &6862303518021444473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137223664432990018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76c62420623f0f4c9ed479f617f2096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  easeTime: 1
+  easeType: 3
+  powerImage: {fileID: 0}
 --- !u!1001 &2392430205859323643
 PrefabInstance:
   m_ObjectHideFlags: 0
