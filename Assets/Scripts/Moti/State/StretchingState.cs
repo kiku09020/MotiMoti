@@ -42,7 +42,7 @@ namespace Moti {
         //-------------------------------------------------------------------
         public void CheckHitFire()
         {
-            if (Moti.FireHit.IsHitFire) {
+            if (Moti.FireHit.IsHit) {
                 Moti.StateCtrl.TransitionState(Moti.StateCtrl.GoingState);     // 通常状態に遷移
                 GameManager.isResult = true;
             }

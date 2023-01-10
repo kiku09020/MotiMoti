@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTagName: Moti
+  _collider: {fileID: 8129661351966936448}
 --- !u!114 &8010141872590077241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTagName: Stage
-  col: {fileID: 2885916789449422288}
+  _collider: {fileID: 2885916789449422288}
 --- !u!114 &7302141194310884256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTagName: Fire
+  _collider: {fileID: 8129661351966936448}
 --- !u!114 &8129661351966936449
 MonoBehaviour:
   m_ObjectHideFlags: 0

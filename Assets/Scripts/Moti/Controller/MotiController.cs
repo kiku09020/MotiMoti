@@ -6,54 +6,32 @@ namespace Moti
 {
     [RequireComponent(typeof(MotiUniter), typeof(MotiStretcher))]
     public class MotiController : MonoBehaviour {
-        Transform motiFolder;
-
-        /* コンポーネント取得用 */
-        #region Components
-        Rigidbody2D rb;
-
-        // checker
-        GroundHitChecker ground;
-        MotiHitChecker motiHit;
-        FireHitChecker fireHit;
-        InputChecker input;
-
-        // controller
-        MotiFamilyController family;
-        StateController stateCtrl;
-        MotiStretcher stretcher;
-        MotiUniter uniter;
-        MotiLineController line;
-
-        // performer
-        MotiParticleController part;
-        MotiAudioController aud;
-        #endregion
 
         /* プロパティ */
         #region Properties
         public Transform Folder { get; private set; }
 
         // controllers
-        public Rigidbody2D RB => rb;
+        public Rigidbody2D RB { get; private set; }
 
-        public MotiFamilyController Family => family;
-        public MotiStretcher Stretcher => stretcher;
-        public MotiUniter Uniter => uniter;
-        public MotiLineController Line => line;
+        public MotiFamilyController Family { get; private set; }
+        public MotiStretcher Stretcher { get; private set; }
+        public MotiUniter Uniter { get; private set; }
+        public MotiLineController Line { get; private set; }
 
-        // checks
-        public GroundHitChecker Ground => ground;
-        public MotiHitChecker MotiHit => motiHit;
-        public FireHitChecker FireHit => fireHit;
-        public InputChecker Input => input;
+        // checkers
+        public GroundHitChecker Ground { get; private set; }
+        public MotiHitChecker MotiHit { get; private set; }
+        public FireHitChecker FireHit { get; private set; }
+        public EnemyHitChecker EnemyHit { get; private set; }
+        public InputChecker Input { get; private set; }
 
         // states
-        public StateController StateCtrl => stateCtrl;
+        public StateController StateCtrl { get; private set; }
 
         // performers
-        public MotiParticleController Particle => part;
-        public MotiAudioController Audio => aud;
+        public MotiParticleController Particle { get; private set; }
+        public MotiAudioController Audio { get; private set; }
         #endregion
 
         //-------------------------------------------------------------------
@@ -64,44 +42,45 @@ namespace Moti
             Transform audObj = transform.Find("AudioController");
             Transform lineObj = transform.Find("StretchedMotiLine");
 
-            motiFolder = GameObject.Find("Motis").transform;
+            Folder = GameObject.Find("Motis").transform;
 
             /* コンポーネント取得 */
-            rb = GetComponent<Rigidbody2D>();
+            RB = GetComponent<Rigidbody2D>();
 
-            motiHit = checkerObj.GetComponent<MotiHitChecker>();
-            ground = checkerObj.GetComponent<GroundHitChecker>();
-            fireHit = checkerObj.GetComponent<FireHitChecker>();
-            input = checkerObj.GetComponent<InputChecker>();
+            MotiHit = checkerObj.GetComponent<MotiHitChecker>();
+            Ground = checkerObj.GetComponent<GroundHitChecker>();
+            FireHit = checkerObj.GetComponent<FireHitChecker>();
+            EnemyHit = checkerObj.GetComponent<EnemyHitChecker>();
+            Input = checkerObj.GetComponent<InputChecker>();
 
-            part = partObj.GetComponent<MotiParticleController>();
-            aud = audObj.GetComponent<MotiAudioController>();
+            Particle = partObj.GetComponent<MotiParticleController>();
+            Audio = audObj.GetComponent<MotiAudioController>();
 
-            family = new MotiFamilyController(this);
-            stateCtrl = new StateController(this);
-            stretcher = GetComponent<MotiStretcher>();
-            uniter = GetComponent<MotiUniter>();
-            line = lineObj.GetComponent<MotiLineController>();
+            Family = new MotiFamilyController(this);
+            StateCtrl = new StateController(this);
+            Stretcher = GetComponent<MotiStretcher>();
+            Uniter = GetComponent<MotiUniter>();
+            Line = lineObj.GetComponent<MotiLineController>();
 
             /* 初期化 */
-            stateCtrl.InitState(stateCtrl.NormalState);     // 初期状態の指定
+            StateCtrl.InitState(StateCtrl.NormalState);     // 初期状態の指定
         }
 
         // 子の初期化
         public void InitChild()
         {
-            stateCtrl.TransitionState(StateCtrl.StretchingState);
+            StateCtrl.TransitionState(StateCtrl.StretchingState);
         }
 
         void FixedUpdate()
         {
-            family.FamilyUpdate();                      // 親子関係
-            stateCtrl.NowStateUpdate();                 // 状態
+            Family.FamilyUpdate();                      // 親子関係
+            StateCtrl.NowStateUpdate();                 // 状態
 
-            line.LineUpdate();                          // ライン
-            stretcher.StretchingUpdate();               // 伸び
+            Line.LineUpdate();                          // ライン
+            Stretcher.StretchingUpdate();               // 伸び
 
-            Debug.DrawLine(transform.position, transform.position+(Vector3)ground.HitVector,Color.blue);
+            Debug.DrawLine(transform.position, transform.position + (Vector3)Ground.HitVector, Color.blue);
 
             Debug.DrawLine(transform.position, transform.position + transform.right * 2,Color.red);
         }

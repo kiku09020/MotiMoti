@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Moti
 {
     [RequireComponent(typeof(Collider2D))]
-    public class MotiHitChecker : HitCheckerBase
+    public class MotiHitChecker : HitCheckerTrigger
     {
         // もち
         bool isMotiTrigger;         // 範囲内に他のもちがいるか
@@ -23,21 +23,16 @@ namespace Moti
             otherMoti = null;
         }
 
-        private void OnTriggerEnter2D(Collider2D col)
-        {
-            if (col.gameObject.tag == targetTagName) {
-                otherMoti = col.gameObject.GetComponent<MotiController>();
-                isMotiTrigger = true;
-            }
+		protected override void HitEnter(Collider2D collision)
+		{
+            otherMoti = collision.gameObject.GetComponent<MotiController>();
+            isMotiTrigger = true;
         }
 
-        private void OnTriggerExit2D(Collider2D col)
-        {
-            if (col.gameObject.tag == targetTagName) {
-                isMotiTrigger = false;
-                otherMoti = null;
-            }
+		protected override void HitExit(Collider2D collision)
+		{
+            isMotiTrigger = false;
+            otherMoti = null;
         }
-
-    }
+	}
 }

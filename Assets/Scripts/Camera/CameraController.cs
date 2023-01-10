@@ -23,17 +23,33 @@ public class CameraController : Singleton<CameraController>
 
 	//-------------------------------------------------------------------
 	// ズーム
-	public void Zoom(GameObject target, float duration = 0.5f, float targetZoomSize = 3,Ease easeType = Ease.Unset)
+	public void ZoomIn(GameObject target, float duration = 0.5f, float targetZoomSize = 3,Ease easeType = Ease.Unset)
 	{
 		transform.DOMove(target.transform.position, duration).SetEase(easeType);			// オブジェクトの位置に移動
 		zoomingCamera.DOOrthoSize(targetZoomSize, duration).SetEase(easeType);				// サイズ変更
 	}
 
-	//-------------------------------------------------------------------
 	// ズームアウト
-	public void ZoomOut(GameObject target, float duration = 0.5f, float targetZoomSize = 3, Ease easeType = Ease.Unset)
+	public void ZoomOut(float duration = 0.5f, float targetZoomSize = 3, Ease easeType = Ease.Unset)
     {
-		transform.DOMove(target.transform.position, duration).SetEase(easeType);
+		transform.DOMove(Vector2.zero, duration).SetEase(easeType);
 		zoomingCamera.DOOrthoSize(targetZoomSize, duration).SetEase(easeType);
     }
+
+	// ズームイン、ズームアウト
+	public void ZoomInOut(GameObject target, float inDuration = 0.5f, float outDuration = 0.5f, 
+						  float targetZoomSize = 3, Ease easeType = Ease.Unset)
+	{
+		var size = zoomingCamera.orthographicSize;		// 呼び出し時のカメラのサイズ
+
+							// ズームイン
+		DOTween.Sequence()	.Append(transform.DOMove(target.transform.position, inDuration))
+							.Join(zoomingCamera.DOOrthoSize(targetZoomSize, inDuration))
+
+							// ズームアウト
+							.Append(transform.DOMove(Vector2.zero, outDuration))
+							.Join(zoomingCamera.DOOrthoSize(size, outDuration))
+
+							.SetEase(easeType);
+	}
 }

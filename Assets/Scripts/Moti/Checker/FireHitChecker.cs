@@ -3,43 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Moti {
-    public class FireHitChecker :HitCheckerBase
+    public class FireHitChecker :HitCheckerTrigger
     {
         // âŒ
-        bool isHitFire;                 // êGÇÍÇΩÇ©
         MovingFire.MovingFire hitFire;      // êGÇÍÇΩâŒ
-
-        /* ÉvÉçÉpÉeÉB */
-        public bool IsHitFire => isHitFire;
-        public MovingFire.MovingFire HitFire => hitFire;
 
         //-------------------------------------------------------------------
         public override void Init()
         {
-            isHitFire = false;
+            IsHit = false;
             hitFire = null;
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.tag == targetTagName) {
-                isHitFire = true;
-                hitFire = collision.gameObject.GetComponent<MovingFire.MovingFire>();
-            }
+		protected override void HitEnter(Collider2D collision)
+		{
+            hitFire = collision.gameObject.GetComponent<MovingFire.MovingFire>();
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.gameObject.tag == targetTagName) {
-                isHitFire = false;
-                hitFire = null;
-            }
+		protected override void HitExit(Collider2D collision)
+		{
+            hitFire = null;
         }
 
         // GoingèÛë‘Ç≈êGÇÍÇΩéûÇÃèàóù
         public void GoingFire()
         {
-            if (isHitFire) {
+            if (IsHit) {
                 Destroy(hitFire.gameObject);
             }
         }

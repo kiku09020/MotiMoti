@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
                 CanvasManager.ActivateResultUI(true);       // UI表示
                 ResultTexts.Instance.SetText();             // テキストセット
 
-                CameraController.Instance.Zoom(moti, zoomDuration, zoomSize, easeType); // カメラズーム
+                CameraController.Instance.ZoomIn(moti, zoomDuration, zoomSize, easeType); // カメラズーム
 
                 isResultOnce = true;
             }

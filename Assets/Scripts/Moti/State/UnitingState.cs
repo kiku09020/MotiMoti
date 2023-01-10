@@ -36,7 +36,7 @@ namespace Moti
         //-------------------------------------------------------------------
         public void CheckHitFire()
         {
-            if (Moti.FireHit.IsHitFire) {
+            if (Moti.FireHit.IsHit) {
                 GameManager.isResult = true;
             }
         }
