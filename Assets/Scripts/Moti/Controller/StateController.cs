@@ -4,9 +4,11 @@ using UnityEngine;
 
 namespace Moti
 {
-    public class StateController:StateControllerBase
+    public class StateController
     {
         /* プロパティ */
+        public IState NowState { get; private set; }
+
         public NormalState NormalState { get; }
         public StretchingState StretchingState { get; }
         public UnitingState UnitedState { get; }
@@ -22,5 +24,22 @@ namespace Moti
         }
 
         //-------------------------------------------------------------------
+        public void Init(IState state)
+        {
+            NowState = state;
+            NowState.StateEnter();
+        }
+
+        public void StateTransition(IState nextState)
+        {
+            NowState.StateExit();
+            NowState = nextState;
+            NowState.StateEnter();
+        }
+
+        public void StateUpdate()
+        {
+            NowState.StateUpdate();
+        }
     }
 }
