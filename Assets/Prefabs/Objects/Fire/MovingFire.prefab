@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6310455911393043798}
   m_Layer: 0
   m_Name: MovingFire
-  m_TagString: Fire
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,11 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45174d54851aee14ead5821a7026f25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMoveTime: 1
+  name: MovingFire
+  minMoveTime: 1.5
   maxMoveTime: 2
   movableRangeX: 3.5
-  moveEaseType: 10
-  waitTime: 0.2
+  moveEaseType: 4
+  waitTime: 0.5
 --- !u!61 &6310455911393043798
 BoxCollider2D:
   m_ObjectHideFlags: 0

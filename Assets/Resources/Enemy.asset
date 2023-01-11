@@ -15,7 +15,9 @@ MonoBehaviour:
   enemyList:
   - name: MovingFire
     motigomeCnt: 3
+    motigomeRandRange: 1
     clipList: []
   - name: 
     motigomeCnt: 0
+    motigomeRandRange: 0
     clipList: []

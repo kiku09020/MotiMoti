@@ -20,12 +20,12 @@ namespace Moti
         //-------------------------------------------------------------------
         public void StateEnter()
         {
-            Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);     // 通常状態へ
+            Moti.StateCtrl.StateTransition(Moti.StateCtrl.NormalState);     // 通常状態へ
         }
 
         public void StateUpdate()
         {
-            CheckHitFire();
+            CheckHit();
         }
 
         public void StateExit()
@@ -34,9 +34,13 @@ namespace Moti
         }
 
         //-------------------------------------------------------------------
-        public void CheckHitFire()
+        public void CheckHit()
         {
             if (Moti.FireHit.IsHit) {
+                GameManager.isResult = true;
+            }
+
+            if (Moti.EnemyHit.IsHit) {
                 GameManager.isResult = true;
             }
         }

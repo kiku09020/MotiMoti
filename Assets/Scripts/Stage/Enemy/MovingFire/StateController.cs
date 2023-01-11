@@ -24,7 +24,7 @@ namespace MovingFire {
 			NowState.StateEnter();
 		}
 
-        public void TransitionState(IState nextState)
+        public void StateTransition(IState nextState)
 		{
 			NowState.StateExit();
 			NowState = nextState;

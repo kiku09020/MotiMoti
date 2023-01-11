@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    protected string name;
-    protected int motigomeCnt;
+    [SerializeField] new string name;       // Enemy名(Inspectorから指定)
+    protected int motigomeCnt;              // ドロップするもち米の数
 
 //-------------------------------------------------------------------
-    void Awake()
+    protected virtual void Awake()
     {
-        
-    }
-
-    void FixedUpdate()
-    {
-        
+        SetDataParams(name);
+        MotigomeDropper.SetParent();
     }
 
 //-------------------------------------------------------------------
-    // データから値をセット
+    // 指定した名前からデータ取得して、値をセット
     void SetDataParams(string name)
 	{
         var data = EnemyData_SO.ReadData(name);
 
-        name = data.Name;
-        motigomeCnt = data.MotigomeCnt;
+        motigomeCnt = MotigomeDropper.SetMotigomeCnt(data.MotigomeCnt, data.MotigomeRandRange);
 	}
+
+    // やられるときの処理
+    public virtual void Killed()
+    {
+        MotigomeDropper.Drop(motigomeCnt, 2, transform.position);
+        Destroy(this.gameObject);
+    } 
 }

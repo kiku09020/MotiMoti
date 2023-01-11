@@ -8,7 +8,8 @@ TagManager:
   - Stage
   - Moti
   - Fire
-  - Coin
+  - Enemy
+  - Motigome
   layers:
   - Default
   - TransparentFX

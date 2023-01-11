@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 
 namespace MovingFire {
-    public class MovingFire : MonoBehaviour {
+    public class MovingFire : EnemyBase {
         [Header("moveTime")]
         [SerializeField] float minMoveTime;
         [SerializeField] float maxMoveTime;
@@ -23,13 +23,17 @@ namespace MovingFire {
         StateController state;
 
         //-------------------------------------------------------------------
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             xDir = 1;
+            SetMoveTime();
 
             state = new StateController(this);
-
             state.InitState(state.Waiting);
+
+            print(motigomeCnt);
         }
 
         void FixedUpdate()
@@ -63,7 +67,7 @@ namespace MovingFire {
 
         void OnComp()
 		{
-            state.TransitionState(state.Waiting);       // 移動完了時に、待機状態に遷移
+            state.StateTransition(state.Waiting);       // 移動完了時に、待機状態に遷移
 		}
 
         // 待機
@@ -73,7 +77,7 @@ namespace MovingFire {
 
 			if (waitTimer > waitTime) {
                 waitTimer = 0;
-                state.TransitionState(state.Moving);
+                state.StateTransition(state.Moving);
 			}
 		}
     }

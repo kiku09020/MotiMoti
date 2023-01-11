@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 8129661351966936451}
   - component: {fileID: 8010141872590077241}
   - component: {fileID: 7302141194310884256}
+  - component: {fileID: 8669964920538566611}
   - component: {fileID: 8129661351966936449}
   - component: {fileID: 8129661351966936450}
   m_Layer: 7
@@ -420,6 +421,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTagName: Fire
+  _collider: {fileID: 8129661351966936448}
+--- !u!114 &8669964920538566611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129661351966936462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5757747984304534597dadaca25873a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTagName: Enemy
   _collider: {fileID: 8129661351966936448}
 --- !u!114 &8129661351966936449
 MonoBehaviour:

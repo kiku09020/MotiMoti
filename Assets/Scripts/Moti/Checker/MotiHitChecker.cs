@@ -17,13 +17,15 @@ namespace Moti
 
         //-------------------------------------------------------------------
         // リセット
-        public override void Init()
+        protected override void Awake()
         {
+            base.Awake();
+
             isMotiTrigger = false;
             otherMoti = null;
         }
 
-		protected override void HitEnter(Collider2D collision)
+        protected override void HitEnter(Collider2D collision)
 		{
             otherMoti = collision.gameObject.GetComponent<MotiController>();
             isMotiTrigger = true;

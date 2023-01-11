@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Moti
 {
-    public class GoingState : IState
+    public class GoingState : MonoBehaviour, IState
     {
         public MotiController Moti { get; set; }
 
@@ -26,15 +26,20 @@ namespace Moti
             else if (Moti.Family.HasParent) {
                 Moti.Stretcher.GoingMove(Moti.Family.OtherMoti);
             }
+
+            // 敵に触れた時
+            if (Moti.EnemyHit.IsHit) {
+                Destroy(Moti.EnemyHit.HitEnemy);
+            }
         }
 
         public void StateUpdate()
         {
             if (Moti.MotiHit.OtherMoti) {
-                Moti.StateCtrl.TransitionState(Moti.StateCtrl.UnitedState);
+                Moti.StateCtrl.StateTransition(Moti.StateCtrl.UnitedState);
             }
 
-            CheckHitFire();
+            CheckHit();
         }
 
         public void StateExit()
@@ -42,9 +47,15 @@ namespace Moti
             Moti.Ground.ColEnabled = true;
         }
 
-        public void CheckHitFire()
+        public void CheckHit()
         {
-            Moti.FireHit.GoingFire();
+            if (Moti.FireHit.IsHit) {
+                GameManager.isResult = true;
+            }
+
+            if (Moti.EnemyHit.IsHit && !GameManager.isResult) {
+                Moti.EnemyHit.HitEnemy.Killed();
+            }
         }
     }
 }

@@ -15,8 +15,9 @@ public abstract class HitCheckerBase : MonoBehaviour {
     //-------------------------------------------------------------------
     protected virtual void Awake()
     {
+        IsHit = false;
+        ColEnabled = true;
+
         isTrigger = _collider.isTrigger;
     }
-
-    public abstract void Init();
 }

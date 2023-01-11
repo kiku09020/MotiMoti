@@ -34,10 +34,6 @@ namespace Moti
         void InitChild()
         {
             otherMoti.Line.Init();
-
-            otherMoti.Ground.Init();
-            otherMoti.MotiHit.Init();
-            otherMoti.FireHit.Init();
         }
 
         public void FamilyUpdate()

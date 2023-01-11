@@ -28,10 +28,10 @@ namespace Moti {
 
             // 通常状態に繊維
             if (!Moti.Stretcher.IsStretching) {
-                state.TransitionState(state.NormalState);
+                state.StateTransition(state.NormalState);
             }
 
-            CheckHitFire();
+            CheckHit();
         }
 
         public void StateExit()
@@ -40,10 +40,15 @@ namespace Moti {
         }
 
         //-------------------------------------------------------------------
-        public void CheckHitFire()
+        public void CheckHit()
         {
             if (Moti.FireHit.IsHit) {
-                Moti.StateCtrl.TransitionState(Moti.StateCtrl.GoingState);     // 通常状態に遷移
+                Moti.StateCtrl.StateTransition(Moti.StateCtrl.GoingState);     // 通常状態に遷移
+                GameManager.isResult = true;
+            }
+
+            if (Moti.EnemyHit.IsHit) {
+                Moti.StateCtrl.StateTransition(Moti.StateCtrl.GoingState);
                 GameManager.isResult = true;
             }
         }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 529050544271917022}
   m_Layer: 0
   m_Name: Motigome
-  m_TagString: Coin
+  m_TagString: Motigome
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

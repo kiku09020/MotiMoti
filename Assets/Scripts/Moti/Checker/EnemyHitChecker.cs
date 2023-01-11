@@ -7,13 +7,14 @@ namespace Moti {
     {
 		public EnemyBase HitEnemy { get; private set; }
 
-		public override void Init()
+		protected override void Awake()
 		{
-			IsHit = false;
+			base.Awake();
+
 			HitEnemy = null;
 		}
 
-		protected override void HitEnter(Collider2D collision)
+        protected override void HitEnter(Collider2D collision)
 		{
 			HitEnemy = collision.GetComponent<EnemyBase>();
 		}

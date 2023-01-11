@@ -63,19 +63,19 @@ namespace Moti
             Line = lineObj.GetComponent<MotiLineController>();
 
             /* 初期化 */
-            StateCtrl.InitState(StateCtrl.NormalState);     // 初期状態の指定
+            StateCtrl.Init(StateCtrl.NormalState);     // 初期状態の指定
         }
 
         // 子の初期化
         public void InitChild()
         {
-            StateCtrl.TransitionState(StateCtrl.StretchingState);
+            StateCtrl.StateTransition(StateCtrl.StretchingState);
         }
 
         void FixedUpdate()
         {
             Family.FamilyUpdate();                      // 親子関係
-            StateCtrl.NowStateUpdate();                 // 状態
+            StateCtrl.StateUpdate();                 // 状態
 
             Line.LineUpdate();                          // ライン
             Stretcher.StretchingUpdate();               // 伸び

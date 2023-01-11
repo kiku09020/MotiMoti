@@ -16,7 +16,7 @@ public class EnemyData_SO : ScriptableObject
     public static EnemyData ReadData(string name)
 	{
         var enemyDataSO = Resources.Load(fileName) as EnemyData_SO;
-        var enemyData = enemyDataSO.enemyList.Find(data => data.Name == name);
+        var enemyData = enemyDataSO.enemyList.Find(data => data.Name == name);      // 呼び出し元の名前とデータ名が同じものを検索
         return enemyData;
 	}
 }

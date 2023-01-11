@@ -40,7 +40,7 @@ namespace Moti
             moti = GameObject.Find("Moti").GetComponent<MotiController>();
 		}
 
-		public override void Init()
+		public void Init()
         {
             hitPoint = moti.Family.OtherMoti.transform.position;
             hitVector = Vector2.zero;
