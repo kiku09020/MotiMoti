@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6de615093c493429d2e1a8f9df24da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stretchableLength: 2.5
+  stretchableLength: 3
 --- !u!1 &8129661351492857310
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +623,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dcc6afe0ae43ccf47974c8c2d2c73fcb, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -722,6 +722,7 @@ MonoBehaviour:
   fixingTime: 0.1
   moveSpeed: 6
   goingEaseType: 26
+  moveSensitivity: 0.7
 --- !u!114 &8129661352410282750
 MonoBehaviour:
   m_ObjectHideFlags: 0

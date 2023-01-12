@@ -19,6 +19,8 @@ namespace Moti
         [Header("移動")]
         [SerializeField] float moveSpeed;
         [SerializeField] Ease goingEaseType;            // 移動イージング
+        [SerializeField,Range(0.5f,2)] 
+        float moveSensitivity;         // 移動感度
 
         /* フラグ */
         bool isStretching;                              // 伸びてるか
@@ -87,8 +89,8 @@ namespace Moti
         {
             var child = moti.Family.OtherMoti;
 
-            if (child && !child.Ground.IsGround) {
-                child.transform.position = moti.transform.position+InputChecker.MouseVector;          // 通常移動
+            if (child && !child.Ground.IsGround && isStretching) {
+                child.transform.position = moti.transform.position + (InputChecker.MouseVector * moveSensitivity);          // 通常移動
 
                 // 指定の長さを超えたら、円形の移動制限をかける
                 if (InputChecker.MouseDistance > moti.Line.StretchableLenth) {
