@@ -8,12 +8,12 @@ namespace Motigome {
         public IState NowState { get; private set; }
 
         public IdlingState Idle{ get; }
-        public MovingState Moving { get; }
+        public DroppedState Drop { get; }
 
         public StateController(Motigome motigome)
         {
             Idle = new IdlingState(motigome);
-            Moving = new MovingState(motigome);
+            Drop = new DroppedState(motigome);
         }
 
         //-------------------------------------------------------------------

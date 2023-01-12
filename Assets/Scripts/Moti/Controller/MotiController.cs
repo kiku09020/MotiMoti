@@ -22,7 +22,6 @@ namespace Moti
         // checkers
         public GroundHitChecker Ground { get; private set; }
         public MotiHitChecker MotiHit { get; private set; }
-        public FireHitChecker FireHit { get; private set; }
         public EnemyHitChecker EnemyHit { get; private set; }
         public InputChecker Input { get; private set; }
 
@@ -49,7 +48,6 @@ namespace Moti
 
             MotiHit = checkerObj.GetComponent<MotiHitChecker>();
             Ground = checkerObj.GetComponent<GroundHitChecker>();
-            FireHit = checkerObj.GetComponent<FireHitChecker>();
             EnemyHit = checkerObj.GetComponent<EnemyHitChecker>();
             Input = checkerObj.GetComponent<InputChecker>();
 

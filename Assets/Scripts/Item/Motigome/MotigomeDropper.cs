@@ -30,16 +30,18 @@ public class MotigomeDropper : MonoBehaviour
     }
 
     // ê∂ê¨
-    public static void Drop(int count,int rad,Vector2 position)
+    public static void Drop(int count,Vector2 position)
     {
         var obj = new GameObject("DroppedGroup");
         obj.transform.position = position;
         obj.transform.parent = parent;
 
         for(int i = 0; i < count; ++i) {
-            var pos = rad * Random.insideUnitCircle + position;
+            var pos = 0.1f * Random.insideUnitCircle + position;
 
             var inst = Instantiate(Motigome, pos, Quaternion.identity, obj.transform);
+            var comp = inst.GetComponent<Motigome.Motigome>();
+            comp.Dropped();
         }
     }
 }

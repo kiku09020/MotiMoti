@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Motigome {
-    public class MovingState : IState {
+    public class DroppedState : MonoBehaviour, IState {
         public Motigome Motigome { get; set; }
 
-        public MovingState(Motigome motigome)
+        public DroppedState(Motigome motigome)
         {
             Motigome = motigome;
         }
 
         public void StateEnter()
         {
-
+            Motigome.DropMoving();
         }
 
         public void StateUpdate()

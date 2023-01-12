@@ -112,4 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7c7d129160e014c87fd8897e41b23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropMoveTime: 0.5
+  dropMoveSize: 2
+  dropMoveEaseType: 21
   power: 10

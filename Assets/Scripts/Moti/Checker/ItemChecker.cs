@@ -11,7 +11,8 @@ public class ItemChecker : HitCheckerTrigger
 
     protected override void HitEnter(Collider2D collision)
     {
-        throw new System.NotImplementedException();
+        var item = collision.GetComponent<Item>();
+        item.Getted();
     }
 
     protected override void HitExit(Collider2D collision)

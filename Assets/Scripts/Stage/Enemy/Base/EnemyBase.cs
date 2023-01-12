@@ -26,7 +26,7 @@ public class EnemyBase : MonoBehaviour
     // ‚â‚ç‚ê‚é‚Æ‚«‚Ìˆ—
     public virtual void Killed()
     {
-        MotigomeDropper.Drop(motigomeCnt, 2, transform.position);
+        MotigomeDropper.Drop(motigomeCnt, transform.position);
         Destroy(this.gameObject);
     } 
 }

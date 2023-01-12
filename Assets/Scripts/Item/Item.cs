@@ -6,7 +6,7 @@ public abstract class Item : MonoBehaviour
 {
 	protected string GetText { get; set; }
 
-	protected abstract void Getted();
+	public abstract void Getted();
 
 	protected virtual void OnTriggerEnter2D(Collider2D collision)
 	{

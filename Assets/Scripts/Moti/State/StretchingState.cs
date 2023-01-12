@@ -42,11 +42,6 @@ namespace Moti {
         //-------------------------------------------------------------------
         public void CheckHit()
         {
-            if (Moti.FireHit.IsHit) {
-                Moti.StateCtrl.StateTransition(Moti.StateCtrl.GoingState);     // 通常状態に遷移
-                GameManager.isResult = true;
-            }
-
             if (Moti.EnemyHit.IsHit) {
                 Moti.StateCtrl.StateTransition(Moti.StateCtrl.GoingState);
                 GameManager.isResult = true;

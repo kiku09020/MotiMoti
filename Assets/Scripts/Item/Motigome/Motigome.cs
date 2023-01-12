@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Motigome {
     public class Motigome : Item {
+        [Header("Dropping")]
+        [SerializeField] float dropMoveTime;        // ドロップ時間
+        [SerializeField] float dropMoveSize;        // ドロップサイズ
+        [SerializeField] Ease dropMoveEaseType;     // ドロップイージング
+
+        [Header("Powere")] 
         [SerializeField] float power;
         static int getCount;
 
@@ -28,25 +35,34 @@ namespace Motigome {
         }
 
         //-------------------------------------------------------------------
-        protected override void Getted()
+        public override void Getted()
         {
-            getCount++;
+            if (State.NowState != State.Drop) {
+                getCount++;
 
-            MotiGaugeManager.AddPower(power);
-            MotiGaugeVisualizer.Instance.SetDispPower();
+                MotiGaugeManager.AddPower(power);
+                MotiGaugeVisualizer.Instance.SetDispPower();
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+            }
         }
 
         // ドロップされたときの動作
         public void Dropped()
         {
-            
+            State.StateTransition(State.Drop);        // 移動状態に遷移
         }
 
-        protected override void OnTriggerEnter2D(Collider2D col)
+        public void DropMoving()
         {
-            base.OnTriggerEnter2D(col);
+            var targetPos = 1.5f * Random.insideUnitCircle + (Vector2)transform.position;
+            transform.DOMove(targetPos, dropMoveTime)
+                        .SetEase(dropMoveEaseType).OnComplete(OnComp);
+        }
+
+        void OnComp()
+        {
+            State.StateTransition(State.Idle);
         }
     }
 }

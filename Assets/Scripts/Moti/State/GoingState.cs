@@ -49,10 +49,6 @@ namespace Moti
 
         public void CheckHit()
         {
-            if (Moti.FireHit.IsHit) {
-                GameManager.isResult = true;
-            }
-
             if (Moti.EnemyHit.IsHit && !GameManager.isResult) {
                 Moti.EnemyHit.HitEnemy.Killed();
             }
