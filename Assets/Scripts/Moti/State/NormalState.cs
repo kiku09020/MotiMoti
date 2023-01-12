@@ -48,7 +48,7 @@ namespace Moti
 
             // 移動状態(子→親　空中)
             else if (Moti.Family.HasParent) {
-                if (!Moti.Ground.IsGround && !Moti.Family.OtherMoti.Input.IsTapping) {
+                if (!Moti.Ground.IsGround && !InputChecker.IsTapping) {
                     Moti.StateCtrl.StateTransition(state.GoingState);
                 }
             }

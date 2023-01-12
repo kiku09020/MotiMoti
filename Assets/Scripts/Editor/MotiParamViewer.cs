@@ -225,7 +225,6 @@ public class MotiParamViewer : EditorWindow
         switch (index) {
             case (int)FolderType.Ground:        GroundFolder(moti);     break;
             case (int)FolderType.Motihit:       MotiHitFolder(moti);    break;
-            case (int)FolderType.Input:         InputFolder(moti);      break;
             case (int)FolderType.Family:        FamilyFolder(moti);     break;
             case (int)FolderType.Stretcher:     StretcherFolder(moti);  break;
             case (int)FolderType.Line:          LineFolder(moti);       break;
@@ -242,13 +241,6 @@ public class MotiParamViewer : EditorWindow
     void MotiHitFolder(MotiController moti)
     {
         BoolTemplate("IsHitMoti", moti.MotiHit.IsMotiTrigger);
-    }
-
-    void InputFolder(MotiController moti)
-    {
-        BoolTemplate("IsTapping", moti.Input.IsTapping);
-        BoolTemplate("IsDragging", moti.Input.IsDraging);
-        BoolTemplate("IsOnMouse", moti.Input.IsOnMoti);
     }
 
     void FamilyFolder(MotiController moti)

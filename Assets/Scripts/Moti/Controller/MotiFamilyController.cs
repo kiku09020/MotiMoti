@@ -66,7 +66,7 @@ namespace Moti
         // 子を追加する
         public void SetChild()
         {
-            otherMoti = Instantiate(moti, InputChecker.MousePosWorld,
+            otherMoti = Instantiate(moti, moti.transform.position,
                                     Quaternion.identity, moti.Folder);      // 子のインスタンス化
 
             hasChild = true;

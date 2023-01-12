@@ -1,83 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-namespace Moti
+public class InputChecker : MonoBehaviour
 {
-	public class InputChecker : MonoBehaviour
+	/* 値 */
+	static Vector2 clickedPos;          // クリックした座標
+	static Vector2 clickedPosWorld;
+
+	static Vector2 mousePos;            // マウス位置(スクリーン座標)
+	static Vector2 mousePosWorld;       // マウス位置(ワールド座標)
+
+	/* プロパティ */
+	public static bool IsTapping { get; private set; }
+
+	public static float MouseDistance { get; private set; }
+	public static Vector3 MouseVector { get; private set; }
+
+    //-------------------------------------------------------------------
+    private void Awake()
+    {
+		clickedPos = Vector2.zero;
+		clickedPosWorld = Vector2.zero;
+		mousePos = Vector2.zero;
+		mousePosWorld = Vector2.zero;
+
+		IsTapping = false;
+		MouseDistance = 0;
+		MouseVector = Vector2.zero;
+    }
+
+    void Update()
 	{
-		/* フラグ */
-		bool isTapping;             // タップ中
-		bool isDraging;             // ドラッグ中(タップ中にマウスが動いているとき)
-		bool isOnMoti;              // マウスがもちの上にいるか
+		// クリック座標
+		if (Input.GetMouseButtonDown(0)) {
+			IsTapping = true;
 
-		/* 値 */
-		float mouseDistance;
+			clickedPos = Input.mousePosition;
+			clickedPosWorld = Camera.main.ScreenToWorldPoint(clickedPos);
+		}
 
-		static Vector2 clickedPos;          // クリックした座標
-		static Vector2 mousePos;            // マウス位置(スクリーン座標)
-		static Vector2 mousePosWorld;       // マウス位置(ワールド座標)
-
-		/* プロパティ */
-		public bool IsTapping => isTapping;
-		public bool IsDraging => isDraging;
-		public bool IsOnMoti => isOnMoti;
-
-		public static Vector2 MousePos => mousePos;
-		public static Vector2 MousePosWorld => mousePosWorld;
-		public float MouseDistance => mouseDistance;
-
-		//-------------------------------------------------------------------
-		void Update()
-		{
-			// マウス座標更新
+		// マウス座標更新
+        if (Input.GetMouseButton(0)) {
 			mousePos = Input.mousePosition;
 			mousePosWorld = Camera.main.ScreenToWorldPoint(mousePos);
 
-			mouseDistance = Vector2.Distance(mousePosWorld, transform.position);
+			MouseDistance = Vector2.Distance(clickedPosWorld,mousePosWorld);
+			MouseVector = mousePosWorld - clickedPosWorld;
+
+			Debug.DrawLine(clickedPosWorld,mousePosWorld);
+
+			print(MouseDistance);
 		}
 
-		//-------------------------------------------------------------------
-		/* EventTrigger用の関数 */
-
-		// ポインターが範囲内に入った時
-		public void PointerEnter()
-		{
-			isOnMoti = true;
-		}
-
-		// ポインターが範囲外に出たとき
-		public void PointerExit()
-		{
-			isOnMoti = false;
-		}
-
-		// タップした瞬間
-		public void TapDown()
-		{
-			isTapping = true;
-			clickedPos = mousePosWorld;         // クリックした座標の指定
-		}
-
-		// タップ離した瞬間
-		public void TapUp()
-		{
-			isTapping = false;
-			isDraging = false;
-		}
-
-		// ドラッグしている間
-		public void Drag()
-		{
-			isDraging = true;
-		}
-
-		// ドラッグ止めた時
-		public void DragEnd()
-		{
-			isDraging = false;
-		}
-
-		//-------------------------------------------------------------------
+		// 離した瞬間
+        if (Input.GetMouseButtonUp(0)) {
+			IsTapping = false;
+        }
 	}
+
+	//-------------------------------------------------------------------
 }

@@ -14,8 +14,6 @@ namespace Moti {
 		bool isLengthLimit;                                     // 長さ限界か
 		bool isLimitOnce;                                       // 限界点に到達した瞬間
 
-		bool isAngleLimit;
-
 		/* 座標 */
 		Vector3[] positions = new Vector3[2];					// 全ての座標
 
@@ -38,7 +36,6 @@ namespace Moti {
 
 		// 限界点
 		public bool IsLengthLimit => isLengthLimit;
-		public bool IsAngleLimit => isAngleLimit;
 
 		//-------------------------------------------------------------------
 		void Start()
@@ -86,7 +83,6 @@ namespace Moti {
 
 			if (moti.Family.HasChild) {
 				CheckLength();
-				CheckAngle();
 			}
 		}
 
@@ -122,16 +118,5 @@ namespace Moti {
 
 			Debug.DrawLine(ownPos, childPos,Color.black);
 		}
-
-		// 角度のチェック
-		void CheckAngle()
-        {
-			var anchorVec = Quaternion.Euler(0, 0, 90 * (int)moti.Ground.HitDir) * transform.right;		// 基準ベクトル
-			var cross = anchorVec.x * familyVec.y - anchorVec.y * familyVec.x;							// 外積
-			isAngleLimit = (cross == -1) ? true : false;                                                // 判定
-
-			print($"{isAngleLimit.ToString()} = {isAngleLimit}");
-			print(cross);
-        }
 	}
 }
