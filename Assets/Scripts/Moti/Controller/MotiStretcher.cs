@@ -20,7 +20,7 @@ namespace Moti
         [SerializeField] float moveSpeed;
         [SerializeField] Ease goingEaseType;            // 移動イージング
         [SerializeField,Range(0.5f,2)] 
-        float moveSensitivity;         // 移動感度
+        float moveSensitivity;                          // 移動感度
 
         /* フラグ */
         bool isStretching;                              // 伸びてるか
@@ -89,7 +89,7 @@ namespace Moti
         {
             var child = moti.Family.OtherMoti;
 
-            if (child &&InputChecker.IsTapping && isStretching) {
+            if (child && InputChecker.IsTapping && isStretching) {
                 var targetPos= moti.transform.position + (InputChecker.MouseVector * moveSensitivity);          // 通常移動
 
                 if (moti.LineCol.Ray(child.transform.position, moti.transform.position)) {
@@ -100,7 +100,7 @@ namespace Moti
                     child.transform.position = targetPos;
 
                     // 指定の長さを超えたら、円形の移動制限をかける
-                    if (InputChecker.MouseDistance > moti.Line.StretchableLenth) {
+                    if ((InputChecker.MouseDistance * moveSensitivity) > moti.Line.StretchableLenth) {
                         var offset = child.transform.position - moti.transform.position;
                         var clamoedPos = Vector2.ClampMagnitude(offset, moti.Line.StretchableLenth);
 

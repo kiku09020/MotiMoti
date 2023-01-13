@@ -198,6 +198,7 @@ MonoBehaviour:
   stageHitLayer:
     serializedVersion: 2
     m_Bits: 256
+  fixingLength: 7.5
 --- !u!1 &8129661351492857310
 GameObject:
   m_ObjectHideFlags: 0

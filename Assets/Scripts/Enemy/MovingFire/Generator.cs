@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace MovingFire {
     public class Generator : GeneratorBase {
-        protected override void Awake()
-        {
-            
 
-            base.Awake();
+        [SerializeField] float genRangeX;
+
+        protected override void Generate()
+        {
+            base.Generate(genRangeX);
         }
     }
 }

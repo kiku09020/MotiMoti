@@ -78,4 +78,12 @@ public class GeneratorBase : MonoBehaviour
         var obj = Instantiate(generatedObj, genPos, Quaternion.identity, parent);   // インスタンス化
         genObjs.Add(obj);                                                           // リストに追加
 	}
+
+    protected virtual void Generate(float xRange)
+    {
+        SetGeneratePosition(xRange);
+
+        var obj = Instantiate(generatedObj, genPos, Quaternion.identity, parent);
+        genObjs.Add(obj);
+    }
 }
