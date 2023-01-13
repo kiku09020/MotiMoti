@@ -90,14 +90,22 @@ namespace Moti
             var child = moti.Family.OtherMoti;
 
             if (child &&InputChecker.IsTapping && isStretching) {
-                child.transform.position = moti.transform.position + (InputChecker.MouseVector * moveSensitivity);          // 通常移動
+                var targetPos= moti.transform.position + (InputChecker.MouseVector * moveSensitivity);          // 通常移動
 
-                // 指定の長さを超えたら、円形の移動制限をかける
-                if (InputChecker.MouseDistance > moti.Line.StretchableLenth) {
-                    var offset = child.transform.position - moti.transform.position;
-                    var clamoedPos = Vector2.ClampMagnitude(offset, moti.Line.StretchableLenth);
+                if (moti.LineCol.Ray(child.transform.position, moti.transform.position)) {
+                    child.transform.position = moti.LineCol.HitPoint;
+                }
 
-                    child.transform.position = clamoedPos + (Vector2)moti.transform.position;       // 制限移動
+                else {
+                    child.transform.position = targetPos;
+
+                    // 指定の長さを超えたら、円形の移動制限をかける
+                    if (InputChecker.MouseDistance > moti.Line.StretchableLenth) {
+                        var offset = child.transform.position - moti.transform.position;
+                        var clamoedPos = Vector2.ClampMagnitude(offset, moti.Line.StretchableLenth);
+
+                        child.transform.position = clamoedPos + (Vector2)moti.transform.position;       // 制限移動
+                    }
                 }
             }
         }

@@ -19,16 +19,14 @@ namespace Moti
             moti = transform.parent.GetComponent<MotiController>();
         }
 
-        public bool Ray(Vector3 targetPos)
+        public bool Ray(Vector3 originPos, Vector3 targetPos)
         {
             if (moti.Family.OtherMoti) {
-                var pos = moti.transform.position;
+                var vec = targetPos - originPos ;
+                var ray = new Ray2D(originPos, vec);
 
-                var vec = targetPos - pos;
-                var ray = new Ray2D(pos, vec);
-
-                Debug.DrawLine(pos, targetPos,Color.yellow);
-                var hit = Physics2D.Raycast(pos, ray.direction, vec.magnitude, stageHitLayer);
+                Debug.DrawLine(originPos, targetPos,Color.yellow);
+                var hit = Physics2D.Raycast(ray.origin, ray.direction, vec.magnitude, stageHitLayer);
 
                 if (hit) {
                     Hit(hit);
@@ -37,7 +35,7 @@ namespace Moti
 
                 else {
                     IsHit = false;
-                    HitPoint = moti.transform.position;
+                    HitPoint = Vector2.zero;
                 }
             }
 
@@ -46,7 +44,10 @@ namespace Moti
 
         void Hit(RaycastHit2D hit)
         {
-            HitPoint = hit.point;
+            if (!IsHit) {
+                HitPoint = hit.point;
+            }
+
             IsHit = true;
         }
     }

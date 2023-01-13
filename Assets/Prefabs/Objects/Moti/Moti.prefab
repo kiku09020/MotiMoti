@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2469713599609207019}
   - component: {fileID: 651662752296048515}
   - component: {fileID: 3521943474469870455}
+  - component: {fileID: 8970910977144046040}
   m_Layer: 6
   m_Name: StretchedMotiLine
   m_TagString: Untagged
@@ -182,6 +183,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stretchableLength: 2.75
+--- !u!114 &8970910977144046040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6404376888367541994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8709ff872eb0d8f49b547d2069f2ddeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageHitLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &8129661351492857310
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,7 +44,7 @@ namespace Moti
 
 		protected override void HitExit(Collision2D collision)
 		{
-           
+            hitPoint = transform.parent.position;
         }
     }
 }
