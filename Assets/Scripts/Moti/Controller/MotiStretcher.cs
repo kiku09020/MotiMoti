@@ -61,7 +61,7 @@ namespace Moti
         // 分裂のドラッグ操作
         void DivisionDrag()
         {
-            if (InputChecker.IsTapping && moti.Ground.IsGround) {
+            if (InputChecker.IsTapping && moti.Ground.IsHit) {
                 if (!isStretching && moti.Family.IsSingle) {
                     Division();         // 分裂した瞬間
                 }
@@ -89,7 +89,7 @@ namespace Moti
         {
             var child = moti.Family.OtherMoti;
 
-            if (child && !child.Ground.IsGround && isStretching) {
+            if (child &&InputChecker.IsTapping && isStretching) {
                 child.transform.position = moti.transform.position + (InputChecker.MouseVector * moveSensitivity);          // 通常移動
 
                 // 指定の長さを超えたら、円形の移動制限をかける

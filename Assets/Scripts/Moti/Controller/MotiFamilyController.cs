@@ -34,6 +34,7 @@ namespace Moti
         void InitChild()
         {
             otherMoti.Line.Init();
+            otherMoti.Ground.Init();
         }
 
         public void FamilyUpdate()

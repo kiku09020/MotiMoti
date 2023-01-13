@@ -12,12 +12,13 @@ namespace Moti
         public Transform Folder { get; private set; }
 
         // controllers
-        public Rigidbody2D RB { get; private set; }
+        
 
         public MotiFamilyController Family { get; private set; }
         public MotiStretcher Stretcher { get; private set; }
         public MotiUniter Uniter { get; private set; }
         public MotiLineController Line { get; private set; }
+        public MotiLineCollision LineCol { get; private set; }
 
         // checkers
         public GroundHitChecker Ground { get; private set; }
@@ -44,7 +45,7 @@ namespace Moti
             Folder = GameObject.Find("Motis").transform;
 
             /* コンポーネント取得 */
-            RB = GetComponent<Rigidbody2D>();
+            
 
             MotiHit = checkerObj.GetComponent<MotiHitChecker>();
             Ground = checkerObj.GetComponent<GroundHitChecker>();
@@ -58,7 +59,9 @@ namespace Moti
             StateCtrl = new StateController(this);
             Stretcher = GetComponent<MotiStretcher>();
             Uniter = GetComponent<MotiUniter>();
+
             Line = lineObj.GetComponent<MotiLineController>();
+            LineCol = lineObj.GetComponent<MotiLineCollision>();
 
             /* 初期化 */
             StateCtrl.Init(StateCtrl.NormalState);     // 初期状態の指定
@@ -77,10 +80,6 @@ namespace Moti
 
             Line.LineUpdate();                          // ライン
             Stretcher.StretchingUpdate();               // 伸び
-
-            Debug.DrawLine(transform.position, transform.position + (Vector3)Ground.HitVector, Color.blue);
-
-            Debug.DrawLine(transform.position, transform.position + transform.right * 2,Color.red);
         }
 
         //-------------------------------------------------------------------

@@ -8,11 +8,9 @@ namespace Moti
     public class MotiHitChecker : HitCheckerTrigger
     {
         // もち
-        bool isMotiTrigger;         // 範囲内に他のもちがいるか
         MotiController otherMoti;
 
         /* プロパティ */
-        public bool IsMotiTrigger => isMotiTrigger;
         public MotiController OtherMoti => otherMoti;
 
         //-------------------------------------------------------------------
@@ -21,19 +19,16 @@ namespace Moti
         {
             base.Awake();
 
-            isMotiTrigger = false;
             otherMoti = null;
         }
 
         protected override void HitEnter(Collider2D collision)
 		{
             otherMoti = collision.gameObject.GetComponent<MotiController>();
-            isMotiTrigger = true;
         }
 
 		protected override void HitExit(Collider2D collision)
 		{
-            isMotiTrigger = false;
             otherMoti = null;
         }
 	}

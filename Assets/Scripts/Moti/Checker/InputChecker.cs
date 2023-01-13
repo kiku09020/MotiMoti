@@ -18,6 +18,8 @@ public class InputChecker : MonoBehaviour
 	public static float MouseDistance { get; private set; }
 	public static Vector3 MouseVector { get; private set; }
 
+	public static Vector3 MouseMoveAmount { get; private set; }
+
     //-------------------------------------------------------------------
     private void Awake()
     {
@@ -49,9 +51,11 @@ public class InputChecker : MonoBehaviour
 			MouseDistance = Vector2.Distance(clickedPosWorld,mousePosWorld);
 			MouseVector = mousePosWorld - clickedPosWorld;
 
-			Debug.DrawLine(clickedPosWorld,mousePosWorld);
+			var moveX = Input.GetAxis("Mouse X");
+			var moveY = Input.GetAxis("Mouse Y");
+			MouseMoveAmount = new Vector2(moveX, moveY);
 
-			print(MouseDistance);
+			Debug.DrawLine(clickedPosWorld,mousePosWorld);
 		}
 
 		// 離した瞬間

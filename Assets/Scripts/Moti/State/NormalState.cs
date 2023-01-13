@@ -35,20 +35,20 @@ namespace Moti
             }
 
             // 合体状態に遷移
-            else if (Moti.MotiHit.IsMotiTrigger && Moti.Family.HasChild ) {
+            else if (Moti.MotiHit.IsHit && Moti.Family.HasChild ) {
                 state.StateTransition(state.UnitedState);
             }
 
             // 移動状態(親→子　地上)
             else if (Moti.Family.HasChild) {
-                if (Moti.Ground.IsGround && child.Ground.IsGround) {
+                if (Moti.Ground.IsHit && child.Ground.IsHit) {
                     state.StateTransition(state.GoingState);
                 }
             }
 
             // 移動状態(子→親　空中)
             else if (Moti.Family.HasParent) {
-                if (!Moti.Ground.IsGround && !InputChecker.IsTapping) {
+                if (!Moti.Ground.IsHit && !InputChecker.IsTapping) {
                     Moti.StateCtrl.StateTransition(state.GoingState);
                 }
             }
