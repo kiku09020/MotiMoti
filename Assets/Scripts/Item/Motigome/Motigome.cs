@@ -15,18 +15,16 @@ namespace Motigome {
         static int getCount;
 
         public StateController State { get; private set; }
-
-        public Motigome()
-        {
-            State = new StateController(this);
-        }
+        public MotigomeMoving Moving { get; private set; }
 
         //-------------------------------------------------------------------
         void Awake()
         {
-            getCount = 0;
+            State = new StateController(this);
+            Moving = GetComponent<MotigomeMoving>();
 
-            State.Init(State.Idle);
+            getCount = 0;
+            State.Init(State.Drop);
         }
 
         void FixedUpdate()
@@ -47,6 +45,7 @@ namespace Motigome {
             }
         }
 
+        //-------------------------------------------------------------------
         // ÉhÉçÉbÉvÇ≥ÇÍÇΩÇ∆Ç´ÇÃìÆçÏ
         public void Dropped()
         {
@@ -62,7 +61,7 @@ namespace Motigome {
 
         void OnComp()
         {
-            State.StateTransition(State.Idle);
+            State.StateTransition(State.Moving);
         }
     }
 }
