@@ -92,6 +92,7 @@ namespace Moti
             if (child && InputChecker.IsTapping && isStretching) {
                 var targetPos= moti.transform.position + (InputChecker.MouseVector * moveSensitivity);          // 通常移動
 
+                // Ray当たったとこに固定
                 if (moti.LineCol.Ray(child.transform.position, moti.transform.position)) {
                     child.transform.position = moti.LineCol.HitPoint;
                 }

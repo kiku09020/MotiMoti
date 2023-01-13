@@ -32,8 +32,6 @@ namespace MovingFire {
 
             state = new StateController(this);
             state.InitState(state.Waiting);
-
-            print(motigomeCnt);
         }
 
         void FixedUpdate()

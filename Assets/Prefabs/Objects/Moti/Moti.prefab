@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6de615093c493429d2e1a8f9df24da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stretchableLength: 2.75
+  stretchableLength: 2.5
 --- !u!114 &8970910977144046040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +198,6 @@ MonoBehaviour:
   stageHitLayer:
     serializedVersion: 2
     m_Bits: 256
-  fixingLength: 7.5
 --- !u!1 &8129661351492857310
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +736,7 @@ MonoBehaviour:
   minSize: 0.25
   divisionLength: 0.3
   fixingTime: 0.1
-  moveSpeed: 6
+  moveSpeed: 8
   goingEaseType: 26
   moveSensitivity: 0.5
 --- !u!114 &8129661352410282750

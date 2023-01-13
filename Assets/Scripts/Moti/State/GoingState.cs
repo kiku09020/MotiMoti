@@ -17,19 +17,18 @@ namespace Moti
         public void StateEnter()
         {
             Moti.Ground.ColEnabled = false;
-            CameraController.Instance.Chase(Moti.Family.OtherMoti.gameObject);
 
             if (Moti.Family.HasChild) {
                 Moti.Stretcher.GoingMove(Moti.Family.OtherMoti);
+
+                // カメラ追尾
+                if (!GameManager.isResult) {
+                    CameraController.Instance.Chase(Moti.Family.OtherMoti);
+                }
             }
 
             else if (Moti.Family.HasParent) {
                 Moti.Stretcher.GoingMove(Moti.Family.OtherMoti);
-            }
-
-            // 敵に触れた時
-            if (Moti.EnemyHit.IsHit) {
-                Destroy(Moti.EnemyHit.HitEnemy);
             }
         }
 
@@ -50,7 +49,7 @@ namespace Moti
         public void CheckHit()
         {
             if (Moti.EnemyHit.IsHit && !GameManager.isResult) {
-                Moti.EnemyHit.HitEnemy.Killed();
+                Moti.EnemyHit.HitEnemy.Killed();        // ドロップ
             }
         }
     }

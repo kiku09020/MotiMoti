@@ -19,7 +19,7 @@ namespace Moti {
         //-------------------------------------------------------------------
         public void StateEnter()
         {
-
+           
         }
 
         public void StateUpdate()

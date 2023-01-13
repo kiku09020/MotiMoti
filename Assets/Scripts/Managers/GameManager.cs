@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] float zoomSize = 3;
     [SerializeField] Ease easeType;
 
+    [Header("Result")]
+    [SerializeField] float timeStop;
+
     bool isResultOnce;
 
     /* コンポーネント取得用 */
@@ -49,17 +52,35 @@ public class GameManager : MonoBehaviour
 	{
         if (isResult) {
             if (!isResultOnce) {
-                var moti = GameObject.Find("Moti");
+                var moti = GameObject.Find("Moti").GetComponent<Moti.MotiController>();
 
-                MainFireController.enable = false;          // 火止める
-                MotiDistanceManager.CheckHighScore();       // ハイスコア確認
-                CanvasManager.ActivateResultUI(true);       // UI表示
-                ResultTexts.Instance.SetText();             // テキストセット
+                // カメラズーム
+                CameraController.Instance.ZoomIn(moti.Family.OtherMoti.gameObject,
+                                                zoomDuration, zoomSize, easeType); 
 
-                CameraController.Instance.ZoomIn(moti, zoomDuration, zoomSize, easeType); // カメラズーム
-
-                isResultOnce = true;
+                StartCoroutine(TimeStop(timeStop));
             }
         }
+    }
+
+    void ResultFunc()
+    {
+        var moti = GameObject.Find("Moti");
+        CameraController.Instance.ZoomOut(moti);
+
+        MainFireController.enable = false;          // 火止める
+        MotiDistanceManager.CheckHighScore();       // ハイスコア確認
+        CanvasManager.ActivateResultUI(true);       // UI表示
+        ResultTexts.Instance.SetText();             // テキストセット
+        isResultOnce = true;
+    }
+
+    IEnumerator TimeStop(float time)
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(time);
+        Time.timeScale = 1;
+
+        ResultFunc();
     }
 }

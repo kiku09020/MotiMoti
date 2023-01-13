@@ -98,10 +98,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: MovingFire
   minMoveTime: 1.5
-  maxMoveTime: 2
+  maxMoveTime: 3
   movableRangeX: 3.5
   moveEaseType: 4
-  waitTime: 0.5
+  waitTime: 0.25
 --- !u!61 &6310455911393043798
 BoxCollider2D:
   m_ObjectHideFlags: 0

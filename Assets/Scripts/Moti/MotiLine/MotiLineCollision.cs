@@ -7,7 +7,6 @@ namespace Moti
     public class MotiLineCollision : MonoBehaviour
     {
         [SerializeField] LayerMask stageHitLayer;        // ステージのみに当たり判定チェックする
-        [SerializeField] float fixingLength;            // 固定する長さの閾値
 
         MotiController moti;
 
@@ -29,7 +28,7 @@ namespace Moti
                 Debug.DrawLine(originPos, targetPos,Color.yellow);
                 var hit = Physics2D.Raycast(ray.origin, ray.direction, vec.magnitude, stageHitLayer);
 
-                if (hit && InputChecker.MouseDistance < fixingLength) {
+                if (hit) {
                     Hit(hit);
                     return true;
                 }

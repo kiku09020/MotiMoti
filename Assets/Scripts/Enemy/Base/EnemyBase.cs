@@ -26,7 +26,16 @@ public class EnemyBase : MonoBehaviour
     // Ç‚ÇÁÇÍÇÈÇ∆Ç´ÇÃèàóù
     public virtual void Killed()
     {
+        StartCoroutine(TimeStopCoruoutine());
+    } 
+
+    IEnumerator TimeStopCoruoutine()
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(0.1f);
+        Time.timeScale = 1;
+
         MotigomeDropper.Drop(motigomeCnt, transform.position);
         Destroy(this.gameObject);
-    } 
+    }
 }

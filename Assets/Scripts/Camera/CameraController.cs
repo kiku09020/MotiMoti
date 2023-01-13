@@ -6,7 +6,8 @@ using DG.Tweening;
 public class CameraController : Singleton<CameraController>
 {
 	[Header("Camera")]
-	[SerializeField] Camera zoomingCamera;	// ズームするカメラ
+	[SerializeField] Camera zoomingCamera;  // ズームするカメラ
+	[SerializeField] float offset;
 
 	//-------------------------------------------------------------------
 	private void Awake()
@@ -16,23 +17,34 @@ public class CameraController : Singleton<CameraController>
 
 	//-------------------------------------------------------------------
 	// 追尾
-	public void Chase(GameObject target, float duration = 1, Ease easeType = Ease.Unset)
+	public void Chase(Moti.MotiController moti, float duration = 1, Ease easeType = Ease.Unset)
     {
-		transform.DOMoveY(target.transform.position.y, duration).SetEase(easeType);
+		var position = Vector2.zero;
+
+        if (moti.Family.IsSingle) {
+			position = moti.transform.position;
+        }
+
+        else {
+			position = Vector2.Lerp(moti.transform.position, moti.Family.OtherMoti.transform.position, 0.5f);
+        }
+		transform.DOMoveY(position.y + offset, duration).SetEase(easeType);
+
 	}
 
 	//-------------------------------------------------------------------
 	// ズーム
 	public void ZoomIn(GameObject target, float duration = 0.5f, float targetZoomSize = 3,Ease easeType = Ease.Unset)
 	{
-		transform.DOMove(target.transform.position, duration).SetEase(easeType);			// オブジェクトの位置に移動
-		zoomingCamera.DOOrthoSize(targetZoomSize, duration).SetEase(easeType);				// サイズ変更
+		DOTween.Sequence()	.Append(transform.DOMove(target.transform.position, duration))		// オブジェクトの位置に移動
+							.Join(zoomingCamera.DOOrthoSize(targetZoomSize, duration))			// サイズ変更
+							.SetUpdate(true).SetEase(easeType);			
 	}
 
 	// ズームアウト
-	public void ZoomOut(float duration = 0.5f, float targetZoomSize = 3, Ease easeType = Ease.Unset)
+	public void ZoomOut(GameObject target, float duration = 0.5f, float targetZoomSize = 3, Ease easeType = Ease.Unset)
     {
-		transform.DOMove(Vector2.zero, duration).SetEase(easeType);
+		transform.DOMove(target.transform.position, duration).SetEase(easeType);
 		zoomingCamera.DOOrthoSize(targetZoomSize, duration).SetEase(easeType);
     }
 
