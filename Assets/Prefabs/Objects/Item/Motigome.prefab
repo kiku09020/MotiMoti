@@ -116,7 +116,7 @@ MonoBehaviour:
   dropMoveTime: 0.5
   dropMoveSize: 2
   dropMoveEaseType: 21
-  power: 3
+  power: 1
 --- !u!114 &2825692071184829455
 MonoBehaviour:
   m_ObjectHideFlags: 0

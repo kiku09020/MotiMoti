@@ -15,6 +15,11 @@ public class MotiPowerUp : Singleton<MotiPowerUp> {
     public float timerValue { get; private set; }            // timer/timerLimit
 
     //-------------------------------------------------------------------
+    public void Init()
+    {
+        IsPowerUp = false;
+	}
+
     public void PowerUpdate()
     {
         CheckPower();

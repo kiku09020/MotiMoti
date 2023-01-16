@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Moti
 {
-    public class UnitingState : IState
+    public class UnitingState : MotiState
     {
         /* 値 */
         public MotiController Moti { get; set; }

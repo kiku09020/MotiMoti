@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Moti {
-    public class StretchingState : IState
+    public class StretchingState : MotiState
     {
         /* 値 */
         public MotiController Moti { get; set; }

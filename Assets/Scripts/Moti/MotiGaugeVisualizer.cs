@@ -21,6 +21,7 @@ public class MotiGaugeVisualizer : Singleton<MotiGaugeVisualizer>
     void Awake()
     {
         MotiGaugeManager.Instance.Init();
+        MotiPowerUp.Instance.Init();
 
         dispPower = 0;
         targetPower = 0;

@@ -2,21 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IState : MonoBehaviour
+namespace Spines
 {
-
-
-//-------------------------------------------------------------------
-    void Awake()
+    public interface IState : IStateBase
     {
-        
+        public SpinesController Spine{ get; set; }
     }
-
-    void FixedUpdate()
-    {
-        
-    }
-
-//-------------------------------------------------------------------
-
 }

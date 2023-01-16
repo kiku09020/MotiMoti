@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaitingState : MonoBehaviour
+namespace Spines
 {
-
-
-//-------------------------------------------------------------------
-    void Awake()
+    public class WaitingState : IState
     {
-        
+        public SpinesController Spine { get; set; }
+
+        public void StateEnter()
+        {
+
+        }
+
+        public void StateUpdate()
+        {
+
+        }
+
+        public void StateExit()
+        {
+
+        }
     }
-
-    void FixedUpdate()
-    {
-        
-    }
-
-//-------------------------------------------------------------------
-
 }

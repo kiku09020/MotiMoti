@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Moti
 {
-    public class GoingState : MonoBehaviour, IState
+    public class GoingState : MonoBehaviour, MotiState
     {
         public MotiController Moti { get; set; }
 

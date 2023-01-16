@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackingState : MonoBehaviour
+namespace Spines
 {
-
-
-//-------------------------------------------------------------------
-    void Awake()
+    public class AttackingState : IState
     {
-        
+        public SpinesController Spine{ get; set; }
+
+        public void StateEnter()
+        {
+            
+		}
+
+        public void StateUpdate()
+        {
+            
+		}
+
+        public void StateExit()
+        {
+
+		}
     }
-
-    void FixedUpdate()
-    {
-        
-    }
-
-//-------------------------------------------------------------------
-
 }

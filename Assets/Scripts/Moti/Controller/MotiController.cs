@@ -64,7 +64,7 @@ namespace Moti
             LineCol = lineObj.GetComponent<MotiLineCollision>();
 
             /* 初期化 */
-            StateCtrl.Init(StateCtrl.NormalState);     // 初期状態の指定
+            StateCtrl.StateInit(StateCtrl.NormalState);     // 初期状態の指定
         }
 
         // 子の初期化
@@ -76,7 +76,7 @@ namespace Moti
         void FixedUpdate()
         {
             Family.FamilyUpdate();                      // 親子関係
-            StateCtrl.StateUpdate();                 // 状態
+            StateCtrl.NowStateUpate();                 // 状態
 
             Line.LineUpdate();                          // ライン
             Stretcher.StretchingUpdate();               // 伸び

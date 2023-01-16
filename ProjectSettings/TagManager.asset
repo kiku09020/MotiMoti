@@ -9,6 +9,7 @@ TagManager:
   - Moti
   - Enemy
   - Motigome
+  - Stage_Damage
   layers:
   - Default
   - TransparentFX

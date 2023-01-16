@@ -3,29 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Spines {
-    public class StateController : MonoBehaviour {
-        GroundSpinesController spine;
+    public class StateController : StateControllerBase {
+        SpinesController spine;
 
-        IState nowState;
-
-        private void Awake()
-        {
-            spine = GetComponent<GroundSpinesController>();
-        }
-
-        public void InitState()
-        {
-
-        }
-
-        public void StateUpdate()
-        {
-
-        }
-
-        public void TransitionState()
-        {
-
-        }
-    }
+		private void Awake()
+		{
+			spine = GetComponent<SpinesController>();
+		}
+	}
 }

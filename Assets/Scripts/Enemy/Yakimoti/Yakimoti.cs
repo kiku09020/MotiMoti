@@ -31,12 +31,12 @@ namespace Yakimoti {
             SetMoveTime();
 
             state = new StateController(this);
-            state.InitState(state.Waiting);
+            state.StateInit(state.Waiting);
         }
 
         void FixedUpdate()
         {
-            state.StateUpdate();
+            state.NowStateUpate();
         }
 
         //-------------------------------------------------------------------

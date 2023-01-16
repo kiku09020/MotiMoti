@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
         /* 初期化 */
         isResult = false;
-
+        isResultOnce = false;
 
         bgm.Play((int)BGM.AudioName.bgm2);
     }
@@ -58,9 +58,9 @@ public class GameManager : MonoBehaviour
                     // カメラズーム
                     CameraController.Instance.ZoomIn(moti.Family?.OtherMoti.gameObject,
                                                     zoomDuration, zoomSize, easeType);
-
-                    StartCoroutine(TimeStop(timeStop));
                 }
+
+                StartCoroutine(TimeStop(timeStop));
             }
         }
     }
