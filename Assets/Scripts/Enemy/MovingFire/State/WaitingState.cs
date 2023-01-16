@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MovingFire {
+namespace Yakimoti {
 	public class WaitingState : IState {
-		public MovingFire Fire { get; set; }
+		public Yakimoti Fire { get; set; }
 
-		public WaitingState(MovingFire fire)
+		public WaitingState(Yakimoti fire)
 		{
 			Fire = fire;
 		}

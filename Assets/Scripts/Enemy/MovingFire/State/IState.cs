@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MovingFire {
+namespace Yakimoti {
 	public interface IState  {
-		public MovingFire Fire { get; set; }
+		public Yakimoti Fire { get; set; }
 
 		public void StateEnter();
 		public void StateUpdate();

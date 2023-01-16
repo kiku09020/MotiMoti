@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class MotiGaugeManager : MonoBehaviour
 {
+    // パワー
     static float nowPower;                              // 現在のパワー
-    static int comboCount;                              // コンボ数
     public static readonly int maxPower = 100;          // パワー最大値
-    public static readonly int maxComboCount = 10;      // 最大コンボ数
 
-    static public float NowPower => nowPower;
-    static public int ComboCount => comboCount;
+
+    // コンボ
+    static int comboCount;                              // コンボ数
+    public static readonly int maxComboCount = 10;      // 最大コンボ数
+    static float comboTimer;                            // タイマー
+    static readonly float comboTimerLimit = 3;          // 制限時間
+
+
+    /* プロパティ */
+    public static float NowPower => nowPower;
+    public static int ComboCount => comboCount;
+
+    // フラグ
+    public static bool IsMaxGauge { get; private set; } // ゲージ満タンか
 
 //-------------------------------------------------------------------
     public static void Init()
@@ -20,12 +31,36 @@ public class MotiGaugeManager : MonoBehaviour
 	}
 
 //-------------------------------------------------------------------
+    public static void MotiGaugeUpdate()
+    {
+        // 満タンチェック
+        IsMaxGauge = (nowPower >= maxPower) ? true : false;
+
+        ComboTimer();
+    }
+
+    // コンボタイマー
+    static void ComboTimer()
+    {
+        comboTimer += Time.deltaTime;
+
+        // 制限時間過ぎたとき
+        if (comboTimer > comboTimerLimit) {
+            comboTimer = 0;
+            ResetComboCount();      // コンボ数リセット
+        }
+    }
+
     // コンボ数加算
     public static void AddComboCount()
 	{
 		if (comboCount < maxComboCount) {
             comboCount++;
 		}
+
+        comboTimer = 0;     // コンボタイマーリセット
+
+        MotiGaugeVisualizer.Instance.DispCombo();
 	}
 
     // コンボ数のリセット
@@ -46,5 +81,7 @@ public class MotiGaugeManager : MonoBehaviour
 		if (nowPower > maxPower) {
             nowPower = maxPower;
 		}
-	}
+
+        MotiGaugeVisualizer.Instance.SetDispPower();
+    }
 }

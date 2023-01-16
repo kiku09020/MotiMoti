@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MovingFire {
+namespace Yakimoti {
 	public class MovingState : IState {
-		public MovingFire Fire { get; set; }
+		public Yakimoti Fire { get; set; }
 
-		public MovingState(MovingFire fire)
+		public MovingState(Yakimoti fire)
 		{
 			Fire = fire;
 		}
@@ -14,7 +14,6 @@ namespace MovingFire {
 		public void StateEnter()
 		{
 			Fire.SetTarget();
-			Fire.SetMoveTime();
 			Fire.Move();
 		}
 

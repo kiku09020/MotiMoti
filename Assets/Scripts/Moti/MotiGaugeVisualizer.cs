@@ -11,7 +11,8 @@ public class MotiGaugeVisualizer : Singleton<MotiGaugeVisualizer>
     [SerializeField] Ease easeType;         // イージングタイプ
 
     [Header("UI")]
-    [SerializeField] Image powerImage;      // 画像
+    [SerializeField] Image powerImage;      // ゲージ画像
+    [SerializeField] Text comboText;        // コンボテキスト
 
     static float dispPower;         // 表示
     static float targetPower;       // 目標
@@ -27,7 +28,9 @@ public class MotiGaugeVisualizer : Singleton<MotiGaugeVisualizer>
 
     void FixedUpdate()
     {
+        MotiGaugeManager.MotiGaugeUpdate();
         DispPower();
+        DispCombo();
     }
 
 //-------------------------------------------------------------------
@@ -47,6 +50,17 @@ public class MotiGaugeVisualizer : Singleton<MotiGaugeVisualizer>
 	{
         targetPower = MotiGaugeManager.NowPower / 100f;
 	}
+
+    // 表示コンボセット(コンボ加算時)
+    public void DispCombo()
+    {
+        if (MotiGaugeManager.ComboCount > 1) {
+            comboText.text = $"×{MotiGaugeManager.ComboCount}";
+        }
+        else {
+            comboText.text = "";
+        }
+    }
 
     // パワーの表示
     void DispPower()

@@ -10,7 +10,7 @@ namespace Motigome {
         [SerializeField] float dropMoveSize;        // ドロップサイズ
         [SerializeField] Ease dropMoveEaseType;     // ドロップイージング
 
-        [Header("Powere")] 
+        [Header("Power")] 
         [SerializeField] float power;
         static int getCount;
 
@@ -39,7 +39,6 @@ namespace Motigome {
                 getCount++;
 
                 MotiGaugeManager.AddPower(power);
-                MotiGaugeVisualizer.Instance.SetDispPower();
 
                 Destroy(gameObject);
             }

@@ -499,6 +499,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3168375166664522010, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
 --- !u!114 &1332931593 stripped
@@ -668,6 +672,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162282d4d7f44d6469df899d578dfa81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1658813873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3168375166664522010, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
+  m_PrefabInstance: {fileID: 1331766647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1738100227 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3702499093370483141, guid: 3fb191e690954874298190bff4f1e535, type: 3}
@@ -812,6 +827,10 @@ PrefabInstance:
       propertyPath: easeTime
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6862303518021444473, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: comboText
+      value: 
+      objectReference: {fileID: 1658813873}
     - target: {fileID: 6862303518021444473, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
       propertyPath: powerImage
       value: 

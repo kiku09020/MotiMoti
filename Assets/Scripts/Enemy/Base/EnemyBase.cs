@@ -35,7 +35,8 @@ public class EnemyBase : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.1f);
         Time.timeScale = 1;
 
-        MotigomeDropper.Drop(motigomeCnt, transform.position);
+        MotiGaugeManager.AddComboCount();
+        MotigomeDropper.Drop(motigomeCnt * MotiGaugeManager.ComboCount, transform.position);
         Destroy(this.gameObject);
     }
 }

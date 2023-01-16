@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace MovingFire {
+namespace Yakimoti {
     public class Generator : GeneratorBase {
 
         [SerializeField] float genRangeX;

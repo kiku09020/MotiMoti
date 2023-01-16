@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-namespace MovingFire {
-    public class MovingFire : EnemyBase {
+namespace Yakimoti {
+    public class Yakimoti : EnemyBase {
         [Header("moveTime")]
         [SerializeField] float minMoveTime;
         [SerializeField] float maxMoveTime;
@@ -13,8 +13,8 @@ namespace MovingFire {
         [Header("Move")]
         [SerializeField] float movableRangeX;       // X軸の可動範囲
         [SerializeField] Ease moveEaseType;         // 移動イージング
-        Vector2 targetPos;  // 目標座標
-        float xDir;       // 進行方向
+        Vector2 targetPos;                          // 目標座標
+        float xDir;                                 // 進行方向
 
         [Header("Wait")]
         [SerializeField] float waitTime;            // 待機時間
@@ -27,7 +27,7 @@ namespace MovingFire {
         {
             base.Awake();
 
-            xDir = 1;
+            xDir = Expansion.GetRandomDirect();     // 方向ランダムにする
             SetMoveTime();
 
             state = new StateController(this);

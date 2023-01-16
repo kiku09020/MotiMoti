@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MovingFire {
+namespace Yakimoti {
     public class StateController {
 
         public IState NowState { get; private set; }
@@ -12,7 +12,7 @@ namespace MovingFire {
 		public MovingState Moving { get; }
 
         //-------------------------------------------------------------------
-        public StateController(MovingFire fire)
+        public StateController(Yakimoti fire)
 		{
 			Waiting = new WaitingState(fire);
 			Moving = new MovingState(fire);
