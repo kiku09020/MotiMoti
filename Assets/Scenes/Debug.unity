@@ -815,6 +815,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1370007218013572079, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: easeTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370007218013572079, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: easeType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370007218013572079, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: comboText
+      value: 
+      objectReference: {fileID: 1658813873}
+    - target: {fileID: 1370007218013572079, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: powerImage
+      value: 
+      objectReference: {fileID: 1332931593}
+    - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: targetMoti
+      value: 
+      objectReference: {fileID: 1435501331}
+    - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: powerUpTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6372698635206549189, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
       propertyPath: moti
       value: 

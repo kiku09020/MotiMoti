@@ -28,7 +28,8 @@ public class MotiGaugeVisualizer : Singleton<MotiGaugeVisualizer>
 
     void FixedUpdate()
     {
-        MotiGaugeManager.MotiGaugeUpdate();
+        MotiGaugeManager.Instance.MotiGaugeUpdate();
+        MotiPowerUp.Instance.PowerUpdate();
         DispPower();
         DispCombo();
     }

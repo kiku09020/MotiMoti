@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MotiGaugeManager : MonoBehaviour
+public class MotiGaugeManager : Singleton<MotiGaugeManager>
 {
     // パワー
     static float nowPower;                              // 現在のパワー
@@ -11,9 +11,9 @@ public class MotiGaugeManager : MonoBehaviour
 
     // コンボ
     static int comboCount;                              // コンボ数
-    public static readonly int maxComboCount = 10;      // 最大コンボ数
+    [SerializeField] int maxComboCount = 10;            // 最大コンボ数
     static float comboTimer;                            // タイマー
-    static readonly float comboTimerLimit = 3;          // 制限時間
+    [SerializeField] float comboTimerLimit = 3;         // 制限時間
 
 
     /* プロパティ */
@@ -31,16 +31,17 @@ public class MotiGaugeManager : MonoBehaviour
 	}
 
 //-------------------------------------------------------------------
-    public static void MotiGaugeUpdate()
+    public void MotiGaugeUpdate()
     {
         // 満タンチェック
         IsMaxGauge = (nowPower >= maxPower) ? true : false;
 
-        ComboTimer();
+        SubtractPower();        // 減らす
+        ComboTimer();           // コンボ時間
     }
 
     // コンボタイマー
-    static void ComboTimer()
+    void ComboTimer()
     {
         comboTimer += Time.deltaTime;
 
@@ -52,7 +53,7 @@ public class MotiGaugeManager : MonoBehaviour
     }
 
     // コンボ数加算
-    public static void AddComboCount()
+    public void AddComboCount()
 	{
 		if (comboCount < maxComboCount) {
             comboCount++;
@@ -81,6 +82,22 @@ public class MotiGaugeManager : MonoBehaviour
 		if (nowPower > maxPower) {
             nowPower = maxPower;
 		}
+
+        MotiGaugeVisualizer.Instance.SetDispPower();
+    }
+
+    // パワー減算
+    public void SubtractPower()
+    {
+        if (MotiPowerUp.IsPowerUp) {
+            if (nowPower > 0) {
+                nowPower -= MotiPowerUp.Instance.timerValue;
+            }
+
+            if (nowPower < 0) {
+                nowPower = 0;
+            }
+        }
 
         MotiGaugeVisualizer.Instance.SetDispPower();
     }
