@@ -36,7 +36,7 @@ public class EnemyBase : MonoBehaviour
         Time.timeScale = 1;
 
         MotiGaugeManager.Instance.AddComboCount();
-        MotigomeDropper.Drop(motigomeCnt * MotiGaugeManager.ComboCount, transform.position);
+        MotigomeDropper.Drop(motigomeCnt * MotiGaugeManager.Instance.ComboCount, transform.position);
         Destroy(this.gameObject);
     }
 }

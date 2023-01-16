@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2862943921616180941, guid: bdd4c6b3d798a7145a777afa18d16773, type: 3}
       propertyPath: m_Name
-      value: StartingFloor Variant
+      value: StartingGround
       objectReference: {fileID: 0}
     - target: {fileID: 2862943922252008846, guid: bdd4c6b3d798a7145a777afa18d16773, type: 3}
       propertyPath: m_RootOrder

@@ -5,29 +5,31 @@ using UnityEngine;
 public class MotiGaugeManager : Singleton<MotiGaugeManager>
 {
     // パワー
-    static float nowPower;                              // 現在のパワー
-    public static readonly int maxPower = 100;          // パワー最大値
+    float nowPower;                                 // 現在のパワー
+    const int maxPower = 100;                       // パワー最大値
 
 
     // コンボ
-    static int comboCount;                              // コンボ数
-    [SerializeField] int maxComboCount = 10;            // 最大コンボ数
-    static float comboTimer;                            // タイマー
-    [SerializeField] float comboTimerLimit = 3;         // 制限時間
+    int comboCount;                                 // コンボ数
+    [SerializeField] int maxComboCount = 10;        // 最大コンボ数
+    float comboTimer;                               // タイマー
+    [SerializeField] float comboTimerLimit = 3;     // 制限時間
 
 
     /* プロパティ */
-    public static float NowPower => nowPower;
-    public static int ComboCount => comboCount;
+    public float NowPower => nowPower;
+    public int ComboCount => comboCount;
 
     // フラグ
     public static bool IsMaxGauge { get; private set; } // ゲージ満タンか
 
 //-------------------------------------------------------------------
-    public static void Init()
+    public void Init()
 	{
         nowPower = 0;
         comboCount = 0;
+
+        IsMaxGauge = false;
 	}
 
 //-------------------------------------------------------------------
@@ -65,13 +67,13 @@ public class MotiGaugeManager : Singleton<MotiGaugeManager>
 	}
 
     // コンボ数のリセット
-    public static void ResetComboCount()
+    public void ResetComboCount()
 	{
         comboCount = 0;
 	}
 
     // パワー加算
-    public static void AddPower(float power)
+    public void AddPower(float power)
 	{
         // コンボ数に応じて加算
 		if (nowPower < maxPower) {
@@ -100,5 +102,11 @@ public class MotiGaugeManager : Singleton<MotiGaugeManager>
         }
 
         MotiGaugeVisualizer.Instance.SetDispPower();
+    }
+
+    // 最大にする(Debug用)
+    public void SetPowerMax()
+    {
+        nowPower = maxPower;
     }
 }

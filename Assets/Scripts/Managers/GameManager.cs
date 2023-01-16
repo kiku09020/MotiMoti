@@ -54,11 +54,13 @@ public class GameManager : MonoBehaviour
             if (!isResultOnce) {
                 var moti = GameObject.Find("Moti").GetComponent<Moti.MotiController>();
 
-                // カメラズーム
-                CameraController.Instance.ZoomIn(moti.Family.OtherMoti.gameObject,
-                                                zoomDuration, zoomSize, easeType); 
+                if (moti.Family.OtherMoti) {
+                    // カメラズーム
+                    CameraController.Instance.ZoomIn(moti.Family?.OtherMoti.gameObject,
+                                                    zoomDuration, zoomSize, easeType);
 
-                StartCoroutine(TimeStop(timeStop));
+                    StartCoroutine(TimeStop(timeStop));
+                }
             }
         }
     }
@@ -68,7 +70,7 @@ public class GameManager : MonoBehaviour
         var moti = GameObject.Find("Moti");
         CameraController.Instance.ZoomOut(moti);
 
-        MainFireController.enable = false;          // 火止める
+        FireController.enable = false;          // 火止める
         MotiDistanceManager.CheckHighScore();       // ハイスコア確認
         CanvasManager.ActivateResultUI(true);       // UI表示
         ResultTexts.Instance.SetText();             // テキストセット

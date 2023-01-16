@@ -28,9 +28,11 @@ public class MotiPowerUp : Singleton<MotiPowerUp> {
         if (MotiGaugeManager.IsMaxGauge) {
             if (!powerUpOnce) {
                 PowerUp();
+
                 powerUpOnce = true;
             }
 
+            timer = 0;
             IsPowerUp = true;
         }
     }

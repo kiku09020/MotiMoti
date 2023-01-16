@@ -38,7 +38,7 @@ namespace Motigome {
             if (State.NowState != State.Drop) {
                 getCount++;
 
-                MotiGaugeManager.AddPower(power);
+                MotiGaugeManager.Instance.AddPower(power);
 
                 Destroy(gameObject);
             }

@@ -50,9 +50,13 @@ public class DebugManager : MonoBehaviour
 
         // 下の火の有効化
         else if (Input.GetKeyDown(KeyCode.F2)) {
-            MainFireController.enable = !MainFireController.enable;
-            Print($"MainFire's enable = {MainFireController.enable}", Color.red);
+            FireController.enable = !FireController.enable;
+            Print($"MainFire's enable = {FireController.enable}", Color.red);
 		}
+
+        else if (Input.GetKeyDown(KeyCode.F3)) {
+            MotiGaugeManager.Instance.SetPowerMax();
+        }
 
         // 終了
         else if (Input.GetKeyDown(KeyCode.Escape)) {

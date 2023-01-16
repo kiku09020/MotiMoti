@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainFireController : MonoBehaviour
+public class FireController : DamageGimmicks
 {
     [SerializeField] float speed;
     [SerializeField] float speedUpValue;
