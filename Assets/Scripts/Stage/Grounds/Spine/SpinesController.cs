@@ -4,24 +4,38 @@ using UnityEngine;
 
 namespace Spines {
     public class SpinesController : MonoBehaviour {
-        [Header("Time")]
-        [SerializeField] float waitTime;
-        [SerializeField] float atackTime;
 
-        StateController state;
+        [SerializeField] float waitTimeLimit;
+        float waitTimer;
+
+        /* プロパティ */
+        public StateController State { get; private set; }
+        public SpinesAttacking Attacking { get; private set; }
 
         //-------------------------------------------------------------------
         void Awake()
         {
-            state = GetComponent<StateController>();
+            State = GetComponent<StateController>();
+            Attacking = GetComponent<SpinesAttacking>();
+
+            State.StateInit(State.Waiting);
         }
 
         void FixedUpdate()
         {
-
+            State.NowStateUpate();
         }
 
         //-------------------------------------------------------------------
+        // 待機
+        public void Wait()
+        {
+            waitTimer += Time.deltaTime;
 
+            if (waitTimer > waitTimeLimit) {
+                waitTimer = 0;
+                State.StateTransition(State.Attacking);
+            }
+        }
     }
 }

@@ -8,12 +8,12 @@ namespace Spines
     {
         public override void StateEnter()
         {
-            
+            Spine.Attacking.Attack();
 		}
 
         public override void StateUpdate()
         {
-            
+            Spine.Attacking.AttackWait();
 		}
 
         public override void StateExit()

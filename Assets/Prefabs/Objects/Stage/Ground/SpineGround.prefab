@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1096430366106142575}
   - component: {fileID: 6724859661038639133}
   - component: {fileID: 863505506283613900}
+  - component: {fileID: 8371372201504335025}
   m_Layer: 0
   m_Name: Spines
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 492398526224079432}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.64, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2336888647630331877}
   m_RootOrder: 0
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1.5, y: 0.3}
+  m_Size: {x: 1.5, y: 0.5}
   m_AdaptiveModeThreshold: 1
   m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
@@ -96,8 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633f245942b37d14c889c4ebc81ad264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 5
-  atackTime: 1
+  waitTimeLimit: 2
 --- !u!114 &863505506283613900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +110,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deba611c2275f4c43a58b6ab913d07c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8371372201504335025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492398526224079432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef184f9261cda524fbb6ed677554ce93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTime: 0.2
+  attackTargetSize: 2
+  waitTimeLimit: 0.5
 --- !u!1001 &7957942788565801181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117,9 +132,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5628937796724235386, guid: a5813e8e3c7fe4849a8d6837510ce84f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5628937796724235387, guid: a5813e8e3c7fe4849a8d6837510ce84f, type: 3}
       propertyPath: m_Name
       value: SpineGround
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628937796724235389, guid: a5813e8e3c7fe4849a8d6837510ce84f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.20754719
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628937796724235389, guid: a5813e8e3c7fe4849a8d6837510ce84f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.20754719
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628937796724235389, guid: a5813e8e3c7fe4849a8d6837510ce84f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.20754719
       objectReference: {fileID: 0}
     - target: {fileID: 5628937797168432952, guid: a5813e8e3c7fe4849a8d6837510ce84f, type: 3}
       propertyPath: m_RootOrder

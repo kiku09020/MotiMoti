@@ -8,7 +8,6 @@ namespace Spines {
 
 		public AttackingState Attacking { get; private set; }
 		public WaitingState Waiting { get; private set; }
-		public ReturningState Returning { get; private set; }
 
 		private void Awake()
 		{
@@ -16,7 +15,6 @@ namespace Spines {
 
 			Attacking = gameObject.AddComponent<AttackingState>();
 			Waiting = gameObject.AddComponent<WaitingState>();
-			Returning = gameObject.AddComponent<ReturningState>();
 		}
 	}
 }

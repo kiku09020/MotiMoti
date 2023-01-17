@@ -13,7 +13,7 @@ namespace Spines
 
         public override void StateUpdate()
         {
-
+            Spine.Wait();
         }
 
         public override void StateExit()
