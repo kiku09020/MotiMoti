@@ -20,16 +20,16 @@ namespace Motigome {
         //-------------------------------------------------------------------
         void Awake()
         {
-            State = new StateController(this);
+            State = gameObject.AddComponent<StateController>();
             Moving = GetComponent<MotigomeMoving>();
 
             getCount = 0;
-            State.Init(State.Drop);
+            State.StateInit(State.Drop);
         }
 
         void FixedUpdate()
         {
-            State.StateUpdate();
+            State.NowStateUpate();
         }
 
         //-------------------------------------------------------------------
@@ -53,9 +53,12 @@ namespace Motigome {
 
         public void DropMoving()
         {
-            var targetPos = 1.5f * Random.insideUnitCircle + (Vector2)transform.position;
-            transform.DOMove(targetPos, dropMoveTime)
-                        .SetEase(dropMoveEaseType).OnComplete(OnComp);
+            if (gameObject) {
+
+                var targetPos = 1.5f * Random.insideUnitCircle + (Vector2)transform.position;
+                transform.DOMove(targetPos, dropMoveTime)
+                            .SetEase(dropMoveEaseType).OnComplete(OnComp);
+            }
         }
 
         void OnComp()

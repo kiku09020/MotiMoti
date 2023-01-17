@@ -5,24 +5,13 @@ using UnityEngine;
 namespace Moti {
     public class StretchingState : MotiState
     {
-        /* 値 */
-        public MotiController Moti { get; set; }
-
-        /* コンポーネント取得用 */
-
-        /* コンストラクタ */
-        public StretchingState(MotiController moti)
-        {
-            Moti = moti;
-        }
-
         //-------------------------------------------------------------------
-        public void StateEnter()
+        public override void StateEnter()
         {
            
         }
 
-        public void StateUpdate()
+        public override void StateUpdate()
         {
             StateController state = Moti.StateCtrl;
 
@@ -34,13 +23,13 @@ namespace Moti {
             CheckHit();
         }
 
-        public void StateExit()
+        public override void StateExit()
         {
             
         }
 
         //-------------------------------------------------------------------
-        public void CheckHit()
+        public override void CheckHit()
         {
             if (Moti.EnemyHit.IsHit) {
                 Moti.StateCtrl.StateTransition(Moti.StateCtrl.GoingState);

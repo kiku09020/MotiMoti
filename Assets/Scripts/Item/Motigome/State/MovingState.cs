@@ -3,25 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Motigome {
-    public class MovingState : IState {
-        public Motigome Motigome { get; set; }
-
-        public MovingState(Motigome motigome)
-        {
-            Motigome = motigome;
-        }
-
-        public void StateEnter()
+    public class MovingState : State {
+        public override void StateEnter()
         {
             Motigome.Moving.MoveStart();
         }
 
-        public void StateUpdate()
+        public override void StateUpdate()
         {
             Motigome.Moving.MoveUpdate();
         }
 
-        public void StateExit()
+        public override void StateExit()
         {
 
         }

@@ -55,8 +55,8 @@ namespace Moti
             Particle = partObj.GetComponent<MotiParticleController>();
             Audio = audObj.GetComponent<MotiAudioController>();
 
-            Family = new MotiFamilyController(this);
-            StateCtrl = new StateController(this);
+            Family = gameObject.AddComponent<MotiFamilyController>();
+            StateCtrl = gameObject.AddComponent<StateController>();
             Stretcher = GetComponent<MotiStretcher>();
             Uniter = GetComponent<MotiUniter>();
 

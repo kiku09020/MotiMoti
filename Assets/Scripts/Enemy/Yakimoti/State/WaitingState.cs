@@ -3,25 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Yakimoti {
-	public class WaitingState : IState {
-		public Yakimoti Fire { get; set; }
+	public class WaitingState : YakimotiState {
 
-		public WaitingState(Yakimoti fire)
-		{
-			Fire = fire;
-		}
-
-		public void StateEnter()
+		public override void StateEnter()
 		{
 
 		}
 
-		public void StateUpdate()
+		public override void StateUpdate()
 		{
-			Fire.WaitTimer();
+			Yakimoti.WaitTimer();
 		}
 
-		public void StateExit()
+		public override void StateExit()
 		{
 
 		}

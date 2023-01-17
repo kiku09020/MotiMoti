@@ -6,35 +6,24 @@ namespace Moti
 {
     public class UnitingState : MotiState
     {
-        /* 値 */
-        public MotiController Moti { get; set; }
-
-        /* コンポーネント取得用 */
-
-        /* コンストラクタ */
-        public UnitingState(MotiController moti)
-        {
-            Moti = moti;
-        }
-
         //-------------------------------------------------------------------
-        public void StateEnter()
+        public override void StateEnter()
         {
             Moti.StateCtrl.StateTransition(Moti.StateCtrl.NormalState);     // 通常状態へ
         }
 
-        public void StateUpdate()
+        public override void StateUpdate()
         {
             CheckHit();
         }
 
-        public void StateExit()
+        public override void StateExit()
         {
             Moti.Uniter.Unite();                                            // 合体
         }
 
         //-------------------------------------------------------------------
-        public void CheckHit()
+        public override void CheckHit()
         {
             if (Moti.EnemyHit.IsHit) {
                 GameManager.isResult = true;

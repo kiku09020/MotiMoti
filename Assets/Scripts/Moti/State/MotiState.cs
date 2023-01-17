@@ -4,11 +4,16 @@ using UnityEngine;
 
 namespace Moti
 {
-    public interface MotiState:IStateBase
+    public abstract class MotiState:StateBase
     {
         /* プロパティ */
-        public MotiController Moti { get; set; }      // コンポーネント参照用
+        public MotiController Moti { get; protected set; }      // コンポーネント参照用
 
-        public void CheckHit();             // 色々触れた時の処理
+        public abstract void CheckHit();             // 色々触れた時の処理
+
+        private void Awake()
+        {
+            Moti = GetComponent<MotiController>();
+        }
     }
 }

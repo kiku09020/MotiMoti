@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class StateControllerBase : MonoBehaviour
 {
-    public IStateBase NowState{ get; private set; }
+    public StateBase NowState{ get; private set; }
 
 //-------------------------------------------------------------------
 
     // State‚Ì‰Šú‰»
-    public void StateInit(IStateBase state)
+    public void StateInit(StateBase state)
     {
         NowState = state;
         NowState.StateEnter();
@@ -22,7 +22,7 @@ public class StateControllerBase : MonoBehaviour
 	}
 
     // State‚Ì‘JˆÚ
-    public void StateTransition(IStateBase nextState)
+    public void StateTransition(StateBase nextState)
     {
         NowState.StateExit();
         NowState = nextState;

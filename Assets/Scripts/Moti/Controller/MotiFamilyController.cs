@@ -25,9 +25,9 @@ namespace Moti
 
         //-------------------------------------------------------------------
         // コンストラクタ
-        public MotiFamilyController(MotiController moti)
+        private void Awake()
         {
-            this.moti = moti;
+            moti = GetComponent<MotiController>();
         }
 
         // 子供の初期化

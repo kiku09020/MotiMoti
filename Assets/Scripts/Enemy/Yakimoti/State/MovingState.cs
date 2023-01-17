@@ -3,26 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Yakimoti {
-	public class MovingState : IState {
-		public Yakimoti Fire { get; set; }
+	public class MovingState : YakimotiState {
 
-		public MovingState(Yakimoti fire)
+		public override void StateEnter()
 		{
-			Fire = fire;
+			Yakimoti.SetTarget();
+			Yakimoti.Move();
 		}
 
-		public void StateEnter()
-		{
-			Fire.SetTarget();
-			Fire.Move();
-		}
-
-		public void StateUpdate()
+		public override void StateUpdate()
 		{
 
 		}
 
-		public void StateExit()
+		public override void StateExit()
 		{
 
 		}

@@ -6,14 +6,14 @@ namespace Yakimoti {
     public class StateController:StateControllerBase {
 
 		/* States */
-		public WaitingState Waiting { get; }
-		public MovingState Moving { get; }
+		public WaitingState Waiting { get; private set; }
+		public MovingState Moving { get; private set; }
 
         //-------------------------------------------------------------------
-        public StateController(Yakimoti fire)
-		{
-			Waiting = new WaitingState(fire);
-			Moving = new MovingState(fire);
-		}
+        private void Awake()
+        {
+            Waiting = gameObject.AddComponent<WaitingState>();
+            Moving = gameObject.AddComponent<MovingState>();
+        }
     }
 }

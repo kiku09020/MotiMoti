@@ -30,7 +30,7 @@ namespace Yakimoti {
             xDir = Expansion.GetRandomDirect();     // •ûŒüƒ‰ƒ“ƒ_ƒ€‚É‚·‚é
             SetMoveTime();
 
-            state = new StateController(this);
+            state = gameObject.AddComponent<StateController>();
             state.StateInit(state.Waiting);
         }
 

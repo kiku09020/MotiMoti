@@ -4,25 +4,18 @@ using UnityEngine;
 using DG.Tweening;
 
 namespace Motigome {
-    public class DroppedState : MonoBehaviour, IState {
-        public Motigome Motigome { get; set; }
-
-        public DroppedState(Motigome motigome)
-        {
-            Motigome = motigome;
-        }
-
-        public void StateEnter()
+    public class DroppedState : State {
+        public override void StateEnter()
         {
             Motigome.DropMoving();
         }
 
-        public void StateUpdate()
+        public override void StateUpdate()
         {
 
         }
 
-        public void StateExit()
+        public override void StateExit()
         {
 
         }

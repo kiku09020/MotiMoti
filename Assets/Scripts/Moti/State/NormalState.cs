@@ -6,25 +6,13 @@ namespace Moti
 {
     public class NormalState : MotiState
     {
-        /* 値 */
-        public MotiController Moti { get; set; }
-
-        /* コンポーネント取得用 */
-
-
-        /* コンストラクタ */
-        public NormalState(MotiController moti)
-        {
-            Moti = moti;
-        }
-
         //-------------------------------------------------------------------
-        public void StateEnter()
+        public override void StateEnter()
         {
             
         }
 
-        public void StateUpdate()
+        public override void StateUpdate()
         {
             var state = Moti.StateCtrl;
             var child = Moti.Family.OtherMoti;
@@ -56,12 +44,12 @@ namespace Moti
             CheckHit();
         }
 
-        public void StateExit()
+        public override void StateExit()
         {
 
         }
 
-        public void CheckHit()
+        public override void CheckHit()
         {
             if (Moti.EnemyHit.IsHit) {
                 GameManager.isResult = true;

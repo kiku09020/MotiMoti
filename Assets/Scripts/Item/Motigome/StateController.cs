@@ -3,36 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Motigome {
-    public class StateController  {
+    public class StateController:StateControllerBase  {
 
-        public IState NowState { get; private set; }
+        public DroppedState Drop { get; private set; }
+        public MovingState  Moving { get; private set; }
 
-        public DroppedState Drop { get; }
-        public MovingState  Moving { get; }
-
-        public StateController(Motigome motigome)
+        void Awake()
         {
-            Drop = new DroppedState(motigome);
-            Moving = new MovingState(motigome);
-        }
-
-        //-------------------------------------------------------------------
-        public void Init(IState state)
-        {
-            NowState = state;
-            NowState.StateEnter();
-        }
-
-        public void StateTransition(IState nextState)
-        {
-            NowState.StateExit();
-            NowState = nextState;
-            NowState.StateEnter();
-        }
-
-        public void StateUpdate()
-        {
-            NowState.StateUpdate();
+            Drop = gameObject.AddComponent<DroppedState>();
+            Moving = gameObject.AddComponent<MovingState>();
         }
     }
 }

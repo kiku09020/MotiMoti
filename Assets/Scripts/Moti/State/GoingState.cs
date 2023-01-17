@@ -4,17 +4,9 @@ using UnityEngine;
 
 namespace Moti
 {
-    public class GoingState : MonoBehaviour, MotiState
+    public class GoingState : MotiState
     {
-        public MotiController Moti { get; set; }
-
-        /* コンストラクタ */
-        public GoingState(MotiController moti)
-        {
-            Moti = moti;
-        }
-
-        public void StateEnter()
+        public override void StateEnter()
         {
             Moti.Ground.ColEnabled = false;
 
@@ -32,7 +24,7 @@ namespace Moti
             }
         }
 
-        public void StateUpdate()
+        public override void StateUpdate()
         {
             if (Moti.MotiHit.OtherMoti) {
                 Moti.StateCtrl.StateTransition(Moti.StateCtrl.UnitedState);
@@ -41,12 +33,12 @@ namespace Moti
             CheckHit();
         }
 
-        public void StateExit()
+        public override void StateExit()
         {
             Moti.Ground.ColEnabled = true;
         }
 
-        public void CheckHit()
+        public override void CheckHit()
         {
             if (Moti.EnemyHit.IsHit && !GameManager.isResult) {
                 Moti.EnemyHit.HitEnemy.Killed();        // ドロップ

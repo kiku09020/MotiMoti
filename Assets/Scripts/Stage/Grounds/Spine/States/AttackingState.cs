@@ -4,21 +4,19 @@ using UnityEngine;
 
 namespace Spines
 {
-    public class AttackingState : IState
+    public class AttackingState : SpineState
     {
-        public SpinesController Spine{ get; set; }
-
-        public void StateEnter()
+        public override void StateEnter()
         {
             
 		}
 
-        public void StateUpdate()
+        public override void StateUpdate()
         {
             
 		}
 
-        public void StateExit()
+        public override void StateExit()
         {
 
 		}
