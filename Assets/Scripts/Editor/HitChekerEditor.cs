@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(HitCheckerBase), true), CanEditMultipleObjects]        // 継承クラス適用、プレハブでも操作可能
+[CustomEditor(typeof(HitCheckerBase), true)]        // 継承クラス適用
 public class HitChekerEditor : Editor
 {
     HitCheckerBase _hitCheck;
-    bool settingsFolder;
+    bool settingsFolder = true;
 
     private void Awake()
     {
