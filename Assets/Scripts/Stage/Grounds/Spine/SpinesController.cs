@@ -8,6 +8,8 @@ namespace Spines {
         [SerializeField] float waitTimeLimit;
         float waitTimer;
 
+        public bool IsActive { get; set; }
+
         /* プロパティ */
         public StateController State { get; private set; }
         public SpinesAttacking Attacking { get; private set; }

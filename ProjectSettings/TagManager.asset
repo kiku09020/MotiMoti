@@ -20,7 +20,7 @@ TagManager:
   - MotiLayer
   - CollisionLayer
   - StageLayer
-  - 
+  - EnemyLayer
   - 
   - 
   - 

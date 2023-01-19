@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6724859661038639133}
   - component: {fileID: 863505506283613900}
   - component: {fileID: 8371372201504335025}
-  m_Layer: 0
+  - component: {fileID: 4427912984756140437}
+  m_Layer: 8
   m_Name: Spines
-  m_TagString: Untagged
+  m_TagString: Stage_Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1924282303
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a9d2fd29f680ea04fb6235ae8a4c7616, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -125,6 +126,32 @@ MonoBehaviour:
   attackTime: 0.2
   attackTargetSize: 2
   waitTimeLimit: 0.5
+--- !u!61 &4427912984756140437
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492398526224079432}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.03125, y: 0.03125, z: 0.03125, w: 0.03125}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.5}
+    newSize: {x: 1.5, y: 0.5}
+    adaptiveTilingThreshold: 1
+    drawMode: 2
+    adaptiveTiling: 1
+  m_AutoTiling: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.5}
+  m_EdgeRadius: 0
 --- !u!1001 &7957942788565801181
 PrefabInstance:
   m_ObjectHideFlags: 0

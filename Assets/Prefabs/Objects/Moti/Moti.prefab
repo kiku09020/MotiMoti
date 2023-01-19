@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 8129661351966936451}
   - component: {fileID: 8010141872590077241}
   - component: {fileID: 8669964920538566611}
+  - component: {fileID: 1116270306760673215}
   m_Layer: 7
   m_Name: HitChecker
   m_TagString: Untagged
@@ -405,8 +406,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf0423c9f23e43499a69be1d22179d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTagName: Moti
   _collider: {fileID: 8129661351966936448}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 6
+  targetTag: Moti
 --- !u!114 &8010141872590077241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,8 +423,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaed8e44e0cb449478cdbc963ec378e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTagName: Stage
   _collider: {fileID: 2885916789449422288}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  targetTag: Stage
 --- !u!114 &8669964920538566611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,8 +440,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5757747984304534597dadaca25873a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTagName: Enemy
   _collider: {fileID: 8129661351966936448}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 9
+  targetTag: Enemy
+--- !u!114 &1116270306760673215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8129661351966936462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab140611237e7e4bb30a4bc2f0ee886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 8129661351966936448}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  targetTag: Stage_Damage
 --- !u!1 &8129661352276372243
 GameObject:
   m_ObjectHideFlags: 0

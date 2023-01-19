@@ -4,14 +4,21 @@ using UnityEngine;
 
 public abstract class HitCheckerBase : MonoBehaviour {
 
-    [SerializeField] protected string targetTagName;      // 判定調べるオブジェクトのタグ名
-    [SerializeField] protected Collider2D _collider;
+    [SerializeField] protected Collider2D _collider;                     // enable指定用
 
-    protected bool isTrigger;
+    [SerializeField] protected LayerMask targetLayer;                    // layer
+    [SerializeField] protected string targetTag;                         // tag
+    
+    protected bool isTrigger;                           // triggerかどうか
 
-    public bool IsHit { get; protected set; }
-    public bool ColEnabled { get => _collider.enabled; set => _collider.enabled = value; }
+    /* プロパティ */
+    public bool IsHit { get; protected set; }           // 判定
+    public bool ColEnabled { get => _collider.enabled; set => _collider.enabled = value; }      // enabled
 
+    /* Editor用プロパティ */
+    public Collider2D Collider { get => _collider; set => _collider = value; }
+    public LayerMask TargetLayer { get => targetLayer; set => targetLayer = value; }
+    public string TargetTag { get => targetTag; set => targetTag = value; }
     //-------------------------------------------------------------------
     protected virtual void Awake()
     {

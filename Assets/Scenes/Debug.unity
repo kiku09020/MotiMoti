@@ -1200,14 +1200,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1866174472}
     m_Modifications:
-    - target: {fileID: 8129661351966936451, guid: 35ebcde437dfa144dba4c1366f9d1ca6, type: 3}
-      propertyPath: moti
-      value: 
-      objectReference: {fileID: 1435501331}
-    - target: {fileID: 8129661352410282740, guid: 35ebcde437dfa144dba4c1366f9d1ca6, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 8129661352410282741, guid: 35ebcde437dfa144dba4c1366f9d1ca6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1256,8 +1248,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moti
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8129661352410282736, guid: 35ebcde437dfa144dba4c1366f9d1ca6, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35ebcde437dfa144dba4c1366f9d1ca6, type: 3}
 --- !u!1001 &8516921947779384775
 PrefabInstance:

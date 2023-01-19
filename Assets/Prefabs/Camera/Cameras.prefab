@@ -47,12 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31059a06fac33e40a8fdad77a464347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseTime: 1
-  chaseEaseType: 3
-  targetCamera: {fileID: 3702499093268507892}
-  zoomTime: 0.5
-  zoomEaseType: 3
-  zoomSize: 3
+  zoomingCamera: {fileID: 0}
+  offset: 0
 --- !u!1 &8127561127986379152
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,9 +101,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.099999994
+    y: 0
     width: 1
-    height: 0.8
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -282,15 +278,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6297539762846397518, guid: 0b94727600cb0da4ea407e6ed102be22, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 451
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6297539762846397518, guid: 0b94727600cb0da4ea407e6ed102be22, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.099999994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6297539762846397518, guid: 0b94727600cb0da4ea407e6ed102be22, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6297539762846397617, guid: 0b94727600cb0da4ea407e6ed102be22, type: 3}
       propertyPath: m_RootOrder
@@ -341,10 +337,5 @@ PrefabInstance:
 --- !u!4 &3702499093268507659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6297539762846397617, guid: 0b94727600cb0da4ea407e6ed102be22, type: 3}
-  m_PrefabInstance: {fileID: 7207079107256047802}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &3702499093268507892 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 6297539762846397518, guid: 0b94727600cb0da4ea407e6ed102be22, type: 3}
   m_PrefabInstance: {fileID: 7207079107256047802}
   m_PrefabAsset: {fileID: 0}

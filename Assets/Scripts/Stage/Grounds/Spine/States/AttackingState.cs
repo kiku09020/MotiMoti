@@ -13,6 +13,8 @@ namespace Spines
 
         public override void StateUpdate()
         {
+            Spine.IsActive = true;
+
             Spine.Attacking.AttackWait();
 		}
 
