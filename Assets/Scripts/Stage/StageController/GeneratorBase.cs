@@ -5,7 +5,7 @@ using UnityEngine;
 public class GeneratorBase : MonoBehaviour
 {
     [Header("GenerateObject")]
-    [SerializeField] protected GameObject generatedObj;         // 生成オブジェクト
+    [SerializeField] protected List<GameObject> genObjList = new List<GameObject>();      // 生成オブジェクトのリスト
     [SerializeField] protected Transform parent;                // 生成するparent
 
     [Space(10)]
@@ -70,20 +70,29 @@ public class GeneratorBase : MonoBehaviour
         genPos = new Vector2(x, y);
 	}
 
+    // リストからランダムに生成
+    protected virtual GameObject SetGenerateObject()
+    {
+        var rand = Random.Range(0, genObjList.Count);
+        return genObjList[rand];
+    }
+
+    //-------------------------------------------------------------------
+
     // 生成
     protected virtual void Generate()
 	{
         SetGeneratePosition();      // 生成位置の指定
 
-        var obj = Instantiate(generatedObj, genPos, Quaternion.identity, parent);   // インスタンス化
-        genObjs.Add(obj);                                                           // リストに追加
+        var obj = Instantiate(SetGenerateObject(), genPos, Quaternion.identity, parent);   // インスタンス化
+        genObjs.Add(obj);                                           // リストに追加
 	}
 
     protected virtual void Generate(float xRange)
     {
         SetGeneratePosition(xRange);
 
-        var obj = Instantiate(generatedObj, genPos, Quaternion.identity, parent);
+        var obj = Instantiate(SetGenerateObject(), genPos, Quaternion.identity, parent);
         genObjs.Add(obj);
     }
 }

@@ -10,22 +10,29 @@ namespace Spines {
 
         public bool IsActive { get; set; }
 
+        Collider2D col;
+
         /* プロパティ */
         public StateController State { get; private set; }
         public SpinesAttacking Attacking { get; private set; }
 
+        public bool ColEnabled { get => col.enabled; private set => col.enabled = value; }      // 当たり判定の有無
         //-------------------------------------------------------------------
         void Awake()
         {
             State = GetComponent<StateController>();
             Attacking = GetComponent<SpinesAttacking>();
+            col = GetComponent<Collider2D>();
 
+            State.Init();
             State.StateInit(State.Waiting);
         }
 
         void FixedUpdate()
         {
             State.NowStateUpate();
+
+            CheckCollisionEnable();
         }
 
         //-------------------------------------------------------------------
@@ -38,6 +45,12 @@ namespace Spines {
                 waitTimer = 0;
                 State.StateTransition(State.Attacking);
             }
+        }
+
+        // IsActivateでenable
+        void CheckCollisionEnable()
+        {
+            ColEnabled = IsActive;
         }
     }
 }

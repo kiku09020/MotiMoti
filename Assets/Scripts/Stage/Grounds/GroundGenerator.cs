@@ -16,7 +16,7 @@ public class GroundGenerator : GeneratorBase
 	{
         SetGeneratePosition(genPosXRange);      // 生成位置
 
-        var obj = Instantiate(generatedObj, genPos, Quaternion.identity, parent);     // 生成
+        var obj = Instantiate(SetGenerateObject(), genPos, Quaternion.identity, parent);     // 生成
 
         // 1つ前のオブジェクトを指定
 		if (genObjs?.Count > 0) {

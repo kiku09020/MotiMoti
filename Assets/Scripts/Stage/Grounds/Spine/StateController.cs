@@ -4,15 +4,11 @@ using UnityEngine;
 
 namespace Spines {
     public class StateController : StateControllerBase {
-        SpinesController spine;
-
 		public AttackingState Attacking { get; private set; }
 		public WaitingState Waiting { get; private set; }
 
-		private void Awake()
-		{
-			spine = GetComponent<SpinesController>();
-
+		public void Init()
+        {
 			Attacking = gameObject.AddComponent<AttackingState>();
 			Waiting = gameObject.AddComponent<WaitingState>();
 		}

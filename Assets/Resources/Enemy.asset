@@ -17,7 +17,7 @@ MonoBehaviour:
     motigomeCnt: 3
     motigomeRandRange: 1
     clipList: []
-  - name: 
-    motigomeCnt: 0
-    motigomeRandRange: 0
+  - name: Ukimoti
+    motigomeCnt: 5
+    motigomeRandRange: 1
     clipList: []
