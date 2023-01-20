@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ukimoti {
-    public class WaitingState : UkimotiState {
+    public class IdleState : UkimotiState {
         public override void StateEnter()
         {
 

@@ -22,9 +22,9 @@ public class DestroyerBase : MonoBehaviour
     //-------------------------------------------------------------------
     void CheckDestroyable()
     {
-        if (gen.MaxCnt < gen.GenObjects.Count) {
-            gen.GenObjects.RemoveAt(0);
-            Destroy(gen.GenObjects[0]);
+        if (gen.MaxCnt < gen.GenObjList.Count) {
+            gen.GenObjList.RemoveAt(0);
+            Destroy(gen.GenObjList[0]);
         }
     }
 }

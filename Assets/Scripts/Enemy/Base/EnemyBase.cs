@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    [SerializeField] new string name;       // Enemy名(Inspectorから指定)
+    [SerializeField] new string name ;       // Enemy名(Inspectorから指定)
     protected int motigomeCnt;              // ドロップするもち米の数
 
 //-------------------------------------------------------------------

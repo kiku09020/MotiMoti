@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Ukimoti {
     public class StateController : StateControllerBase {
-        public WaitingState Waiting { get; private set; }
+        public IdleState Idle { get; private set; }
         public MovingState Moving { get; private set; }
 
         public void Init()
         {
-            Waiting = gameObject.AddComponent<WaitingState>();
+            Idle = gameObject.AddComponent<IdleState>();
             Moving = gameObject.AddComponent<MovingState>();
         }
     }

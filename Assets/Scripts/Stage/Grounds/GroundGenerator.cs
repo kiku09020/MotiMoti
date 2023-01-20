@@ -16,13 +16,13 @@ public class GroundGenerator : GeneratorBase
 	{
         SetGeneratePosition(genPosXRange);      // 生成位置
 
-        var obj = Instantiate(SetGenerateObject(), genPos, Quaternion.identity, parent);     // 生成
+        var obj = Instantiate(genObj, genPos, Quaternion.identity, parent);     // 生成
 
         // 1つ前のオブジェクトを指定
-		if (genObjs?.Count > 0) {
-            obj.GetComponent<Ground>().PrevStage = genObjs[genObjs.Count - 1].GetComponent<Ground>();
+		if (genObjList?.Count > 0) {
+            obj.GetComponent<Ground>().PrevStage = genObjList[genObjList.Count - 1].GetComponent<Ground>();
 		}
 
-        genObjs.Add(obj);
+        genObjList.Add(obj);
 	}
 }

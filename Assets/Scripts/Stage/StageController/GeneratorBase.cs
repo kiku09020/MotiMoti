@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DestroyerBase))]       // 削除コンポーネント必須にする
 public class GeneratorBase : MonoBehaviour
 {
     [Header("GenerateObject")]
-    [SerializeField] protected List<GameObject> genObjList = new List<GameObject>();      // 生成オブジェクトのリスト
+    [SerializeField] protected GameObject genObj;               // 生成オブジェクト
     [SerializeField] protected Transform parent;                // 生成するparent
 
     [Space(10)]
@@ -23,10 +24,10 @@ public class GeneratorBase : MonoBehaviour
     protected static GameObject targetObj;                      // プレイヤー(Groundから代入)
 
     // list
-    protected List<GameObject> genObjs = new List<GameObject>();
+    protected List<GameObject> genObjList = new List<GameObject>();     // 生成されたオブジェクトのリスト
 
     /* プロパティ */
-    public List<GameObject> GenObjects => genObjs;
+    public List<GameObject> GenObjList => genObjList;
     public static GameObject TargetObj => targetObj;
     public int MaxCnt => maxCnt;
 
@@ -36,7 +37,7 @@ public class GeneratorBase : MonoBehaviour
         targetObj = GameObject.Find("Moti");
         genPos = startGenPos;
 
-		while (genObjs.Count < maxCnt) {
+		while (genObjList.Count < maxCnt) {
             Generate();
 		}
 
@@ -70,13 +71,6 @@ public class GeneratorBase : MonoBehaviour
         genPos = new Vector2(x, y);
 	}
 
-    // リストからランダムに生成
-    protected virtual GameObject SetGenerateObject()
-    {
-        var rand = Random.Range(0, genObjList.Count);
-        return genObjList[rand];
-    }
-
     //-------------------------------------------------------------------
 
     // 生成
@@ -84,15 +78,17 @@ public class GeneratorBase : MonoBehaviour
 	{
         SetGeneratePosition();      // 生成位置の指定
 
-        var obj = Instantiate(SetGenerateObject(), genPos, Quaternion.identity, parent);   // インスタンス化
-        genObjs.Add(obj);                                           // リストに追加
+        var obj = Instantiate(genObj, genPos, Quaternion.identity, parent);   // インスタンス化
+        genObjList.Add(obj);                                           // リストに追加
 	}
 
-    protected virtual void Generate(float xRange)
+    protected virtual GameObject Generate(float xRange)
     {
         SetGeneratePosition(xRange);
 
-        var obj = Instantiate(SetGenerateObject(), genPos, Quaternion.identity, parent);
-        genObjs.Add(obj);
+        var obj = Instantiate(genObj, genPos, Quaternion.identity, parent);
+        genObjList.Add(obj);
+
+        return obj;
     }
 }

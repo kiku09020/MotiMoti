@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyGenerator : GeneratorBase {
 
-    [SerializeField] float genRangeX;       // X”ÍˆÍ
+    [SerializeField] protected float genRangeX;       // X”ÍˆÍ
 
     protected override void Generate()
     {
-        base.Generate(genRangeX);
+        var obj = base.Generate(genRangeX);
     }
 }
 

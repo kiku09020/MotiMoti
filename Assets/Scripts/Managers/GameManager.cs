@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
         isResult = false;
         isResultOnce = false;
 
+        Time.timeScale = 1;
+
         bgm.Play((int)BGM.AudioName.bgm2);
     }
 
