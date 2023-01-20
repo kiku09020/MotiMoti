@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    [SerializeField] new string name ;       // Enemy名(Inspectorから指定)
+    [SerializeField] new string name ;      // Enemy名(Inspectorから指定)
     protected int motigomeCnt;              // ドロップするもち米の数
+
+    GameObject target;
+    public float TargetDist { get; private set; }                // Playerとの距離
 
 //-------------------------------------------------------------------
     protected virtual void Awake()
     {
         SetDataParams(name);
         MotigomeDropper.SetParent();
+
+        target = GameObject.Find("Moti");
     }
 
 //-------------------------------------------------------------------
@@ -38,5 +43,10 @@ public class EnemyBase : MonoBehaviour
         MotiGaugeManager.Instance.AddComboCount();
         MotigomeDropper.Drop(motigomeCnt * MotiGaugeManager.Instance.ComboCount, transform.position);
         Destroy(this.gameObject);
+    }
+
+    protected void GetDist()
+    {
+        TargetDist = Vector2.Distance(target.transform.position, transform.position);
     }
 }

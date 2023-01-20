@@ -21,3 +21,7 @@ MonoBehaviour:
     motigomeCnt: 5
     motigomeRandRange: 1
     clipList: []
+  - name: DownMoti
+    motigomeCnt: 10
+    motigomeRandRange: 0
+    clipList: []

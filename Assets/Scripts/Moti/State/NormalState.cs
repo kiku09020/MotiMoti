@@ -14,6 +14,8 @@ namespace Moti
 
         public override void StateUpdate()
         {
+            base.StateUpdate();
+
             var state = Moti.StateCtrl;
             var child = Moti.Family.OtherMoti;
 
@@ -40,20 +42,11 @@ namespace Moti
                     Moti.StateCtrl.StateTransition(state.GoingState);
                 }
             }
-
-            CheckHit();
         }
 
         public override void StateExit()
         {
 
-        }
-
-        public override void CheckHit()
-        {
-            if (Moti.EnemyHit.IsHit) {
-                GameManager.isResult = true;
-            }
         }
     }
 }

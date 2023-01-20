@@ -14,7 +14,7 @@ namespace Moti
 
         public override void StateUpdate()
         {
-            CheckHit();
+            base.StateUpdate();
         }
 
         public override void StateExit()
@@ -23,11 +23,5 @@ namespace Moti
         }
 
         //-------------------------------------------------------------------
-        public override void CheckHit()
-        {
-            if (Moti.EnemyHit.IsHit) {
-                GameManager.isResult = true;
-            }
-        }
     }
 }

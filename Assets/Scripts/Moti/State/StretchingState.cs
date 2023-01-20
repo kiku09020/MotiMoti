@@ -13,14 +13,14 @@ namespace Moti {
 
         public override void StateUpdate()
         {
+            base.StateUpdate();
+
             StateController state = Moti.StateCtrl;
 
             // 通常状態に繊維
             if (!Moti.Stretcher.IsStretching) {
                 state.StateTransition(state.NormalState);
             }
-
-            CheckHit();
         }
 
         public override void StateExit()
@@ -29,12 +29,11 @@ namespace Moti {
         }
 
         //-------------------------------------------------------------------
-        public override void CheckHit()
+        public override void CheckHitAction()
         {
-            if (Moti.EnemyHit.IsHit) {
-                Moti.StateCtrl.StateTransition(Moti.StateCtrl.GoingState);
-                GameManager.isResult = true;
-            }
+            base.CheckHitAction();
+
+            Moti.StateCtrl.StateTransition(Moti.StateCtrl.GoingState);
         }
     }
 }

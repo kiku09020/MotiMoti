@@ -26,11 +26,11 @@ namespace Moti
 
         public override void StateUpdate()
         {
+            base.StateUpdate();
+
             if (Moti.MotiHit.OtherMoti) {
                 Moti.StateCtrl.StateTransition(Moti.StateCtrl.UnitedState);
             }
-
-            CheckHit();
         }
 
         public override void StateExit()
@@ -38,11 +38,9 @@ namespace Moti
             Moti.Ground.ColEnabled = true;
         }
 
-        public override void CheckHit()
+        public override void CheckHitAction()
         {
-            if (Moti.EnemyHit.IsHit && !GameManager.isResult) {
-                Moti.EnemyHit.HitEnemy.Killed();        // ドロップ
-            }
+            Moti.EnemyHit.HitEnemy.Killed();        // ドロップ
         }
     }
 }

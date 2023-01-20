@@ -50,7 +50,8 @@ public class GroundDistanceChecker : MonoBehaviour
     {
         // ‰“‚©‚Á‚½‚çA’†‰›‚ÉˆÚ“®
         if (distance > maxDist) {
-            transform.position = new Vector2(0, transform.position.y);
+            transform.position = new Vector2(0, transform.position.y - 0.1f);
+            transform.rotation = Quaternion.identity;
         }
     }
 }
