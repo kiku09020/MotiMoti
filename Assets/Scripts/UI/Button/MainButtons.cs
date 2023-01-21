@@ -10,8 +10,6 @@ namespace Button {
 		protected override void Awake()
 		{
 			gmObj = GameObject.Find("GameManager");
-
-			SESet(gmObj);
 		}
 
 		public abstract void Clicked();

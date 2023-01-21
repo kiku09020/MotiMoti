@@ -6,11 +6,6 @@ namespace Button {
     public abstract class Buttons : MonoBehaviour {
         /* èàóù */
         protected abstract void Awake();
-
-        protected void SESet(GameObject obj)
-		{
-            GameObject audObj = obj.transform.Find("AudioManager").gameObject;
-        }
     }
 }
 

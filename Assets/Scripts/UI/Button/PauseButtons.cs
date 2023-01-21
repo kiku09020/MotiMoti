@@ -13,7 +13,6 @@ namespace Button {
 		protected override void Awake()
 		{
 			gmObj = GameObject.Find("GameManager");
-			SESet(gmObj);
 
 			pause = PauseManager.Instance;
 			scene = SceneController.Instance;

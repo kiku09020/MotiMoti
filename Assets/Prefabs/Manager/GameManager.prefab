@@ -183,8 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76c62420623f0f4c9ed479f617f2096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  easeTime: 0
-  easeType: 0
+  easeTime: 0.5
+  easeType: 3
   powerImage: {fileID: 0}
   comboText: {fileID: 0}
 --- !u!114 &2679264595621016925
@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c6a35471d24d34aaa3979fd298cb41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetMoti: {fileID: 0}
   powerUpTime: 5
 --- !u!1001 &2392430205859323643
 PrefabInstance:
