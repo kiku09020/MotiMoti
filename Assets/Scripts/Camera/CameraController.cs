@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class CameraController : Singleton<CameraController>
+public class CameraController : SimpleSingleton<CameraController>
 {
 	[Header("Camera")]
 	[SerializeField] Camera zoomingCamera;  // ズームするカメラ

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class MotiGaugeVisualizer : Singleton<MotiGaugeVisualizer>
+public class MotiGaugeVisualizer : SimpleSingleton<MotiGaugeVisualizer>
 {
     [Header("Easing")]
     [SerializeField] float easeTime;        // イージング時間

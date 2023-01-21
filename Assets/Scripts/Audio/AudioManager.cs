@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : Singleton<AudioManager>
+public class AudioManager : SimpleSingleton<AudioManager>
 {
     // path
     const string bgmPath = "Audio/BGM";

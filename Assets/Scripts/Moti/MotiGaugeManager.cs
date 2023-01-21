@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MotiGaugeManager : Singleton<MotiGaugeManager>
+public class MotiGaugeManager : SimpleSingleton<MotiGaugeManager>
 {
     // パワー
     float nowPower;                                 // 現在のパワー

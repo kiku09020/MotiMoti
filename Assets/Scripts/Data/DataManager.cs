@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEngine;
 
-public class DataManager : Singleton<DataManager> {
+public class DataManager : SimpleSingleton<DataManager> {
     public SaveData data;                           // json変換するデータのクラス
     static string filepath;                         // jsonファイルのパス
     static string fileName = "Data.json";           // jsonファイル名

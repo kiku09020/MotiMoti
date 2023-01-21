@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : Singleton<SceneController>
+public class SceneController : SimpleSingleton<SceneController>
 {
     /* 値 */
     const float sceneLoadWaitTime = 0.15f;

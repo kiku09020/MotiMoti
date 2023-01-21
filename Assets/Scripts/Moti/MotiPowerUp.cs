@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class MotiPowerUp : Singleton<MotiPowerUp> {
+public class MotiPowerUp : SimpleSingleton<MotiPowerUp> {
     [SerializeField] Moti.MotiController targetMoti;
 
     [SerializeField] float powerUpTime;     // パワーアップ時間

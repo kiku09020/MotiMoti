@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ResultTexts : Singleton<ResultTexts>
+public class ResultTexts : SimpleSingleton<ResultTexts>
 {
     [SerializeField] Text distanceText;
     [SerializeField] Text highScoreText;
