@@ -15,7 +15,7 @@ namespace Moti
         }
 
         // 触れたかどうか
-        protected void CheckHit()
+        protected virtual void CheckHit()
         {
             if (Moti.EnemyHit.IsHit && !GameManager.isResult) {
                 if (!MotiPowerUp.IsPowerUp) {

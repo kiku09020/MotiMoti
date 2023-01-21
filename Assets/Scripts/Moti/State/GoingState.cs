@@ -38,6 +38,13 @@ namespace Moti
             Moti.Ground.ColEnabled = true;
         }
 
+        protected override void CheckHit()
+        {
+            if (Moti.EnemyHit.IsHit && !GameManager.isResult) {
+                CheckHitAction();
+            }
+        }
+
         public override void CheckHitAction()
         {
             Moti.EnemyHit.HitEnemy.Killed();        // ドロップ

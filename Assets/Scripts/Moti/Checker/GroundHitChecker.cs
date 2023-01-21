@@ -38,7 +38,7 @@ namespace Moti
             }
 
             // 演出
-            moti.Particle.Play(ParticleNames_Moti.ground, moti.Ground.HitPoint);
+            MotiParticle.Instance.Play("HitStage", moti.transform.position);
             SE.Instance.Play("hit");
         }
 

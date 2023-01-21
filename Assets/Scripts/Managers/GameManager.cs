@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1;
 
-        BGM.Instance.Play("bgm1");
+        BGM.Instance.Play("bgm1", 1, 0.2f);
     }
 
 //-------------------------------------------------------------------

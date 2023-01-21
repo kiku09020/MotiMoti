@@ -2,27 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleManager : MonoBehaviour
+public abstract class ParticleManager<T> : Singleton<T> where T:ParticleManager<T> 
 {
-    /* 値 */
+    protected abstract string FilePath { get; }     // filePath
 
-    [SerializeField] List<GameObject> partPrfbs;
+    protected List<ParticleSystem> generatedParticles = new List<ParticleSystem>();      // 生成されたパーティクルのリスト
+    protected Dictionary<string, GameObject> dic;       // dic
 
-    // パーティクル一覧
-    public enum PartNames {
-        circle,
+
+    //-------------------------------------------------------------------
+    protected override void Awake()
+    {
+        base.Awake();
+
+        SetParticleObjects();
     }
 
-    /* コンポーネント取得用 */
-
-//-------------------------------------------------------------------
-    // パーティクル生成(親オブジェクト指定)
-    public void PlayPart(PartNames name, Vector2 position,Transform parent)
+    // Resourceフォルダから、particle取得
+    protected void SetParticleObjects()
     {
-        GameObject prfb     = partPrfbs[(int)name];                                    
-        GameObject inst     = Instantiate(prfb, position, Quaternion.identity, parent);
-        ParticleSystem part = inst.GetComponent<ParticleSystem>();                     
+        dic = new Dictionary<string, GameObject>();
+        object[] list = Resources.LoadAll(FilePath);
 
-        part.Play();
+        foreach(GameObject part in list) {
+            dic[part.name] = part;
+        }
+    }
+
+    // 再生前にセットアップ
+    protected virtual void SetUp(ParticleSystem part,ParticleSystemStopAction stopAction)
+    {
+        var partMain = part.main;
+        partMain.stopAction = stopAction;       // 再生終了時の処理
+    }
+
+    //-------------------------------------------------------------------
+    /// <summary>
+    /// パーティクル再生
+    /// </summary>
+    public virtual void Play(string particleName, Vector2 position, 
+                                ParticleSystemStopAction stopAction = ParticleSystemStopAction.Destroy)
+    {
+        var partObj = dic[particleName];
+        var part = partObj.GetComponent<ParticleSystem>();
+        SetUp(part, stopAction);                                            // パーティクルのセットアップ
+
+        Instantiate(part, position, Quaternion.identity, transform);        // 生成
+        generatedParticles.Add(part);                                       // リストに追加
+    }
+
+    public virtual void Play(string particleName, Vector2 position, Quaternion rotation,
+                                ParticleSystemStopAction stopAction = ParticleSystemStopAction.Destroy)
+    {
+        var partObj = dic[particleName];
+        var part = partObj.GetComponent<ParticleSystem>();
+
+        Instantiate(partObj, position, rotation, transform);        // 生成
+        generatedParticles.Add(part);        // リストに追加
     }
 }

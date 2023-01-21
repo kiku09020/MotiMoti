@@ -32,7 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8129661352410282741}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &2469713599609207019
 EdgeCollider2D:
@@ -198,52 +198,6 @@ MonoBehaviour:
   stageHitLayer:
     serializedVersion: 2
     m_Bits: 256
---- !u!1 &8129661351492857310
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8129661351492857311}
-  - component: {fileID: 8129661351492857296}
-  m_Layer: 0
-  m_Name: ParticleController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8129661351492857311
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8129661351492857310}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8129661352410282741}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8129661351492857296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8129661351492857310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9065c9009a8a464683898bd0b0ee4e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleObjs:
-  - {fileID: 5089954598309825299, guid: 43694d5728740544fbd5ab1497f07a7c, type: 3}
-  - {fileID: 5089954598309825299, guid: 51051235e2fff5647bd54059abf59106, type: 3}
 --- !u!1 &8129661351823863562
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +314,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8129661352410282741}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2885916789449422288
 CircleCollider2D:
@@ -496,7 +450,6 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 8129661351823863563}
-  - {fileID: 8129661351492857311}
   - {fileID: 8129661351966936463}
   - {fileID: 6896011687965458402}
   m_Father: {fileID: 0}

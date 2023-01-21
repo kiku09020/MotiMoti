@@ -13,7 +13,6 @@ namespace Moti
 
         // controllers
         
-
         public MotiFamilyController Family { get; private set; }
         public MotiStretcher Stretcher { get; private set; }
         public MotiUniter Uniter { get; private set; }
@@ -28,17 +27,12 @@ namespace Moti
 
         // states
         public StateController StateCtrl { get; private set; }
-
-        // performers
-        public MotiParticleController Particle { get; private set; }
         #endregion
 
         //-------------------------------------------------------------------
         void Awake()
         {
             Transform checkerObj = transform.Find("HitChecker");
-            Transform partObj = transform.Find("ParticleController");
-            Transform audObj = transform.Find("AudioController");
             Transform lineObj = transform.Find("StretchedMotiLine");
 
             Folder = GameObject.Find("Motis").transform;
@@ -50,8 +44,6 @@ namespace Moti
             Ground = checkerObj.GetComponent<GroundHitChecker>();
             EnemyHit = checkerObj.GetComponent<EnemyHitChecker>();
             Input = checkerObj.GetComponent<InputChecker>();
-
-            Particle = partObj.GetComponent<MotiParticleController>();
 
             Family = gameObject.AddComponent<MotiFamilyController>();
             StateCtrl = gameObject.AddComponent<StateController>();
