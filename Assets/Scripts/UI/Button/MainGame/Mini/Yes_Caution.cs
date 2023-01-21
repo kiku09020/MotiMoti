@@ -8,7 +8,7 @@ namespace Button {
         public override void Clicked()
         {
             Time.timeScale = 1;
-            se.Play((int)SystemSound.AudioName.decision);
+            SE.Instance.Play("btn_celect");
 
             // ƒŠƒgƒ‰ƒC
             if (pause.isRetry) {

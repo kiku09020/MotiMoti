@@ -8,7 +8,7 @@ namespace Button {
 
         public override void Clicked()
         {
-            se.Play((int)SystemSound.AudioName.click);
+            SE.Instance.Play("btn_click");
 
             if (cautionFlag) {
                 pause.isRetry = true;
@@ -18,6 +18,7 @@ namespace Button {
 
 			else {
                 scene.LoadNowScene();
+                BGM.Instance.RePlay();
 			}
         }
     }

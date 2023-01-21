@@ -31,7 +31,6 @@ namespace Moti
 
         // performers
         public MotiParticleController Particle { get; private set; }
-        public MotiAudioController Audio { get; private set; }
         #endregion
 
         //-------------------------------------------------------------------
@@ -53,7 +52,6 @@ namespace Moti
             Input = checkerObj.GetComponent<InputChecker>();
 
             Particle = partObj.GetComponent<MotiParticleController>();
-            Audio = audObj.GetComponent<MotiAudioController>();
 
             Family = gameObject.AddComponent<MotiFamilyController>();
             StateCtrl = gameObject.AddComponent<StateController>();

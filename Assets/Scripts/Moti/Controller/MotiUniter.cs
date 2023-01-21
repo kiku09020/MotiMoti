@@ -37,7 +37,7 @@ namespace Moti
 
             // 演出
             moti.Particle.Play(ParticleNames_Moti.united, transform.position);
-            moti.Audio.Play(MotiAudioNames.united);
+            SE.Instance.Play("united");
 
             Destroy(other.gameObject);                                                  // 削除
             moti.Family.RemoveChild();

@@ -2,19 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BGM : AudioBasic
+public class BGM : AudioManagerBase<BGM>
 {
-	public enum AudioName {
-		bgm1,
-		bgm2,
-	}
+    protected override string FilePath { get; } = "Audio/BGM";
 
-	public override void Play(int audio)
-	{
-		AudioClip clip = clips[audio];
+    //-------------------------------------------------------------------
+    protected override void SetUp()
+    {
+        source = gameObject.AddComponent<AudioSource>();
 
-		source.loop = true;		// ループ
-		source.clip = clip;		// クリップ指定
-		source.Play();			// 再生
-	}
+        source.playOnAwake = false;
+        source.loop = true;
+
+        SetAudioFile();
+    }
+
+    /// <summary>
+    /// 現在の音声を停止→Source内のclipを再度再生
+    /// </summary>
+    public void RePlay()
+    {
+        source.Stop();
+        source.Play();
+    }
 }

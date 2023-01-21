@@ -7,7 +7,7 @@ namespace Button {
 
         public override void Clicked()
         {
-            se.Play((int)SystemSound.AudioName.cancel);
+            SE.Instance.Play("btn_cancel");
 
             StartCoroutine(WaitCanvas());
         }

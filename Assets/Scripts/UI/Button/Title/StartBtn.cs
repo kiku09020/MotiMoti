@@ -7,7 +7,7 @@ namespace Button {
 
 		public override void Clicked()
         {
-            se.Play((int)SystemSound.AudioName.decision);
+            SE.Instance.Play("btn_celect");
             SceneController.Instance.LoadNextScene();
         }
     }

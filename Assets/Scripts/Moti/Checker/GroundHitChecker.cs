@@ -39,7 +39,7 @@ namespace Moti
 
             // 演出
             moti.Particle.Play(ParticleNames_Moti.ground, moti.Ground.HitPoint);
-            moti.Audio.Play(MotiAudioNames.hitGround);
+            SE.Instance.Play("hit");
         }
 
 		protected override void HitExit(Collision2D collision)

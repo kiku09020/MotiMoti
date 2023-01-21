@@ -16,9 +16,6 @@ public class GameManager : MonoBehaviour
 
     bool isResultOnce;
 
-    /* コンポーネント取得用 */
-    BGM bgm;
-
     /* プロパティ */
     static public bool isResult    { get; set; }
     
@@ -27,19 +24,13 @@ public class GameManager : MonoBehaviour
 //-------------------------------------------------------------------
     void Start()
     {
-        /* オブジェクト取得 */
-        GameObject audObj = transform.Find("AudioManager").gameObject;
-
-        /* コンポーネント取得 */
-        bgm = audObj.GetComponent<BGM>();
-
         /* 初期化 */
         isResult = false;
         isResultOnce = false;
 
         Time.timeScale = 1;
 
-        bgm.Play((int)BGM.AudioName.bgm2);
+        BGM.Instance.Play("bgm1");
     }
 
 //-------------------------------------------------------------------
