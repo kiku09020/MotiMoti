@@ -7,7 +7,7 @@ namespace Button {
 
         public override void Clicked()
         {
-            pause.IsPause = false;
+            PauseManager.Instance.IsPause = false;
 
             SE.Instance.Play("btn_cancel");
 

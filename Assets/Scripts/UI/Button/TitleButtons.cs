@@ -9,7 +9,7 @@ namespace Button {
 
 		public abstract void Clicked();
 
-		protected override void Awake()
+		void Awake()
 		{
 			titleObj = GameObject.Find("TitleManager");
 		}

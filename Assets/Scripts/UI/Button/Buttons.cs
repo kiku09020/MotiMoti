@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace Button {
     public abstract class Buttons : MonoBehaviour {
-        /* ˆ— */
-        protected abstract void Awake();
     }
 }
 

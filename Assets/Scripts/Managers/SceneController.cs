@@ -22,6 +22,7 @@ public class SceneController : Singleton<SceneController>
     protected override void Awake()
     {
         base.Awake();
+
         nowScene = new NowScene();
 
         SceneManager.sceneLoaded += OnSceneLoaded;      // イベント追加

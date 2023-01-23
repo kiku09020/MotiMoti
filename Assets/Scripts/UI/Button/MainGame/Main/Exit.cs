@@ -11,13 +11,13 @@ namespace Button {
             SE.Instance.Play("btn_click");
 
             if (cautionFlag) {
-                pause.isExit = true;
-                pause.SetCaution();
+                PauseManager.Instance.isExit = true;
+                PauseManager.Instance.SetCaution();
                 CanvasManager.ActivateCautionUI(true);
             }
 
 			else {
-                scene.LoadPrevScene();
+                SceneController.Instance.LoadPrevScene();
 			}
         }
     }

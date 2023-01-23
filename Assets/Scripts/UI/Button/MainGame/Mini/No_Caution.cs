@@ -17,8 +17,8 @@ namespace Button {
             yield return new WaitForSecondsRealtime(0.15f);
 
             CanvasManager.ActivateCautionUI(false);         // キャンバス非表示
-            pause.isRetry = false;
-            pause.isExit = false;
+            PauseManager.Instance.isRetry = false;
+            PauseManager.Instance.isExit = false;
         }
     }
 }

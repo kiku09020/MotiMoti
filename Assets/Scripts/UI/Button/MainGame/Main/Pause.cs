@@ -8,7 +8,7 @@ namespace Button {
 //-------------------------------------------------------------------
         public override void Clicked()
         {
-            pause.IsPause = true;    // Ø‚è‘Ö‚¦
+            PauseManager.Instance.IsPause = true;    // Ø‚è‘Ö‚¦
 
             SE.Instance.Play("btn_celect");
 

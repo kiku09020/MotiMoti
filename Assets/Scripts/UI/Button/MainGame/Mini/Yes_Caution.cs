@@ -11,15 +11,15 @@ namespace Button {
             SE.Instance.Play("btn_celect");
 
             // リトライ
-            if (pause.isRetry) {
-                pause.ResetFlags();
-                scene.LoadNowScene();           // 再読み込み
+            if (PauseManager.Instance.isRetry) {
+                PauseManager.Instance.ResetFlags();
+                SceneController.Instance.LoadNowScene();           // 再読み込み
             }
 
             // ゲーム終了
-            else if (pause.isExit) {
-                pause.ResetFlags();
-                scene.LoadScene("Title");       // タイトルへ
+            else if (PauseManager.Instance.isExit) {
+                PauseManager.Instance.ResetFlags();
+                SceneController.Instance.LoadScene("Title");       // タイトルへ
             }
         }
     }
