@@ -107,6 +107,7 @@ public class SceneController : Singleton<SceneController>
     void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {
         nowScene.SetUp();
+        BGM.Instance.Stop();        // BGM停止
     }
 
 }

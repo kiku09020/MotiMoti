@@ -18,7 +18,6 @@ namespace Button {
 
 			else {
                 scene.LoadNowScene();
-                BGM.Instance.RePlay();
 			}
         }
     }

@@ -47,6 +47,8 @@ public class EnemyBase : MonoBehaviour
 
     protected void GetDist()
     {
-        TargetDist = Vector2.Distance(target.transform.position, transform.position);
+        if (gameObject && target) {
+            TargetDist = Vector2.Distance(target.transform.position, transform.position);
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace Moti
         {
             base.StateUpdate();
 
-            if (Moti.MotiHit.OtherMoti) {
+            if (Moti.MotiHit.OtherMoti && Moti.Family.HasChild) {
                 Moti.StateCtrl.StateTransition(Moti.StateCtrl.UnitedState);
             }
         }

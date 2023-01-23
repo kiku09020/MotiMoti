@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         var moti = GameObject.Find("Moti");
         CameraController.Instance.ZoomOut(moti);
 
-        FireController.enable = false;          // 火止める
+        FireController.Instance.SetEnable(false);   // 火を止める
         MotiDistanceManager.CheckHighScore();       // ハイスコア確認
         CanvasManager.ActivateResultUI(true);       // UI表示
         ResultTexts.Instance.SetText();             // テキストセット

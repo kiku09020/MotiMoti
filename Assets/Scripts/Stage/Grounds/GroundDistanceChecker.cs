@@ -37,9 +37,11 @@ public class GroundDistanceChecker : MonoBehaviour
             var dist = rb.Distance(ground.PrevStage?.Col);       // Å’Z‹——£
             distance = dist.distance;
 
+#if UNITY_EDITOR
             // ü•`‰æ
             line.SetPosition(0, dist.pointA);
             line.SetPosition(1, dist.pointB);
+#endif
 
             SetStagePosition();
         }

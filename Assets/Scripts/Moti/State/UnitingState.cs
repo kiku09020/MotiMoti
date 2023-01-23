@@ -20,6 +20,7 @@ namespace Moti
         public override void StateExit()
         {
             Moti.Uniter.Unite();                                            // 合体
+            FireController.Instance.UnitedMove(Moti);
         }
 
         //-------------------------------------------------------------------
