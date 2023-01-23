@@ -31,14 +31,14 @@ namespace Moti
 
             // 移動状態(親→子　地上)
             else if (Moti.Family.HasChild) {
-                if (Moti.Ground.IsHit && child.Ground.IsHit) {
+                if (!GameManager.isResult && Moti.Ground.IsHit && child.Ground.IsHit) {
                     state.StateTransition(state.GoingState);
                 }
             }
 
             // 移動状態(子→親　空中)
             else if (Moti.Family.HasParent) {
-                if (!Moti.Ground.IsHit && !InputChecker.IsTapping) {
+                if (!GameManager.isResult && !Moti.Ground.IsHit && !InputChecker.IsTapping) {
                     Moti.StateCtrl.StateTransition(state.GoingState);
                 }
             }

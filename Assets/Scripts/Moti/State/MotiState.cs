@@ -28,6 +28,7 @@ namespace Moti
         public virtual void CheckHitAction()
         {
             GameManager.isResult = true;
+            CameraController.Instance.Zoom(Moti.gameObject);
         }
 
         private void Awake()

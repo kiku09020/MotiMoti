@@ -33,7 +33,7 @@ namespace Moti {
         {
             base.CheckHitAction();
 
-            Moti.StateCtrl.StateTransition(Moti.StateCtrl.GoingState);
+            //Moti.StateCtrl.StateTransition(Moti.StateCtrl.GoingState);
         }
     }
 }
