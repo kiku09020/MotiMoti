@@ -5,22 +5,30 @@ using UnityEngine;
 [RequireComponent(typeof(DestroyerBase))]       // 削除コンポーネント必須にする
 public class GeneratorBase : MonoBehaviour
 {
-    [Header("GenerateObject")]
-    [SerializeField] protected GameObject genObj;               // 生成オブジェクト
-    [SerializeField] protected Transform parent;                // 生成するparent
+    const float dispSpace = 10;
 
-    [Space(10)]
-    [SerializeField] protected float genObjDist;                // オブジェクト同士の距離
-    [SerializeField] protected int maxCnt;                      // オブジェクトの最大数
+    [Header("GenerateObject")]
+    [SerializeField,Tooltip("生成するオブジェクト")] 
+    protected GameObject genObj;
+    [SerializeField,Tooltip("生成先のparent")]
+    protected Transform parent;
+
+    [Space(dispSpace)]
+    [SerializeField,Tooltip("生成されたオブジェクト同士の距離")]
+    protected float genObjDist;
+    [SerializeField,Tooltip("最大生成数")]
+    protected int maxCnt;
 
     // position
-    [Space(10)]
-    [SerializeField] protected Vector2 startGenPos;             // 最初の生成位置
+    [Space(dispSpace)]
+    [SerializeField,Tooltip("生成位置の開始地点")] 
+    protected Vector2 startGenPos;
     protected Vector2 genPos;                                   // 生成位置
 
     // target
-    [Space(10)]
-    [SerializeField] protected float targetObjMaxDist;          // プレイヤーから生成位置の最大距離
+    [Space(dispSpace)]
+    [SerializeField,Tooltip("プレイヤーから生成位置の距離")] 
+    protected float targetDist;
     protected static GameObject targetObj;                      // プレイヤー(Groundから代入)
 
     // list
@@ -47,7 +55,7 @@ public class GeneratorBase : MonoBehaviour
     {
         if (!GameManager.isResult) {
             var dist = DistanceCaluculator.CheckDistance(targetObj.transform.position, genPos);
-            if (dist < targetObjMaxDist) {
+            if (dist < targetDist) {
                 Generate();
             }
         }

@@ -255,7 +255,7 @@ MonoBehaviour:
   genObjDist: 2.5
   maxCnt: 10
   startGenPos: {x: 0, y: 0}
-  targetObjMaxDist: 10
+  targetDist: 0
   genPosXRange: 3
   randRotStartHeight: 150
 --- !u!114 &348913549
@@ -666,7 +666,7 @@ MonoBehaviour:
   genObjDist: 2.5
   maxCnt: 10
   startGenPos: {x: 0, y: 1.25}
-  targetObjMaxDist: 10
+  targetDist: 0
   genRangeX: 3
 --- !u!4 &1591716522
 Transform:
@@ -791,7 +791,7 @@ MonoBehaviour:
   genObjDist: 5
   maxCnt: 15
   startGenPos: {x: 0, y: 100}
-  targetObjMaxDist: 15
+  targetDist: 0
   genRangeX: 3
 --- !u!114 &1793436684
 MonoBehaviour:
@@ -936,12 +936,7 @@ PrefabInstance:
       propertyPath: bgm
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 7301723815640993457, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
-      propertyPath: timeStop
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8630321999919817103, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
 --- !u!1001 &1635988357499723543
 PrefabInstance:
