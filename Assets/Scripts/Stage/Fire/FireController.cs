@@ -76,8 +76,12 @@ public class FireController : SimpleSingleton<FireController>
     void SetStartMovable()
     {
         // w’è‚‚³‚ğ’´‚¦‚½‚ç“®‚­
-        if (startMovableDist < MotiDistanceManager.Distance) {
-            isEnable = true;
+        if (!GameManager.isResult) {
+            if (startMovableDist < MotiDistanceManager.Distance) {
+                if (!isEnable) {
+                    isEnable = true;
+                }
+            }
         }
     }
 }

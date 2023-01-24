@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMovableDist: 15
-  speed: 0.03
+  speed: 0.02
   speedUpValue: 0.1
   moveTime: 0.2
   minDist: 6.7

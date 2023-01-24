@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!224 &1723014 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7095617723882073032, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
+  m_PrefabInstance: {fileID: 1331766647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &237653299
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,13 +138,14 @@ GameObject:
   m_Component:
   - component: {fileID: 237653301}
   - component: {fileID: 237653300}
+  - component: {fileID: 237653302}
   m_Layer: 0
-  m_Name: Square
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &237653300
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -159,7 +165,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7ede382788d67b44d8f05fa4a0f4b725, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -199,12 +205,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237653299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &237653302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237653299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df69008c1fbf684ca7228e55dc24efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spd: -0.1
 --- !u!1001 &259539829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -966,9 +985,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1332931593}
     - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1723014}
+    - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
       propertyPath: targetMoti
       value: 
       objectReference: {fileID: 1435501331}
+    - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: powerupText
+      value: 
+      objectReference: {fileID: 941669680865108311, guid: 9f3a8b76a89b8334ea48ae3c548c8c7a, type: 3}
+    - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: textDispTime
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6372698635206549189, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
       propertyPath: moti
       value: 
