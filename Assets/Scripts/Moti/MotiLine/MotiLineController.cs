@@ -37,6 +37,9 @@ namespace Moti {
 		// 限界点
 		public bool IsLengthLimit => isLengthLimit;
 
+		public Vector3[] Positions => positions;
+		public float Width { get; private set; }
+
 		//-------------------------------------------------------------------
 		void Start()
 		{
@@ -79,7 +82,7 @@ namespace Moti {
 
 			line.SetPositions(positions);         // LineRendererにセット
 
-			line.widthMultiplier = transform.parent.localScale.x / 4;   // 線の太さの指定
+			Width = line.widthMultiplier = transform.parent.localScale.x * 1.25f;   // 線の太さの指定
 
 			if (moti.Family.HasChild) {
 				CheckLength();
