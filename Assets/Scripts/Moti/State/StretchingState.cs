@@ -3,41 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Moti {
-    public class StretchingState : IState
+    public class StretchingState : MotiState
     {
-        /* 値 */
-        public MotiController Moti { get; set; }
-
-        /* コンポーネント取得用 */
-
-        /* コンストラクタ */
-        public StretchingState(MotiController moti)
-        {
-            Moti = moti;
-        }
-
         //-------------------------------------------------------------------
-        public void StateEnter()
+        public override void StateEnter()
         {
-
+           
         }
 
-        public void StateUpdate()
+        public override void StateUpdate()
         {
-            MotiStateController state = Moti.StateCtrl;
+            base.StateUpdate();
+
+            StateController state = Moti.StateCtrl;
 
             // 通常状態に繊維
             if (!Moti.Stretcher.IsStretching) {
-                state.TransitionState(state.NormalState);
+                state.StateTransition(state.NormalState);
             }
         }
 
-        public void StateExit()
+        public override void StateExit()
         {
             
         }
 
         //-------------------------------------------------------------------
+        public override void CheckHitAction()
+        {
+            base.CheckHitAction();
 
+            //Moti.StateCtrl.StateTransition(Moti.StateCtrl.GoingState);
+        }
     }
 }

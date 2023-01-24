@@ -6,44 +6,25 @@ using UnityEditor;
 public class DebugManager : MonoBehaviour
 {
     /* 値 */
-    [SerializeField] int motiMaxCount;      // もちの最大数
-
-    GameObject[] motis;                     // もちの配列
-
     bool isPausing;
-
-    /* コンポーネント取得用 */
-    SceneController scene;
 
 //-------------------------------------------------------------------
     void Start()
     {
-        /* オブジェクト取得 */
-        GameObject gmObj = transform.parent.gameObject;
-
-        /* コンポーネント取得 */
-        scene = gmObj.GetComponent<SceneController>();
-
-        /* 初期化 */
-        
     }
 
-//-------------------------------------------------------------------
-    void Update()
-    {
-    #if UNITY_EDITOR
+	private void Update()
+	{
         Key();
-        ErrorCheck();
-    #endif
-    }
+	}
 
-    //-------------------------------------------------------------------
-    // キー操作
-    void Key()
+	//-------------------------------------------------------------------
+	// キー操作
+	void Key()
     {
         // シーン再読み込み
         if (Input.GetKeyDown(KeyCode.R)) {
-            scene.LoadNowScene();
+            SceneController.Instance.LoadNowScene();
             Debug.ClearDeveloperConsole();
         }
 
@@ -58,8 +39,24 @@ public class DebugManager : MonoBehaviour
                 isPausing = true;
 			}
 
-            print("pause:" + isPausing);
+            Print(nameof(isPausing),isPausing);
 		}
+
+        // ゲームオーバー
+        else if (Input.GetKeyDown(KeyCode.F1)) {
+            GameManager.isResult = true;
+            Print("Transition to Result.", Color.red);
+		}
+
+        // 下の火の有効化
+        else if (Input.GetKeyDown(KeyCode.F2)) {
+            FireController.Instance.SetEnable();
+            Print($"MainFire's enable = {FireController.Instance.isEnable}", Color.red);
+		}
+
+        else if (Input.GetKeyDown(KeyCode.F3)) {
+            MotiGaugeManager.Instance.SetPowerMax();
+        }
 
         // 終了
         else if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -67,25 +64,39 @@ public class DebugManager : MonoBehaviour
         }
     }
 
-    // エラーチェック
-    void ErrorCheck()
-    {
-        motis = GameObject.FindGameObjectsWithTag("Moti");
-
-        // 多くなりすぎたら、プレイ中止
-        if (motis.Length > motiMaxCount) {
-            QuitGame();
-            Debug.LogError("もちの数が多すぎます");
-        }
-    }
-
     // ゲーム終了
     void QuitGame()
     {
-        Application.Quit();
-
 #if UNITY_EDITOR
+        Application.Quit();
         EditorApplication.isPlaying = false;
+
+#elif UNITY_ANDROID
+        CanvasManager.ActivateCautionUI(true);
+
 #endif
     }
+
+    static public void Print(string  objectName, object message)
+	{
+        var text = $"<b>{objectName} = {message.ToString()}</b>";
+        print(text);
+	}
+
+    static public void Print(string text,Color color)
+	{
+        var code = ColorUtility.ToHtmlStringRGBA(color);
+        var str = $"<b><color=#{code}>{text}</color></b>";
+        print(str);
+	}
+
+    static public void Print(params object[] messages)
+	{
+        var text = "";
+        foreach(var msg in messages) {
+            text += msg;
+		}
+
+        print($"<b>{text}</b>");
+	}
 }

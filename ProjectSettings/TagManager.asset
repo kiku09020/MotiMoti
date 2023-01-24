@@ -7,8 +7,9 @@ TagManager:
   - Button
   - Stage
   - Moti
-  - Kome
-  - NotStickStage
+  - Enemy
+  - Motigome
+  - Stage_Damage
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - MotiLayer
   - CollisionLayer
   - StageLayer
-  - 
+  - EnemyLayer
   - 
   - 
   - 
@@ -54,6 +55,9 @@ TagManager:
     locked: 0
   - name: Stage
     uniqueID: 1924282303
+    locked: 0
+  - name: Enemy
+    uniqueID: 2613595579
     locked: 0
   - name: UI
     uniqueID: 1798791457

@@ -25,15 +25,16 @@ namespace Moti
 
         //-------------------------------------------------------------------
         // コンストラクタ
-        public MotiFamilyController(MotiController moti)
+        private void Awake()
         {
-            this.moti = moti;
+            moti = GetComponent<MotiController>();
         }
 
         // 子供の初期化
         void InitChild()
         {
             otherMoti.Line.Init();
+            otherMoti.Ground.Init();
         }
 
         public void FamilyUpdate()
@@ -66,13 +67,13 @@ namespace Moti
         // 子を追加する
         public void SetChild()
         {
-            otherMoti = Instantiate(moti, InputChecker.MousePosWorld,
+            otherMoti = Instantiate(moti, moti.transform.position,
                                     Quaternion.identity, moti.Folder);      // 子のインスタンス化
 
             hasChild = true;
 
-            InitChild();            // 初期化
             SetParent();            // 親を指定
+            InitChild();            // 初期化
         }
 
         // 子を減らす

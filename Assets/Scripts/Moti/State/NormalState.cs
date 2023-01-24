@@ -4,57 +4,47 @@ using UnityEngine;
 
 namespace Moti
 {
-    public class NormalState : IState
+    public class NormalState : MotiState
     {
-        /* 値 */
-        public MotiController Moti { get; set; }
-
-        /* コンポーネント取得用 */
-
-
-        /* コンストラクタ */
-        public NormalState(MotiController moti)
-        {
-            Moti = moti;
-        }
-
         //-------------------------------------------------------------------
-        public void StateEnter()
+        public override void StateEnter()
         {
             
         }
 
-        public void StateUpdate()
+        public override void StateUpdate()
         {
+            base.StateUpdate();
+
             var state = Moti.StateCtrl;
             var child = Moti.Family.OtherMoti;
 
             // 伸び状態に遷移
             if (Moti.Stretcher.IsStretching) {
-                state.TransitionState(state.StretchingState);
+                state.StateTransition(state.StretchingState);
             }
 
             // 合体状態に遷移
-            else if (Moti.MotiHit.IsMotiTrigger && Moti.Family.HasChild ) {
-                state.TransitionState(state.UnitedState);
+            else if (Moti.MotiHit.IsHit && Moti.Family.HasChild ) {
+                state.StateTransition(state.UnitedState);
             }
 
             // 移動状態(親→子　地上)
             else if (Moti.Family.HasChild) {
-                if (child.Ground.IsGround) {
-                    state.TransitionState(state.GoingState);
+                if (!GameManager.isResult && Moti.Ground.IsHit && child.Ground.IsHit) {
+                    state.StateTransition(state.GoingState);
                 }
             }
 
             // 移動状態(子→親　空中)
             else if (Moti.Family.HasParent) {
-                if (!Moti.Ground.IsGround && !Moti.Family.OtherMoti.Input.IsTapping) {
-                    Moti.StateCtrl.TransitionState(state.GoingState);
+                if (!GameManager.isResult && !Moti.Ground.IsHit && !InputChecker.IsTapping) {
+                    Moti.StateCtrl.StateTransition(state.GoingState);
                 }
             }
         }
 
-        public void StateExit()
+        public override void StateExit()
         {
 
         }

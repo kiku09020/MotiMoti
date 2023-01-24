@@ -4,13 +4,21 @@ using UnityEngine;
 
 namespace Button {
     public class Retry : PauseButtons {
+        [SerializeField] bool cautionFlag;
 
         public override void Clicked()
         {
-            se.Play((int)SystemSound.AudioName.click);
-            pause.isRetry = true;
-            pause.SetCaution();
-            canvas.ActivateCautionUI();
+            SE.Instance.Play("btn_click");
+
+            if (cautionFlag) {
+                PauseManager.Instance.isRetry = true;
+                PauseManager.Instance.SetCaution();
+                CanvasManager.ActivateCautionUI(true);
+            }
+
+			else {
+                SceneController.Instance.LoadNowScene();
+			}
         }
     }
 }

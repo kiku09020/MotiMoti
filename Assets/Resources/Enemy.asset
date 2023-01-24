@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd2169e917e713b4ab42cb5d33647ed2, type: 3}
+  m_Name: Enemy
+  m_EditorClassIdentifier: 
+  enemyList:
+  - name: Yakimoti
+    motigomeCnt: 3
+    motigomeRandRange: 1
+    clipList: []
+  - name: Ukimoti
+    motigomeCnt: 5
+    motigomeRandRange: 1
+    clipList: []
+  - name: DownMoti
+    motigomeCnt: 10
+    motigomeRandRange: 0
+    clipList: []

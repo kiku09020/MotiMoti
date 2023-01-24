@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
+public class SceneController : Singleton<SceneController>
 {
     /* 値 */
     const float sceneLoadWaitTime = 0.15f;
@@ -19,9 +19,13 @@ public class SceneController : MonoBehaviour
 	}
 
 //-------------------------------------------------------------------
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         nowScene = new NowScene();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;      // イベント追加
 
         sceneCnt = SceneManager.sceneCount;
     }
@@ -100,6 +104,13 @@ public class SceneController : MonoBehaviour
     }
 
     //-------------------------------------------------------------------
+    // ロード完了時に呼び出す
+    void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
+    {
+        nowScene.SetUp();
+        BGM.Instance.Stop();        // BGM停止
+    }
+
 }
 
 // 現在のシーン
@@ -112,7 +123,7 @@ public class NowScene
 
     /* 関数 */
     // 現在のシーン情報をセット
-    public NowScene()
+    public void SetUp()
 	{
         nowScene      = SceneManager.GetActiveScene();
         nowSceneIndex = nowScene.buildIndex;

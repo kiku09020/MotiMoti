@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseManager : MonoBehaviour
+public class PauseManager : SimpleSingleton<PauseManager>
 {
     /* 値 */
     bool isPause;
@@ -13,23 +13,16 @@ public class PauseManager : MonoBehaviour
     public bool IsPause { get => isPause; set => isPause = value; }
 
     /* 文字列 */
-    string cautTxt;
+    Text cautTxt;
     [SerializeField] string cautTxtConfirm;         // 警告テキストの確認箇所の文字列
 
-    /* コンポーネント取得用 */
-    CanvasManager canvas;
+    /* コンポーネント */
 
 //-------------------------------------------------------------------
     void Start()
     {
-        /* オブジェクト取得 */
-        GameObject uiObj = transform.Find("UIManager").gameObject;
-
-        /* コンポーネント取得 */
-        canvas = uiObj.GetComponent<CanvasManager>();
-
         /* 初期化 */
-        cautTxt = canvas.CautionUI.transform.Find("Back/Text").GetComponent<Text>().text;
+        cautTxt = CanvasManager.CautionUI.transform.Find("Back/Text").GetComponent<Text>();
     }
 
 //-------------------------------------------------------------------
@@ -46,7 +39,14 @@ public class PauseManager : MonoBehaviour
             reasonTxt = "ゲームを終了します。";
         }
 
-        cautTxt = reasonTxt + "\n" + cautTxtConfirm;
-        canvas.CautionUI.transform.Find("Back/Text").GetComponent<Text>().text = cautTxt;
+        var text = reasonTxt + "\n" + cautTxtConfirm;
+        cautTxt.text = text;
     }
+
+    public void ResetFlags()
+	{
+        isPause = false;
+        isRetry = false;
+        isExit = false;
+	}
 }

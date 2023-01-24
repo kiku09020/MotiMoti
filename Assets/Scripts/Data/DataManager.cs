@@ -1,30 +1,40 @@
 using System.IO;
 using UnityEngine;
 
-public class DataManager : MonoBehaviour {
-    [HideInInspector] public SaveData data;     // json変換するデータのクラス
-    string filepath;                            // jsonファイルのパス
-    string fileName = "Data.json";              // jsonファイル名
+public class DataManager : SimpleSingleton<DataManager> {
+    public SaveData data;                           // json変換するデータのクラス
+    static string filepath;                         // jsonファイルのパス
+    static string fileName = "Data.json";           // jsonファイル名
 
     //-------------------------------------------------------------------
     // 開始時にファイルチェック、読み込み
     void Awake()
     {
         // パス名取得
-        filepath = Application.dataPath + "/" + fileName;
+        GetFilePath();
 
         // ファイルがないとき、ファイル作成
         if (!File.Exists(filepath)) {
-            Save(data);
+            Save();
         }
 
         // ファイルを読み込んでdataに格納
         data = Load(filepath);
     }
 
+    // ファイルパス取得
+    void GetFilePath()
+	{
+#if UNITY_EDITOR
+        filepath = Application.dataPath + "/" + fileName;
+#elif UNITY_ANDROID
+        filepath = Application.persistentDataPath + "/" + fileName;
+#endif
+    }
+
     //-------------------------------------------------------------------
     // jsonとしてデータを保存
-    void Save(SaveData data)
+    public void Save()
     {
         string json = JsonUtility.ToJson(data);                 // jsonとして変換
         StreamWriter wr = new StreamWriter(filepath, false);    // ファイル書き込み指定
@@ -43,10 +53,8 @@ public class DataManager : MonoBehaviour {
         return JsonUtility.FromJson<SaveData>(json);            // jsonファイルを型に戻して返す
     }
 
-    //-------------------------------------------------------------------
-    // ゲーム終了時に保存
-    void OnDestroy()
-    {
-        Save(data);
-    }
+	private void OnDestroy()
+	{
+        Save();
+	}
 }

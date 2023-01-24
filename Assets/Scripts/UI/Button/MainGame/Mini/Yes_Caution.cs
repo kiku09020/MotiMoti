@@ -5,26 +5,21 @@ using UnityEngine;
 namespace Button {
     public class Yes_Caution : PauseButtons {
 
-        SceneController scene;
-
-        void Start()
-        {
-            scene = gmObj.GetComponent<SceneController>();
-        }
-
         public override void Clicked()
         {
             Time.timeScale = 1;
-            se.Play((int)SystemSound.AudioName.decision);
+            SE.Instance.Play("btn_celect");
 
             // リトライ
-            if (pause.isRetry) {
-                scene.LoadNowScene();           // 再読み込み
+            if (PauseManager.Instance.isRetry) {
+                PauseManager.Instance.ResetFlags();
+                SceneController.Instance.LoadNowScene();           // 再読み込み
             }
 
             // ゲーム終了
-            else if (pause.isExit) {
-                scene.LoadScene("Title");       // タイトルへ
+            else if (PauseManager.Instance.isExit) {
+                PauseManager.Instance.ResetFlags();
+                SceneController.Instance.LoadScene("Title");       // タイトルへ
             }
         }
     }

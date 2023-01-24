@@ -4,22 +4,19 @@ using UnityEngine;
 
 namespace Moti
 {
-    public class GoingState : IState
+    public class GoingState : MotiState
     {
-        public MotiController Moti { get; set; }
-
-        /* コンストラクタ */
-        public GoingState(MotiController moti)
+        public override void StateEnter()
         {
-            Moti = moti;
-        }
-
-        public void StateEnter()
-        {
-            Moti.Ground.SetEnable(false);
+            Moti.Ground.ColEnabled = false;
 
             if (Moti.Family.HasChild) {
                 Moti.Stretcher.GoingMove(Moti.Family.OtherMoti);
+
+                // カメラ追尾
+                if (!GameManager.isResult) {
+                    CameraController.Instance.Chase(Moti.Family.OtherMoti);
+                }
             }
 
             else if (Moti.Family.HasParent) {
@@ -27,16 +24,30 @@ namespace Moti
             }
         }
 
-        public void StateUpdate()
+        public override void StateUpdate()
         {
-            if (Moti.MotiHit.OtherMoti) {
-                Moti.StateCtrl.TransitionState(Moti.StateCtrl.UnitedState);
+            base.StateUpdate();
+
+            if (Moti.MotiHit.OtherMoti && Moti.Family.HasChild) {
+                Moti.StateCtrl.StateTransition(Moti.StateCtrl.UnitedState);
             }
         }
 
-        public void StateExit()
+        public override void StateExit()
         {
+            Moti.Ground.ColEnabled = true;
+        }
 
+        protected override void CheckHit()
+        {
+            if (Moti.EnemyHit.IsHit && !GameManager.isResult) {
+                CheckHitAction();
+            }
+        }
+
+        public override void CheckHitAction()
+        {
+            Moti.EnemyHit.HitEnemy.Killed();        // ドロップ
         }
     }
 }

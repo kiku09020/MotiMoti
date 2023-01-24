@@ -2,42 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioController : MonoBehaviour
+public class AudioController : Singleton<AudioController>
 {
-    /* å€¤ */
-
-
-    /* ãƒ•ãƒ©ã‚° */
-
-
-    /* ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ */
-
-
-    /* ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå–å¾—ç”¨ */
-
-//-------------------------------------------------------------------
-    void Start()
+    /// <summary>
+    /// ‘S‚Ä‚Ì‰¹º‚ğƒ|[ƒY
+    /// </summary>
+    public void PauseAllAudio()
     {
-        /* ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾— */
-
-        /* ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå–å¾— */
+        BGM.Instance.Pause();
+        SE.Instance.Pause();
     }
 
-    void FixedUpdate()
+    /// <summary>
+    /// ‘S‚Ä‚Ì‰¹º‚Ìƒ|[ƒY‚ğ‰ğœ
+    /// </summary>
+    public void UnPauseAllAudio()
     {
-        
+        BGM.Instance.UnPause();
+        SE.Instance.UnPause();
     }
 
-//-------------------------------------------------------------------
-    // éŸ³å£°ã‚’ãƒŸãƒ¥ãƒ¼ãƒˆã™ã‚‹
-    public void MuteAudio()
-    {
-        AudioListener.volume = 0;
-    }
 
-    // éŸ³å£°ã®ãƒŸãƒ¥ãƒ¼ãƒˆã‚’è§£é™¤ã™ã‚‹
-    public void UnmuteAudio()
+    /// <summary>
+    /// ‘S‚Ä‚Ì‰¹º‚ÌÄ¶‚ğ’â~
+    /// </summary>
+    public void StopAllAudio()
     {
-        AudioListener.volume = 1;
+        BGM.Instance.Stop();
+        SE.Instance.Stop();
     }
 }

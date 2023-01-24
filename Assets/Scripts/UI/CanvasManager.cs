@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour {
     /* 値 */
-    GameObject mainCanvas;
-    GameObject ctrlUI;
-    GameObject texts;
-    GameObject pauseUI;
-    GameObject cautionUI;
+    static GameObject mainCanvas;
+    static GameObject ctrlUI;
+    static GameObject gameUI;
+    static GameObject pauseUI;
+    static GameObject cautionUI;
+    static GameObject resultUI;
 
-    public GameObject Texts { get => texts; }
-    public GameObject CtrlUI { get => ctrlUI; }
-    public GameObject PauseUI { get => pauseUI; }
-    public GameObject CautionUI { get => cautionUI; }
+    static public GameObject GameUI { get => gameUI; }
+    static public GameObject CtrlUI { get => ctrlUI; }
+    static public GameObject PauseUI { get => pauseUI; }
+    static public GameObject CautionUI { get => cautionUI; }
+    static public GameObject ResultUI { get => resultUI; }
 
     //-------------------------------------------------------------------
     void Awake()
@@ -21,41 +23,46 @@ public class CanvasManager : MonoBehaviour {
         /* オブジェクト取得 */
         mainCanvas = GameObject.Find("MainCanvas");
 
-        texts = mainCanvas.transform.Find("Texts").gameObject;
+        gameUI = mainCanvas.transform.Find("GameUI").gameObject;
         ctrlUI = mainCanvas.transform.Find("ControllerUI").gameObject;
         pauseUI = mainCanvas.transform.Find("PauseUI").gameObject;
         cautionUI = pauseUI.transform.Find("CautionUI").gameObject;
+        resultUI = mainCanvas.transform.Find("ResultUI").gameObject;
 
         /* 初期化 */
         pauseUI.SetActive(false);
+        resultUI.SetActive(false);
     }
 
     //-------------------------------------------------------------------
     // ポーズ
-    public void ActivatePauseUI()
+    static public void ActivatePauseUI(bool activate)
     {
-        ctrlUI.SetActive(false);
-        texts.SetActive(false);
-        pauseUI.SetActive(true);
-    }
+        if (activate) {
+            ctrlUI.SetActive(false);
+            gameUI.SetActive(false);
+            pauseUI.SetActive(true);
+        }
 
-    // ポーズ解除
-    public void ActivateUnpauseUI()
-    {
-        ctrlUI.SetActive(true);
-        texts.SetActive(true);
-        pauseUI.SetActive(false);
+        // ポーズ解除
+		else {
+            ctrlUI.SetActive(true);
+            gameUI.SetActive(true);
+            pauseUI.SetActive(false);
+        }
     }
 
     // 警告表示
-    public void ActivateCautionUI()
+    static public void ActivateCautionUI(bool activate)
     {
-        cautionUI.SetActive(true);
+        cautionUI.SetActive(activate);
     }
 
-    // 警告解除
-    public void ActivateUncautionUI()
-    {
-        cautionUI.SetActive(false);
-    }
+    // リザルト画面
+    static public void ActivateResultUI(bool activate)
+	{
+        resultUI.SetActive(activate);
+        gameUI.SetActive(!activate);
+        ctrlUI.SetActive(!activate);
+	}
 }

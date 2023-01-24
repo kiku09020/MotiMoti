@@ -4,37 +4,25 @@ using UnityEngine;
 
 namespace Moti
 {
-    public class UnitingState : IState
+    public class UnitingState : MotiState
     {
-        /* 値 */
-        public MotiController Moti { get; set; }
-
-        /* コンポーネント取得用 */
-
-        /* コンストラクタ */
-        public UnitingState(MotiController moti)
-        {
-            Moti = moti;
-        }
-
         //-------------------------------------------------------------------
-        public void StateEnter()
+        public override void StateEnter()
         {
-            Moti.Ground.SetEnable(true);
-            Moti.StateCtrl.TransitionState(Moti.StateCtrl.NormalState);     // 通常状態へ
+            Moti.StateCtrl.StateTransition(Moti.StateCtrl.NormalState);     // 通常状態へ
         }
 
-        public void StateUpdate()
+        public override void StateUpdate()
         {
-            
+            base.StateUpdate();
         }
 
-        public void StateExit()
+        public override void StateExit()
         {
             Moti.Uniter.Unite();                                            // 合体
+            FireController.Instance.UnitedMove(Moti);
         }
 
         //-------------------------------------------------------------------
-
     }
 }

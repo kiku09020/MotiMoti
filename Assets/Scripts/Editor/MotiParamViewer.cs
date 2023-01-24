@@ -28,7 +28,6 @@ public class MotiParamViewer : EditorWindow
     enum FolderType{        // タイプ名
         Ground,
         Motihit,
-        Input,
         Family,
         Stretcher,
         Line,
@@ -41,8 +40,6 @@ public class MotiParamViewer : EditorWindow
     static void Create()
     {
         var window = GetWindow<MotiParamViewer>("MotiParamViewer");
-
-        window.minSize = new Vector2(650, 850);
     }
 
     // 毎フレーム更新(重くなりそう)
@@ -53,16 +50,10 @@ public class MotiParamViewer : EditorWindow
 
     private void OnGUI()
     {
-        var obj = Selection.activeGameObject;       // 選択されたオブジェクト
+        var obj = GameObject.Find("Moti");
 
-        // なんもないとき
-        if (!obj) {
-            NoneLayout();       // 選択指示を表示
-        }
-
-        // タグ指定
-        else if (obj.tag == "Moti") {
-            var moti = obj.GetComponent<MotiController>();      // あんまよくないかも
+        if (obj) {
+            var moti = obj.GetComponent<MotiController>();
             AllLayout(moti);
         }
     }
@@ -78,6 +69,14 @@ public class MotiParamViewer : EditorWindow
             case SpaceType.hor: GUILayout.Space(horizontalSpaceSize); break;
             case SpaceType.flex: GUILayout.FlexibleSpace(); break;
         }
+    }
+
+    // 線挿入
+    void Line(float size,Color color)
+    {
+        GUI.color = color;
+        GUILayout.Box("", GUILayout.Height(size), GUILayout.ExpandWidth(true));
+        GUI.color = defaultBGColor;
     }
 
     // 折りたたみテンプレ
@@ -166,22 +165,18 @@ public class MotiParamViewer : EditorWindow
     void AllLayout(MotiController moti)
     {
         // もち単体の情報
-        using (new GUILayout.HorizontalScope()) {
-            MotiParamLayout(moti,true);                              // 選択したもち(左側に表示)
+        using (new GUILayout.VerticalScope()) {
+            if (moti) {
+                MotiParamLayout(moti, true);                              // 選択したもち(左側に表示)
 
-            
-            if (Application.isPlaying) {
-                if (moti.Family.OtherMoti) {
-                    MotiParamLayout(moti.Family.OtherMoti,false);    // 他のもち(右側に表示)
+                if (Application.isPlaying) {
+                    if (moti.Family.OtherMoti) {
+                        Line(5,Color.black);
+                        MotiParamLayout(moti.Family.OtherMoti, false);    // 他のもち(右側に表示)
+                    }
                 }
             }
-
-            else {
-                NoneLayout();
-            }
         }
-
-        // もち全体の情報
     }
 
     // もちのパラメータに関するレイアウト
@@ -213,6 +208,7 @@ public class MotiParamViewer : EditorWindow
                     var str = Enum.GetNames(typeof(FolderType))[i];
 
                     folders[i] = FolderTemplate(fldr, str, i, moti);
+                    folders[i] = true;
                 }
             }
         }
@@ -227,7 +223,6 @@ public class MotiParamViewer : EditorWindow
         switch (index) {
             case (int)FolderType.Ground:        GroundFolder(moti);     break;
             case (int)FolderType.Motihit:       MotiHitFolder(moti);    break;
-            case (int)FolderType.Input:         InputFolder(moti);      break;
             case (int)FolderType.Family:        FamilyFolder(moti);     break;
             case (int)FolderType.Stretcher:     StretcherFolder(moti);  break;
             case (int)FolderType.Line:          LineFolder(moti);       break;
@@ -236,21 +231,12 @@ public class MotiParamViewer : EditorWindow
 
     void GroundFolder(MotiController moti)
     {
-        BoolTemplate("IsGround",moti.Ground.IsGround);
-        VectorTemplate("HitPoint", moti.Ground.HitPoint);
-        VectorTemplate("HitVector", moti.Ground.HitVector);
+        BoolTemplate("HitPoint", moti.Ground.IsHit);
     }
 
     void MotiHitFolder(MotiController moti)
     {
-        BoolTemplate("IsHitMoti", moti.MotiHit.IsMotiTrigger);
-    }
-
-    void InputFolder(MotiController moti)
-    {
-        BoolTemplate("IsTapping", moti.Input.IsTapping);
-        BoolTemplate("IsDragging", moti.Input.IsDraging);
-        BoolTemplate("IsOnMouse", moti.Input.IsOnMoti);
+        BoolTemplate("IsHitMoti", moti.MotiHit.IsHit);
     }
 
     void FamilyFolder(MotiController moti)
@@ -269,7 +255,7 @@ public class MotiParamViewer : EditorWindow
     {
         if (moti.Family.HasChild) {
             LabelTemplate("Length", moti.Line.Length.ToString());
-            BoolTemplate("IsLimit", moti.Line.IsLimit);
+            BoolTemplate("IsLimit", moti.Line.IsLengthLimit);
         }
 
         else {

@@ -11,6 +11,7 @@ namespace Moti
         /* 値 */
         [Header("分裂")]
         [SerializeField] float minSize;                 // 最小サイズ
+        [SerializeField] float divisionLength;          // 分裂する長さ
 
         [Header("固定")]
         [SerializeField] float fixingTime;              // 固定までの時間
@@ -18,7 +19,8 @@ namespace Moti
         [Header("移動")]
         [SerializeField] float moveSpeed;
         [SerializeField] Ease goingEaseType;            // 移動イージング
-
+        [SerializeField,Range(0.5f,2)] 
+        float moveSensitivity;                          // 移動感度
 
         /* フラグ */
         bool isStretching;                              // 伸びてるか
@@ -39,25 +41,27 @@ namespace Moti
         //-------------------------------------------------------------------
         public void StretchingUpdate()
         {
-            if(!moti.Input.IsTapping) {
+            if (!GameManager.isResult) {
+                if (!InputChecker.IsTapping) {
+                    // 子は親に合わせる
+                    if (moti.Family.HasParent) {
+                        isStretching = moti.Family.OtherMoti.Stretcher.isStretching;
+                    }
 
-                if (moti.Family.HasParent) {
-                    isStretching = moti.Family.OtherMoti.Stretcher.isStretching;
+                    else {
+                        isStretching = false;               // Strething終了
+                    }
                 }
 
-                else {
-                    isStretching = false;               // Strething終了
-                }
+                DivisionDrag();                         // ドラッグ
             }
-
-            DivisionDrag();                         // ドラッグ
         }
 
         //-------------------------------------------------------------------
         // 分裂のドラッグ操作
         void DivisionDrag()
         {
-            if (!moti.Input.IsOnMoti && moti.Input.IsDraging && moti.Ground.IsGround) {
+            if (InputChecker.IsTapping && moti.Ground.IsHit) {
                 if (!isStretching && moti.Family.IsSingle) {
                     Division();         // 分裂した瞬間
                 }
@@ -69,11 +73,14 @@ namespace Moti
         // 分裂(ドラッグ開始時)
         void Division()
         {
-            transform.position = (transform.position + (Vector3)moti.Ground.HitPoint) / 2;    // 固定位置の指定
-            moti.transform.localScale /= 2;                                         // 大きさを半分にする
+            // 指定の長さで分裂
+            if (InputChecker.MouseDistance > divisionLength) {
+                transform.position = (transform.position + (Vector3)moti.Ground.HitPoint) / 2;    // 固定位置の指定
+                moti.transform.localScale /= 2;                                         // 大きさを半分にする
 
-            moti.Family.SetChild();                                                 // 子作成
-            isStretching = true;                                                    // Stretching状態
+                moti.Family.SetChild();                                                 // 子作成
+                isStretching = true;                                                    // Stretching状態
+            }
         }
 
         //-------------------------------------------------------------------
@@ -82,15 +89,24 @@ namespace Moti
         {
             var child = moti.Family.OtherMoti;
 
-            if (child && !child.Ground.IsGround) {
-                child.transform.position = InputChecker.MousePosWorld;          // 通常移動
+            if (child && InputChecker.IsTapping && isStretching) {
+                var targetPos= moti.transform.position + (InputChecker.MouseVector * moveSensitivity);          // 通常移動
 
-                // 指定の長さを超えたら、円形の移動制限をかける
-                if (moti.Input.MouseDistance > moti.Line.StretchableLenth) {
-                    var offset = child.transform.position - moti.transform.position;
-                    var clamoedPos = Vector2.ClampMagnitude(offset, moti.Line.StretchableLenth);
+                // Ray当たったとこに固定
+                if (moti.LineCol.Ray(child.transform.position, moti.transform.position)) {
+                    child.transform.position = moti.LineCol.HitPoint;
+                }
 
-                    child.transform.position = clamoedPos + (Vector2)moti.transform.position;       // 制限移動
+                else {
+                    child.transform.position = targetPos;
+
+                    // 指定の長さを超えたら、円形の移動制限をかける
+                    if ((InputChecker.MouseDistance * moveSensitivity) > moti.Line.StretchableLenth) {
+                        var offset = child.transform.position - moti.transform.position;
+                        var clamoedPos = Vector2.ClampMagnitude(offset, moti.Line.StretchableLenth);
+
+                        child.transform.position = clamoedPos + (Vector2)moti.transform.position;       // 制限移動
+                    }
                 }
             }
         }
@@ -106,9 +122,6 @@ namespace Moti
             else if(moti.Family.HasChild){
                 time = moti.Line.Length / moveSpeed;
 			}
-
-
-            print("time" + time);
 
             if (targetMoti) {
                 transform.DOMove(targetMoti.transform.position, time).SetEase(goingEaseType);

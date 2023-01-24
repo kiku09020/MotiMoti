@@ -10,8 +10,6 @@ namespace Moti
         /* 値 */
         [SerializeField] float fixingTime;                  // ステージにくっつくまでの時間
 
-        /* プロパティ */
-
         /* コンポーネント取得用 */
         MotiController moti;
 
@@ -19,25 +17,19 @@ namespace Moti
         //-------------------------------------------------------------------
         void Awake()
         {
-            /* オブジェクト取得 */
-
-
             /* コンポーネント取得 */
             moti = GetComponent<MotiController>();
-
-            /* 初期化 */
-
         }
 
         //-------------------------------------------------------------------
         public void Unite()
         {
             var other = moti.MotiHit.OtherMoti;
-            transform.localScale += other.transform.localScale;                         // 大きさ変更
+            transform.localScale *= 2;
 
             // 演出
-            moti.Particle.Play(ParticleNames_Moti.united, transform.position);
-            moti.Audio.Play(MotiAudioNames.united);
+            MotiParticle.Instance.Play("United", transform.position);
+            SE.Instance.Play("united");
 
             Destroy(other.gameObject);                                                  // 削除
             moti.Family.RemoveChild();
