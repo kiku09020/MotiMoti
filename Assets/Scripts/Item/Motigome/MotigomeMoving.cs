@@ -8,6 +8,8 @@ namespace Motigome {
         GameObject targetObj;
 
         Tweener moveTween;
+
+        [SerializeField] float moveTime;
         
         private void Awake()
         {
@@ -17,14 +19,14 @@ namespace Motigome {
         public void MoveStart()
         {
             if (targetObj) {
-                moveTween = transform.DOMove(targetObj.transform.position, 5);
+                moveTween = transform.DOMove(targetObj.transform.position, moveTime);
             }
         }
 
         public void MoveUpdate()
         {
             if (targetObj) {
-                moveTween.ChangeEndValue(targetObj.transform.position, 0.5f , true);
+                moveTween.ChangeEndValue(targetObj.transform.position, moveTime / 2, true);
             }
         }
     }

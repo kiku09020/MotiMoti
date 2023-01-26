@@ -50,21 +50,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void ResultFunc()
+    // 入った瞬間
+    void ResultEnterFunc()
+	{
+        BGM.Instance.Stop();        // BGM停止
+        SE.Instance.Play("hitEnemy");
+    }
+
+    // 停止後
+    void ResultAfterFunc()
     {
         FireController.Instance.SetEnable(false);   // 火を止める
         MotiDistanceManager.CheckHighScore();       // ハイスコア確認
         CanvasManager.ActivateResultUI(true);       // UI表示
         ResultTexts.Instance.SetText();             // テキストセット
+
         isResultOnce = true;
     }
 
     IEnumerator TimeStop(float time)
     {
+        ResultEnterFunc();
+
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(time);
         Time.timeScale = 1;
 
-        ResultFunc();
+        ResultAfterFunc();
     }
 }

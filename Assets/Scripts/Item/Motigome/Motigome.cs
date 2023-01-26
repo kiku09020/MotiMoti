@@ -39,6 +39,7 @@ namespace Motigome {
                 getCount++;
 
                 MotiGaugeManager.Instance.AddPower(power);
+                SE.Instance.Play("motigome");
 
                 Destroy(gameObject);
             }

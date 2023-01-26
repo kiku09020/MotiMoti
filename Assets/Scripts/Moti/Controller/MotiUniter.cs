@@ -28,7 +28,6 @@ namespace Moti
             transform.localScale *= 2;
 
             // 演出
-            MotiParticle.Instance.Play("United", transform.position);
             SE.Instance.Play("united");
 
             Destroy(other.gameObject);                                                  // 削除

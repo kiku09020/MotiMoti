@@ -42,6 +42,8 @@ public class EnemyBase : MonoBehaviour
 
         MotiGaugeManager.Instance.AddComboCount();
         MotigomeDropper.Drop(motigomeCnt * MotiGaugeManager.Instance.ComboCount, transform.position);
+        MotiParticle.Instance.Play("United", transform.position);
+        SE.Instance.Play("attackEnemy");
         Destroy(this.gameObject);
     }
 
