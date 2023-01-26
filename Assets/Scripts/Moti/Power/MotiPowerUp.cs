@@ -7,7 +7,8 @@ using DG.Tweening;
 public class MotiPowerUp : SimpleSingleton<MotiPowerUp> {
     [SerializeField] Moti.MotiController targetMoti;
 
- 
+    [Header("Time")]
+    [SerializeField] float powerUpWaitTime; // パワーアップ時の待機時間
     [SerializeField] float powerUpTime;     // パワーアップ時間
     float timer;
 
@@ -82,6 +83,8 @@ public class MotiPowerUp : SimpleSingleton<MotiPowerUp> {
         // テキスト表示
         TextGenerater.GenerateText(powerupText, motiPos, canvas.transform, targetPos, textDispTime, easeType);
 
+        TimeController.Instance.WaitSecond(powerUpWaitTime);
+
         // 伸びていなかったら、サイズ変更
         if (!targetMoti.Stretcher.IsStretching) {
             targetMoti.Line.StretchableLenth *= 2;
@@ -90,8 +93,6 @@ public class MotiPowerUp : SimpleSingleton<MotiPowerUp> {
         else {
             isStretchPowerUp = true;
         }
-
-        isStretchPowerDown = false;
     }
 
     // パワーダウン時
@@ -112,8 +113,9 @@ public class MotiPowerUp : SimpleSingleton<MotiPowerUp> {
     // 伸びている状態でパワーアップしたときの処理
     void CheckPowerUped()
     {
-        // 伸びる
-        if (isStretchPowerUp) {
+        // パワーアップ中
+        if (IsPowerUp && isStretchPowerUp) {
+            // 伸びる
             if (!targetMoti.Stretcher.IsStretching) {
                 isStretchPowerUp = false;
                 targetMoti.Line.StretchableLenth *= 2;

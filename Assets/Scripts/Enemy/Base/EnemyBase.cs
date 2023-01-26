@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    [SerializeField] new string name ;      // Enemy名(Inspectorから指定)
-    protected int motigomeCnt;              // ドロップするもち米の数
+    [SerializeField] new string name ;              // Enemy名(Inspectorから指定)
+    protected int motigomeCnt;                      // ドロップするもち米の数
 
-    GameObject target;
-    public float TargetDist { get; private set; }                // Playerとの距離
+    [SerializeField] float waitTime = 0.1f;  // 倒されたときの待機時間
 
 //-------------------------------------------------------------------
     protected virtual void Awake()
     {
         SetDataParams(name);
         MotigomeDropper.SetParent();
-
-        target = GameObject.Find("Moti");
     }
 
 //-------------------------------------------------------------------
@@ -31,26 +28,14 @@ public class EnemyBase : MonoBehaviour
     // やられるときの処理
     public virtual void Killed()
     {
-        StartCoroutine(TimeStopCoruoutine());
+        TimeController.Instance.WaitSecond(waitTime);     // 一時停止
+
+        MotiGaugeManager.Instance.AddComboCount();                                                              // コンボ数追加
+        MotigomeDropper.Drop(motigomeCnt * MotiGaugeManager.Instance.ComboCount, transform.position);           // もちごめのドロップ
+
+        MotiParticle.Instance.Play("United", transform.position);                                               // パーティクル再生
+        SE.Instance.Play("attackEnemy");                                                                        // 効果音再生
+
+        Destroy(gameObject);                                                                                    // 削除
     } 
-
-    IEnumerator TimeStopCoruoutine()
-    {
-        Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(0.1f);
-        Time.timeScale = 1;
-
-        MotiGaugeManager.Instance.AddComboCount();
-        MotigomeDropper.Drop(motigomeCnt * MotiGaugeManager.Instance.ComboCount, transform.position);
-        MotiParticle.Instance.Play("United", transform.position);
-        SE.Instance.Play("attackEnemy");
-        Destroy(this.gameObject);
-    }
-
-    protected void GetDist()
-    {
-        if (gameObject && target) {
-            TargetDist = Vector2.Distance(target.transform.position, transform.position);
-        }
-    }
 }

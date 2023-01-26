@@ -22,6 +22,9 @@ namespace Moti
         [SerializeField,Range(0.5f,2)] 
         float moveSensitivity;                          // 移動感度
 
+        [Header("移動制限")]
+        [SerializeField] Vector2 movableRangeVector;    // 可動範囲(ベクトルで各軸指定)
+
         /* フラグ */
         bool isStretching;                              // 伸びてるか
 
@@ -99,14 +102,22 @@ namespace Moti
 
                 else {
                     child.transform.position = targetPos;
+                    var mouseDist = InputChecker.MouseDistance * moveSensitivity;
 
                     // 指定の長さを超えたら、円形の移動制限をかける
-                    if ((InputChecker.MouseDistance * moveSensitivity) > moti.Line.StretchableLenth) {
+                    if (mouseDist > moti.Line.StretchableLenth) {
                         var offset = child.transform.position - moti.transform.position;
                         var clamoedPos = Vector2.ClampMagnitude(offset, moti.Line.StretchableLenth);
 
                         child.transform.position = clamoedPos + (Vector2)moti.transform.position;       // 制限移動
                     }
+
+                    // 画面端の移動制限
+                    var pos = child.transform.position;
+                    var camPos = CameraController.Instance.transform.position;
+                    pos.x = Mathf.Clamp(pos.x, -movableRangeVector.x, movableRangeVector.x);                        // X座標制限
+                    pos.y = Mathf.Clamp(pos.y, camPos.y - movableRangeVector.y, camPos.y + movableRangeVector.y);   // Y座標制限
+                    child.transform.position = pos;         // 適用
                 }
             }
         }

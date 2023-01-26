@@ -27,7 +27,8 @@ public class TextGenerater : MonoBehaviour
         DOTween.Sequence()
             .Append(genedObj.transform.DOMove(targetPosition, moveDuration).SetEase(moveEase))      // 移動
             .Append(genedObj.transform.DOScale(Vector2.zero, destroyDuration))                      // 移動後小さく
-            .OnComplete(() => Destroy(genedObj));                                                   // 削除
+            .OnComplete(() => Destroy(genedObj))                                                    // 削除
+            .SetUpdate(true);                       // TimeScale影響受けない
     }
 
     /// <summary>
@@ -41,6 +42,7 @@ public class TextGenerater : MonoBehaviour
         DOTween.Sequence()
             .Append(genedObj.transform.DOMove(targetPosition, moveDuration))        // 移動
             .Join(genedObj.transform.DOScale(targetScale, moveDuration))            // 拡大
-            .OnComplete(() => Destroy(genedObj));                                   // 削除
+            .OnComplete(() => Destroy(genedObj))                                    // 削除
+            .SetUpdate(true);                   // time
     }
 }
