@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 26833417144cb4248a65053d18d9b874, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
   dropMoveTime: 0.5
   dropMoveSize: 2
   dropMoveEaseType: 21
-  power: 1
+  power: 0.5
 --- !u!114 &2825692071184829455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,3 +129,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73815e36f68f694b8e9fceb94e47e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTime: 0.5

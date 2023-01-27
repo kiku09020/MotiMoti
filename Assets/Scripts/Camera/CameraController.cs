@@ -9,6 +9,8 @@ public class CameraController : SimpleSingleton<CameraController>
 	[SerializeField] Camera zoomingCamera;  // ズームするカメラ
 	[SerializeField] float offset;
 
+	Tweener chaseTween;
+
 	//-------------------------------------------------------------------
 	private void Awake()
 	{
@@ -28,14 +30,16 @@ public class CameraController : SimpleSingleton<CameraController>
         else {
 			position = Vector2.Lerp(moti.transform.position, moti.Family.OtherMoti.transform.position, 0.5f);
         }
-		transform.DOMoveY(position.y + offset, duration).SetEase(easeType);
 
+		chaseTween = transform.DOMoveY(position.y + offset, duration).SetEase(easeType);
 	}
 
 	//-------------------------------------------------------------------
 	// ズーム
 	public void Zoom(GameObject target, float duration = 0.5f, float targetZoomSize = 3,Ease easeType = Ease.Unset)
 	{
+		chaseTween.Kill();
+
 		DOTween.Sequence()	.Append(transform.DOMove(target.transform.position, duration))		// オブジェクトの位置に移動
 							.Join(zoomingCamera.DOOrthoSize(targetZoomSize, duration))			// サイズ変更
 							.SetUpdate(true).SetEase(easeType);			
@@ -45,6 +49,8 @@ public class CameraController : SimpleSingleton<CameraController>
 	public void ZoomInOut(GameObject target, float inDuration = 0.5f,float waitTime=0.5f, float outDuration = 0.5f, 
 						  float targetZoomSize = 3, Ease easeType = Ease.Unset)
 	{
+		chaseTween.Kill();
+
 		var size = zoomingCamera.orthographicSize;		// 呼び出し時のカメラのサイズ
 
 							// ズームイン
@@ -55,7 +61,7 @@ public class CameraController : SimpleSingleton<CameraController>
 							.AppendInterval(waitTime)
 
 							// ズームアウト
-							.Append(transform.DOMove(Vector2.zero, outDuration))
+							.Append(transform.DOMove(target.transform.position, outDuration))
 							.Join(zoomingCamera.DOOrthoSize(size, outDuration))
 
 							.SetEase(easeType);

@@ -9,6 +9,7 @@ public abstract class ParticleManager<T> : Singleton<T> where T:ParticleManager<
     protected List<ParticleSystem> generatedParticles = new List<ParticleSystem>();      // 生成されたパーティクルのリスト
     protected Dictionary<string, GameObject> dic;       // dic
 
+    Transform parent;
 
     //-------------------------------------------------------------------
     protected override void Awake()
@@ -30,8 +31,15 @@ public abstract class ParticleManager<T> : Singleton<T> where T:ParticleManager<
     }
 
     // 再生前にセットアップ
-    protected virtual void SetUp(ParticleSystem part,ParticleSystemStopAction stopAction)
+    protected virtual void SetUp(ParticleSystem part,Transform parent, ParticleSystemStopAction stopAction)
     {
+        this.parent = parent;                   // 親指定
+
+        // 親指定なしの場合、自分を親と指定
+        if(!this.parent) {
+            parent = transform;
+        }
+
         var partMain = part.main;
         partMain.stopAction = stopAction;       // 再生終了時の処理
     }
@@ -40,24 +48,25 @@ public abstract class ParticleManager<T> : Singleton<T> where T:ParticleManager<
     /// <summary>
     /// パーティクル再生
     /// </summary>
-    public virtual void Play(string particleName, Vector2 position, 
+    public virtual GameObject Play(string particleName, Vector2 position, Transform parent=null, 
                                 ParticleSystemStopAction stopAction = ParticleSystemStopAction.Destroy)
     {
         var partObj = dic[particleName];
         var part = partObj.GetComponent<ParticleSystem>();
-        SetUp(part, stopAction);                                            // パーティクルのセットアップ
+        SetUp(part,parent, stopAction);                                     // パーティクルのセットアップ
 
-        Instantiate(part, position, Quaternion.identity, transform);        // 生成
         generatedParticles.Add(part);                                       // リストに追加
+        return Instantiate(partObj, position, Quaternion.identity, this.parent);      // 生成
     }
 
-    public virtual void Play(string particleName, Vector2 position, Quaternion rotation,
+    public virtual GameObject Play(string particleName, Vector2 position, Quaternion rotation, Transform parent = null,
                                 ParticleSystemStopAction stopAction = ParticleSystemStopAction.Destroy)
     {
         var partObj = dic[particleName];
         var part = partObj.GetComponent<ParticleSystem>();
+        SetUp(part, parent, stopAction);
 
-        Instantiate(partObj, position, rotation, transform);        // 生成
-        generatedParticles.Add(part);        // リストに追加
+        generatedParticles.Add(part);                                   // リストに追加
+        return Instantiate(partObj, position, rotation, this.parent);          // 生成
     }
 }
