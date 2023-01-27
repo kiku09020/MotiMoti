@@ -14,24 +14,26 @@ namespace Yakimoti {
         [SerializeField] float movableRangeX;       // X軸の可動範囲
         [SerializeField] Ease moveEaseType;         // 移動イージング
         Vector2 targetPos;                          // 目標座標
-        float xDir;                                 // 進行方向
+        public float xDir;                                 // 進行方向
 
         [Header("Wait")]
         [SerializeField] float waitTime;            // 待機時間
         float waitTimer;
 
         StateController state;
+        SpriteRenderer rend;
 
         //-------------------------------------------------------------------
         protected override void Awake()
         {
             base.Awake();
 
-            xDir = Expansion.GetRandomDirect();     // 方向ランダムにする
-            SetMoveTime();
-
+            rend = GetComponent<SpriteRenderer>();
             state = gameObject.AddComponent<StateController>();
             state.StateInit(state.Waiting);
+
+            xDir = Expansion.GetRandomDirect();     // 方向ランダムにする
+            SetMoveTime();
         }
 
         void FixedUpdate()
@@ -44,9 +46,10 @@ namespace Yakimoti {
         public void SetTarget()
 		{
             xDir *= -1;     // 方向指定
-            var w = transform.localScale.x;
-            var x = (movableRangeX * xDir) + ((w / 2) * -xDir);
-            targetPos = new Vector2(x, transform.position.y);
+            var x = (movableRangeX * xDir);
+            targetPos = new Vector2(x, transform.position.y);       // 目標座標指定
+
+            rend.flipX = (xDir == -1) ? true : false;
 		}
 
         // 移動時間の指定

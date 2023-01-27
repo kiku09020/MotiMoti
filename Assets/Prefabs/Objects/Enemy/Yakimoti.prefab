@@ -97,10 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Yakimoti
-  waitTime: 0.1
+  killedWaitTime: 0.1
   minMoveTime: 1.5
   maxMoveTime: 3
-  movableRangeX: 3.5
+  movableRangeX: 3
   moveEaseType: 4
   waitTime: 0.25
 --- !u!58 &2220560036226415015

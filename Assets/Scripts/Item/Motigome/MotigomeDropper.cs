@@ -43,5 +43,7 @@ public class MotigomeDropper : MonoBehaviour
             var comp = inst.GetComponent<Motigome.Motigome>();
             comp.Dropped();
         }
+
+        Destroy(obj, 3);
     }
 }

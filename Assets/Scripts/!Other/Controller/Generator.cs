@@ -62,7 +62,7 @@ public class Generator : MonoBehaviour
 	}
 
     // ŒÀ‚ç‚ê‚½êŠ‚É‚Ì‚İ
-    protected void SetGeneratePosition(float range,bool containMinus)
+    protected virtual void SetGeneratePosition(float range,bool containMinus)
     {
         var x = 0f;
         if (containMinus) {

@@ -27,10 +27,12 @@ public class MotiGaugeVisualizer : SimpleSingleton<MotiGaugeVisualizer>
 
     void FixedUpdate()
     {
-        MotiGaugeManager.Instance.MotiGaugeUpdate();
-        MotiPowerUp.Instance.PowerUpdate();
-        DispPower();
-        DispCombo();
+        if (!GameManager.isResult) {
+            MotiGaugeManager.Instance.MotiGaugeUpdate();
+            MotiPowerUp.Instance.PowerUpdate();
+            DispPower();
+            DispCombo();
+        }
     }
 
 //-------------------------------------------------------------------

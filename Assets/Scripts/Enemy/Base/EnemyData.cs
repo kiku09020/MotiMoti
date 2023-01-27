@@ -10,15 +10,7 @@ public class EnemyData
     [SerializeField] int motigomeCnt;           // もちごめのドロップ数]
     [SerializeField] int motigomeRandRange;     // もち米のランダム範囲
 
-    [Header("Audio")]
-    [SerializeField] List<AudioClip> clipList = new List<AudioClip>();
-
-
     public int MotigomeCnt => motigomeCnt;
     public int MotigomeRandRange => motigomeRandRange;
     public string Name => name;
-    public List<AudioClip> ClipList => clipList;
-
-//-------------------------------------------------------------------
-
 }
