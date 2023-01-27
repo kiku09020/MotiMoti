@@ -7,7 +7,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] new string name ;              // Enemy名(Inspectorから指定)
     protected int motigomeCnt;                      // ドロップするもち米の数
 
-    [SerializeField] float waitTime = 0.1f;  // 倒されたときの待機時間
+    [SerializeField] float killedWaitTime = 0.1f;  // 倒されたときの待機時間
 
 //-------------------------------------------------------------------
     protected virtual void Awake()
@@ -28,7 +28,7 @@ public class EnemyBase : MonoBehaviour
     // やられるときの処理
     public virtual void Killed()
     {
-        TimeController.Instance.WaitSecond(waitTime);     // 一時停止
+        TimeController.Instance.WaitSecond(killedWaitTime);     // 一時停止
 
         MotiGaugeManager.Instance.AddComboCount();                                                              // コンボ数追加
         MotigomeDropper.Drop(motigomeCnt * MotiGaugeManager.Instance.ComboCount, transform.position);           // もちごめのドロップ

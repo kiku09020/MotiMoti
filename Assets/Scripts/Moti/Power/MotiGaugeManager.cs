@@ -93,7 +93,7 @@ public class MotiGaugeManager : SimpleSingleton<MotiGaugeManager>
     {
         if (MotiPowerUp.IsPowerUp) {
             if (nowPower > 0) {
-                nowPower -= MotiPowerUp.Instance.timerValue;
+                nowPower -= (Time.deltaTime / MotiPowerUp.Instance.PowerUpTime) * 100;
             }
 
             if (nowPower < 0) {

@@ -3,52 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(DestroyerBase))]       // 削除コンポーネント必須にする
-public class GeneratorBase : MonoBehaviour
+public class Generator : MonoBehaviour
 {
-    const float dispSpace = 10;
-
-    [Header("GenerateObject")]
+    [Header("Object")]
     [SerializeField,Tooltip("生成するオブジェクト")] 
     protected GameObject genObj;
-    [SerializeField,Tooltip("生成先のparent")]
-    protected Transform parent;
+    protected Transform parent;                 // 生成先
 
-    [Space(dispSpace)]
+    [SerializeField, Tooltip("生成基準のオブジェクト")]
+    protected GameObject targetObj;
+
+    [Header("Distance")]
     [SerializeField,Tooltip("生成されたオブジェクト同士の距離")]
     protected float genObjDist;
-    [SerializeField,Tooltip("最大生成数")]
-    protected int maxCnt;
+    [SerializeField, Tooltip("プレイヤーから生成位置の距離")]
+    protected float targetDist;
 
-    // position
-    [Space(dispSpace)]
+    [Header("Position")]
     [SerializeField,Tooltip("生成位置の開始地点")] 
     protected Vector2 startGenPos;
-    protected Vector2 genPos;                                   // 生成位置
+    protected Vector2 genPos;                   // 生成位置
 
-    // target
-    [Space(dispSpace)]
-    [SerializeField,Tooltip("プレイヤーから生成位置の距離")] 
-    protected float targetDist;
-    protected static GameObject targetObj;                      // プレイヤー(Groundから代入)
+    [Header("Other")]
+    [SerializeField, Tooltip("最大生成数")]
+    protected int maxCnt;
 
     // list
     protected List<GameObject> genObjList = new List<GameObject>();     // 生成されたオブジェクトのリスト
 
     /* プロパティ */
     public List<GameObject> GenObjList => genObjList;
-    public static GameObject TargetObj => targetObj;
     public int MaxCnt => maxCnt;
 
 	//-------------------------------------------------------------------
     protected virtual void Awake()
     {
-        targetObj = GameObject.Find("Moti");
-        genPos = startGenPos;
-
-		while (genObjList.Count < maxCnt) {
-            Generate();
-		}
-
+        parent = transform;         // 生成先指定
+        genPos = startGenPos;       // 最初の生成位置の指定
     }
 
     void FixedUpdate()
@@ -63,36 +54,65 @@ public class GeneratorBase : MonoBehaviour
 
 //-------------------------------------------------------------------
     // Y座標のみ
-    protected virtual void SetGeneratePosition()
+    protected void SetGeneratePosition()
 	{
         var y = genPos.y + genObjDist;
 
         genPos = new Vector2(0, y);
 	}
 
+    // 限られた場所にのみ
+    protected void SetGeneratePosition(float range,bool containMinus)
+    {
+        var x = 0f;
+        if (containMinus) {
+            x = range * Expansion.GetRandomDirect();
+        }
+
+        else {
+            x = range;
+        }
+
+        var y = genPos.y + genObjDist;
+        genPos = new Vector2(x, y);
+    }
+
     // X座標をランダムに指定する
-    protected virtual void SetGeneratePosition(float xRange)
-	{
-        var x = Random.Range(-xRange, xRange);
+    protected void SetGenerateRandomPosition(float range)
+    {
+        var x = Random.Range(-range, range);
         var y = genPos.y + genObjDist;
 
         genPos = new Vector2(x, y);
-	}
+    }
 
     //-------------------------------------------------------------------
+    // 生成呼び出し用
+    protected virtual void Generate()
+    {
+        GenerateBase();
+    }
 
     // 生成
-    protected virtual void Generate()
+    protected virtual GameObject GenerateBase()
 	{
         SetGeneratePosition();      // 生成位置の指定
 
         var obj = Instantiate(genObj, genPos, Quaternion.identity, parent);   // インスタンス化
         genObjList.Add(obj);                                           // リストに追加
+
+        return obj;
 	}
 
-    protected virtual GameObject Generate(float xRange)
+    protected virtual GameObject GenerateBase(float xRange, bool isRandom = true)
     {
-        SetGeneratePosition(xRange);
+        if (isRandom) {
+            SetGenerateRandomPosition(xRange);
+        }
+
+        else {
+            SetGeneratePosition(xRange, true);
+        }
 
         var obj = Instantiate(genObj, genPos, Quaternion.identity, parent);
         genObjList.Add(obj);

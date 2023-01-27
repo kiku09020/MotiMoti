@@ -15,7 +15,6 @@ public class MotiGaugeVisualizer : SimpleSingleton<MotiGaugeVisualizer>
     [SerializeField] Text comboText;        // コンボテキスト
 
     float dispPower;         // 表示
-    float targetPower;       // 目標
 
 //-------------------------------------------------------------------
     void Awake()
@@ -24,7 +23,6 @@ public class MotiGaugeVisualizer : SimpleSingleton<MotiGaugeVisualizer>
         MotiPowerUp.Instance.Init();
 
         dispPower = 0;
-        targetPower = 0;
     }
 
     void FixedUpdate()
@@ -39,18 +37,7 @@ public class MotiGaugeVisualizer : SimpleSingleton<MotiGaugeVisualizer>
     // 表示パワーのセット(パワー加算時に呼び出し)
     public void SetDispPower()
 	{
-        SetTargetPower();
-
-        DOVirtual.Float(dispPower, targetPower, easeTime, value=>{
-            dispPower = value;
-        }).SetEase(easeType);
-
-	}
-
-    // 目標パワーのセット
-    void SetTargetPower()
-	{
-        targetPower = MotiGaugeManager.Instance.NowPower / 100f;
+        dispPower = MotiGaugeManager.Instance.NowPower / 100;
 	}
 
     // 表示コンボセット(コンボ加算時)

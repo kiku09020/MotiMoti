@@ -14,6 +14,9 @@ namespace Motigome {
         [SerializeField] float power;
         static int getCount;
 
+        // Renderer
+        Renderer rend;
+
         public StateController State { get; private set; }
         public MotigomeMoving Moving { get; private set; }
 
@@ -22,6 +25,11 @@ namespace Motigome {
         {
             State = gameObject.AddComponent<StateController>();
             Moving = GetComponent<MotigomeMoving>();
+
+            rend = GetComponent<Renderer>();
+
+            var rand = Random.Range(0, 2f);
+            rend.material.SetFloat("_speed", rand);
 
             getCount = 0;
             State.StateInit(State.Drop);

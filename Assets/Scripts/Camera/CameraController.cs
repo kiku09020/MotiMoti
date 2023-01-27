@@ -61,7 +61,7 @@ public class CameraController : SimpleSingleton<CameraController>
 							.AppendInterval(waitTime)
 
 							// ズームアウト
-							.Append(transform.DOMove(Vector2.zero, outDuration))
+							.Append(transform.DOMove(target.transform.position, outDuration))
 							.Join(zoomingCamera.DOOrthoSize(size, outDuration))
 
 							.SetEase(easeType);

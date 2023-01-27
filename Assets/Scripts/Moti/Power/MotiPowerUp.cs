@@ -23,8 +23,10 @@ public class MotiPowerUp : SimpleSingleton<MotiPowerUp> {
     bool isStretchPowerUp;                  // 伸びてるときにパワーアップしたフラグ
     bool isStretchPowerDown;                // 伸びているときにパワーダウンした  
 
+    GameObject partObj;
+
     public static bool IsPowerUp { get; private set; }       // パワーアップ中
-    public float timerValue { get; private set; }            // timer/timerLimit
+    public float PowerUpTime => powerUpTime;
 
     //-------------------------------------------------------------------
     public void Init()
@@ -69,8 +71,6 @@ public class MotiPowerUp : SimpleSingleton<MotiPowerUp> {
                 IsPowerUp = false;
                 powerUpOnce = false;
             }
-
-            timerValue = timer / powerUpTime;
         }
     }
 
@@ -83,7 +83,11 @@ public class MotiPowerUp : SimpleSingleton<MotiPowerUp> {
         // テキスト表示
         TextGenerater.GenerateText(powerupText, motiPos, canvas.transform, targetPos, textDispTime, easeType);
 
+        // 待機
         TimeController.Instance.WaitSecond(powerUpWaitTime);
+        partObj = MotiParticle.Instance.Play("PowerUp", motiPos, targetMoti.transform);
+
+        DotWeenTemplate.ResizeScale_Undo(targetMoti.gameObject, 0.5f, 0, 0.75f);
 
         // 伸びていなかったら、サイズ変更
         if (!targetMoti.Stretcher.IsStretching) {
@@ -108,6 +112,7 @@ public class MotiPowerUp : SimpleSingleton<MotiPowerUp> {
         }
 
         isStretchPowerUp = false;
+        Destroy(partObj);           // パーティクル削除
     }
 
     // 伸びている状態でパワーアップしたときの処理

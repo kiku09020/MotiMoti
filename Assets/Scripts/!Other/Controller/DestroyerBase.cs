@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DestroyerBase : MonoBehaviour
 {
-    GeneratorBase gen;
+    Generator gen;
 
 //-------------------------------------------------------------------
     void Awake()
     {
-        gen = GetComponent<GeneratorBase>();
+        gen = GetComponent<Generator>();
     }
 
     void FixedUpdate()

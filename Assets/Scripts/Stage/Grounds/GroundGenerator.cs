@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundGenerator : GeneratorBase
+public class GroundGenerator : Generator
 {
 	[Header("Range")]	
     [SerializeField] float genPosXRange;        // Xの範囲
@@ -25,9 +25,9 @@ public class GroundGenerator : GeneratorBase
 	}
 
 	// 生成本体
-	protected override void Generate()
+	protected override GameObject GenerateBase()
 	{
-        SetGeneratePosition(genPosXRange);      // 生成位置
+        SetGenerateRandomPosition(genPosXRange);      // 生成位置
 
         var obj = Instantiate(genObj, genPos, SetGenerateRotation(), parent);     // 生成
 
@@ -37,5 +37,7 @@ public class GroundGenerator : GeneratorBase
 		}
 
         genObjList.Add(obj);
+
+		return obj;
 	}
 }
