@@ -67,19 +67,19 @@ public class SceneController : Singleton<SceneController>
     /// シーン名を指定して読み込む
     /// </summary>
     /// <param name="sceneName">シーン名</param>
-    public void LoadScene(string sceneName) 
-    { StartCoroutine(WaitLoading(sceneName)); }
+    public void LoadScene(string sceneName, float waitDuration = 0) 
+    { StartCoroutine(WaitLoading(sceneName, waitDuration)); }
 
     /// <summary>
     /// シーン番号を指定して読み込む
     /// </summary>
     /// <param name="sceneIndex">シーン番号</param>
-    public void LoadScene(int sceneIndex)
-    { StartCoroutine(WaitLoading(sceneIndex)); }
+    public void LoadScene(int sceneIndex, float waitDuration = 0)
+    { StartCoroutine(WaitLoading(sceneIndex,waitDuration)); }
 
     //-------------------------------------------------------------------
     /* 待機 */
-    IEnumerator WaitLoading(Load loadType,float duration)
+    IEnumerator WaitLoading(Load loadType, float duration = 0)
 	{
         var index = nowScene.Index;
         yield return new WaitForSecondsRealtime(duration);
@@ -91,15 +91,15 @@ public class SceneController : Singleton<SceneController>
         }
     }
 
-    IEnumerator WaitLoading(string sceneName)
+    IEnumerator WaitLoading(string sceneName, float duration = 0)
 	{
-        yield return new WaitForSecondsRealtime(sceneLoadWaitTime);
+        yield return new WaitForSecondsRealtime(duration);
         SceneManager.LoadScene(sceneName);
     }
 
-    IEnumerator WaitLoading(int sceneIndex)
+    IEnumerator WaitLoading(int sceneIndex, float duration = 0)
 	{
-        yield return new WaitForSecondsRealtime(sceneLoadWaitTime);
+        yield return new WaitForSecondsRealtime(duration);
         SceneManager.LoadScene(sceneIndex);
     }
 

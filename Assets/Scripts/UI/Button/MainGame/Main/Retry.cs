@@ -15,10 +15,6 @@ namespace Button {
                 PauseManager.Instance.SetCaution();
                 CanvasManager.ActivateCautionUI(true);
             }
-
-			else {
-                SceneController.Instance.LoadNowScene();
-			}
         }
     }
 }

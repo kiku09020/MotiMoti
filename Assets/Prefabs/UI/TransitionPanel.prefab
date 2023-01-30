@@ -91,7 +91,6 @@ MonoBehaviour:
   matList:
   - {fileID: 2100000, guid: 40ff4fe6cacb69d4ba5d9dcf89daa480, type: 2}
   - {fileID: 2100000, guid: 4cbe91d28482aee4187ad46d7cc5b9fe, type: 2}
-  type: 0
-  transtionDuration: 1
+  transtionDuration: 0.75
   isLoop: 0
   loopWaitDuration: 0
