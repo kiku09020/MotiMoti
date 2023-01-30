@@ -30,35 +30,35 @@ public class SceneController : Singleton<SceneController>
         sceneCnt = SceneManager.sceneCount;
     }
 
-//-------------------------------------------------------------------
+    //-------------------------------------------------------------------
     /// <summary>
     /// 現在のシーンを読み込む
     /// </summary>
-    public void LoadNowScene()
+    public void LoadNowScene(float waitDuration = 0)
     {
-        StartCoroutine(WaitLoading(Load.Now));
+        StartCoroutine(WaitLoading(Load.Now, waitDuration));
     }
 
     /// <summary>
     /// 次のシーンを読み込む
     /// </summary>
-    public void LoadNextScene() 
+    public void LoadNextScene(float waitDuration = 0) 
     {
         var index = nowScene.Index;
         
         if (index < sceneCnt) {     // シーン番号が合計のシーン数より小さいとき、読み込み
-            StartCoroutine(WaitLoading(Load.Next));
+            StartCoroutine(WaitLoading(Load.Next, waitDuration));
         }
     }
 
     /// <summary>
     /// 前のシーンを読み込む
     /// </summary>
-    public void LoadPrevScene() {
+    public void LoadPrevScene(float waitDuration = 0) {
         var index = nowScene.Index;
 
 		if (index > 0) {            // シーン番号が0より大きいとき、読み込む
-            StartCoroutine(WaitLoading(Load.Prev));
+            StartCoroutine(WaitLoading(Load.Prev, waitDuration));
         }
     }
 
@@ -79,10 +79,10 @@ public class SceneController : Singleton<SceneController>
 
     //-------------------------------------------------------------------
     /* 待機 */
-    IEnumerator WaitLoading(Load loadType)
+    IEnumerator WaitLoading(Load loadType,float duration)
 	{
         var index = nowScene.Index;
-        yield return new WaitForSecondsRealtime(sceneLoadWaitTime);
+        yield return new WaitForSecondsRealtime(duration);
 
 		switch (loadType) {
             case Load.Now:  SceneManager.LoadScene(index);      break;
@@ -109,6 +109,7 @@ public class SceneController : Singleton<SceneController>
     {
         nowScene.SetUp();
         BGM.Instance.Stop();        // BGM停止
+        TransitionUI.Instance.PlayTransition(TransitionUI.Type.circleOut);
     }
 
 }

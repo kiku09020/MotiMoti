@@ -4,6 +4,6 @@ using UnityEngine;
 
 namespace Button {
 	public abstract class PauseButtons : Buttons {
-		public abstract void Clicked();
+
 	}
 }

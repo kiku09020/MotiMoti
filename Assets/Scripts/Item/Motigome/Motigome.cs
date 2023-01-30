@@ -47,7 +47,10 @@ namespace Motigome {
                 getCount++;
 
                 MotiGaugeManager.Instance.AddPower(power);
-                SE.Instance.Play("motigome");
+
+                var rand = Random.Range(0.5f, 1.5f);
+
+                SE.Instance.Play("motigome", 0, 0.5f, rand);
 
                 Destroy(gameObject);
             }

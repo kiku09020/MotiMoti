@@ -713,7 +713,7 @@ MonoBehaviour:
   fixingTime: 0.1
   moveSpeed: 8
   goingEaseType: 26
-  moveSensitivity: 0.5
+  moveSensitivity: 0.75
   movableRangeVector: {x: 3.5, y: 4.5}
 --- !u!114 &8129661352410282750
 MonoBehaviour:

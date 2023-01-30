@@ -85,9 +85,10 @@ public class MotiPowerUp : SimpleSingleton<MotiPowerUp> {
 
         // 待機
         TimeController.Instance.WaitSecond(powerUpWaitTime);
-        partObj = MotiParticle.Instance.Play("PowerUp", motiPos, targetMoti.transform);
+        partObj = MotiParticle.Instance.Play("PowerUp", motiPos, targetMoti.transform);         // パーティクル再生
+        BGM.Instance.ChangePitch(1.2f);
 
-        DotWeenTemplate.ResizeScale_Undo(targetMoti.gameObject, 0.5f, 0, 0.75f);
+        DotWeenTemplate.ResizeScale_Undo(targetMoti.gameObject, 0.5f, 0, 0.75f);                // もち変形
 
         // 伸びていなかったら、サイズ変更
         if (!targetMoti.Stretcher.IsStretching) {
@@ -112,6 +113,7 @@ public class MotiPowerUp : SimpleSingleton<MotiPowerUp> {
         }
 
         isStretchPowerUp = false;
+        BGM.Instance.ChangePitch(1);
         Destroy(partObj);           // パーティクル削除
     }
 

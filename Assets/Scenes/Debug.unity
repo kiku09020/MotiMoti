@@ -435,11 +435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474442f8c817edd4bb7085f06467d871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!20 &1239953948 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 3702499093268507892, guid: 3fb191e690954874298190bff4f1e535, type: 3}
-  m_PrefabInstance: {fileID: 3702499093705921675}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1331766647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1034,10 +1029,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4223802872581123666, guid: 3fb191e690954874298190bff4f1e535, type: 3}
-      propertyPath: zoomingCamera
-      value: 
-      objectReference: {fileID: 1239953948}
     - target: {fileID: 4726328964862550600, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_Name
       value: Cameras

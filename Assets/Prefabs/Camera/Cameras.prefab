@@ -255,7 +255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2274884091757566234, guid: f033f03c16d52774bb26051074cd774e, type: 3}
       propertyPath: orthographic size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2274884091757566234, guid: f033f03c16d52774bb26051074cd774e, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -268,6 +268,14 @@ PrefabInstance:
     - target: {fileID: 2274884091757566235, guid: f033f03c16d52774bb26051074cd774e, type: 3}
       propertyPath: m_Name
       value: EffectCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2274884092355730064, guid: f033f03c16d52774bb26051074cd774e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2274884092355730064, guid: f033f03c16d52774bb26051074cd774e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f033f03c16d52774bb26051074cd774e, type: 3}
