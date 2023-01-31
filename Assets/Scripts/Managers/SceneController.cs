@@ -66,18 +66,74 @@ public class SceneController : Singleton<SceneController>
     /// <summary>
     /// シーン名を指定して読み込む
     /// </summary>
-    /// <param name="sceneName">シーン名</param>
     public void LoadScene(string sceneName, float waitDuration = 0) 
     { StartCoroutine(WaitLoading(sceneName, waitDuration)); }
 
     /// <summary>
     /// シーン番号を指定して読み込む
     /// </summary>
-    /// <param name="sceneIndex">シーン番号</param>
     public void LoadScene(int sceneIndex, float waitDuration = 0)
     { StartCoroutine(WaitLoading(sceneIndex,waitDuration)); }
 
     //-------------------------------------------------------------------
+    /* 演出+シーン読み込み */
+    /// <summary>
+    /// 遷移演出付きで現在のシーンを読み込む
+    /// </summary>
+    public void LoadNowSceneWithTransition(TransitionUI.Type transType)
+    {
+        TransitionUI.Instance.PlayTransition(transType);
+
+        var duration = TransitionUI.Instance.TransitionDuration;
+        LoadNowScene(duration);
+    }
+
+    /// <summary>
+    /// 遷移演出付きで次のシーンを読み込む
+    /// </summary>
+    public void LoadNextSceneWithTransition(TransitionUI.Type transType)
+    {
+        TransitionUI.Instance.PlayTransition(transType);
+
+        var duration = TransitionUI.Instance.TransitionDuration;
+        LoadNextScene(duration);
+    }
+
+    /// <summary>
+    /// 遷移演出付きで前のシーンを読み込む
+    /// </summary>
+    public void LoadPrevSceneWithTransition(TransitionUI.Type transType)
+    {
+        TransitionUI.Instance.PlayTransition(transType);
+
+        var duration = TransitionUI.Instance.TransitionDuration;
+        LoadPrevScene(duration);
+    }
+
+    /// <summary>
+    /// 遷移演出付きでシーン番号で指定したシーンを読み込む
+    /// </summary>
+    public void LoadSceneWithTransition(int sceneIndex,TransitionUI.Type transType)
+    {
+        TransitionUI.Instance.PlayTransition(transType);
+
+        var duration = TransitionUI.Instance.TransitionDuration;
+        LoadScene(sceneIndex, duration);
+    }
+
+    /// <summary>
+    /// 遷移演出付きでシーン名で指定したシーンを読み込む
+    /// </summary>
+    public void LoadSceneWithTransition(string sceneName, TransitionUI.Type transType)
+    {
+        TransitionUI.Instance.PlayTransition(transType);
+
+        var duration = TransitionUI.Instance.TransitionDuration;
+        LoadScene(sceneName, duration);
+    }
+
+    //-------------------------------------------------------------------
+
     /* 待機 */
     IEnumerator WaitLoading(Load loadType, float duration = 0)
 	{

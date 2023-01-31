@@ -10,10 +10,16 @@ namespace Button {
         {
             SE.Instance.Play("btn_click");
 
+            // ポーズ画面(警告)
             if (cautionFlag) {
                 PauseManager.Instance.isRetry = true;
                 PauseManager.Instance.SetCaution();
                 CanvasManager.ActivateCautionUI(true);
+            }
+
+            // 通常
+            else {
+                SceneController.Instance.LoadNowSceneWithTransition(TransitionUI.Type.circleIn);        // シーン読み込み
             }
         }
     }

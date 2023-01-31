@@ -7,23 +7,20 @@ namespace Button {
 
         public override void Clicked()
         {
-            Time.timeScale = 1;
-            SE.Instance.Play("btn_celect");
-            var loadDuration = TransitionUI.Instance.TransitionDuration;
-
-            TransitionUI.Instance.PlayTransition(TransitionUI.Type.circleIn);      // 遷移
-            CanvasManager.PauseUI.SetActive(false);                                 // UI非表示
+            Time.timeScale = 1;                         // 時間停止終了
+            SE.Instance.Play("btn_celect");             // 効果音再生
+            CanvasManager.PauseUI.SetActive(false);     // ポーズ画面非表示
 
             // リトライ
             if (PauseManager.Instance.isRetry) {
-                PauseManager.Instance.ResetFlags();                                 // 値リセット
-                SceneController.Instance.LoadNowScene(loadDuration);                // 再読み込み
+                PauseManager.Instance.ResetFlags();                                                     // 値リセット
+                SceneController.Instance.LoadNowSceneWithTransition(TransitionUI.Type.circleIn);        // 再読み込み
             }
 
             // ゲーム終了
             else if (PauseManager.Instance.isExit) {
-                PauseManager.Instance.ResetFlags();                                 // 値リセット
-                SceneController.Instance.LoadScene("Title", loadDuration);          // タイトルへ
+                PauseManager.Instance.ResetFlags();                                                     // 値リセット
+                SceneController.Instance.LoadSceneWithTransition("Title",TransitionUI.Type.circleIn);   // タイトルへ
             }
         }
     }

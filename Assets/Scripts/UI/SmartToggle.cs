@@ -23,6 +23,8 @@ public class SmartToggle : MonoBehaviour
 
     float handlePosX;
 
+    Sequence seq;
+
     private void Awake()
     {
         handlePosX = Mathf.Abs(handle.anchoredPosition.x);
@@ -41,8 +43,12 @@ public class SmartToggle : MonoBehaviour
         var bgColor = Value ? onColor : offColor;
         var x = Value ? handlePosX : -handlePosX;
 
-        var seq = DOTween.Sequence();
+        seq?.Complete();
+        seq = DOTween.Sequence();
+
         seq.Append(backImg.DOColor(bgColor, switchDuration))            // êFïœçX
             .Join(handle.DOAnchorPosX(x, switchDuration / 2));          // à⁄ìÆ
+
+        seq.SetUpdate(true);// timeScale=0Ç≈Ç‡óLå¯Ç…
     }
 }

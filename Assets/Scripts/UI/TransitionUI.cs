@@ -9,7 +9,7 @@ public class TransitionUI : Singleton<TransitionUI>
     [SerializeField] List<Material> matList = new List<Material>();       // list
 
     [Header("Transition")]
-    [SerializeField, Range(-1, 1)] float transtionDuration;     // ‰æ–Ê‘JˆÚŠÔ
+    [SerializeField, Range(0, 3)] float transtionDuration;     // ‰æ–Ê‘JˆÚŠÔ
 
     [Header("Loop")]
     [SerializeField] bool isLoop;                               // ƒ‹[ƒv‚·‚é‚©
