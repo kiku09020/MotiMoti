@@ -1081,30 +1081,6 @@ PrefabInstance:
       propertyPath: field of view
       value: 62
       objectReference: {fileID: 0}
-    - target: {fileID: 3702499093370483140, guid: 3fb191e690954874298190bff4f1e535, type: 3}
-      propertyPath: orthographic size
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3702499093370483140, guid: 3fb191e690954874298190bff4f1e535, type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3702499093370483140, guid: 3fb191e690954874298190bff4f1e535, type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3702499093370483140, guid: 3fb191e690954874298190bff4f1e535, type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3702499093370483140, guid: 3fb191e690954874298190bff4f1e535, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3702499093370483161, guid: 3fb191e690954874298190bff4f1e535, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3946031012429387315, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1152,6 +1128,10 @@ PrefabInstance:
     - target: {fileID: 4726328964862550600, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_Name
       value: Cameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fb191e690954874298190bff4f1e535, type: 3}
