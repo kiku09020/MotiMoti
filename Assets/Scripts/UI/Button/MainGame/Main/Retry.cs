@@ -19,6 +19,7 @@ namespace Button {
 
             // í èÌ
             else {
+                CanvasManager.ResultUI.SetActive(false);
                 SceneController.Instance.LoadNowSceneWithTransition(TransitionUI.Type.circleIn);        // ÉVÅ[Éìì«Ç›çûÇ›
             }
         }

@@ -27,7 +27,7 @@ public class DataManager : SimpleSingleton<DataManager> {
 	{
 #if UNITY_EDITOR
         filepath = Application.dataPath + "/" + fileName;
-#elif UNITY_ANDROID
+#else
         filepath = Application.persistentDataPath + "/" + fileName;
 #endif
     }
