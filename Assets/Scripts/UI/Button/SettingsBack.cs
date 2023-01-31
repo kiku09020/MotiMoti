@@ -10,6 +10,7 @@ namespace Button
 
         public override void Clicked()
         {
+            SettingsManager.Instance.SaveData();        // İ’èƒf[ƒ^•Û‘¶
             settingsUI.SetActive(false);
         }
     }

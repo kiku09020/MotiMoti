@@ -16,19 +16,17 @@ public class SmartToggle : MonoBehaviour
     [SerializeField] Color onColor;
 
     [Header("Other")]
-    [SerializeField] bool onActive;             // ‰Šúó‘Ô
     [SerializeField] float switchDuration;      // Ø‚è‘Ö‚¦ŠÔ
 
-    public bool Value { get; private set; }     // ’l
+    public bool Value { get; set; }     // ’l
 
     float handlePosX;
 
     Sequence seq;
 
-    private void Awake()
+    private void Start()
     {
         handlePosX = Mathf.Abs(handle.anchoredPosition.x);
-        Value = onActive;
         UpdateToggle();
     }
 
