@@ -92,4 +92,31 @@ public abstract class AudioManagerBase<T> : Singleton<T> where T:AudioManagerBas
     {
         source.Stop();
     }
+
+    //-------------------------------------------------------------------
+    /* ChangeProperty */
+    // 音量変更
+    public void ChangeVolume(float volume)
+    {
+        source.volume = volume;
+    }
+
+    // ピッチ変更
+    public void ChangePitch(float pitch)
+    {
+        source.pitch = pitch;
+    }
+
+    /* AddProperty */
+    // 音量加算
+    public void AddVolume(float addVolumeValue)
+    {
+        source.volume += addVolumeValue;
+    }
+
+    // ピッチ加算
+    public void AddPitch(float addPitchValue)
+    {
+        source.pitch += addPitchValue;
+    }
 }

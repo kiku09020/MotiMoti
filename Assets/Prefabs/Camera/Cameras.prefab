@@ -255,21 +255,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2274884091757566234, guid: f033f03c16d52774bb26051074cd774e, type: 3}
       propertyPath: orthographic size
-      value: 4
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 2274884091757566234, guid: f033f03c16d52774bb26051074cd774e, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.099999994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2274884091757566234, guid: f033f03c16d52774bb26051074cd774e, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2274884091757566235, guid: f033f03c16d52774bb26051074cd774e, type: 3}
       propertyPath: m_Name
       value: EffectCamera
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2274884092355730064, guid: f033f03c16d52774bb26051074cd774e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2274884092355730064, guid: f033f03c16d52774bb26051074cd774e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2274884091757566215, guid: f033f03c16d52774bb26051074cd774e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f033f03c16d52774bb26051074cd774e, type: 3}
 --- !u!1 &3702499093370483141 stripped
 GameObject:
@@ -335,6 +344,14 @@ PrefabInstance:
     - target: {fileID: 2111571845964288290, guid: dfc8f73c4b922724280164ab33de193f, type: 3}
       propertyPath: m_Name
       value: ClearCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2111571845964288291, guid: dfc8f73c4b922724280164ab33de193f, type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2111571845964288291, guid: dfc8f73c4b922724280164ab33de193f, type: 3}
+      propertyPath: orthographic size
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7664976548221940856, guid: dfc8f73c4b922724280164ab33de193f, type: 3}
       propertyPath: m_CameraType

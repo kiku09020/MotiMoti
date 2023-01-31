@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Button {
     public abstract class Buttons : MonoBehaviour {
+        public abstract void Clicked();
     }
 }
 

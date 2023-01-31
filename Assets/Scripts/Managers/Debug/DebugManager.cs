@@ -28,6 +28,7 @@ public class DebugManager : MonoBehaviour
             Debug.ClearDeveloperConsole();
         }
 
+#if UNITY_EDITOR
         // 一時停止
         else if(Input.GetKeyDown(KeyCode.P)){
             if(isPausing){
@@ -62,6 +63,8 @@ public class DebugManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Escape)) {
             QuitGame();
         }
+
+#endif
     }
 
     // ゲーム終了
@@ -72,6 +75,7 @@ public class DebugManager : MonoBehaviour
         EditorApplication.isPlaying = false;
 
 #elif UNITY_ANDROID
+        PauseManager.Instance.isExit = true;
         CanvasManager.ActivateCautionUI(true);
 
 #endif
