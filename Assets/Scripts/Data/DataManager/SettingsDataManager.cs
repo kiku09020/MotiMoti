@@ -4,7 +4,7 @@ namespace Data {
     public class SettingsDataManager : DataManager_Base<SettingsDataManager> {
         protected override string FileName => "SettingsData";
 
-        public SettingsData dataInfo;
+        [HideInInspector] public SettingsData dataInfo;
 
         private void OnEnable()
         {

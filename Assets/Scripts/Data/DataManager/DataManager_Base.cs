@@ -24,8 +24,14 @@ namespace Data {
 #else                   // Platform
             dataPath = $"{Application.persistentDataPath}";
 #endif
+            var directoryPath = $"{dataPath}/{FOLDER_NAME}";
 
-            FilePath = $"{dataPath}/{FOLDER_NAME}/{fileNameWithExt}";
+            // Dataフォルダが無ければ新規作成
+            if (!Directory.Exists(directoryPath)) {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            FilePath = $"{directoryPath}/{fileNameWithExt}";
         }
 
         /// <summary>
