@@ -15,10 +15,5 @@ namespace Data {
         {
             Save(dataInfo);
         }
-
-        public void LoadData()
-        {
-            dataInfo = Load<SettingsData>();
-        }
     }
 }

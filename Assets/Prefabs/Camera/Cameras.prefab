@@ -1,37 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5222282585189882912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3702499093370483141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!1 &4726328964862550600
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,9 +102,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.099999994
+    y: 0
     width: 1
-    height: 0.8
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -253,18 +221,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2274884091757566234, guid: f033f03c16d52774bb26051074cd774e, type: 3}
-      propertyPath: orthographic size
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2274884091757566234, guid: f033f03c16d52774bb26051074cd774e, type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2274884091757566234, guid: f033f03c16d52774bb26051074cd774e, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2274884091757566235, guid: f033f03c16d52774bb26051074cd774e, type: 3}
       propertyPath: m_Name
       value: EffectCamera
@@ -277,14 +233,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 15
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2274884091757566215, guid: f033f03c16d52774bb26051074cd774e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f033f03c16d52774bb26051074cd774e, type: 3}
---- !u!1 &3702499093370483141 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2274884091757566235, guid: f033f03c16d52774bb26051074cd774e, type: 3}
-  m_PrefabInstance: {fileID: 3239187954486749406}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3702499093370483163 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2274884091757566213, guid: f033f03c16d52774bb26051074cd774e, type: 3}
@@ -394,11 +344,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6297539762846397518, guid: 0b94727600cb0da4ea407e6ed102be22, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.099999994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6297539762846397518, guid: 0b94727600cb0da4ea407e6ed102be22, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6297539762846397617, guid: 0b94727600cb0da4ea407e6ed102be22, type: 3}
       propertyPath: m_RootOrder

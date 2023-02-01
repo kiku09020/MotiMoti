@@ -447,10 +447,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 681139967007460370, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1990490214756881387, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -543,41 +539,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 3168375166664522010, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3212781602192184364, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.000015259
-      objectReference: {fileID: 0}
-    - target: {fileID: 3212781602192184364, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -115
-      objectReference: {fileID: 0}
-    - target: {fileID: 3694095391414425846, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-      propertyPath: m_Time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3694095391414425846, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-      propertyPath: m_Parameters.widthMultiplier
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3694095391414425846, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3694095391414425846, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3694095391414425846, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5582578614407195288, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
-    - {fileID: 3694095391414425846, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
 --- !u!114 &1332931593 stripped
 MonoBehaviour:
@@ -1035,7 +997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 970794371977115216, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.099999994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 970794371977115216, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
@@ -1043,7 +1005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 970794371977115216, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3058213194485204878, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_Cameras.Array.size
@@ -1067,7 +1029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3702499093268507892, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.099999994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3702499093268507892, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
@@ -1075,7 +1037,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3702499093268507892, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3702499093370483140, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: field of view
@@ -1128,10 +1090,6 @@ PrefabInstance:
     - target: {fileID: 4726328964862550600, guid: 3fb191e690954874298190bff4f1e535, type: 3}
       propertyPath: m_Name
       value: Cameras
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fb191e690954874298190bff4f1e535, type: 3}

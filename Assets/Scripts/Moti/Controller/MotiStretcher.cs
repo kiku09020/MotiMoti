@@ -30,6 +30,7 @@ namespace Moti
 
         /* プロパティ */
         public bool IsStretching => isStretching;
+        public bool IsStretchedOnce { get; private set; }       // もちが最初に伸びたか
 
         /* コンポーネント取得用 */
         MotiController moti;
@@ -66,6 +67,13 @@ namespace Moti
         {
             if (InputChecker.IsTapping && moti.Ground.IsHit) {
                 if (!isStretching && moti.Family.IsSingle) {
+
+                    // 一度のみフラグ
+                    if (!IsStretchedOnce) {
+                        FingerController.Instance.Delete();
+                        IsStretchedOnce = true;
+                    }
+
                     Division();         // 分裂した瞬間
                 }
 
