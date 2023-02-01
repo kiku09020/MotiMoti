@@ -13,7 +13,7 @@ public class SettingsManager : SimpleSingleton<SettingsManager>
     [Header("Slider")]
     [SerializeField] Slider sensitivitySlider;
 
-    private void OnEnable()
+    private void Start()
     {
         SetValues();
     }

@@ -6,7 +6,7 @@ namespace Data {
 
         public SettingsData dataInfo;
 
-        private void Awake()
+        private void OnEnable()
         {
             dataInfo = SetUp<SettingsData>(dataInfo);
         }

@@ -1699,26 +1699,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1990490214756881387}
     m_Modifications:
-    - target: {fileID: 6895586905194910258, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6895586905194910258, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6895586905194910258, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6895586906486465269, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6895586906486465269, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6895586906488024359, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1807,11 +1787,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsUI
       objectReference: {fileID: 0}
-    - target: {fileID: 6895586906488024376, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5361009858398765206, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
+    - {fileID: 3857580818861724135, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
 --- !u!224 &5623830279653381224 stripped
 RectTransform:

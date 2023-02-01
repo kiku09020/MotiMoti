@@ -429,6 +429,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870137122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5623830279111310913, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
+  m_PrefabInstance: {fileID: 1331766647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385027df6ba058b43b764c9390679aef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &907711661 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8129661352410282750, guid: 35ebcde437dfa144dba4c1366f9d1ca6, type: 3}
@@ -438,6 +449,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474442f8c817edd4bb7085f06467d871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1276755027 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5623830280143579426, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
+  m_PrefabInstance: {fileID: 1331766647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1331766647
@@ -550,6 +572,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1345312203 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9022470020904092918, guid: d89eb8c2d2a30d04d8a156fe15f7aa99, type: 3}
+  m_PrefabInstance: {fileID: 1331766647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 385027df6ba058b43b764c9390679aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1387549997 stripped
@@ -813,10 +846,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 137223664298462454, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 137223664432990017, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -878,29 +907,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1723014}
     - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
-      propertyPath: easeType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
-      propertyPath: moveDist
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
       propertyPath: targetMoti
       value: 
       objectReference: {fileID: 907711661}
-    - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
-      propertyPath: powerupText
+    - target: {fileID: 4555802001468654022, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: seToggle
       value: 
-      objectReference: {fileID: 941669680865108311, guid: 9f3a8b76a89b8334ea48ae3c548c8c7a, type: 3}
-    - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
-      propertyPath: textDispTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2679264595621016925, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
-      propertyPath: powerUpWaitTime
-      value: 0.5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1345312203}
+    - target: {fileID: 4555802001468654022, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: bgmToggle
+      value: 
+      objectReference: {fileID: 870137122}
+    - target: {fileID: 4555802001468654022, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
+      propertyPath: sensitivitySlider
+      value: 
+      objectReference: {fileID: 1276755027}
     - target: {fileID: 6372698635206549189, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
       propertyPath: moti
       value: 
@@ -909,22 +930,6 @@ PrefabInstance:
       propertyPath: distanceText
       value: 
       objectReference: {fileID: 411995186}
-    - target: {fileID: 6862303518021444473, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
-      propertyPath: easeTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6862303518021444473, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
-      propertyPath: comboText
-      value: 
-      objectReference: {fileID: 1658813873}
-    - target: {fileID: 6862303518021444473, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
-      propertyPath: powerImage
-      value: 
-      objectReference: {fileID: 1332931593}
-    - target: {fileID: 7301723815640993457, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
-      propertyPath: bgm
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 293fb8af928835e44b05216cc8cf646f, type: 3}
 --- !u!1001 &2937975565135345102

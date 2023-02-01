@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7090995772923111713}
   - component: {fileID: 6372698635206549189}
   - component: {fileID: 5993708827205254706}
+  - component: {fileID: 6100603689183497712}
+  - component: {fileID: 4555802001468654022}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -66,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4044f237baef934a813bfcf578ead3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
+  datainfo:
     highScore: 0
 --- !u!114 &7090995772923111713
 MonoBehaviour:
@@ -109,6 +111,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc00daa55e2c4004b91d68cbabf9482c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6100603689183497712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137223664432990018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac83dcf8204eb1441adcfb412a7c6fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataInfo:
+    enableBGM: 0
+    enableSE: 0
+    sensitivity: 0
+--- !u!114 &4555802001468654022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137223664432990018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d58bb768b4c7da4c962e8301541a7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmToggle: {fileID: 0}
+  seToggle: {fileID: 0}
+  sensitivitySlider: {fileID: 0}
 --- !u!1 &5143908819185305076
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,10 +218,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetMoti: {fileID: 0}
+  powerUpWaitTime: 0.5
   powerUpTime: 7.5
-  powerupText: {fileID: 0}
+  powerupText: {fileID: 941669680865108311, guid: 9f3a8b76a89b8334ea48ae3c548c8c7a, type: 3}
   canvas: {fileID: 0}
-  textDispTime: 1.5
+  textDispTime: 1
+  easeType: 3
+  moveDist: 2
 --- !u!1001 &5297045115756696397
 PrefabInstance:
   m_ObjectHideFlags: 0
