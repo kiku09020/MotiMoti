@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] float zoomSize = 3;
     [SerializeField] Ease easeType;
 
+    [Header("BGM")]
+    [SerializeField,Range(0,1)] float bgmDelay = 0.5f;
+    [SerializeField,Range(0,1)] float bgmVolume = 0.5f;
+
     [Header("Result")]
     [SerializeField] float timeStop;
 
@@ -30,7 +34,7 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1;
 
-        BGM.Instance.Play("bgm1", 1, 0.2f);
+        BGM.Instance.Play("bgm1", bgmDelay, bgmVolume);     // BGM再生
     }
 
 //-------------------------------------------------------------------

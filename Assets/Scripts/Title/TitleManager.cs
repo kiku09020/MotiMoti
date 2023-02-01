@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class TitleManager : MonoBehaviour
 {
-    /* 値 */
-
-
-    /* フラグ */
-
-
-    /* プロパティ */
+    private void Awake()
+    {
+        BGM.Instance.Play("titleBGM", 0, 0.5f);
+    }
 }
