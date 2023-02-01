@@ -95,26 +95,48 @@ public abstract class AudioManagerBase<T> : Singleton<T> where T:AudioManagerBas
 
     //-------------------------------------------------------------------
     /* ChangeProperty */
-    // 音量変更
+
+    /// <summary>
+    /// ミュート
+    /// </summary>
+    public void Mute()
+    {
+        source.mute = true;
+    }
+
+    public void UnMute()
+    {
+        source.mute = false;
+    }
+
+    /// <summary>
+    /// 音量変更
+    /// </summary>
     public void ChangeVolume(float volume)
     {
         source.volume = volume;
     }
 
-    // ピッチ変更
+    /// <summary>
+    /// ピッチ変更
+    /// </summary>
     public void ChangePitch(float pitch)
     {
         source.pitch = pitch;
     }
 
     /* AddProperty */
-    // 音量加算
+    /// <summary>
+    /// 音量加算
+    /// </summary>
     public void AddVolume(float addVolumeValue)
     {
         source.volume += addVolumeValue;
     }
 
-    // ピッチ加算
+    /// <summary>
+    /// ピッチ加算
+    /// </summary>
     public void AddPitch(float addPitchValue)
     {
         source.pitch += addPitchValue;

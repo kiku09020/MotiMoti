@@ -23,9 +23,9 @@ public class SettingsManager : SimpleSingleton<SettingsManager>
     {
         var data = SettingsDataManager.Instance.dataInfo;
 
-        bgmToggle.Value = data.enableBGM;
-        seToggle.Value = data.enableSE;
-        sensitivitySlider.value = data.sensitivity;
+        bgmToggle.IsOn = data.enableBGM;
+        seToggle.IsOn = data.enableSE;
+        sensitivitySlider.value= data.sensitivity;
     }
 
     // パラメータ→データ
@@ -33,8 +33,8 @@ public class SettingsManager : SimpleSingleton<SettingsManager>
     {
         var data = SettingsDataManager.Instance.dataInfo;
 
-        data.enableBGM = bgmToggle.Value;
-        data.enableSE = seToggle.Value;
+        data.enableBGM = bgmToggle.IsOn;
+        data.enableSE = seToggle.IsOn;
         data.sensitivity = (int)sensitivitySlider.value;
 
         SettingsDataManager.Instance.dataInfo = data;

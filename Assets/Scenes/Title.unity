@@ -1254,6 +1254,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1391222962}
     m_Modifications:
+    - target: {fileID: 6895586905194910258, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895586905194910258, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895586905194910258, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895586906486465269, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895586906486465269, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6895586906488024359, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1341,6 +1361,10 @@ PrefabInstance:
     - target: {fileID: 6895586906488024376, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
       propertyPath: m_Name
       value: SettingsUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895586906488024376, guid: e800128086c422c499f7f523be6a6f0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e800128086c422c499f7f523be6a6f0c, type: 3}

@@ -11,8 +11,8 @@ namespace Data {
     // İ’èƒpƒ‰ƒ[ƒ^
     [System.Serializable]
     public class SettingsData :IData{
-        public bool enableBGM;
-        public bool enableSE;
-        public int sensitivity;
+        public bool enableBGM = true;
+        public bool enableSE = true;
+        public int sensitivity = 3;
     }
 }

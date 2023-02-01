@@ -8,18 +8,24 @@ namespace Data {
         protected string FilePath { get; private set; }     // ファイルパス
         protected abstract string FileName { get; }         // ファイル名
 
+        const string FOLDER_NAME = "Data";
+
         //-------------------------------------------------------------------
         // ファイルパス取得
         void GetFilePath()
         {
             var fileNameWithExt = $"{FileName}.json";       // 拡張子付きファイル名
 
+
+            var dataPath = "";
 #if UNITY_EDITOR        // Editor
-            FilePath = $"{Application.dataPath}/{fileNameWithExt}";
+            dataPath = $"{Application.dataPath}";
 
 #else                   // Platform
-            FilePath = $"{Application.persistentDataPath}/{fileNameWithExt}";
+            dataPath = $"{Application.persistentDataPath}";
 #endif
+
+            FilePath = $"{dataPath}/{FOLDER_NAME}/{fileNameWithExt}";
         }
 
         /// <summary>

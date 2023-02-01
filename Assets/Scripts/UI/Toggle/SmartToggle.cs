@@ -18,7 +18,7 @@ public class SmartToggle : MonoBehaviour
     [Header("Other")]
     [SerializeField] float switchDuration;      // êÿÇËë÷Ç¶éûä‘
 
-    public bool Value { get; set; }     // íl
+    public bool IsOn { get; set; }     // íl
 
     float handlePosX;
 
@@ -32,14 +32,14 @@ public class SmartToggle : MonoBehaviour
 
     public void Switch()
     {
-        Value = !Value;
+        IsOn = !IsOn;
         UpdateToggle();
     }
 
     void UpdateToggle()
     {
-        var bgColor = Value ? onColor : offColor;
-        var x = Value ? handlePosX : -handlePosX;
+        var bgColor = IsOn ? onColor : offColor;
+        var x = IsOn ? handlePosX : -handlePosX;
 
         seq?.Complete();
         seq = DOTween.Sequence();
