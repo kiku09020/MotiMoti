@@ -19,8 +19,7 @@ namespace Moti
         [Header("移動")]
         [SerializeField] float moveSpeed;
         [SerializeField] Ease goingEaseType;            // 移動イージング
-        [SerializeField,Range(0.5f,2)] 
-        float moveSensitivity;                          // 移動感度
+        public float moveSensitivity = 1;               // 移動感度
 
         [Header("移動制限")]
         [SerializeField] Vector2 movableRangeVector;    // 可動範囲(ベクトルで各軸指定)
