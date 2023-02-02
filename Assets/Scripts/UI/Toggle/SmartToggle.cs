@@ -32,6 +32,8 @@ public class SmartToggle : MonoBehaviour
 
     public void Switch()
     {
+        SE.Instance.Play("btn_celect");
+
         IsOn = !IsOn;
         UpdateToggle();
     }

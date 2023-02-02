@@ -16,6 +16,9 @@ public class SensitivitySlider : MonoBehaviour
 
     public void ChangedValue()
     {
+        SE.Instance.Play("btn_celect");
+
+        // ‚à‚¿‚ª‚ ‚ê‚Î“K—p
         if (moti) {
             moti.Stretcher.moveSensitivity = (slider.value / slider.maxValue) ;
         }
