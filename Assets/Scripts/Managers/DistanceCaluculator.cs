@@ -32,14 +32,14 @@ public class DistanceCaluculator : MonoBehaviour
 
     /* 軸の長さを求める */
     // floatから長さを求める
-    static public float CheckAxisLength(float from, float to)
+    static public float CheckAxisDistance(float from, float to)
 	{
         var dist = Mathf.Abs(to - from);
         return dist;
 	}
 
     // ベクトルから軸の長さを求める
-    static public float CheckAxisLength(Vector2 fromPoint, Vector2 toPoint, Axis axis)
+    static public float CheckAxisDistance(Vector2 fromPoint, Vector2 toPoint, Axis axis)
     {
         var from = 0f; var to = 0f;
 
@@ -62,7 +62,7 @@ public class DistanceCaluculator : MonoBehaviour
     /* 角度を調べる */
 
     // 距離を超えた時の処理
-    static public bool CheckOverLength(float from, float to)
+    static public bool CheckOverDistance(float from, float to)
 	{
 		if (from < to) {
             return true;

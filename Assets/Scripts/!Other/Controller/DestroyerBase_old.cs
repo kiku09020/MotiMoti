@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyerBase : MonoBehaviour
+public class DestroyerBase_old : MonoBehaviour
 {
     Generator gen;
 

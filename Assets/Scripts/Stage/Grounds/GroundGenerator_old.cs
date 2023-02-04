@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundGenerator : Generator
+public class GroundGenerator_old : Generator
 {
 	[Header("Range")]	
     [SerializeField] float genPosXRange;        // Xの範囲

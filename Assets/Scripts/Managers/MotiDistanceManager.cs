@@ -33,7 +33,7 @@ public class MotiDistanceManager : MonoBehaviour
     void CheckDistance()
 	{
         var motiPos = moti.transform.position;
-        distance = DistanceCaluculator.CheckAxisLength(motiPos.y, 0);
+        distance = DistanceCaluculator.CheckAxisDistance(motiPos.y, 0);
 	}
 
     // テキスト

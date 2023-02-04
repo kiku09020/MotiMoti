@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(DestroyerBase))]       // 削除コンポーネント必須にする
+[RequireComponent(typeof(DestroyerBase_old))]       // 削除コンポーネント必須にする
 public class Generator : MonoBehaviour
 {
     [Header("Object")]
@@ -61,7 +61,7 @@ public class Generator : MonoBehaviour
         genPos = new Vector2(0, y);
 	}
 
-    // 限られた場所にのみ
+    // 端っこ生成
     protected virtual void SetGeneratePosition(float range,bool containMinus)
     {
         var x = 0f;
