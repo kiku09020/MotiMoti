@@ -893,6 +893,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2098070129}
     - target: {fileID: 2129768727252655614, guid: aed7cce108ae2ab439a5b1e9007da332, type: 3}
+      propertyPath: generatedObjDist
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129768727252655614, guid: aed7cce108ae2ab439a5b1e9007da332, type: 3}
       propertyPath: startGeneratedPosY
       value: 150
       objectReference: {fileID: 0}
