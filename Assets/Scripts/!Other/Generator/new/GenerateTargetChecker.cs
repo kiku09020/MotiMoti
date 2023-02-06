@@ -6,7 +6,8 @@ using UnityEngine;
 public class GenerateTargetChecker : MonoBehaviour
 {
     [SerializeField] GameObject targetObj;      // 対象のオブジェクト
-    
+
+    public GameObject TargetObj => targetObj;
 
     //-------------------------------------------------------------------
     /// <summary>
