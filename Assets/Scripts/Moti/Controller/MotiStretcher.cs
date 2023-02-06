@@ -19,8 +19,7 @@ namespace Moti
         [Header("移動")]
         [SerializeField] float moveSpeed;
         [SerializeField] Ease goingEaseType;            // 移動イージング
-        [SerializeField,Range(0.5f,2)] 
-        float moveSensitivity;                          // 移動感度
+        public float moveSensitivity = 1;               // 移動感度
 
         [Header("移動制限")]
         [SerializeField] Vector2 movableRangeVector;    // 可動範囲(ベクトルで各軸指定)
@@ -30,6 +29,7 @@ namespace Moti
 
         /* プロパティ */
         public bool IsStretching => isStretching;
+        public bool IsStretchedOnce { get; private set; }       // もちが最初に伸びたか
 
         /* コンポーネント取得用 */
         MotiController moti;
@@ -66,6 +66,13 @@ namespace Moti
         {
             if (InputChecker.IsTapping && moti.Ground.IsHit) {
                 if (!isStretching && moti.Family.IsSingle) {
+
+                    // 一度のみフラグ
+                    if (!IsStretchedOnce) {
+                        FingerController.Instance.Delete();
+                        IsStretchedOnce = true;
+                    }
+
                     Division();         // 分裂した瞬間
                 }
 

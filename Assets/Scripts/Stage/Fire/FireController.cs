@@ -49,7 +49,7 @@ public class FireController : SimpleSingleton<FireController>
     public void UnitedMove(Moti.MotiController targetMoti)
     {
         var motiPosY = targetMoti.transform.position.y;
-        var dist = Mathf.Abs(DistanceCaluculator.CheckAxisLength(transform.position.y, motiPosY));
+        var dist = Mathf.Abs(DistanceCaluculator.CheckAxisDistance(transform.position.y, motiPosY));
 
         var unitedPosY = motiPosY;      // åªç›ÇÃà íuÇï€ë∂
 

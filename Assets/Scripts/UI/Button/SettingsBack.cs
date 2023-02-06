@@ -10,6 +10,9 @@ namespace Button
 
         public override void Clicked()
         {
+            SE.Instance.Play("btn_cancel");
+
+            SettingsManager.Instance.SaveData();        // İ’èƒf[ƒ^•Û‘¶
             settingsUI.SetActive(false);
         }
     }

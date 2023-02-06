@@ -9,6 +9,8 @@ namespace Button {
 
         public override void Clicked()
         {
+            SE.Instance.Play("btn_click");
+
             settingsUI.SetActive(true);
         }
     }

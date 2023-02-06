@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Data;
+
 public class MotiDistanceManager : MonoBehaviour
 {
     [SerializeField] Moti.MotiController moti;
@@ -31,7 +33,7 @@ public class MotiDistanceManager : MonoBehaviour
     void CheckDistance()
 	{
         var motiPos = moti.transform.position;
-        distance = DistanceCaluculator.CheckAxisLength(motiPos.y, 0);
+        distance = DistanceCaluculator.CheckAxisDistance(motiPos.y, 0);
 	}
 
     // テキスト
@@ -44,11 +46,11 @@ public class MotiDistanceManager : MonoBehaviour
     // ハイスコア変更
     static public void CheckHighScore()
 	{
-        var highScore = DataManager.Instance.data.highScore;
+        var highScore = SaveDataManager.Instance.datainfo.highScore;
         var intDist = (int)distance;
 
 		if (highScore < intDist) {
-            DataManager.Instance.data.highScore = intDist;
+            SaveDataManager.Instance.datainfo.highScore = intDist;
 		}
 	}
 }

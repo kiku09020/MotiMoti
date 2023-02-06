@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class FingerController : MonoBehaviour
+public class FingerController : SimpleSingleton<FingerController>
 {
     [Header("Duration")]
     [SerializeField] float animationDuration;       // アニメーションタイプ
@@ -23,7 +23,16 @@ public class FingerController : MonoBehaviour
     //-------------------------------------------------------------------
     public void Animation(float animationDuration, float waitDuration, float moveDistance, Ease easeType = Ease.Unset)
     {
-
+        DOTween.Sequence().Append(transform.DOMoveY(transform.position.y + moveDistance, animationDuration).SetDelay(waitDuration))        // 移動、待機
+            .SetEase(easeType).SetLoops(-1, LoopType.Restart);      // ループ
     }
 
+    // 削除
+    public void Delete()
+    {
+        if (gameObject) {
+            Destroy(gameObject);
+
+        }
+    }
 }
